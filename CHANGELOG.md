@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.8.1] - 2026-06-10
+
+### Added
+
+- harnessing-claude: "Max the knobs" section restored in non-repeating form, the execution-dial layer (extended thinking, effort ceiling, long-context tier, widest parallelism) distinct from model selection, with explicit probe-before-set and dial-down-only-on-a-measured-cost-ceiling rules. Carries the maximize-everything posture independent of the global CLAUDE.md the owner plans to remove.
+
 ## [1.8.0] - 2026-06-10
 
 ### Added

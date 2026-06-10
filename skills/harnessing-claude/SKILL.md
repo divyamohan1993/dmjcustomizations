@@ -24,6 +24,10 @@ Route every job through the strongest native capability available. Probe availab
 
 Dynamic skill authoring ($ARGUMENTS, !`cmd` preprocessing): dmjcustomizations:writing-skills.
 
+## Max the knobs (not the model)
+
+Model selection lives elsewhere (dmjcustomizations:using-dmjcustomizations). This is the execution dial: turn every harness-exposed quality knob to max, then probe before setting so you never fight an env-forced value. Extended thinking to its high budget on hard reasoning; effort to its ceiling; long-context tier when input is large; widest parallelism the concurrency cap allows. The only reason to dial DOWN is a measured cost ceiling the user set; otherwise default to maximum and let results, not caution, decide.
+
 ## Red flags (stop)
 
 - Hand-rolled orchestration where Workflow or teams exist.
