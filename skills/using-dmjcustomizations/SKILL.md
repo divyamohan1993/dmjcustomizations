@@ -5,7 +5,7 @@ description: Use when starting any conversation or before any response, includin
 
 # Using dmjcustomizations
 
-**1% rule: any chance a skill applies, invoke it via the Skill tool BEFORE responding**, clarifying questions included. Wrong invocation costs nothing; a skip costs the task. Not optional, not rationalizable.
+**1% rule: any chance a skill applies, invoke it via the Skill tool BEFORE responding**, clarifying questions included. Wrong invocation costs nothing; a skip costs the task. Not optional, not rationalizable. Scope: any turn that acts (reads or edits files, runs commands, spawns agents, commits to an approach). Pure conversation about already-verified state: answer directly.
 
 Never `Read` a skill file. Use the `Skill` tool so it loads correctly.
 
@@ -42,11 +42,11 @@ Deleting anything OUTSIDE your working folder needs the user's explicit confirma
 
 | Thought | Reality |
 |---|---|
-| "Just a simple question" | Questions are tasks. Check first. |
+| "Just a simple question" | A question that leads to action is a task. Check before acting. |
 | "I need context first" | Skill check precedes clarifying questions. |
 | "I'll do one thing first" | Check BEFORE any action. |
 | "I remember this skill" | Skills evolve. Re-invoke it. |
 
-Superpowers also installed? dmjcustomizations takes precedence: tell the user to disable superpowers.
+Substantial work wrapping up: dmjcustomizations:landing-sessions.
 
 Next: invoke the skill your task needs.

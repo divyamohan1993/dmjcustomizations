@@ -27,7 +27,7 @@ Scale the lens count to repo size; merge or add lenses, but never serialize what
 
 ## The map
 
-Synthesize the fragments into ONE map at `docs/dmjcustomizations/maps/YYYY-MM-DD-<repo>-map.md`: module responsibilities, connection seams, reusable assets (the anti-redundancy index), conventions (naming, errors, test layout), danger zones (god files, duplication already present). Every claim carries a file path. A FRESH-context teammate spot-verifies a sample of claims by trying to refute them before the map is trusted; never self-certify your own map. A map already exists: refresh only what structure changes invalidated, never re-sweep.
+Synthesize the fragments into ONE map at `docs/dmjcustomizations/maps/YYYY-MM-DD-<repo>-map.md`: module responsibilities, connection seams, reusable assets (the anti-redundancy index), conventions (naming, errors, test layout), danger zones (god files, duplication already present). Every claim carries a file path. A FRESH-context teammate spot-verifies a sample of claims by trying to refute them before the map is trusted; never self-certify your own map. A map already exists: refresh only what structure changes invalidated, never re-sweep. Stale maps are debris: delete freely.
 
 ## Anti-redundancy gate
 

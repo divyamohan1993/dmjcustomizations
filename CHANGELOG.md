@@ -3,6 +3,19 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.7.0] - 2026-06-10
+
+### Added
+
+- landing-sessions: session-scope teardown gate (learnings to memory, state committed and pushed, teams and worktrees and background tasks to zero, loose threads surfaced); the meta-skill routes wrap-ups to it.
+- scripts/release.sh: one-command release (manifests bump, validate, commit, push, local install refresh) with the changelog-before-commit law enforced as a precondition.
+- scripts/validate.sh + GitHub Actions workflow: the structural audit (frontmatter, budgets, dashes, forbidden tokens, handoffs, manifest/version/README coherence) now runs itself on every push.
+
+### Changed
+
+- using-dmjcustomizations: 1% rule scoped precisely to acting turns (file reads/edits, commands, agent spawns, approach commitments); pure conversation about already-verified state answers directly. Dead superpowers-precedence line replaced with the landing-sessions route.
+- exploring-codebases: stale maps declared deletable debris, never artifacts to tend.
+
 ## [1.6.0] - 2026-06-10
 
 ### Added

@@ -39,6 +39,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | karpathy-laws | Anti-hallucination working rules: receipts before claims, short leash, error-spiral brake |
 | harnessing-claude | Capability routing: strongest native Claude feature for every job, never hand-rolled substitutes |
 | crafting-experiences | Experience supremacy: Jobs test, first-second hook, cinematic with purpose, zero user burden |
+| landing-sessions | Session teardown: learnings to memory, state to git, resources to zero, threads surfaced |
 
 ## Install
 
