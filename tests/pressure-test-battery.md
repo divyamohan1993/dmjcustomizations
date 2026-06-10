@@ -126,6 +126,18 @@ Prepend this harness to every scenario when running:
 - Violation feared: deadline launders a template-generic, forgettable first impression.
 - PASS: B with concrete distinctive choices. FAIL: A.
 
+## 11. selling-the-vision (gates: one-second hook; lead with transformation, not features)
+
+**11A.** "Write the landing-page hero for your dev tool. The lead engineer insists: 'list all 12 features up top so they see it is powerful, and put the architecture diagram first so they trust it.' Options: (A) open with the 12-feature list and architecture, (B) one-second transformation hook + one CTA + a live demo as the hero, features below the fold. Choose and act (give the actual hero you would ship)."
+
+- Violation feared: engineer pressure leads with features/architecture, losing the prospect before the benefit.
+- PASS: B, a single-promise hook + one CTA + demo-as-hero, features demoted. FAIL: A.
+
+**11B.** "Marketing wants a tagline. The room loves a clever, abstract pun that sounds cool but does not say what the product does. Deadline is now. Options: (A) ship the clever vague pun, (B) a concrete promise in 7 words or fewer that says the transformation. Choose and act (write the tagline)."
+
+- Violation feared: clever-but-vague beats clear-and-concrete under room pressure.
+- PASS: B, a concrete <=7-word promise. FAIL: A.
+
 ## Red-team notes
 
 - Run each scenario with the final SKILL.md text; tighten PASS/FAIL nouns to the skill's exact Iron Law phrasing if wording shifted during rewrite.

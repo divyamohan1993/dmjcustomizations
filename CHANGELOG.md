@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.2.0] - 2026-06-10
+
+### Added
+
+- selling-the-vision: launch and marketing persuasion as gates, the one-second hook (headline lands the core promise alone), the keynote arc (problem the audience feels, agitate, reveal, proof, one CTA), one message, one call to action, show-not-tell hero, 7-word tagline, honest claims only, channel-fit sizing. Distinct from crafting-experiences (product UX) by audience and artifact; boundary cross-linked both ways. Carries the Jobs-grade go-to-market craft into the plugin so it survives removal of the global reference docs.
+
 ## [2.1.0] - 2026-06-10
 
 ### Added

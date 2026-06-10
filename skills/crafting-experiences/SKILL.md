@@ -5,7 +5,7 @@ description: Use when building, changing, or reviewing anything a user sees or t
 
 # Crafting Experiences
 
-We ship experiences, not software. Code is the means; how it makes the user feel is the product. Tech exists to remove hassle and automate burden, never to create chores (dashboards, settings, manuals, documentation) the user must tend.
+We ship experiences, not software. Code is the means; how it makes the user feel is the product. Tech exists to remove hassle and automate burden, never to create chores (dashboards, settings, manuals, documentation) the user must tend. (Selling it to a prospect, not designing its use? dmj:selling-the-vision.)
 
 ## Gate 0: the Jobs test
 
