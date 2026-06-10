@@ -9,7 +9,7 @@ Turn an idea into an approved, reviewed design before implementation.
 
 ## Iron Law
 
-NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, and user-approved. Every task, "too simple to design" is the trap where unexamined assumptions waste most work. Spikes are the only code allowed first, and only in a disposable worktree.
+NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, and user-approved. Every task, including the ones that look too simple to need a design. Spikes are the only code allowed first, and only in a disposable worktree.
 
 ## Ceremony tiers (state the tier to the user)
 

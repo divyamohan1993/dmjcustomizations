@@ -34,6 +34,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | defending-in-depth | Security from line 1: threat model, OWASP, zero trust, quantum-safe defaults |
 | enforcing-performance-budgets | O(1)-first, measured budgets, cache-first, regressions block merges |
 | researching-deeply | Parallel research with adversarial source verification and dated citations |
+| exploring-codebases | Five-lens parallel codebase mapping with an anti-redundancy gate: reuse before rebuild |
 
 ## Install
 
