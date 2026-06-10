@@ -1,0 +1,71 @@
+---
+name: writing-plans
+description: Use when you have an approved spec or design and need an implementation plan before touching code, especially a multi-task build you intend to fan out across a team or execute task-by-task.
+---
+
+# Writing Plans
+
+Turn an approved design into a task graph a teammate with no session context can execute correctly. DRY, YAGNI, TDD, frequent commits.
+
+Announce: "Using writing-plans." Save to `docs/dmjcustomizations/plans/YYYY-MM-DD-<feature>.md` (user path preference wins).
+
+## Before tasks
+
+- **Scope.** If the design spans independent subsystems, split into one plan each. Each must produce working, testable software alone.
+- **File map.** List every file created or modified and its one responsibility. Prefer small focused files; split by responsibility, not layer; follow patterns.
+
+## Plan header
+
+```markdown
+# <Feature> Implementation Plan
+
+**Goal:** <one sentence> · **Architecture:** <2-3 sentences> · **Tech stack:** <key libs>
+**Execution:** team-driven-development or executing-plans. Tasks are checkboxes.
+```
+
+## Each task declares (parallel-first)
+
+The core change from a linear plan: every task carries the metadata a team needs to fan out safely.
+
+- **Depends on:** task IDs that must finish first (or `none`).
+- **Parallel-safe:** `yes` only if no unlisted dependency AND its file set does not overlap another runnable task. Overlap forces a worktree (dmjcustomizations:using-git-worktrees) or serialization.
+- **Files:** exact create / modify (`path:lines`) / test paths.
+- **Acceptance criteria:** machine-checkable, each a command + expected result (exit code, test name, output, benchmark threshold).
+- **Steps:** TDD, one action each (2-5 min): failing test, run it fail, minimal code, run it pass, commit.
+- **Verification step:** the command(s) proving the criteria, run before marking done.
+
+## Task template
+
+Steps carry actual code, not descriptions.
+
+````markdown
+### Task N: <name>
+**Depends on:** <ids|none> · **Parallel-safe:** <yes|no>
+**Files:** Create `a.ts` · Test `a.test.ts` · **Acceptance:** `pnpm test a.test.ts` → 3 pass
+
+- [ ] Failing test (code) → run → FAIL · minimal code (code) → run → PASS
+- [ ] Verify acceptance command, then commit
+````
+
+## No placeholders (plan failures)
+
+Never: "TBD" / "implement later", "add error handling / validation / edge cases" without code, "write tests for the above" without test code, "similar to Task N" (repeat it, tasks run out of order), a step describing what without the code block, or a symbol defined in no task.
+
+## Performance and security
+
+Bake budgets into acceptance criteria (dmjcustomizations:enforcing-performance-budgets): lowest achievable complexity, no O(n²)+ unjustified. Carry the design's threat model into tasks as explicit steps with criteria (dmjcustomizations:defending-in-depth): validation, parameterized queries, least privilege.
+
+## Fresh-context review (never self-review)
+
+When the plan is complete, dispatch ONE fresh-context teammate (no session history) with spec and plan to check: every spec requirement maps to a task; no placeholders; type and signature names consistent across tasks; dependency edges acyclic; each acceptance criterion machine-checkable. Fix blocking findings; re-dispatch only if a blocker was structural.
+
+Headless or TeamCreate unavailable: run the same checklist yourself in a SEPARATE pass (or as a native `Agent` call) and record it ran; never skip the gate silently.
+
+## Red flags (stop)
+
+- A task with no machine-checkable acceptance criterion.
+- "Parallel-safe: yes" on tasks that share a file.
+- Reviewing your own plan in the same context.
+- A dependency cycle, or a task using an undefined symbol.
+
+Next: **dmjcustomizations:team-driven-development** (same session) or **dmjcustomizations:executing-plans** (fresh session).

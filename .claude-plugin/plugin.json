@@ -1,0 +1,21 @@
+{
+  "name": "dmjcustomizations",
+  "description": "Divya's parallel-first agentic engineering skills: team-based workflows, adversarial verification, security and performance gates from line 1",
+  "version": "1.0.0",
+  "author": {
+    "name": "Divya Mohan",
+    "email": "divyamohan1993@gmail.com"
+  },
+  "homepage": "https://github.com/divyamohan1993/dmjcustomizations",
+  "repository": "https://github.com/divyamohan1993/dmjcustomizations",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "agent-teams",
+    "parallel",
+    "tdd",
+    "security",
+    "performance",
+    "workflows"
+  ]
+}
