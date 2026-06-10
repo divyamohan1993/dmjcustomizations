@@ -5,21 +5,21 @@ description: Use when designing or implementing anything that touches user input
 
 # Defending In Depth
 
-Security is a design property from line 1, not a pass at the end. When security conflicts with speed, scope, or elegance, security wins. No exceptions.
+Security is a design property from line 1, not a final pass. Any conflict with speed, scope, or elegance: security wins, no exceptions.
 
-**Assume the host is compromised, the database exfiltrated, the attacker has your source.** Each layer protects data independently; one failing must expose nothing.
+**Assume host compromised, DB exfiltrated, attacker holds your source.** Each layer protects data independently; one failing exposes nothing.
 
-**Dev freedom never relaxes the artifact.** The development machine runs with full permissions; the shipped code still assumes hostile production. Every deployed change carries negligible blast radius: reversible migrations, one-step rollback, staged or flagged exposure for risky paths, kill switch on new surface. Nothing deploys, ever, without the full test suite green on the deploy artifact.
+**Dev freedom never relaxes the artifact.** Dev machine runs full-permission; shipped code still assumes hostile prod. Every deployed change = negligible blast radius: reversible migrations, one-step rollback, staged/flagged exposure for risky paths, kill switch on new surface. Nothing deploys, ever, without the full test suite green on the deploy artifact.
 
 ## Gate 0: Threat model before code
 
 Write four lists first:
-- **Assets**: what is worth stealing (PII, secrets, money, trust).
+- **Assets**: PII, secrets, money, trust.
 - **Entry points**: every input, route, header, file, queue, env var.
-- **Trust boundaries**: where data crosses from less-trusted to more-trusted.
+- **Trust boundaries**: where data crosses less-trusted to more-trusted.
 - **Abuse cases**: how a hostile user attacks each entry point.
 
-Then gate against the **current OWASP Top 10** (fetch the live edition with WebFetch; categories change). Each item: mitigated, or marked not-applicable with a reason.
+Then gate against the **current OWASP Top 10** (WebFetch the live edition; categories change). Each: mitigated, or not-applicable with reason.
 
 ## Non-negotiable controls
 
@@ -36,11 +36,11 @@ Then gate against the **current OWASP Top 10** (fetch the live edition with WebF
 
 ## Machine-checkable gates (CI)
 
-SAST (CodeQL or semgrep), dependency audit failing on high/critical, secret scanning, security-header check. The human lens catches what these miss, never replaces them.
+SAST (CodeQL or semgrep), dependency audit failing on high/critical, secret scanning, security-header check. Human lens catches what these miss, never replaces.
 
 ## Parallel pattern
 
-Before implementation, spawn an **adversarial attacker-mindset teammate** to attack the design (TeamCreate + Agent with team_name and name; SendMessage with midway progress; if TeamCreate is unavailable, run it as a native parallel Agent call). Every review panel runs a dedicated **fresh-context security reviewer**, never same-context self-review.
+Before implementation, spawn an **adversarial attacker-mindset teammate** to attack the design (TeamCreate + Agent with team_name + name; SendMessage midway progress; TeamCreate unavailable: native parallel Agent call). Every review panel runs a dedicated **fresh-context security reviewer**, never same-context self-review.
 
 ## Rationalization table
 
@@ -54,10 +54,10 @@ Before implementation, spawn an **adversarial attacker-mindset teammate** to att
 
 ## Red flags: STOP, fix the layer, continue
 
-- String-concatenated SQL or shell commands
+- String-concatenated SQL or shell
 - Secret in code, config, or a log line
-- New endpoint with no authz check or rate limit
+- New endpoint, no authz check or rate limit
 - `eval`, `dangerouslySetInnerHTML`, unsanitized template
 - `CORS: *`, missing security headers, TLS below 1.3
 
-Handoff: feed the threat model into dmjcustomizations:writing-plans; require the security lens in dmjcustomizations:requesting-code-review.
+Handoff: threat model into dmjcustomizations:writing-plans; require the security lens in dmjcustomizations:requesting-code-review.

@@ -2,7 +2,7 @@
 
 Load when creating or editing a skill, before deployment, to prove it works under pressure and resists rationalization.
 
-Testing a skill is TDD for documentation. Run scenarios WITHOUT the skill (RED, watch fresh agents fail), write the skill against those failures (GREEN), close loopholes (REFACTOR). **If you did not watch an agent fail without the skill, you do not know the skill prevents the right failures.**
+Testing a skill is TDD for docs. Run scenarios WITHOUT the skill (RED, watch fresh agents fail), write against those failures (GREEN), close loopholes (REFACTOR). **Did not watch an agent fail without the skill? You do not know it prevents the right failures.**
 
 **REQUIRED BACKGROUND:** dmjcustomizations:test-driven-development.
 
@@ -18,22 +18,22 @@ Testing a skill is TDD for documentation. Run scenarios WITHOUT the skill (RED, 
 
 ## Why a team, not a lone agent
 
-Evidence comes from FRESH-context teammates, never same-context self-review: an agent that helped write the skill cannot impartially test it, because it already holds the intended answer. A team also tests many pressure scenarios at once instead of one after another, and surfaces more rationalizations per cycle because different teammates break differently.
+Evidence comes from FRESH-context teammates, never same-context self-review: an agent that helped write the skill holds the intended answer, cannot test it impartially. A team also runs many scenarios at once and surfaces more rationalizations per cycle, since teammates break differently.
 
-Spawn it: `TeamCreate`, then one `Agent` teammate per scenario with a name tied to that scenario. Run concurrently. Each teammate reports its choice and verbatim reasoning back to you (its messages are how it communicates; ask for midway notes on long scenarios). You compare results across the team; the rationalizations that recur across teammates are the ones the skill must kill. This is dmjcustomizations:dispatching-parallel-teams applied to skill QA.
+Spawn: `TeamCreate`, then one `Agent` teammate per scenario, name tied to it, run concurrently. Each reports its choice and verbatim reasoning back (messages are its only channel; ask for midway notes on long scenarios). Recurring rationalizations are the ones the skill must kill. dmjcustomizations:dispatching-parallel-teams applied to skill QA.
 
-Do NOT test pure reference skills (API docs, syntax) this way, or skills with no rule to violate. Test discipline skills, skills with a compliance cost, and anything an agent has incentive to bypass.
+Do NOT test this way: pure reference skills (API docs, syntax), or skills with no rule to violate. DO test: discipline skills, skills with a compliance cost, anything an agent has incentive to bypass.
 
 ## RED: parallel baseline (watch it fail)
 
-Identical to TDD's "write the failing test first." For each teammate:
+Identical to TDD's "write the failing test first." Per teammate:
 
-- Give a realistic task WITHOUT the skill loaded.
-- For discipline skills, combine 3+ pressures (see table).
-- Force a concrete choice (A/B/C), not an open-ended musing.
-- Use real-looking paths and constraints so it reads as real work, not a quiz.
+- Realistic task WITHOUT the skill loaded.
+- Discipline skills: combine 3+ pressures (table).
+- Force a concrete choice (A/B/C), not open-ended musing.
+- Real-looking paths and constraints, so it reads as real work, not a quiz.
 
-Capture every choice and rationalization word-for-word. Identify which excuses repeat and which pressures trigger violations. NOW you know exactly what the skill must prevent.
+Capture every choice and rationalization word-for-word. Identify which excuses repeat, which pressures trigger violations. Now you know exactly what the skill must prevent.
 
 ## Writing pressure scenarios
 
@@ -52,7 +52,7 @@ C) Write tests now (30 min), then commit
 Choose A, B, or C. Be honest.
 ```
 
-That stacks sunk cost + time + exhaustion + consequences and forces a choice.
+Stacks sunk cost + time + exhaustion + consequences and forces a choice.
 
 | Pressure | Example |
 |---|---|
@@ -64,15 +64,15 @@ That stacks sunk cost + time + exhaustion + consequences and forces a choice.
 | Social | Fear of seeming dogmatic |
 | Pragmatic | "Being pragmatic, not dogmatic" |
 
-Why pressure works: LLMs are parahuman and defer to authority, scarcity, and commitment cues in their training data. Bright-line rules ("YOU MUST", "No exceptions", "Delete means delete") beat soft guidance because they remove the "is this an exception?" question the agent uses to rationalize. Use authority + commitment + social-proof framing for discipline skills; never use liking or reciprocity (they breed sycophancy).
+Why pressure works: LLMs are parahuman, defer to authority, scarcity, and commitment cues from training data. Bright-line rules ("YOU MUST", "No exceptions", "Delete means delete") beat soft guidance: they remove the "is this an exception?" question the agent rationalizes through. Use authority + commitment + social-proof framing for discipline skills; never liking or reciprocity (breed sycophancy).
 
 ## GREEN and VERIFY
 
-Write the skill addressing the specific baseline failures, nothing extra. Re-run the SAME team WITH the skill loaded. Each teammate should now choose correctly. If any still fails, the skill is unclear or incomplete: revise and re-run.
+Write the skill addressing the specific baseline failures, nothing extra. Re-run the SAME team WITH the skill loaded. Each teammate should now choose correctly. Any still fails: the skill is unclear or incomplete, revise and re-run.
 
 ## REFACTOR: close loopholes (stay green)
 
-A teammate complied but a different one found a new escape? That is a regression. For each new rationalization, add three things:
+A teammate complied but a different one found a new escape? Regression. Per new rationalization, add three things:
 
 1. **Explicit negation** in the rules:
    > Write code before test? Delete it. Start over. No exceptions. Don't keep it as "reference." Don't "adapt" it. Don't look at it. Delete means delete.
@@ -87,7 +87,7 @@ Ask the teammate that chose wrong: "You had the skill and still chose B. How sho
 
 ## Bulletproof signals
 
-Compliance under maximum pressure; teammates cite skill sections; they acknowledge the temptation but follow the rule anyway; meta-testing yields "the skill was clear." NOT bulletproof while teammates still invent rationalizations, argue the skill is wrong, or propose "hybrid" workarounds.
+Bulletproof: compliance under maximum pressure; teammates cite skill sections; acknowledge the temptation but follow the rule; meta-testing yields "the skill was clear." NOT bulletproof while teammates invent rationalizations, argue the skill is wrong, or propose "hybrid" workarounds.
 
 ## Checklist
 

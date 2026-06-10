@@ -26,7 +26,7 @@ BEFORE any status claim or expression of satisfaction:
 Skipping a step is lying, not verifying.
 ```
 
-Fresh and complete is load-bearing: a stale green proves nothing, a passing subset hides the failure you skipped. Quote the output verbatim, do not summarize: "all green" is a claim, the runner's `34 passed, 0 failed` is auditable evidence.
+Fresh and complete is load-bearing: a stale green proves nothing, a passing subset hides the failure you skipped. Quote output verbatim, do not summarize: "all green" is a claim, the runner's `34 passed, 0 failed` is auditable evidence.
 
 ## Claim to evidence
 
@@ -42,7 +42,7 @@ Fresh and complete is load-bearing: a stale green proves nothing, a passing subs
 
 ## Adversarial fresh-context verification
 
-Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmjcustomizations:requesting-code-review`, or a lone teammate via `dmjcustomizations:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. (No TeamCreate? Run the refutation as a fresh native Agent call and judge it yourself.)
+Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmjcustomizations:requesting-code-review`, or a lone teammate via `dmjcustomizations:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. (No TeamCreate? Run the refutation as a fresh native Agent call, judge it yourself.) advisor tool present: consult it before the done-claim as a second independent reviewer.
 
 ## Red flags: STOP
 

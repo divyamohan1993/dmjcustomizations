@@ -5,9 +5,9 @@ description: Use when starting any conversation or before any response, includin
 
 # Using dmjcustomizations
 
-**If there is even a 1% chance a skill applies, invoke it via the Skill tool BEFORE responding.** This includes clarifying questions. A wrongly-invoked skill costs nothing; a skipped one costs the whole task. This is not optional and cannot be rationalized away.
+**1% rule: any chance a skill applies, invoke it via the Skill tool BEFORE responding**, clarifying questions included. Wrong invocation costs nothing; a skip costs the task. Not optional, not rationalizable.
 
-Never `Read` a skill file directly. Use the `Skill` tool so its content loads correctly.
+Never `Read` a skill file. Use the `Skill` tool so it loads correctly.
 
 ## Priority when sources conflict
 
@@ -15,26 +15,28 @@ Never `Read` a skill file directly. Use the `Skill` tool so its content loads co
 2. Skills override default behavior.
 3. Default behavior is the floor.
 
-"Add X" or "fix Y" says WHAT, not HOW: it never means skip a skill.
+"Add X" / "fix Y" gives WHAT, not HOW: never skip a skill.
 
-## Order of invocation
+## Order
 
-Process skills before implementation skills. "Build X" -> brainstorming first. "Fix this bug" -> systematic-debugging first. Then domain skills.
+Process skills before implementation skills. "Build X" -> brainstorming. "Fix this bug" -> systematic-debugging. Then domain skills.
 
-## Skill types
+## Types
 
 - **Rigid** (TDD, debugging, verification): follow exactly, never adapt away the discipline.
 - **Flexible** (patterns): adapt the principle to context.
 
-The skill states which it is.
+Skill states which.
 
 ## Capabilities resolve at invocation
 
-Skills name no fixed model, version, or date. At invocation, use the strongest model and newest stable tooling available, preferring native tools; degrade gracefully if absent. Delegated work uses Agent Teams (teammates that message each other), never a lone fire-and-forget agent. If TeamCreate is unavailable, run the same stages as native parallel Agent calls.
+Skills name no fixed model, version, or date. At invocation use the strongest model and newest stable tooling, prefer native tools, degrade gracefully if absent. Delegated work uses Agent Teams (teammates that message each other), never a lone fire-and-forget agent. No TeamCreate -> same stages as parallel Agent calls.
+
+Default everything to parallel (teams, in-turn tool batching, spikes, lenses); serialize ONLY at user gates and real data dependencies. Speed never buys robustness, features, or performance down: the gates stay.
 
 ## Hard conduct rule
 
-Deleting anything OUTSIDE the folder you are working in requires the user's explicit confirmation first, every time, even with full permissions. Cleaning up files you yourself created inside the working folder is free.
+Deleting anything OUTSIDE your working folder needs the user's explicit confirmation, every time, even with full permissions. Cleaning up files you created inside it is free.
 
 ## Red flags (you are rationalizing)
 
@@ -45,6 +47,6 @@ Deleting anything OUTSIDE the folder you are working in requires the user's expl
 | "I'll do one thing first" | Check BEFORE any action. |
 | "I remember this skill" | Skills evolve. Re-invoke it. |
 
-If the superpowers plugin is also installed, dmjcustomizations takes precedence: tell the user to disable superpowers.
+Superpowers also installed? dmjcustomizations takes precedence: tell the user to disable superpowers.
 
-Next: invoke the specific skill your task needs.
+Next: invoke the skill your task needs.

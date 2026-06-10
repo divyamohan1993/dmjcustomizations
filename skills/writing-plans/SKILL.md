@@ -11,8 +11,8 @@ Announce: "Using writing-plans." Save to `docs/dmjcustomizations/plans/YYYY-MM-D
 
 ## Before tasks
 
-- **Scope.** If the design spans independent subsystems, split into one plan each. Each must produce working, testable software alone.
-- **File map.** List every file created or modified and its one responsibility. Prefer small focused files; split by responsibility, not layer; follow patterns.
+- **Scope.** Design spans independent subsystems: one plan each. Each must produce working, testable software alone.
+- **File map.** List every file created/modified + its one responsibility. Small focused files; split by responsibility not layer; follow patterns.
 
 ## Plan header
 
@@ -24,8 +24,6 @@ Announce: "Using writing-plans." Save to `docs/dmjcustomizations/plans/YYYY-MM-D
 ```
 
 ## Each task declares (parallel-first)
-
-The core change from a linear plan: every task carries the metadata a team needs to fan out safely.
 
 - **Depends on:** task IDs that must finish first (or `none`).
 - **Parallel-safe:** `yes` only if no unlisted dependency AND its file set does not overlap another runnable task. Overlap forces a worktree (dmjcustomizations:using-git-worktrees) or serialization.
@@ -53,11 +51,11 @@ Never: "TBD" / "implement later", "add error handling / validation / edge cases"
 
 ## Performance and security
 
-Bake budgets into acceptance criteria (dmjcustomizations:enforcing-performance-budgets): lowest achievable complexity, no O(n²)+ unjustified. Carry the design's threat model into tasks as explicit steps with criteria (dmjcustomizations:defending-in-depth): validation, parameterized queries, least privilege.
+Bake budgets into acceptance criteria (dmjcustomizations:enforcing-performance-budgets): lowest achievable complexity, no O(n²)+ unjustified. Carry the design's threat model into tasks as explicit steps + criteria (dmjcustomizations:defending-in-depth): validation, parameterized queries, least privilege.
 
 ## Fresh-context review (never self-review)
 
-When the plan is complete, dispatch ONE fresh-context teammate (no session history) with spec and plan to check: every spec requirement maps to a task; no placeholders; type and signature names consistent across tasks; dependency edges acyclic; each acceptance criterion machine-checkable. Fix blocking findings; re-dispatch only if a blocker was structural.
+Plan complete: dispatch ONE fresh-context teammate (no session history) with spec + plan to check: every spec requirement maps to a task; no placeholders; type and signature names consistent across tasks; dependency edges acyclic; each acceptance criterion machine-checkable. Fix blocking findings; re-dispatch only if a blocker was structural.
 
 Headless or TeamCreate unavailable: run the same checklist yourself in a SEPARATE pass (or as a native `Agent` call) and record it ran; never skip the gate silently.
 

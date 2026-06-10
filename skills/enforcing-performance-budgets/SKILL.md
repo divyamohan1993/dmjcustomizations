@@ -9,7 +9,7 @@ Performance is a gate, not an afterthought. An unenforced budget is a wish. Regr
 
 ## Gate 1: Complexity first
 
-Target O(1); else justify the lowest achievable in a comment at the call site: O(log n) > O(n) > O(n log n). **O(n^2) or worse requires written justification next to the code** naming the input bound that keeps it safe. No silent quadratics on unbounded input.
+Target O(1); else justify the lowest achievable in a comment at the call site: O(log n) > O(n) > O(n log n). **O(n^2) or worse requires written justification next to the code**, naming the input bound that keeps it safe. No silent quadratics on unbounded input.
 
 ## Gate 2: Measure, never guess
 
@@ -17,7 +17,7 @@ Profile before optimizing; the bottleneck is rarely where intuition points. No o
 
 ## Gate 3: Written budgets, enforced in CI
 
-Every budget is written and machine-checked. Start from these floors, adjust per project, always commit the number:
+Every budget written and machine-checked. From these floors, adjust per project, always commit the number:
 
 | Budget | Floor | Gate |
 |--------|-------|------|
@@ -38,7 +38,7 @@ Origin is the last resort, not the default:
 
 ## Choosing a stack
 
-Pick the fastest-fit by measured evidence, not fashion. Probe current independent benchmarks at decision time; ties break on your workload, not a marketing chart.
+Fastest-fit by measured evidence, not fashion. Probe current independent benchmarks at decision time; ties break on your workload, not a marketing chart.
 
 ## Load and soak
 
@@ -46,7 +46,7 @@ Load-test at peak times a safety factor; soak to catch leaks and GC stalls. The 
 
 ## Parallel pattern
 
-Run a dedicated **performance lens as a fresh-context teammate** in every review panel (never same-context self-review). When two implementations are plausible, race them as **parallel spikes in disposable worktrees** (dmjcustomizations:using-git-worktrees); the benchmark decides. Coordinate via TeamCreate + Agent (team_name, name); if TeamCreate is unavailable, race them as native parallel Agent calls.
+Run a dedicated **performance lens as a fresh-context teammate** in every review panel (never same-context self-review). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmjcustomizations:using-git-worktrees); the benchmark decides. Coordinate via TeamCreate + Agent (team_name, name); TeamCreate unavailable: race as native parallel Agent calls.
 
 ## Rationalization table
 
@@ -63,4 +63,4 @@ Run a dedicated **performance lens as a fresh-context teammate** in every review
 - A budget that warns instead of failing the build
 - Stack chosen by popularity, not a workload benchmark
 
-Handoff: bake budgets into dmjcustomizations:writing-plans; enforce the perf lens via dmjcustomizations:requesting-code-review.
+Handoff: budgets into dmjcustomizations:writing-plans; enforce the perf lens via dmjcustomizations:requesting-code-review.

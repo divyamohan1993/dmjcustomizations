@@ -1,6 +1,6 @@
 # Testing Anti-Patterns
 
-Load when writing or changing tests, adding mocks, or tempted to add test-only methods to production code.
+Load when writing/changing tests, adding mocks, or tempted to add test-only methods to production code.
 
 **Core principle:** test what the code does, not what the mocks do. Strict TDD prevents every pattern below: if watching the test fail against real code first feels impossible, that is the anti-pattern announcing itself.
 
@@ -33,7 +33,7 @@ render(<Page />);                                   // do not mock the sidebar
 expect(screen.getByRole('navigation')).toBeInTheDocument();
 ```
 
-Gate: before asserting on any mock element, ask "am I testing real behavior or mock existence?" If existence, delete the assertion or unmock.
+Gate: before asserting on any mock element, ask "real behavior or mock existence?" If existence, delete the assertion or unmock.
 
 ## 2. Test-only methods in production
 
@@ -47,7 +47,7 @@ export async function cleanupSession(s: Session) {
 }
 ```
 
-Gate: before adding a method to a production class, ask "is this only used by tests?" (yes, move it out) and "does this class own this resource's lifecycle?" (no, wrong class).
+Gate: before adding a method to a production class, ask "only used by tests?" (yes, move it out) and "does this class own this resource's lifecycle?" (no, wrong class).
 
 ## 3. Mocking without understanding
 
@@ -60,7 +60,7 @@ await addServer(config);   // should throw, silently does not
 vi.mock('MCPServerManager');  // just the slow server startup
 ```
 
-Gate: before mocking, ask what side effects the real method has and whether the test depends on any. If it does, mock one level lower (the actual slow/external call), not the high-level method. Unsure what the test needs? Run it against the real implementation first, observe, then add minimal mocking. Red flag: "I'll mock this to be safe."
+Gate: before mocking, ask what side effects the real method has and whether the test depends on any. If so, mock one level lower (the actual slow/external call), not the high-level method. Unsure what the test needs? Run against the real implementation first, observe, then add minimal mocking. Red flag: "I'll mock this to be safe."
 
 ## 4. Incomplete mocks
 
@@ -80,4 +80,4 @@ Iron rule: mock the COMPLETE structure as it exists in reality, not just the fie
 
 ## The bottom line
 
-Mocks isolate; they are not the thing under test. If TDD reveals you are testing mock behavior, you added mocks without first watching the test fail against real code. Test real behavior, or question why you are mocking at all. Back to discipline: `dmjcustomizations:test-driven-development`.
+Mocks isolate; they are not the thing under test. If TDD reveals you are testing mock behavior, you added mocks without first watching the test fail against real code. Test real behavior, or question why you mock at all. Back to discipline: `dmjcustomizations:test-driven-development`.

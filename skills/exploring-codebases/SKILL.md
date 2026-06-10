@@ -5,15 +5,15 @@ description: Use when entering an unfamiliar or large codebase, when you cannot 
 
 # Exploring Codebases
 
-Map a codebase in parallel until you can answer: what lives where, how it connects, and what already exists, so nothing gets built twice.
+Map a codebase in parallel until you can answer: what lives where, how it connects, what already exists, so nothing gets built twice.
 
 ## Iron Law
 
-NO new code in unmapped territory. If you cannot name where similar logic already lives, or show evidence it does not exist, you are not ready to add more. Reuse beats rebuild; evidence beats memory.
+NO new code in unmapped territory. Cannot name where similar logic already lives, or show evidence it does not exist: not ready to add more. Reuse beats rebuild; evidence beats memory.
 
 ## Parallel sweep (one lens per teammate)
 
-TeamCreate, then one teammate per lens via Agent (team_name, name, strongest available model); each posts findings with file:line evidence via SendMessage and may message other lenses to resolve overlaps. If TeamCreate is unavailable, run the lenses as native parallel Agent calls (prefer the harness's read-only Explore agent type when present) and synthesize yourself.
+TeamCreate, then one teammate per lens via Agent (team_name, name, strongest available model); each posts findings with file:line evidence via SendMessage and may message other lenses to resolve overlaps. TeamCreate unavailable: run the lenses as native parallel Agent calls (prefer the harness's read-only Explore agent type when present), synthesize yourself.
 
 | Lens | Question | Reads |
 |---|---|---|
@@ -27,7 +27,7 @@ Scale the lens count to repo size; merge or add lenses, but never serialize what
 
 ## The map
 
-Synthesize the fragments into ONE map at `docs/dmjcustomizations/maps/YYYY-MM-DD-<repo>-map.md`: module responsibilities, connection seams, reusable assets (the anti-redundancy index), conventions (naming, errors, test layout), danger zones (god files, duplication already present). Every claim carries a file path. A FRESH-context teammate spot-verifies a sample of claims by trying to refute them before the map is trusted; never self-certify your own map. When a map already exists, refresh only what structure changes invalidated instead of re-sweeping.
+Synthesize the fragments into ONE map at `docs/dmjcustomizations/maps/YYYY-MM-DD-<repo>-map.md`: module responsibilities, connection seams, reusable assets (the anti-redundancy index), conventions (naming, errors, test layout), danger zones (god files, duplication already present). Every claim carries a file path. A FRESH-context teammate spot-verifies a sample of claims by trying to refute them before the map is trusted; never self-certify your own map. A map already exists: refresh only what structure changes invalidated, never re-sweep.
 
 ## Anti-redundancy gate
 
@@ -49,6 +49,6 @@ Before creating any function, helper, type, or file: search the map's asset inde
 - One serial read-through instead of a parallel sweep.
 - Trusting docs or memory over a fresh grep.
 
-**Headless:** runs fully autonomous, no user gate; the map and the gate-search evidence land in the final report.
+**Headless:** fully autonomous, no user gate; the map and the gate-search evidence land in the final report.
 
 Next: **dmjcustomizations:brainstorming** to design in the mapped code, or **dmjcustomizations:writing-plans** if the design already exists.

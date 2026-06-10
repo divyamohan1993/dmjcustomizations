@@ -6,7 +6,7 @@ Two techniques used inside `dmjcustomizations:systematic-debugging`. Validation-
 
 Bugs surface deep in the call stack (git init in the wrong dir, file written to the wrong path). Fixing where the error appears treats a symptom. Trace backward to the original trigger and fix there.
 
-**Process:** observe the symptom, find the code that directly causes it, then ask "what called this with that value?" repeatedly up the chain until you reach the source.
+**Process:** observe the symptom, find the code directly causing it, then ask "what called this with that value?" repeatedly up the chain until you reach the source.
 
 ```
 git init fails in packages/core      <- symptom: cwd is process.cwd()
@@ -27,9 +27,9 @@ async function gitInit(directory: string) {
 }
 ```
 
-Use `console.error` in tests (a logger may be suppressed). Log *before* the operation, include directory/cwd/env. Capture with `npm test 2>&1 | grep 'DEBUG git init'`, then read the stack for the triggering test file and line.
+Use `console.error` in tests (a logger may be suppressed). Log *before* the operation, include directory/cwd/env. Capture with `npm test 2>&1 | grep 'DEBUG git init'`, then read the stack for the triggering test file/line.
 
-**Which test pollutes shared state?** Run `find-polluter.sh` in this directory: it runs the matching tests one by one and stops at the first that creates the artifact. `./find-polluter.sh '.git' 'src/**/*.test.ts'`.
+**Which test pollutes shared state?** Run `find-polluter.sh` in this directory: it runs matching tests one by one, stops at the first that creates the artifact. `./find-polluter.sh '.git' 'src/**/*.test.ts'`.
 
 ## Condition-based waiting (kills flaky timing)
 

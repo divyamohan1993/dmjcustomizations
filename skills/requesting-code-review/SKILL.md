@@ -5,7 +5,7 @@ description: Use when a task or major feature is complete, before merging to mai
 
 # Requesting Code Review
 
-Review early, review often, and never review your own diff in your own context: you already believe it is correct. Dispatch fresh-context teammates who see only the work product, never your reasoning.
+Review early, review often, never review your own diff in your own context: you already believe it is correct. Dispatch fresh-context teammates who see only the work product, never your reasoning.
 
 ## When
 
@@ -13,7 +13,7 @@ Review early, review often, and never review your own diff in your own context: 
 
 ## Run a parallel review panel, not one reviewer
 
-A single reviewer misses by lens. Spin a team (`dmjcustomizations:dispatching-parallel-teams`) and dispatch four fresh-context teammates concurrently, each with the same diff and one lens. They work in parallel and post progress midway.
+A single reviewer misses by lens. Spin a team (`dmjcustomizations:dispatching-parallel-teams`), dispatch four fresh-context teammates concurrently, each with the same diff and one lens. They work in parallel and post progress midway.
 
 | Lens | Hunts for | Anchored by |
 |------|-----------|-------------|
@@ -44,11 +44,11 @@ Lenses overlap, so collapse duplicate findings to one. Then adversarially spot-v
 
 ## Act on surviving findings
 
-Fix Critical immediately, Important before proceeding, note Minor. A finding you believe is wrong: do not silently comply and do not silently ignore, push back with technical reasoning (`dmjcustomizations:receiving-code-review`).
+Fix Critical immediately, Important before proceeding, note Minor. A finding you believe is wrong: neither silently comply nor silently ignore, push back with technical reasoning (`dmjcustomizations:receiving-code-review`).
 
 ## Blast radius
 
-Default panel is four teammates. For a tiny, low-risk diff you may state the tier to the user and run a narrower panel (for example correctness + security only). Name the tier when you narrow it; never narrow silently.
+Default panel is four teammates. For a tiny, low-risk diff you may state the tier to the user and run a narrower panel (e.g. correctness + security only). Name the tier when you narrow it; never narrow silently.
 
 ## Red flags
 
@@ -56,6 +56,6 @@ Skipping review because "it is simple," reviewing your own diff in your own cont
 
 ## Headless mode
 
-A background agent runs the full panel unprompted, consolidates and spot-verifies, then puts surviving findings with their fixes (and any pushback with reasoning) in the final report. Park nothing that it can verify itself; flag only genuine judgment calls the user owns.
+A background agent runs the full panel unprompted, consolidates and spot-verifies, then puts surviving findings with their fixes (and any pushback with reasoning) in the final report. Park nothing it can verify itself; flag only genuine judgment calls the user owns.
 
 Findings resolved? Next: `dmjcustomizations:finishing-a-development-branch`. Receiving the feedback: `dmjcustomizations:receiving-code-review`.

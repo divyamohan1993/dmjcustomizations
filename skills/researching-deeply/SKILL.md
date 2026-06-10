@@ -9,11 +9,11 @@ One source is a rumor. A decision rests on triangulated, dated, primary-source e
 
 ## Step 0: Use the native engine if present
 
-If the harness exposes a deep-research tool or skill, prefer it: it already fans out, fetches, and verifies. Drive it, then apply the verification and synthesis discipline below to its output. Only hand-roll the team when no native engine exists.
+If the harness exposes a deep-research tool or skill, prefer it: it already fans out, fetches, verifies. Drive it, then apply the verification and synthesis discipline below to its output. Hand-roll the team only when no native engine exists. Library or API questions: context7 MCP (live docs) or WebFetch on official docs before anything else.
 
 ## Fan out by angle, in parallel
 
-Spawn a research team (TeamCreate, then Agent with team_name and a name per angle; SendMessage with midway progress posts). If TeamCreate is unavailable, run the same angles as native parallel Agent calls and synthesize yourself. Each teammate owns a different lens and cites **primary sources with publication dates**:
+Spawn a research team (TeamCreate, then Agent with team_name + a name per angle; SendMessage midway progress posts). TeamCreate unavailable: run the same angles as native parallel Agent calls, synthesize yourself. Each teammate owns one lens and cites **primary sources with publication dates**:
 
 | Angle | Primary source |
 |-------|----------------|
@@ -28,15 +28,15 @@ Never decide on a single source or a single teammate.
 
 ## Adversarial verification pass
 
-For every load-bearing claim, a **fresh-context teammate tries to refute it** before you rely on it (never same-context self-review; the author is blind to their own gaps). A claim survives only if the refutation fails against a primary source. Refutation succeeds: drop or qualify the claim.
+For every load-bearing claim, a **fresh-context teammate tries to refute it** before you rely on it (never same-context self-review; the author is blind to their own gaps). A claim survives only if refutation fails against a primary source. Refutation succeeds: drop or qualify the claim.
 
 ## Recency discipline
 
-Prefer the newest authoritative source. State the **as-of date of every fact**. Flag anything older than the domain moves (a fast-moving framework dates in months; a stable protocol in years). "It was true once" is not "it is true now"; re-verify at invocation.
+Prefer the newest authoritative source. State the **as-of date of every fact**. Flag anything older than the domain moves (fast-moving framework dates in months; stable protocol in years). "True once" is not "true now"; re-verify at invocation.
 
 ## Synthesis: separate the three
 
-Sort every finding into one of three bins, never blur them:
+Sort every finding into one bin, never blur:
 - **Established fact**: primary-sourced, survived refutation.
 - **Current consensus**: widely held, may shift.
 - **Open question**: contested or unknown.
@@ -50,7 +50,7 @@ Sort every finding into one of three bins, never blur them:
 
 ## Headless mode
 
-Runs fully autonomously: spawn the team, verify, synthesize, land the digest in the final report. No human-in-the-loop deadlock; if a claim cannot be verified, ship it labeled "unverified", never silently.
+Fully autonomous: spawn the team, verify, synthesize, land the digest in the final report. No human-in-the-loop deadlock; a claim that cannot be verified ships labeled "unverified", never silently.
 
 ## Red flags: STOP, widen the search
 
@@ -61,4 +61,4 @@ Runs fully autonomously: spawn the team, verify, synthesize, land the digest in 
 - A vendor's own marketing as the only evidence it is fastest/safest
 - Deciding before the adversarial pass returns
 
-Handoff: feed the digest into dmjcustomizations:brainstorming or dmjcustomizations:writing-plans as the evidence base for the decision.
+Handoff: the digest into dmjcustomizations:brainstorming or dmjcustomizations:writing-plans as the evidence base for the decision.

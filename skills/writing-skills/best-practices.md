@@ -1,6 +1,6 @@
 # Skill Authoring Best Practices
 
-Load when writing or revising a skill body, choosing its description, or deciding how to split files. Distilled from Anthropic's official guidance. The SKILL.md states the method; this is the craft reference.
+Load when writing or revising a skill body, choosing its description, or deciding how to split files. Distilled from Anthropic's official guidance. SKILL.md states the method; this is the craft reference.
 
 ## Contents
 - Concise is key
@@ -14,15 +14,15 @@ Load when writing or revising a skill body, choosing its description, or decidin
 
 ## Concise is key
 
-The context window is a public good shared with the system prompt, history, and every other skill's metadata. Assume Claude is already smart. Challenge each sentence: does Claude actually not know this? Cut explanations of what PDFs are, how libraries work, what a term means. A 50-token instruction that assumes competence beats a 150-token one that teaches basics.
+The context window is a public good shared with the system prompt, history, every skill's metadata. Assume Claude is smart. Challenge each sentence: does Claude actually not know this? Cut explanations of what PDFs are, how libraries work, what a term means. A 50-token instruction assuming competence beats a 150-token one teaching basics.
 
 ## Degrees of freedom
 
-Match specificity to how fragile the task is.
+Match specificity to task fragility.
 
-- **High freedom** (prose steps): many valid approaches, context decides. Example: "review the code structure, check for edge cases, suggest improvements."
-- **Medium freedom** (parameterized pattern): a preferred shape with allowed variation.
-- **Low freedom** (exact script, no flags): fragile, order-critical, consistency-critical. Example: "Run exactly `python scripts/migrate.py --verify --backup`. Do not modify."
+- **High** (prose steps): many valid approaches, context decides. "Review the code structure, check for edge cases, suggest improvements."
+- **Medium** (parameterized pattern): a preferred shape, allowed variation.
+- **Low** (exact script, no flags): fragile, order-critical, consistency-critical. "Run exactly `python scripts/migrate.py --verify --backup`. Do not modify."
 
 Narrow bridge with cliffs -> low freedom and guardrails. Open field -> high freedom and trust.
 
@@ -31,10 +31,10 @@ Narrow bridge with cliffs -> low freedom and guardrails. Open field -> high free
 The description is the ONLY thing pre-loaded for discovery, and Claude picks skills from it among many. Rules:
 
 - Third person, starts "Use when", under 500 chars.
-- ONLY triggering conditions and symptoms. Include the error strings, symptom words, and synonyms an agent would search for.
+- ONLY triggering conditions and symptoms. Include the error strings, symptom words, synonyms an agent would search for.
 - NEVER summarize the workflow.
 
-Why the last rule matters: when a description summarizes steps, Claude follows the summary instead of reading the body. A real case: "code review between tasks" caused ONE review even though the body specified two. Changed to a trigger-only description, Claude read the body and did both.
+Why the last rule: a description that summarizes steps makes Claude follow the summary instead of reading the body. Real case: "code review between tasks" caused ONE review though the body specified two. Trigger-only -> Claude read the body and did both.
 
 ```yaml
 # BAD (workflow leaks in, becomes a shortcut)
@@ -48,24 +48,24 @@ Describe the problem (race condition, flaky test), not a language-specific sympt
 
 ## Naming
 
-Gerund or verb-first, by what you DO or the core insight: `condition-based-waiting` over `async-test-helpers`, `root-cause-tracing` over `debugging-techniques`. The `name` field must equal the directory name. Avoid vague names (helper, utils, tools).
+Gerund or verb-first, by what you DO or the core insight: `condition-based-waiting` over `async-test-helpers`, `root-cause-tracing` over `debugging-techniques`. `name` must equal the directory name. Avoid vague names (helper, utils, tools).
 
 ## Progressive disclosure
 
-SKILL.md is a table of contents. Keep its body lean; push heavy reference or reusable tools to sibling files. Two hard rules:
+SKILL.md is a table of contents. Body lean; push heavy reference or reusable tools to sibling files. Two hard rules:
 
 - **One level deep.** Every reference file links directly from SKILL.md. Nested links (SKILL -> advanced -> details) get partially read with `head` and lose information.
-- **Table of contents** at the top of any reference file over ~100 lines, so a partial read still reveals the full scope.
+- **Table of contents** atop any reference file over ~100 lines, so a partial read still reveals full scope.
 
-Make execution intent explicit: "Run `x.py`" (execute) versus "See `x.py` for the algorithm" (read). For deterministic operations, ship a script rather than asking Claude to regenerate one; self-document its constants (no `TIMEOUT = 47`).
+Make execution intent explicit: "Run `x.py`" (execute) vs "See `x.py` for the algorithm" (read). For deterministic operations ship a script rather than regenerating one; self-document its constants (no `TIMEOUT = 47`).
 
 ## Consistent terminology
 
-Pick one term and keep it: always "field," not field/box/element. Always "extract," not extract/pull/get. Inconsistent vocabulary makes instructions ambiguous.
+One term, kept: always "field," not field/box/element. Always "extract," not extract/pull/get. Inconsistent vocabulary makes instructions ambiguous.
 
 ## Avoid time-sensitive content
 
-No "before August 2025, use the old API." It rots. Put superseded guidance in a collapsed "Old patterns" section with the deprecation noted, and keep the current method as the live text. Name no model, version, or date in the main flow; tell the reader to use the strongest model and newest stable tooling at invocation.
+No "before August 2025, use the old API." It rots. Put superseded guidance in a collapsed "Old patterns" section with the deprecation noted, keep the current method as live text. Name no model, version, or date in the main flow; tell the reader to use the strongest model and newest stable tooling at invocation.
 
 ## Quick checklist
 
