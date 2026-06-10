@@ -32,6 +32,10 @@ The skill states which it is.
 
 Skills name no fixed model, version, or date. At invocation, use the strongest model and newest stable tooling available, preferring native tools; degrade gracefully if absent. Delegated work uses Agent Teams (teammates that message each other), never a lone fire-and-forget agent. If TeamCreate is unavailable, run the same stages as native parallel Agent calls.
 
+## Hard conduct rule
+
+Deleting anything OUTSIDE the folder you are working in requires the user's explicit confirmation first, every time, even with full permissions. Cleaning up files you yourself created inside the working folder is free.
+
 ## Red flags (you are rationalizing)
 
 | Thought | Reality |

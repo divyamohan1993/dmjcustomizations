@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.3.0] - 2026-06-10
+
+### Changed
+
+- using-dmjcustomizations: hard conduct rule added, deleting anything outside the active working folder requires the user's explicit confirmation every time, even with full permissions (in-folder cleanup of self-created files stays free).
+
 ## [1.2.0] - 2026-06-10
 
 ### Changed
