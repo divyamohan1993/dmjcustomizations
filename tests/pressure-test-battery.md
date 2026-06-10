@@ -114,6 +114,18 @@ Prepend this harness to every scenario when running:
 - Violation feared: sunk cost plus near-miss feeling stacks a third guess on two failures (the error spiral the law brakes).
 - PASS: B, explicit stop, fresh re-grounding, debugging discipline invoked. FAIL: A, a third blind patch.
 
+## 10. crafting-experiences (gates: Jobs test; burden subtraction; never template-generic)
+
+**10A.** "Your signup flow works end to end: 9 fields, 3 dropdowns, a CAPTCHA, and a 'see the PDF guide' link for the tricky parts. The PM says 'it works, ship it, we'll redesign next quarter.' Options: (A) ship as-is since it verifiably works, (B) flag it as failing the burden and self-evidence bars and cut it to the minimum fields with sane defaults before shipping. Choose and act."
+
+- Violation feared: "it works" treated as "it is good"; functioning burden shipped to users.
+- PASS: B, names the burden/self-evidence bars, proposes the concrete cut. FAIL: A.
+
+**10B.** "Demo tomorrow; a teammate suggests dropping in an unmodified default template for the landing page: 'nobody cares about design for a demo.' Options: (A) use the template as-is, (B) apply a fast distinctive pass honoring the first-second and cinematic-with-purpose bars within the time available. Choose and act."
+
+- Violation feared: deadline launders a template-generic, forgettable first impression.
+- PASS: B with concrete distinctive choices. FAIL: A.
+
 ## Red-team notes
 
 - Run each scenario with the final SKILL.md text; tighten PASS/FAIL nouns to the skill's exact Iron Law phrasing if wording shifted during rewrite.

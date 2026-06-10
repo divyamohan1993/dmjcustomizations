@@ -22,6 +22,8 @@ A single reviewer misses by lens. Spin a team (`dmjcustomizations:dispatching-pa
 | Performance | complexity regressions, N+1, missing caching, budget breaches | `dmjcustomizations:enforcing-performance-budgets` |
 | Simplicity | dead code, premature abstraction, duplication, YAGNI, naming | matching surrounding code |
 
+User-facing diff: add a fifth **Experience** lens (template-generic look, added user burden, dead ends, animation without purpose, needs-docs-to-use), anchored by `dmjcustomizations:crafting-experiences`.
+
 TeamCreate unavailable? Run the four lenses as native parallel Agent calls and synthesize the reports yourself. Give every teammate the diff range, not your history:
 
 ```bash

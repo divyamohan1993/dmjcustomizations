@@ -38,6 +38,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | explore | Parallel slice-by-slice tracing of how a codebase really works, explained in chat, no artifacts |
 | karpathy-laws | Anti-hallucination working rules: receipts before claims, short leash, error-spiral brake |
 | harnessing-claude | Capability routing: strongest native Claude feature for every job, never hand-rolled substitutes |
+| crafting-experiences | Experience supremacy: Jobs test, first-second hook, cinematic with purpose, zero user burden |
 
 ## Install
 

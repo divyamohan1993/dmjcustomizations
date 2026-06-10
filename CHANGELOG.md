@@ -3,6 +3,13 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.6.0] - 2026-06-10
+
+### Added
+
+- crafting-experiences: experience supremacy encoded as gates (the Jobs test kills features without a named user, moment, and relief; first-second distinctiveness; cinematic with purpose; burden subtraction; end-to-end completeness; WCAG 2.2 AA floor; self-evidence over documentation). Artifact rule: specs, maps, and plans are one-screen agent contracts, never human-tended documentation.
+- requesting-code-review: conditional fifth Experience lens on user-facing diffs.
+
 ## [1.5.0] - 2026-06-10
 
 ### Added
