@@ -2,6 +2,9 @@
 # One-command release: scripts/release.sh <version> "<commit message>"
 # Requires: CHANGELOG already has the [<version>] entry (changelog-before-commit law).
 # Bumps both manifests, validates, commits, pushes, refreshes the local install.
+# Mass rename: set RENAME_MAP="old=>new old2=>new2" to verify the skill diff is
+# EXACTLY that substitution mechanically (bypasses the model gate, which fail-
+# closes on huge diffs). Any residual change falls through to the model gate.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 V="${1:?usage: release.sh <version> \"<commit message>\"}"
@@ -19,7 +22,9 @@ git add -A
 # Gate fires ONLY when skill behavior text changes (not version/CHANGELOG/script-
 # only releases). Runs on a fast model: this is a safety net, not the author.
 SKILL_DIFF=$(git diff --cached -- 'skills/*/SKILL.md')
-if [ -n "$SKILL_DIFF" ] && command -v claude >/dev/null 2>&1; then
+if [ -n "$SKILL_DIFF" ] && [ -n "${RENAME_MAP:-}" ] && node scripts/rename-check.js $RENAME_MAP <<< "$SKILL_DIFF"; then
+    echo "diff review: PASS (mechanical, declared rename verified, no model call)"
+elif [ -n "$SKILL_DIFF" ] && command -v claude >/dev/null 2>&1; then
     echo "fresh-context behavioral-diff review (fast model)..."
     INTENT=$(git diff --cached -- CHANGELOG.md)
     VERDICT=$(claude -p --model sonnet --effort low --fallback-model haiku "Fresh-context reviewer for a skill-library release. Rules may MOVE: a removal is fine when relocated in this same diff or named in the CHANGELOG intent. Reply BLOCK only if a change INVERTS a rule, silently weakens or deletes a gate/Iron Law/rationalization row/red flag/number without relocation, or opens a loophole. FIRST line EXACTLY 'PASS' or 'BLOCK: <reason>'.

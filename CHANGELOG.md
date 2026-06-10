@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.1.0] - 2026-06-10
+
+### Added
+
+- scripts/rename-check.js + release.sh RENAME_MAP fast-path: a mass rename (e.g. the 2.0.0 plugin rename) now passes the release gate by mechanical proof instead of fail-closing the model gate on a huge diff. The operator DECLARES the substitution (`RENAME_MAP="old=>new"`); the check verifies the staged skill diff is EXACTLY that rename and nothing else. Safety proven by test: a disguised rule inversion (never to always) not in the declared map leaves residual lines and correctly falls through to the model gate, never false-passing.
+
 ## [2.0.0] - 2026-06-10
 
 ### Changed
