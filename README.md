@@ -35,6 +35,8 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | enforcing-performance-budgets | O(1)-first, measured budgets, cache-first, regressions block merges |
 | researching-deeply | Parallel research with adversarial source verification and dated citations |
 | exploring-codebases | Five-lens parallel codebase mapping with an anti-redundancy gate: reuse before rebuild |
+| explore | Parallel slice-by-slice tracing of how a codebase really works, explained in chat, no artifacts |
+| karpathy-laws | Anti-hallucination working rules: receipts before claims, short leash, error-spiral brake |
 
 ## Install
 

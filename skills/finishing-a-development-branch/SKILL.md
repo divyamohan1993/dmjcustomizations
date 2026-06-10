@@ -36,6 +36,8 @@ Detached HEAD: drop option 1.
 
 ## Step 4: Execute
 
+Before ANY commit or merge, two automatic gates: (1) update CHANGELOG.md at the repo root (Keep a Changelog format, grouped by date) in the same commit; (2) let every configured hook run. Never `--no-verify`, never bypass signing or hooks; a failing hook means fix the cause, never skip. If the repo uses a hook manager (husky, pre-commit, lefthook), ensure it is installed and active first. Deploys carry the same gate, absolute: NOTHING deploys, ever, without the full test suite green on the exact artifact being deployed.
+
 From the main repo root, never from inside a worktree being removed:
 
 ```bash
@@ -64,6 +66,6 @@ Background run: never auto-merge and never discard. Stop at a pushed branch with
 
 ## Red flags
 
-Proceeding on unverified tests; merging without re-testing the result; removing a worktree before merge succeeds; discarding without typed confirmation; force-pushing unasked; removing a tree you did not create.
+Proceeding on unverified tests; merging without re-testing the result; a commit without its CHANGELOG update; `--no-verify` or any skipped hook; removing a worktree before merge succeeds; discarding without typed confirmation; force-pushing unasked; removing a tree you did not create.
 
 Next: dmjcustomizations:requesting-code-review before merge, or after a clean merge the cycle restarts at dmjcustomizations:brainstorming.

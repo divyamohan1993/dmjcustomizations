@@ -9,6 +9,8 @@ Security is a design property from line 1, not a pass at the end. When security 
 
 **Assume the host is compromised, the database exfiltrated, the attacker has your source.** Each layer protects data independently; one failing must expose nothing.
 
+**Dev freedom never relaxes the artifact.** The development machine runs with full permissions; the shipped code still assumes hostile production. Every deployed change carries negligible blast radius: reversible migrations, one-step rollback, staged or flagged exposure for risky paths, kill switch on new surface. Nothing deploys, ever, without the full test suite green on the deploy artifact.
+
 ## Gate 0: Threat model before code
 
 Write four lists first:
