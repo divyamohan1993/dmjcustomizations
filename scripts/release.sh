@@ -16,6 +16,18 @@ for (const [f,set] of [['.claude-plugin/plugin.json',(j,v)=>j.version=v],['.clau
 console.log('manifests -> $V');"
 bash scripts/validate.sh
 git add -A
+SKILL_DIFF=$(git diff --cached -- 'skills/*/SKILL.md' CHANGELOG.md)
+if [ -n "$SKILL_DIFF" ] && command -v claude >/dev/null 2>&1; then
+    echo "fresh-context behavioral-diff review..."
+    VERDICT=$(claude -p "You are a fresh-context reviewer for a Claude Code skill library release. Below is the staged diff (skill files + CHANGELOG, which states intent). Rules may MOVE: a removal is fine when the rule is relocated in this same diff or the CHANGELOG names the fold target. Reply BLOCK only if a change INVERTS a rule's meaning, silently weakens or deletes a gate, Iron Law, rationalization row, red flag, or number without relocation, or opens a loophole. FIRST line of your reply must be exactly PASS or BLOCK: <one-line reason>.
+$SKILL_DIFF" 2>/dev/null | grep -m1 -E '^(PASS|BLOCK)')
+    case "$VERDICT" in
+        PASS*) echo "diff review: PASS";;
+        *) echo "diff review verdict: ${VERDICT:-no verdict}"; echo "ABORT: behavioral-diff review did not PASS."; exit 1;;
+    esac
+elif [ -n "$SKILL_DIFF" ]; then
+    echo "WARN: claude CLI absent; skill diff shipped unreviewed"
+fi
 git commit -m "$MSG
 
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"

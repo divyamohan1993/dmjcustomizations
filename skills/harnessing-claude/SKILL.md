@@ -16,19 +16,13 @@ Route every job through the strongest native capability available. Probe availab
 | Design approval gate | Native plan mode when present; else the skill's own gate |
 | Stronger reviewer at a gate | advisor tool when available: consult before committing to an approach and before any done-claim |
 | Fresh-context read-only sweep | Explore agent type; isolation:"worktree" when parallel edits could collide |
-| Library or API truth | context7 MCP or official docs via WebFetch; never memory (dmjcustomizations:karpathy-laws law 2) |
+| Library or API truth | context7 MCP or official docs via WebFetch; never memory (dmjcustomizations:verification-before-completion) |
 | Deferred tool needed | ToolSearch "select:Name" first; direct call fails without it |
 | Long or recurring jobs | run_in_background, Monitor; Cron or schedule for routines |
-| Cross-session knowledge | memory files + MEMORY.md index, written at decision time (karpathy-laws law 3) |
+| Cross-session knowledge | memory files + MEMORY.md index, written at decision time (dmjcustomizations:landing-sessions) |
 | User choices | AskUserQuestion: batch up to 4, multiSelect, previews for visual compare |
 
-## Dynamic skills
-
-SKILL.md supports $ARGUMENTS, ${CLAUDE_SKILL_DIR}, and inline !`cmd` blocks that execute BEFORE content loads: inject live state (date, git status, env) instead of hardcoding. Use when authoring self-updating skills (dmjcustomizations:writing-skills).
-
-## Maximums
-
-Strongest available model on every spawn; max thinking and effort where the harness exposes them; long-context tier for large inputs. Probe first: set nothing the environment already forces.
+Dynamic skill authoring ($ARGUMENTS, !`cmd` preprocessing): dmjcustomizations:writing-skills.
 
 ## Red flags (stop)
 

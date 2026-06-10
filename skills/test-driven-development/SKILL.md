@@ -5,7 +5,7 @@ description: Use when implementing any feature or bugfix, before writing impleme
 
 # Test-Driven Development
 
-Test first. Watch it fail. Minimal code to pass. Did not watch it fail? You do not know it tests anything.
+Test first. Watch it fail. Minimal code to pass. Did not watch it fail? You do not know it tests anything. A failing test or a concrete input/output example steers better than any prose spec: show, then build.
 
 ## The Iron Law
 

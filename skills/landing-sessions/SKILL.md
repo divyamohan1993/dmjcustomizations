@@ -9,7 +9,7 @@ Land everything the session created: knowledge to memory, state to git, resource
 
 ## Checklist (parallel where independent)
 
-1. **Memory write-back.** Every non-obvious learning, decision, or gotcha: memory file + one MEMORY.md index line. Never repo-derivable facts; update or delete stale entries while there.
+1. **Memory write-back.** Every non-obvious learning, decision, or gotcha: memory file + one MEMORY.md index line, written at decision time when possible, landed here at latest. Never repo-derivable facts; update or delete stale entries while there.
 2. **State durable.** Work committed (CHANGELOG in the same commit, hooks run) and pushed where a remote exists. Uncommitted experiments: named to the user, never silent.
 3. **Resources to zero.** Teammates sent shutdown_request and confirmed; spike and teammate worktrees removed (dmjcustomizations:using-git-worktrees); background tasks stopped.
 4. **Threads surfaced.** One short list: done (verified, with evidence), decisions parked for the user, anything unresolved. No silent loose ends.

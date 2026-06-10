@@ -3,6 +3,25 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.8.0] - 2026-06-10
+
+### Added
+
+- scripts/pre-commit-secrets.sh: portable diff-scoped secret guard for machines without the owner's global git hooks (gitleaks preferred, Perl single-pass fallback, never ripgrep in hook environments); benchmarked sub-second on a 6k-line staged diff with planted secrets caught at file:line. The owner's repos already inherit a production Perl guard via core.hooksPath; this ships the same defense for everyone else.
+- scripts/behavioral-test.sh: mechanically graded red/green behavioral check of the TDD Iron Law (one model call, CHOICE-letter grading); required after discipline-skill edits.
+- release.sh: fresh-context behavioral-diff review gate between staging and commit; a skill diff that inverts, weakens, or un-relocates a rule BLOCKS the release. Implements propose-review-publish with an independent reviewer.
+- writing-skills: kill criterion, anything restating the system prompt, one person's opinions, or another skill is a paragraph, never a new skill.
+
+### Changed
+
+- README: "budgets enforced in CI" corrected to what is true (the skills require projects to enforce them).
+- harnessing-claude: Maximums and Dynamic-skills sections removed (environment-forced and relocated to writing-skills respectively); cross-refs retargeted.
+- test-driven-development, requesting-code-review, landing-sessions: absorbed the unique karpathy laws (concrete-beats-abstract, one-concern-per-diff, memory-at-decision-time).
+
+### Removed
+
+- karpathy-laws: retired under the new kill criterion; its load-bearing laws already lived in (or are now folded into) verification-before-completion, systematic-debugging, test-driven-development, requesting-code-review, and landing-sessions. Battery section 9 retargeted to the fold hosts.
+
 ## [1.7.1] - 2026-06-10
 
 ### Changed

@@ -54,7 +54,7 @@ Default panel is four teammates. For a tiny, low-risk diff you may state the tie
 
 ## Red flags
 
-Skipping review because "it is simple," reviewing your own diff in your own context, passing a finding to the user without spot-verifying it, ignoring a Critical, proceeding with unfixed Important.
+Skipping review because "it is simple," reviewing your own diff in your own context, a diff covering more than one concern, passing a finding to the user without spot-verifying it, ignoring a Critical, proceeding with unfixed Important.
 
 ## Headless mode
 

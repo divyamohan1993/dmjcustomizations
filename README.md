@@ -10,7 +10,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 - **Evidence over claims.** Fresh-context teammates adversarially verify specs, code, and every "done". Self-review is not review.
 - **Demonstrate, don't describe.** Competing approaches become disposable worktree spikes with benchmarks, not paragraphs.
 - **Dynamic by design.** No hardcoded models, versions, or dates. Skills probe for the strongest model and newest stable tooling at invocation time.
-- **Security and performance from line 1.** Threat models at design time, quantum-safe crypto defaults, O(1)-first thinking, budgets enforced in CI.
+- **Security and performance from line 1.** Threat models at design time, quantum-safe crypto defaults, O(1)-first thinking, budgets the skills require projects to enforce in CI.
 - **Terse.** Every skill is context-budgeted: under 500 words, and the always-loaded meta-skill under 300.
 
 ## Skills
@@ -36,7 +36,6 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | researching-deeply | Parallel research with adversarial source verification and dated citations |
 | exploring-codebases | Five-lens parallel codebase mapping with an anti-redundancy gate: reuse before rebuild |
 | explore | Parallel slice-by-slice tracing of how a codebase really works, explained in chat, no artifacts |
-| karpathy-laws | Anti-hallucination working rules: receipts before claims, short leash, error-spiral brake |
 | harnessing-claude | Capability routing: strongest native Claude feature for every job, never hand-rolled substitutes |
 | crafting-experiences | Experience supremacy: Jobs test, first-second hook, cinematic with purpose, zero user burden |
 | landing-sessions | Session teardown: learnings to memory, state to git, resources to zero, threads surfaced |

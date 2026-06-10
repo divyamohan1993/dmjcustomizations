@@ -7,6 +7,10 @@ description: Use when creating a new skill, editing an existing skill, or verify
 
 A skill IS test-driven development for docs. Watch a fresh agent fail without it (RED), write the minimal skill fixing those exact failures (GREEN), close the loopholes it finds (REFACTOR).
 
+## Kill criterion (no skill without it)
+
+A candidate that restates the system prompt, one person's opinions, or another skill is a PARAGRAPH in an existing skill, never a new skill. Each new skill taxes every future routing decision; it must earn that tax with a gate or technique that exists nowhere else.
+
 **REQUIRED BACKGROUND:** dmjcustomizations:test-driven-development defines the RED-GREEN-REFACTOR cycle this adapts.
 
 Announce: "Writing this skill via TDD-for-docs."
@@ -42,6 +46,10 @@ Add both to the skill's checklist.
 ## Flowcharts and files
 
 Flowchart ONLY a non-obvious decision loop, never reference material, code, or linear steps. Separate file only for heavy reference or a reusable tool; references one level deep from SKILL.md.
+
+## Dynamic skills
+
+SKILL.md supports $ARGUMENTS, ${CLAUDE_SKILL_DIR}, and inline !`cmd` blocks executing BEFORE content loads: inject live state (date, git status, env) instead of hardcoding. Discipline-skill edits: re-run the relevant battery scenario (tests/pressure-test-battery.md) and scripts/behavioral-test.sh before release.
 
 ## Anti-patterns
 
