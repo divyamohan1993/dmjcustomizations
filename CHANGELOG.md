@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.4.1] - 2026-06-10
+
+### Added
+
+- Published to GitHub (divyamohan1993/dmjcustomizations); README gains the install-from-GitHub marketplace path.
+
 ## [1.4.0] - 2026-06-10
 
 ### Added

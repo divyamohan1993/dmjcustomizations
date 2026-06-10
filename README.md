@@ -41,6 +41,15 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 
 ## Install
 
+From GitHub:
+
+```
+/plugin marketplace add divyamohan1993/dmjcustomizations
+/plugin install dmjcustomizations@dmjcustomizations
+```
+
+Or from a local clone:
+
 ```
 /plugin marketplace add D:\dmjcustomizations
 /plugin install dmjcustomizations@dmjcustomizations
