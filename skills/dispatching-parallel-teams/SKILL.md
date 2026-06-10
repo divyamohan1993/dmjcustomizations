@@ -45,6 +45,8 @@ Good fits: test files failing on different root causes, independent subsystems, 
 
 Teammates MUST `SendMessage` a midway progress update and MAY message peers about anything shared (an interface, a fixture, a discovered root cause). Fire-and-forget (spawn and walk away) is forbidden: you lose visibility and teammates duplicate or conflict. You (lead) stay available to unblock.
 
+**Orchestrator posture.** The lead session is the control plane: delegate processing and bulk reading, hold conclusions not transcripts, stay responsive to the user. A user update mid-run is a STEER: relay it to the affected running teammates via `SendMessage` (they receive it on their next turn); never stop or respawn agents for a course correction.
+
 ## Synthesize
 
 When teammates report: read each result, check for conflicting edits (same file touched by two), run the full suite to confirm fixes compose, spot-check (parallel workers can make the same systematic error). Resolve conflicts before integrating.

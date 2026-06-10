@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.7.1] - 2026-06-10
+
+### Changed
+
+- dispatching-parallel-teams: orchestrator posture encoded, the lead session is the control plane (delegate processing, hold conclusions not transcripts, stay responsive to the user) and user updates mid-run are steers relayed to running teammates via SendMessage, never stop-and-respawn.
+
 ## [1.7.0] - 2026-06-10
 
 ### Added
