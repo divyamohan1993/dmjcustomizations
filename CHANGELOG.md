@@ -3,6 +3,14 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [1.8.2] - 2026-06-10
+
+### Changed
+
+- harnessing-claude: Maximums section set to the owner's canonical wording.
+- scripts/validate: rewritten as a single Node pass (scripts/validate.js), 13.6s to 0.4s (~34x) by collapsing ~180 per-file subprocess spawns into one process; bash wrapper keeps only the hook-syntax check.
+- scripts/release: behavioral-diff gate now fires only when a skill's behavior text actually changes (not version or CHANGELOG-only releases) and runs on a fast model (sonnet, low effort, haiku fallback) instead of the session default, with the CHANGELOG passed separately as relocation intent.
+
 ## [1.8.1] - 2026-06-10
 
 ### Added
