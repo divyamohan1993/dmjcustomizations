@@ -1,6 +1,6 @@
 # Debugging Techniques
 
-Two techniques used inside `dmjcustomizations:systematic-debugging`. Validation-at-every-layer (defense in depth) is not duplicated here: see `dmjcustomizations:defending-in-depth`.
+Two techniques used inside `dmj:systematic-debugging`. Validation-at-every-layer (defense in depth) is not duplicated here: see `dmj:defending-in-depth`.
 
 ## Root-cause tracing (Phase 1, step 5)
 

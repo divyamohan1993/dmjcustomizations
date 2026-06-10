@@ -1,5 +1,5 @@
 ---
-name: using-dmjcustomizations
+name: using-dmj
 description: Use when starting any conversation or before any response, including clarifying questions, to find and apply the right skill before acting.
 ---
 
@@ -47,6 +47,6 @@ Deleting anything OUTSIDE your working folder needs the user's explicit confirma
 | "I'll do one thing first" | Check BEFORE any action. |
 | "I remember this skill" | Skills evolve. Re-invoke it. |
 
-Substantial work wrapping up: dmjcustomizations:landing-sessions.
+Substantial work wrapping up: dmj:landing-sessions.
 
 Next: invoke the skill your task needs.

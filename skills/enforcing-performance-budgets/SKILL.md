@@ -46,7 +46,7 @@ Load-test at peak times a safety factor; soak to catch leaks and GC stalls. The 
 
 ## Parallel pattern
 
-Run a dedicated **performance lens as a fresh-context teammate** in every review panel (never same-context self-review). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmjcustomizations:using-git-worktrees); the benchmark decides. Coordinate via TeamCreate + Agent (team_name, name); TeamCreate unavailable: race as native parallel Agent calls.
+Run a dedicated **performance lens as a fresh-context teammate** in every review panel (never same-context self-review). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmj:using-git-worktrees); the benchmark decides. Coordinate via TeamCreate + Agent (team_name, name); TeamCreate unavailable: race as native parallel Agent calls.
 
 ## Rationalization table
 
@@ -63,4 +63,4 @@ Run a dedicated **performance lens as a fresh-context teammate** in every review
 - A budget that warns instead of failing the build
 - Stack chosen by popularity, not a workload benchmark
 
-Handoff: budgets into dmjcustomizations:writing-plans; enforce the perf lens via dmjcustomizations:requesting-code-review.
+Handoff: budgets into dmj:writing-plans; enforce the perf lens via dmj:requesting-code-review.

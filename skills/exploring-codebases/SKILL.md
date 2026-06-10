@@ -27,7 +27,7 @@ Scale the lens count to repo size; merge or add lenses, but never serialize what
 
 ## The map
 
-Synthesize the fragments into ONE map at `docs/dmjcustomizations/maps/YYYY-MM-DD-<repo>-map.md`: module responsibilities, connection seams, reusable assets (the anti-redundancy index), conventions (naming, errors, test layout), danger zones (god files, duplication already present). Every claim carries a file path. A FRESH-context teammate spot-verifies a sample of claims by trying to refute them before the map is trusted; never self-certify your own map. A map already exists: refresh only what structure changes invalidated, never re-sweep. Stale maps are debris: delete freely.
+Synthesize the fragments into ONE map at `docs/dmj/maps/YYYY-MM-DD-<repo>-map.md`: module responsibilities, connection seams, reusable assets (the anti-redundancy index), conventions (naming, errors, test layout), danger zones (god files, duplication already present). Every claim carries a file path. A FRESH-context teammate spot-verifies a sample of claims by trying to refute them before the map is trusted; never self-certify your own map. A map already exists: refresh only what structure changes invalidated, never re-sweep. Stale maps are debris: delete freely.
 
 ## Anti-redundancy gate
 
@@ -51,4 +51,4 @@ Before creating any function, helper, type, or file: search the map's asset inde
 
 **Headless:** fully autonomous, no user gate; the map and the gate-search evidence land in the final report.
 
-Next: **dmjcustomizations:brainstorming** to design in the mapped code, or **dmjcustomizations:writing-plans** if the design already exists.
+Next: **dmj:brainstorming** to design in the mapped code, or **dmj:writing-plans** if the design already exists.

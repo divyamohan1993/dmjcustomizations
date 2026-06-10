@@ -1,6 +1,6 @@
 # Review Lens Prompt Skeleton
 
-One fresh-context teammate per lens, dispatched concurrently (`dmjcustomizations:requesting-code-review`). Fill `{LENS}`, `{LENS_FOCUS}`, `{ANCHOR}`, `{DESCRIPTION}`, `{PLAN}`, `{BASE_SHA}`, `{HEAD_SHA}`. Strongest model available; you receive only the diff, never the author's history.
+One fresh-context teammate per lens, dispatched concurrently (`dmj:requesting-code-review`). Fill `{LENS}`, `{LENS_FOCUS}`, `{ANCHOR}`, `{DESCRIPTION}`, `{PLAN}`, `{BASE_SHA}`, `{HEAD_SHA}`. Strongest model available; you receive only the diff, never the author's history.
 
 ```
 You are the {LENS} reviewer. Review ONLY the diff below against its plan.
@@ -30,8 +30,8 @@ Rules: categorize by ACTUAL severity, not everything is Critical. Only report wh
 | `{LENS}` | `{LENS_FOCUS}` | `{ANCHOR}` |
 |----------|----------------|-----------|
 | correctness | logic bugs, broken/missing edge cases, plan deviations, absent functionality | the plan / requirements above |
-| security | injection, authz gaps, unsafe input handling, secret leakage, blast radius | `dmjcustomizations:defending-in-depth` |
-| performance | complexity regressions, N+1 queries, missing caching, budget breaches | `dmjcustomizations:enforcing-performance-budgets` |
+| security | injection, authz gaps, unsafe input handling, secret leakage, blast radius | `dmj:defending-in-depth` |
+| performance | complexity regressions, N+1 queries, missing caching, budget breaches | `dmj:enforcing-performance-budgets` |
 | simplicity | dead code, premature abstraction, duplication, YAGNI, unclear naming | consistency with surrounding code |
 
 The requester consolidates the four reports: dedupe overlapping findings, spot-verify each Critical/Important against the actual code, drop what does not survive, act. Speculation never reaches the user as fact.

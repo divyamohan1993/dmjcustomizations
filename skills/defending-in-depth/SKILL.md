@@ -60,4 +60,4 @@ Before implementation, spawn an **adversarial attacker-mindset teammate** to att
 - `eval`, `dangerouslySetInnerHTML`, unsanitized template
 - `CORS: *`, missing security headers, TLS below 1.3
 
-Handoff: threat model into dmjcustomizations:writing-plans; require the security lens in dmjcustomizations:requesting-code-review.
+Handoff: threat model into dmj:writing-plans; require the security lens in dmj:requesting-code-review.

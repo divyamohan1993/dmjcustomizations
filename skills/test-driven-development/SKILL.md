@@ -15,7 +15,7 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 
 Wrote code before the test? Delete it: no keeping as reference, no adapting, no looking. Reimplement fresh from the test. Letter and spirit are one rule.
 
-**Exceptions (throwaway only):** spikes, generated code, config. A spike lives in a force-discarded worktree (`dmjcustomizations:using-git-worktrees`): conclusions survive, code does not. "Skip just this once" on real code is rationalization.
+**Exceptions (throwaway only):** spikes, generated code, config. A spike lives in a force-discarded worktree (`dmj:using-git-worktrees`): conclusions survive, code does not. "Skip just this once" on real code is rationalization.
 
 ## RED-GREEN-REFACTOR
 
@@ -23,7 +23,7 @@ Wrote code before the test? Delete it: no keeping as reference, no adapting, no 
 2. **GREEN:** simplest code that passes. No extra options, no "while I'm here." Run it: this and all other tests pass, output pristine. Test fails? Fix the code, never the test.
 3. **REFACTOR:** only when green. Remove duplication, improve names, add no behavior, stay green. Then next failing test.
 
-**RED before GREEN is strictly serial within one unit of work: that ordering IS the discipline.** Separate-task test files may be authored concurrently by teammates (`dmjcustomizations:team-driven-development`); serial rule binds within each.
+**RED before GREEN is strictly serial within one unit of work: that ordering IS the discipline.** Separate-task test files may be authored concurrently by teammates (`dmj:team-driven-development`); serial rule binds within each.
 
 ## Edge-case taxonomy
 
@@ -39,7 +39,7 @@ All input hostile. Cover every applicable row; for each that does not apply, say
 | Clock / timezone | DST, leap, skew, expiry |
 | Property-based | invariants for all inputs (round-trip, monotonicity) |
 
-Security past the input layer: `dmjcustomizations:defending-in-depth`. Complexity floor: `dmjcustomizations:enforcing-performance-budgets`.
+Security past the input layer: `dmj:defending-in-depth`. Complexity floor: `dmj:enforcing-performance-budgets`.
 
 ## Rationalizations: all mean "delete the code, start over"
 
@@ -59,10 +59,10 @@ Code before test, test passes first run, cannot explain the failure, "too simple
 
 ## When stuck
 
-Hard to test means hard to use: too coupled, inject dependencies; huge setup, the interface is wrong. Bug? Write the failing reproduction test first (`dmjcustomizations:systematic-debugging`). Mocks or test-only code? Read `testing-anti-patterns.md`.
+Hard to test means hard to use: too coupled, inject dependencies; huge setup, the interface is wrong. Bug? Write the failing reproduction test first (`dmj:systematic-debugging`). Mocks or test-only code? Read `testing-anti-patterns.md`.
 
 ## Headless mode
 
 Log skipped rows with reasons in the assumption ledger; park scope cuts for the user. Never silently drop coverage.
 
-Done: every applicable row covered or excused, every test seen failing first, output pristine. Next: `dmjcustomizations:verification-before-completion`.
+Done: every applicable row covered or excused, every test seen failing first, output pristine. Next: `dmj:verification-before-completion`.

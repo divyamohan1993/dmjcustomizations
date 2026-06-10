@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SessionStart hook for dmjcustomizations: injects the using-dmjcustomizations
+# SessionStart hook for dmj: injects the using-dmj
 # meta-skill so every session starts with the skill-routing rules loaded,
 # plus a throttled (24h) update check against the GitHub repo.
 # Adapted from obra/superpowers (MIT).
@@ -9,13 +9,13 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-content=$(cat "${PLUGIN_ROOT}/skills/using-dmjcustomizations/SKILL.md" 2>&1 || echo "Error reading using-dmjcustomizations skill")
+content=$(cat "${PLUGIN_ROOT}/skills/using-dmj/SKILL.md" 2>&1 || echo "Error reading using-dmj skill")
 
 # --- Update check: at most once per 24h, every failure silent, never blocks boot ---
 update_notice=""
 check_update() {
     command -v curl >/dev/null 2>&1 || return 0
-    local data_dir="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/dmjcustomizations}"
+    local data_dir="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/dmj}"
     mkdir -p "$data_dir" 2>/dev/null || return 0
     local stamp="$data_dir/update-check-stamp"
     local now epoch_last
@@ -30,7 +30,7 @@ check_update() {
     [ "$local_v" = "$remote_v" ] && return 0
     newest=$(printf '%s\n%s\n' "$local_v" "$remote_v" | sort -V | tail -1)
     if [ "$newest" = "$remote_v" ]; then
-        update_notice="\n\n<dmjcustomizations-update>dmjcustomizations ${remote_v} is available (installed: ${local_v}). Tell the user, and offer to run for them: claude plugin marketplace update dmjcustomizations && claude plugin update dmjcustomizations (restart applies it).</dmjcustomizations-update>"
+        update_notice="\n\n<dmj-update>dmj ${remote_v} is available (installed: ${local_v}). Tell the user, and offer to run for them: claude plugin marketplace update dmj && claude plugin update dmj@dmj (restart applies it).</dmj-update>"
     fi
     return 0
 }
@@ -49,7 +49,7 @@ escape_for_json() {
 }
 
 escaped=$(escape_for_json "$content")
-session_context="<EXTREMELY_IMPORTANT>\nYou have dmjcustomizations.\n\n**Below is your 'dmjcustomizations:using-dmjcustomizations' skill - how to find and use skills. For all other skills, use the 'Skill' tool:**\n\n${escaped}\n</EXTREMELY_IMPORTANT>${update_notice}"
+session_context="<EXTREMELY_IMPORTANT>\nYou have dmj.\n\n**Below is your 'dmj:using-dmj' skill - how to find and use skills. For all other skills, use the 'Skill' tool:**\n\n${escaped}\n</EXTREMELY_IMPORTANT>${update_notice}"
 
 # printf instead of heredoc: works around bash 5.3+ heredoc hang
 # (see obra/superpowers#571).

@@ -28,7 +28,7 @@ Specs, maps, and plans this library writes are working artifacts for agents: one
 
 ## Parallel pattern
 
-User-facing diff: an **experience lens** joins the review panel (dmjcustomizations:requesting-code-review) beside security and performance. Competing visual directions: parallel spikes in disposable worktrees, screenshots decide (dmjcustomizations:brainstorming). TeamCreate unavailable: run the lens as a native parallel Agent call.
+User-facing diff: an **experience lens** joins the review panel (dmj:requesting-code-review) beside security and performance. Competing visual directions: parallel spikes in disposable worktrees, screenshots decide (dmj:brainstorming). TeamCreate unavailable: run the lens as a native parallel Agent call.
 
 ## Rationalizations (all false)
 
@@ -51,4 +51,4 @@ User-facing diff: an **experience lens** joins the review panel (dmjcustomizatio
 
 **Headless:** apply these bars autonomously; PARK taste decisions that define brand identity for the user.
 
-Next: dmjcustomizations:brainstorming gates what gets built; dmjcustomizations:requesting-code-review carries the lens; dmjcustomizations:verification-before-completion proves it works end to end.
+Next: dmj:brainstorming gates what gets built; dmj:requesting-code-review carries the lens; dmj:verification-before-completion proves it works end to end.

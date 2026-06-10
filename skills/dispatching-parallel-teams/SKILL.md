@@ -26,12 +26,12 @@ digraph d {
 }
 ```
 
-Good fits: test files failing on different root causes, independent subsystems, parallel research threads, competing spikes. Not for: coupled failures (fixing one may fix others), exploratory debugging before you know what broke, or anything needing one whole-system view. Deterministic fan-out (loops, judge panels, schema-validated outputs, resumable runs) with user opt-in: prefer the Workflow tool; routing table in dmjcustomizations:harnessing-claude.
+Good fits: test files failing on different root causes, independent subsystems, parallel research threads, competing spikes. Not for: coupled failures (fixing one may fix others), exploratory debugging before you know what broke, or anything needing one whole-system view. Deterministic fan-out (loops, judge panels, schema-validated outputs, resumable runs) with user opt-in: prefer the Workflow tool; routing table in dmj:harnessing-claude.
 
 ## Fan out
 
 1. **Split into domains.** One task per independent problem; name the file set each touches so overlaps surface now.
-2. `TeamCreate`, then one `Agent` per domain (always `team_name` + a unique `name`, strongest model available at invocation, max thinking). Overlapping file sets get a worktree each (dmjcustomizations:using-git-worktrees) or serialize. If TeamCreate is unavailable, run the same domains as native parallel `Agent` calls and synthesize yourself.
+2. `TeamCreate`, then one `Agent` per domain (always `team_name` + a unique `name`, strongest model available at invocation, max thinking). Overlapping file sets get a worktree each (dmj:using-git-worktrees) or serialize. If TeamCreate is unavailable, run the same domains as native parallel `Agent` calls and synthesize yourself.
 3. **Shared task list.** Post all tasks; each teammate CLAIMS one, marks it in-progress, moves to the next free one when done. Claiming prevents two teammates colliding on the same task.
 
 ## Each teammate prompt carries
@@ -63,4 +63,4 @@ No interactive user: dispatch on the plan as written, record assumptions, PARK o
 - Integrating without a full-suite run and conflict check.
 - Fanning out coupled work that one investigation would solve faster.
 
-Handoff: this primitive powers **dmjcustomizations:brainstorming** (context sweep, review lenses), **dmjcustomizations:executing-plans**, and **dmjcustomizations:team-driven-development** (per-wave fan-out).
+Handoff: this primitive powers **dmj:brainstorming** (context sweep, review lenses), **dmj:executing-plans**, and **dmj:team-driven-development** (per-wave fan-out).

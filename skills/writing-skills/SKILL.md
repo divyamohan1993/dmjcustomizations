@@ -11,7 +11,7 @@ A skill IS test-driven development for docs. Watch a fresh agent fail without it
 
 A candidate that restates the system prompt, one person's opinions, or another skill is a PARAGRAPH in an existing skill, never a new skill. Each new skill taxes every future routing decision; it must earn that tax with a gate or technique that exists nowhere else.
 
-**REQUIRED BACKGROUND:** dmjcustomizations:test-driven-development defines the RED-GREEN-REFACTOR cycle this adapts.
+**REQUIRED BACKGROUND:** dmj:test-driven-development defines the RED-GREEN-REFACTOR cycle this adapts.
 
 Announce: "Writing this skill via TDD-for-docs."
 
@@ -29,7 +29,7 @@ Only enough to defeat the failures observed. No padding for hypotheticals.
 
 **Frontmatter:** YAML, two fields. `name` = the directory (kebab-case). `description`: third person, starts "Use when", ONLY triggering conditions and symptoms, NEVER a workflow summary, under 500 chars. A description summarizing steps becomes a shortcut Claude follows instead of reading the body. See best-practices.md.
 
-**Body:** under 500 words. Core principle up top, keyword-rich for discovery, one excellent example per concept, tables for reference. Cross-reference siblings as `dmjcustomizations:<name>`, never `@`-links (force-load, burn context).
+**Body:** under 500 words. Core principle up top, keyword-rich for discovery, one excellent example per concept, tables for reference. Cross-reference siblings as `dmj:<name>`, never `@`-links (force-load, burn context).
 
 ## REFACTOR: close loopholes (parallel)
 
@@ -55,4 +55,4 @@ SKILL.md supports $ARGUMENTS, ${CLAUDE_SKILL_DIR}, and inline !`cmd` blocks exec
 
 Narrative ("the time we fixed..."); the same example in five languages; code inside flowcharts; generic labels (step1, helper2); shipping untested because "batching is efficient."
 
-Next: dmjcustomizations:verification-before-completion, then dmjcustomizations:requesting-code-review.
+Next: dmj:verification-before-completion, then dmj:requesting-code-review.

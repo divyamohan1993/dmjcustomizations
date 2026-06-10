@@ -11,7 +11,7 @@ Announce: "Finishing this branch."
 
 ## Step 1: Require verification evidence
 
-No options on a *claim* that tests pass. Run them, read output. **REQUIRED:** dmjcustomizations:verification-before-completion. Failures: report the failing output, stop, no merge or PR until green.
+No options on a *claim* that tests pass. Run them, read output. **REQUIRED:** dmj:verification-before-completion. Failures: report the failing output, stop, no merge or PR until green.
 
 ## Step 2: Detect environment
 
@@ -72,4 +72,4 @@ Background run: never auto-merge, never discard. Stop at a pushed branch with a 
 
 Options on unverified tests; merging without re-testing the result; a commit without its CHANGELOG update; `--no-verify` or any skipped hook; removing a worktree before merge succeeds; discarding without typed confirmation; force-pushing unasked; removing a tree you did not create.
 
-Next: dmjcustomizations:requesting-code-review before merge, or after a clean merge the cycle restarts at dmjcustomizations:brainstorming.
+Next: dmj:requesting-code-review before merge, or after a clean merge the cycle restarts at dmj:brainstorming.

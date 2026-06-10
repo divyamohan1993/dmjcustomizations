@@ -25,7 +25,7 @@ Not past Phase 1? You cannot propose a fix. Binds hardest when you want to skip 
 
 ## Phase 2: Fan out hypotheses in parallel
 
-List every plausible root cause. For 2+ live hypotheses, do not test serially in your own context: spin a team (`dmjcustomizations:dispatching-parallel-teams`), one fresh-context teammate per hypothesis, each a distinct evidence job:
+List every plausible root cause. For 2+ live hypotheses, do not test serially in your own context: spin a team (`dmj:dispatching-parallel-teams`), one fresh-context teammate per hypothesis, each a distinct evidence job:
 
 | Teammate | Gathers |
 |----------|---------|
@@ -42,10 +42,10 @@ State it: "X is the root cause because Y." Test with the *smallest* change, one 
 
 ## Phase 4: Fix at the source
 
-1. **Failing test first** reproducing the bug (`dmjcustomizations:test-driven-development`), before the fix.
+1. **Failing test first** reproducing the bug (`dmj:test-driven-development`), before the fix.
 2. **One fix** at the root cause. No "while I'm here," no bundled refactor.
-3. **Verify** (`dmjcustomizations:verification-before-completion`): test passes, nothing else broke.
-4. Add validation at every layer the bad value crossed, making the bug structurally impossible: `dmjcustomizations:defending-in-depth`.
+3. **Verify** (`dmj:verification-before-completion`): test passes, nothing else broke.
+4. Add validation at every layer the bad value crossed, making the bug structurally impossible: `dmj:defending-in-depth`.
 
 **Fix failed?** Under 3 attempts: back to Phase 1 with new evidence. **3+ failed, or each fix exposes a new problem elsewhere: stop, the architecture is wrong, not the hypothesis.** Raise it with the user; do not attempt fix #4.
 
@@ -57,4 +57,4 @@ State it: "X is the root cause because Y." Test with the *smallest* change, one 
 
 Complete every phase, capture all evidence in the final report, write safe minimal fixes, park architectural reversals (Phase 4, 3+ failures) as a flagged question rather than refactoring unsupervised.
 
-Root cause fixed with a guarding test? Next: `dmjcustomizations:verification-before-completion`, then `dmjcustomizations:requesting-code-review`.
+Root cause fixed with a guarding test? Next: `dmj:verification-before-completion`, then `dmj:requesting-code-review`.

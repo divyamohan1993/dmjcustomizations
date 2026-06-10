@@ -17,7 +17,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 
 | Skill | One-liner |
 |---|---|
-| using-dmjcustomizations | Meta-skill, injected each session: how skills are found, routed, and prioritized |
+| using-dmj | Meta-skill, injected each session: how skills are found, routed, and prioritized |
 | brainstorming | Idea to approved spec: parallel context sweep, batched questions, evidence-based options |
 | writing-plans | Spec to implementation plan with per-task dependencies, parallelizability, acceptance criteria |
 | executing-plans | Team executes a plan: tasks claimed concurrently, worktree isolation, review gates |
@@ -42,18 +42,20 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 
 ## Install
 
+The plugin installs as `dmj`, so skills fire as `dmj:brainstorming`, `dmj:test-driven-development`, etc.
+
 From GitHub:
 
 ```
 /plugin marketplace add divyamohan1993/dmjcustomizations
-/plugin install dmjcustomizations@dmjcustomizations
+/plugin install dmj@dmj
 ```
 
 Or from a local clone:
 
 ```
 /plugin marketplace add D:\dmjcustomizations
-/plugin install dmjcustomizations@dmjcustomizations
+/plugin install dmj@dmj
 ```
 
 Then disable superpowers so the two rule systems do not compete:

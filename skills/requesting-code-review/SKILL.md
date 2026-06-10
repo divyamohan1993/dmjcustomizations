@@ -13,16 +13,16 @@ Review early, review often, never review your own diff in your own context: you 
 
 ## Run a parallel review panel, not one reviewer
 
-A single reviewer misses by lens. Spin a team (`dmjcustomizations:dispatching-parallel-teams`), dispatch four fresh-context teammates concurrently, each with the same diff and one lens. They work in parallel and post progress midway.
+A single reviewer misses by lens. Spin a team (`dmj:dispatching-parallel-teams`), dispatch four fresh-context teammates concurrently, each with the same diff and one lens. They work in parallel and post progress midway.
 
 | Lens | Hunts for | Anchored by |
 |------|-----------|-------------|
 | Correctness | logic bugs, broken edge cases, plan deviations, missing functionality | the plan / requirements |
-| Security | injection, authz gaps, unsafe input handling, secret leakage, blast radius | `dmjcustomizations:defending-in-depth` |
-| Performance | complexity regressions, N+1, missing caching, budget breaches | `dmjcustomizations:enforcing-performance-budgets` |
+| Security | injection, authz gaps, unsafe input handling, secret leakage, blast radius | `dmj:defending-in-depth` |
+| Performance | complexity regressions, N+1, missing caching, budget breaches | `dmj:enforcing-performance-budgets` |
 | Simplicity | dead code, premature abstraction, duplication, YAGNI, naming | matching surrounding code |
 
-User-facing diff: add a fifth **Experience** lens (template-generic look, added user burden, dead ends, animation without purpose, needs-docs-to-use), anchored by `dmjcustomizations:crafting-experiences`.
+User-facing diff: add a fifth **Experience** lens (template-generic look, added user burden, dead ends, animation without purpose, needs-docs-to-use), anchored by `dmj:crafting-experiences`.
 
 TeamCreate unavailable? Run the four lenses as native parallel Agent calls and synthesize the reports yourself. Give every teammate the diff range, not your history:
 
@@ -46,7 +46,7 @@ Lenses overlap, so collapse duplicate findings to one. Then adversarially spot-v
 
 ## Act on surviving findings
 
-Fix Critical immediately, Important before proceeding, note Minor. A finding you believe is wrong: neither silently comply nor silently ignore, push back with technical reasoning (`dmjcustomizations:receiving-code-review`).
+Fix Critical immediately, Important before proceeding, note Minor. A finding you believe is wrong: neither silently comply nor silently ignore, push back with technical reasoning (`dmj:receiving-code-review`).
 
 ## Blast radius
 
@@ -60,4 +60,4 @@ Skipping review because "it is simple," reviewing your own diff in your own cont
 
 A background agent runs the full panel unprompted, consolidates and spot-verifies, then puts surviving findings with their fixes (and any pushback with reasoning) in the final report. Park nothing it can verify itself; flag only genuine judgment calls the user owns.
 
-Findings resolved? Next: `dmjcustomizations:finishing-a-development-branch`. Receiving the feedback: `dmjcustomizations:receiving-code-review`.
+Findings resolved? Next: `dmj:finishing-a-development-branch`. Receiving the feedback: `dmj:receiving-code-review`.

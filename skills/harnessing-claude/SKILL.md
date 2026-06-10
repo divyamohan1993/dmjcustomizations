@@ -16,13 +16,13 @@ Route every job through the strongest native capability available. Probe availab
 | Design approval gate | Native plan mode when present; else the skill's own gate |
 | Stronger reviewer at a gate | advisor tool when available: consult before committing to an approach and before any done-claim |
 | Fresh-context read-only sweep | Explore agent type; isolation:"worktree" when parallel edits could collide |
-| Library or API truth | context7 MCP or official docs via WebFetch; never memory (dmjcustomizations:verification-before-completion) |
+| Library or API truth | context7 MCP or official docs via WebFetch; never memory (dmj:verification-before-completion) |
 | Deferred tool needed | ToolSearch "select:Name" first; direct call fails without it |
 | Long or recurring jobs | run_in_background, Monitor; Cron or schedule for routines |
-| Cross-session knowledge | memory files + MEMORY.md index, written at decision time (dmjcustomizations:landing-sessions) |
+| Cross-session knowledge | memory files + MEMORY.md index, written at decision time (dmj:landing-sessions) |
 | User choices | AskUserQuestion: batch up to 4, multiSelect, previews for visual compare |
 
-Dynamic skill authoring ($ARGUMENTS, !`cmd` preprocessing): dmjcustomizations:writing-skills.
+Dynamic skill authoring ($ARGUMENTS, !`cmd` preprocessing): dmj:writing-skills.
 
 ## Maximums
 
@@ -38,4 +38,4 @@ Strongest available model on every spawn; max thinking and effort where the harn
 
 **Headless:** all routing applies unattended; advisor and plan-mode gates park for the user, never block.
 
-Next: dmjcustomizations:dispatching-parallel-teams for the team shape, or the task's domain skill.
+Next: dmj:dispatching-parallel-teams for the team shape, or the task's domain skill.

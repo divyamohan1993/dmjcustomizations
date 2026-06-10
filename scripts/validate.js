@@ -43,7 +43,7 @@ for (const n of skills) {
     prose.push(line);
   }
   const wc = (a) => a.join(' ').split(/\s+/).filter(Boolean).length;
-  const cap = n === 'using-dmjcustomizations' ? 300 : 500;
+  const cap = n === 'using-dmj' ? 300 : 500;
   const pw = wc(prose), tw = wc(total);
   if (pw >= cap) flag(`${n}: prose ${pw} (cap ${cap})`);
   if (tw >= 650) flag(`${n}: total ${tw} (cap 650)`);

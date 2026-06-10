@@ -32,7 +32,7 @@ cd ".worktrees/<branch>"
 
 ## Parallel work
 
-- **Concurrent teammates, overlapping files:** one worktree per teammate, each on its own branch named for the teammate or slice. Disjoint files in one tree is fine; overlap without separate trees corrupts each other's diffs. Merge at the gate, not mid-flight. See dmjcustomizations:dispatching-parallel-teams.
+- **Concurrent teammates, overlapping files:** one worktree per teammate, each on its own branch named for the teammate or slice. Disjoint files in one tree is fine; overlap without separate trees corrupts each other's diffs. Merge at the gate, not mid-flight. See dmj:dispatching-parallel-teams.
 - **Spikes:** throwaway tree `spike-<question>`, answer the design question, record the conclusion, force-discard: `git worktree remove --force` + `git branch -D`. Conclusion survives; code never merges.
 
 ## Setup and baseline
@@ -41,10 +41,10 @@ Install deps for the stack (pnpm install / cargo build / uv sync / go mod downlo
 
 ## Never leave orphans
 
-One worktree = one branch = one purpose. Remove the moment work merges or is abandoned (dmjcustomizations:finishing-a-development-branch owns this). `git worktree prune` after any removal. No nested worktrees, no reusing one tree for two tasks.
+One worktree = one branch = one purpose. Remove the moment work merges or is abandoned (dmj:finishing-a-development-branch owns this). `git worktree prune` after any removal. No nested worktrees, no reusing one tree for two tasks.
 
 ## Headless mode
 
 No native tool, no stated preference: default `.worktrees/<branch>`, do not block. Park only a destructive choice (discarding existing uncommitted work); log the assumption.
 
-Next: implement here, then dmjcustomizations:finishing-a-development-branch.
+Next: implement here, then dmj:finishing-a-development-branch.

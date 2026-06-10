@@ -26,7 +26,7 @@ Announce: "Using writing-plans." Save to `docs/dmjcustomizations/plans/YYYY-MM-D
 ## Each task declares (parallel-first)
 
 - **Depends on:** task IDs that must finish first (or `none`).
-- **Parallel-safe:** `yes` only if no unlisted dependency AND its file set does not overlap another runnable task. Overlap forces a worktree (dmjcustomizations:using-git-worktrees) or serialization.
+- **Parallel-safe:** `yes` only if no unlisted dependency AND its file set does not overlap another runnable task. Overlap forces a worktree (dmj:using-git-worktrees) or serialization.
 - **Files:** exact create / modify (`path:lines`) / test paths.
 - **Acceptance criteria:** machine-checkable, each a command + expected result (exit code, test name, output, benchmark threshold).
 - **Steps:** TDD, one action each (2-5 min): failing test, run it fail, minimal code, run it pass, commit.
@@ -51,7 +51,7 @@ Never: "TBD" / "implement later", "add error handling / validation / edge cases"
 
 ## Performance and security
 
-Bake budgets into acceptance criteria (dmjcustomizations:enforcing-performance-budgets): lowest achievable complexity, no O(n²)+ unjustified. Carry the design's threat model into tasks as explicit steps + criteria (dmjcustomizations:defending-in-depth): validation, parameterized queries, least privilege.
+Bake budgets into acceptance criteria (dmj:enforcing-performance-budgets): lowest achievable complexity, no O(n²)+ unjustified. Carry the design's threat model into tasks as explicit steps + criteria (dmj:defending-in-depth): validation, parameterized queries, least privilege.
 
 ## Fresh-context review (never self-review)
 
@@ -66,4 +66,4 @@ Headless or TeamCreate unavailable: run the same checklist yourself in a SEPARAT
 - Reviewing your own plan in the same context.
 - A dependency cycle, or a task using an undefined symbol.
 
-Next: **dmjcustomizations:team-driven-development** (same session) or **dmjcustomizations:executing-plans** (fresh session).
+Next: **dmj:team-driven-development** (same session) or **dmj:executing-plans** (fresh session).

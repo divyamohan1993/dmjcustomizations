@@ -4,7 +4,7 @@ Load when creating or editing a skill, before deployment, to prove it works unde
 
 Testing a skill is TDD for docs. Run scenarios WITHOUT the skill (RED, watch fresh agents fail), write against those failures (GREEN), close loopholes (REFACTOR). **Did not watch an agent fail without the skill? You do not know it prevents the right failures.**
 
-**REQUIRED BACKGROUND:** dmjcustomizations:test-driven-development.
+**REQUIRED BACKGROUND:** dmj:test-driven-development.
 
 ## Contents
 - Why a team, not a lone agent
@@ -20,7 +20,7 @@ Testing a skill is TDD for docs. Run scenarios WITHOUT the skill (RED, watch fre
 
 Evidence comes from FRESH-context teammates, never same-context self-review: an agent that helped write the skill holds the intended answer, cannot test it impartially. A team also runs many scenarios at once and surfaces more rationalizations per cycle, since teammates break differently.
 
-Spawn: `TeamCreate`, then one `Agent` teammate per scenario, name tied to it, run concurrently. Each reports its choice and verbatim reasoning back (messages are its only channel; ask for midway notes on long scenarios). Recurring rationalizations are the ones the skill must kill. dmjcustomizations:dispatching-parallel-teams applied to skill QA.
+Spawn: `TeamCreate`, then one `Agent` teammate per scenario, name tied to it, run concurrently. Each reports its choice and verbatim reasoning back (messages are its only channel; ask for midway notes on long scenarios). Recurring rationalizations are the ones the skill must kill. dmj:dispatching-parallel-teams applied to skill QA.
 
 Do NOT test this way: pure reference skills (API docs, syntax), or skills with no rule to violate. DO test: discipline skills, skills with a compliance cost, anything an agent has incentive to bypass.
 

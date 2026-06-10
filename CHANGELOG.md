@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.0.0] - 2026-06-10
+
+### Changed
+
+- BREAKING: plugin renamed `dmjcustomizations` to `dmj` (and marketplace name to `dmj`), so every skill now fires as `dmj:<name>` (e.g. `dmj:brainstorming`) for instant identification. All cross-references rewritten to the `dmj:` prefix; meta-skill `using-dmjcustomizations` renamed to `using-dmj`; hook, validator, release script, and output-doc paths (`docs/dmj/`) updated. New install: `/plugin install dmj@dmj`. The GitHub repo slug stays `dmjcustomizations`. Existing installs must reinstall under the new name.
+
 ## [1.8.2] - 2026-06-10
 
 ### Changed
@@ -52,7 +58,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 
 ### Changed
 
-- using-dmjcustomizations: 1% rule scoped precisely to acting turns (file reads/edits, commands, agent spawns, approach commitments); pure conversation about already-verified state answers directly. Dead superpowers-precedence line replaced with the landing-sessions route.
+- using-dmj: 1% rule scoped precisely to acting turns (file reads/edits, commands, agent spawns, approach commitments); pure conversation about already-verified state answers directly. Dead superpowers-precedence line replaced with the landing-sessions route.
 - exploring-codebases: stale maps declared deletable debris, never artifacts to tend.
 
 ## [1.6.0] - 2026-06-10
@@ -79,7 +85,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 ### Added
 
 - harnessing-claude: capability-routing skill so every session exploits the strongest native Claude features (Agent Teams vs Workflow selection, plan mode, advisor reviewer at gates, schema-validated agent outputs, dynamic !cmd skill injection, context7/WebFetch for live docs, ToolSearch, worktree isolation, background and cron runs, memory) instead of hand-rolling weaker substitutes.
-- using-dmjcustomizations: parallel-default law, everything parallel (teams, in-turn batching, spikes, lenses), serialize only at user gates and real data dependencies, speed never buys robustness down.
+- using-dmj: parallel-default law, everything parallel (teams, in-turn batching, spikes, lenses), serialize only at user gates and real data dependencies, speed never buys robustness down.
 
 ### Changed
 
@@ -89,7 +95,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 
 ### Changed
 
-- using-dmjcustomizations: hard conduct rule added, deleting anything outside the active working folder requires the user's explicit confirmation every time, even with full permissions (in-folder cleanup of self-created files stays free).
+- using-dmj: hard conduct rule added, deleting anything outside the active working folder requires the user's explicit confirmation every time, even with full permissions (in-folder cleanup of self-created files stays free).
 
 ## [1.2.0] - 2026-06-10
 
@@ -116,7 +122,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 - Initial release: full fork of superpowers 5.1.0, rebuilt for the parallel agentic era.
 - 14 rewritten skills: parallel-first (Agent Teams, never lone subagents), terse (lower context cost), date-agnostic (probe for the best model and tools at invocation time), with hard gates, headless fallbacks, and adversarial fresh-context verification preserved or strengthened.
 - 3 new skills: defending-in-depth (security from line 1), enforcing-performance-budgets (O(1)-first, measurable budgets), researching-deeply (parallel research with adversarial source verification).
-- SessionStart hook injecting the using-dmjcustomizations meta-skill (Windows-safe polyglot launcher).
+- SessionStart hook injecting the using-dmj meta-skill (Windows-safe polyglot launcher).
 - Plugin and marketplace manifests for local installation.
 
 ### Removed (relative to superpowers)

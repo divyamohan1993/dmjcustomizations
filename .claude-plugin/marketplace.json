@@ -1,5 +1,5 @@
 {
-  "name": "dmjcustomizations",
+  "name": "dmj",
   "description": "Personal marketplace for the dmjcustomizations skills library",
   "owner": {
     "name": "Divya Mohan",
@@ -7,9 +7,9 @@
   },
   "plugins": [
     {
-      "name": "dmjcustomizations",
+      "name": "dmj",
       "description": "Divya's parallel-first agentic engineering skills: team-based workflows, adversarial verification, security and performance gates from line 1",
-      "version": "1.8.2",
+      "version": "2.0.0",
       "source": "./",
       "author": {
         "name": "Divya Mohan",

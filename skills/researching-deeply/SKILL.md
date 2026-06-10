@@ -61,4 +61,4 @@ Fully autonomous: spawn the team, verify, synthesize, land the digest in the fin
 - A vendor's own marketing as the only evidence it is fastest/safest
 - Deciding before the adversarial pass returns
 
-Handoff: the digest into dmjcustomizations:brainstorming or dmjcustomizations:writing-plans as the evidence base for the decision.
+Handoff: the digest into dmj:brainstorming or dmj:writing-plans as the evidence base for the decision.

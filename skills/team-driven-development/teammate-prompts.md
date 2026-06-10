@@ -13,7 +13,7 @@ CONTEXT: <where this fits, dependencies, interfaces other teammates own>
 Before coding: if requirements, approach, or assumptions are unclear, SendMessage
 the lead and wait. Do not guess.
 
-Build: follow dmjcustomizations:test-driven-development (failing test, minimal code,
+Build: follow dmj:test-driven-development (failing test, minimal code,
 pass, commit). Files to one responsibility. SendMessage a midway progress update;
 message peers directly about any shared interface. Run the task's verification
 command; paste the ACTUAL output. Commit in your worktree.
@@ -46,7 +46,7 @@ Report: "Spec compliant" OR "Issues:" with file:line for each gap or extra.
 ## Quality reviewer (fresh context, only after spec passes)
 
 ```
-Review code quality via dmjcustomizations:requesting-code-review.
+Review code quality via dmj:requesting-code-review.
 
 DIFF: <base SHA>..<head SHA>
 PLAN/REQUIREMENTS: Task N from <plan path>
@@ -54,8 +54,8 @@ PLAN/REQUIREMENTS: Task N from <plan path>
 Check, beyond the standard review: each file one clear responsibility + a defined
 interface; units independently testable; this change did not bloat a file or create
 an already-large one (judge the change, not pre-existing size); security per
-dmjcustomizations:defending-in-depth; complexity + budgets per
-dmjcustomizations:enforcing-performance-budgets.
+dmj:defending-in-depth; complexity + budgets per
+dmj:enforcing-performance-budgets.
 
 Report: Strengths, Issues (Critical / Important / Minor with file:line), Assessment.
 ```

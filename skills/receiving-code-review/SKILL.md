@@ -32,7 +32,7 @@ Instead: restate the requirement, ask a question, push back with reasoning, or j
 
 ## Triage in parallel, gate on verification
 
-Independent items can be assessed concurrently (verify several at once, or fan out to teammates for a large batch via `dmjcustomizations:dispatching-parallel-teams`). But items often relate: if any is unclear, clarify ALL unclear items before implementing ANY, since partial understanding yields wrong fixes. Then implement blocking items (breaks, security) first, simple fixes (typos, imports) next, complex (refactor, logic) last, testing each, no regressions.
+Independent items can be assessed concurrently (verify several at once, or fan out to teammates for a large batch via `dmj:dispatching-parallel-teams`). But items often relate: if any is unclear, clarify ALL unclear items before implementing ANY, since partial understanding yields wrong fixes. Then implement blocking items (breaks, security) first, simple fixes (typos, imports) next, complex (refactor, logic) last, testing each, no regressions.
 
 ## YAGNI check
 
@@ -50,4 +50,4 @@ Reply inside the comment thread (`gh api repos/{owner}/{repo}/pulls/{pr}/comment
 
 A background agent verifies every item against the code, implements what survives, records in the final report what it changed, what it pushed back on with reasoning, what it could not verify. Park only genuine architectural conflicts the user owns.
 
-Feedback resolved and verified? Back to `dmjcustomizations:verification-before-completion`, then `dmjcustomizations:finishing-a-development-branch`.
+Feedback resolved and verified? Back to `dmj:verification-before-completion`, then `dmj:finishing-a-development-branch`.

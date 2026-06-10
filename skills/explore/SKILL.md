@@ -9,7 +9,7 @@ Build a live, evidence-based model of how a codebase works by reading the real s
 
 ## Contract
 
-Code is the only source of truth: READMEs, comments, design docs are hints to verify, never facts to repeat. Every claim cites file:line or is flagged unverified. Output is IN CHAT ONLY: no map file, no memory entry, nothing into the repo. About to BUILD there instead? Route to dmjcustomizations:exploring-codebases (persisted map plus anti-redundancy gate).
+Code is the only source of truth: READMEs, comments, design docs are hints to verify, never facts to repeat. Every claim cites file:line or is flagged unverified. Output is IN CHAT ONLY: no map file, no memory entry, nothing into the repo. About to BUILD there instead? Route to dmj:exploring-codebases (persisted map plus anti-redundancy gate).
 
 ## Flow
 
@@ -29,8 +29,8 @@ Code is the only source of truth: READMEs, comments, design docs are hints to ve
 
 ## When NOT to use
 
-A single-fact lookup (just search), an area you already understand, or mapping before you build (that is dmjcustomizations:exploring-codebases). A team costs real tokens; do not spend it to find one function.
+A single-fact lookup (just search), an area you already understand, or mapping before you build (that is dmj:exploring-codebases). A team costs real tokens; do not spend it to find one function.
 
 **Headless:** fully autonomous, no user gate; the synthesis lands in the final report.
 
-Next: **dmjcustomizations:exploring-codebases** before building in the explored code, or **dmjcustomizations:brainstorming** once the change you want is understood.
+Next: **dmj:exploring-codebases** before building in the explored code, or **dmj:brainstorming** once the change you want is understood.

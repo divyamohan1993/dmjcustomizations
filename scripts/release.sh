@@ -37,7 +37,7 @@ git commit -m "$MSG
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 git push
 if command -v claude >/dev/null 2>&1; then
-    claude plugin marketplace update dmjcustomizations || true
-    claude plugin update dmjcustomizations@dmjcustomizations || true
+    claude plugin marketplace update dmj || true
+    claude plugin update dmj@dmj || true
 fi
 echo "RELEASED $V"

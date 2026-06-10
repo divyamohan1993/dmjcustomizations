@@ -80,4 +80,4 @@ Iron rule: mock the COMPLETE structure as it exists in reality, not just the fie
 
 ## The bottom line
 
-Mocks isolate; they are not the thing under test. If TDD reveals you are testing mock behavior, you added mocks without first watching the test fail against real code. Test real behavior, or question why you mock at all. Back to discipline: `dmjcustomizations:test-driven-development`.
+Mocks isolate; they are not the thing under test. If TDD reveals you are testing mock behavior, you added mocks without first watching the test fail against real code. Test real behavior, or question why you mock at all. Back to discipline: `dmj:test-driven-development`.

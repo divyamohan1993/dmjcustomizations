@@ -36,13 +36,13 @@ Fresh and complete is load-bearing: a stale green proves nothing, a passing subs
 | Build succeeds | build exit 0 | linter passed (not a compiler) |
 | Bug fixed | original symptom retested, passes | code changed, assumed fixed |
 | Regression test works | red-green seen: revert to MUST-FAIL, restore to pass | test passes once |
-| Performance met | measured vs budget (`dmjcustomizations:enforcing-performance-budgets`) | "feels fast" |
+| Performance met | measured vs budget (`dmj:enforcing-performance-budgets`) | "feels fast" |
 | Teammate finished | VCS diff inspected | their "success" report |
 | Requirements met | line-by-line vs the plan | tests pass |
 
 ## Adversarial fresh-context verification
 
-Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmjcustomizations:requesting-code-review`, or a lone teammate via `dmjcustomizations:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. (No TeamCreate? Run the refutation as a fresh native Agent call, judge it yourself.) advisor tool present: consult it before the done-claim as a second independent reviewer.
+Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmj:requesting-code-review`, or a lone teammate via `dmj:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. (No TeamCreate? Run the refutation as a fresh native Agent call, judge it yourself.) advisor tool present: consult it before the done-claim as a second independent reviewer.
 
 ## Red flags: STOP
 
@@ -63,4 +63,4 @@ Self-review in your own context is not enough: you believe it works, so you read
 
 No user to reassure means no excuse to skip evidence: every verification still runs fresh, the adversarial pass still runs, the quoted output goes in the final report. Cannot verify something (missing secret, external dependency)? Report it unverified with the reason; never assert a green you did not see.
 
-Verified with quoted evidence and an independent refutation? Next: `dmjcustomizations:requesting-code-review`, then `dmjcustomizations:finishing-a-development-branch`.
+Verified with quoted evidence and an independent refutation? Next: `dmj:requesting-code-review`, then `dmj:finishing-a-development-branch`.
