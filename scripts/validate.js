@@ -43,10 +43,10 @@ for (const n of skills) {
     prose.push(line);
   }
   const wc = (a) => a.join(' ').split(/\s+/).filter(Boolean).length;
-  const cap = n === 'using-dmj' ? 300 : 500;
+  const cap = n === 'using-dmj' ? 600 : 1200;
   const pw = wc(prose), tw = wc(total);
   if (pw >= cap) flag(`${n}: prose ${pw} (cap ${cap})`);
-  if (tw >= 650) flag(`${n}: total ${tw} (cap 650)`);
+  if (tw >= 1800) flag(`${n}: total ${tw} (cap 1800)`);
   if (!/(next:|handoff|back to)/i.test(content.slice(-400))) flag(`${n}: no handoff line at end`);
 }
 

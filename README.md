@@ -11,7 +11,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 - **Demonstrate, don't describe.** Competing approaches become disposable worktree spikes with benchmarks, not paragraphs.
 - **Dynamic by design.** No hardcoded models, versions, or dates. Skills probe for the strongest model and newest stable tooling at invocation time.
 - **Security and performance from line 1.** Threat models at design time, quantum-safe crypto defaults, O(1)-first thinking, budgets the skills require projects to enforce in CI.
-- **Terse.** Every skill is context-budgeted: under 500 words, and the always-loaded meta-skill under 300.
+- **Terse.** Every skill is context-budgeted: concise by design, with a generous hard cap as a runaway-bloat guardrail (the always-loaded meta-skill kept tightest). Substance is never cut just to hit a number.
 
 ## Skills
 

@@ -3,6 +3,13 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.5.0] - 2026-06-21
+
+### Changed
+
+- Relaxed the skill word-count guardrail in validate.js: prose cap 500 to 1200, total 650 to 1800, meta-skill (using-dmj) 300 to 600. Substance is no longer trimmed just to hit a number; the cap now only catches true runaway bloat. README's terseness claim softened to match.
+- art-directing: restored content previously trimmed to fit the old cap, including the "cap at 1200px and center" rationalization row and fuller wording in the rationalizations table.
+
 ## [2.4.0] - 2026-06-21
 
 ### Added

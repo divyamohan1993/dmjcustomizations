@@ -38,10 +38,11 @@ Competing directions: a team runs 2 to 3 spikes (TeamCreate + Agent, team_name),
 
 | Excuse | Reality |
 |---|---|
-| "Dark bg plus one neon accent" | An AI-default look; research a palette |
+| "Dark bg plus one neon accent is modern" | An AI-default look; every agent lands there. Research a palette instead |
 | "Inter / Space Grotesk is safe" | Safe is the template tell; distinctive type is the cheapest identity |
+| "Cap at 1200px and center" | Wastes the screen you were told to fill; scale density, not margins |
 | "Saffron because India" | Cliché is not researched emotion; derive color from the feeling the audience needs |
-| "Add a column or metric for big screens" | Then it is hidden on small ones; reflow the same content, never viewport-exclusive |
+| "Add a column or metric for big screens" | Then it is hidden on small ones; reflow the same content, never viewport-exclusive content |
 
 ## Red flags (stop)
 
