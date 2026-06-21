@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.3.0] - 2026-06-21
+
+### Added
+
+- art-directing: research-driven visual identity, the execution layer crafting-experiences explicitly parks. Gate 0 derives the palette from researched audience emotion (not cultural cliche or habit), contrast winning over vibe (WCAG AA, color-blind-safe, dark and light). Emits a named token system (palette, type, spacing, motion) not prose; bans the AI-default font stack (Inter / Space Grotesk / JetBrains Mono) and the dark-plus-neon default look; morphic language (skeuo, neu, glass, clay, flat, brutalist, aurora, bento) chosen per project, never locked. Fill-every-edge-yet-readable responsive: edge-to-edge chrome, text capped near 66 to 75ch, large and 4k screens filled by scaling and reflowing the same content (nothing hidden by viewport size, no element exists only at one breakpoint), never a centered column in whitespace. Screenshot-verify HARD gate: every breakpoint from mobile-portrait to 4k via Playwright plus a contrast check, self-asserted "looks responsive" rejected. Chains researching-deeply, enforcing-performance-budgets, dispatching-parallel-teams, crafting-experiences, and verification-before-completion so the design skills compose. Baseline-tested: fresh agents holding the existing design skills still converged on the default font trio, dark-plus-neon, cliche color, and centered-max-width 4k; this skill targets exactly those failures. Global CLAUDE.md de-mandated from forced skeuomorphic to research-chosen morphic language.
+
 ## [2.2.0] - 2026-06-10
 
 ### Added

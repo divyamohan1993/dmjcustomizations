@@ -38,6 +38,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | explore | Parallel slice-by-slice tracing of how a codebase really works, explained in chat, no artifacts |
 | harnessing-claude | Capability routing: strongest native Claude feature for every job, never hand-rolled substitutes |
 | crafting-experiences | Experience supremacy: Jobs test, first-second hook, cinematic with purpose, zero user burden |
+| art-directing | Research-driven visual identity: psychology-led palette, distinctive type, edge-to-edge responsive, screenshot-verified |
 | landing-sessions | Session teardown: learnings to memory, state to git, resources to zero, threads surfaced |
 | selling-the-vision | Launch persuasion: one-second hook, keynote arc, one message, one CTA, honest claims |
 
