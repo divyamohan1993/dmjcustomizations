@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.4.0] - 2026-06-21
+
+### Added
+
+- art-directing/color-psychology.md: a one-level-deep reference giving Gate 0 a real, sourced method to derive palettes from audience emotion instead of cliché. Grounded in primary research: ecological valence theory (Palmer & Schloss, PNAS 2010, preference tracks liked-object associations, so positive palettes use positively-valenced referents), color-in-context theory (Elliot & Maier, meaning is context-dependent not universal), and cross-cultural variance (Madden et al. 2000). Method: state the emotional target, pick valenced referents not symbols, build in OKLCH, accessibility overrides vibe (WCAG AA, color-blind-safe, dark and light), verify contrast with the numbers shown. Includes an emotion-to-hue table framed as hypotheses to test (not laws) and honest confidence levels: the hue mappings are weak and contested, valence and legibility are the durable wins. SKILL.md Gate 0 now points to it.
+
 ## [2.3.0] - 2026-06-21
 
 ### Added

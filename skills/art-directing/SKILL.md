@@ -9,7 +9,7 @@ Every project earns a researched visual identity, never a default. dmj:crafting-
 
 ## Gate 0: research before color
 
-Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world and vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) the current-best technique, never hardcoded. Derive the palette from that EMOTION, not cliché or habit. **Contrast wins**: every pair meets WCAG AA, color-blind-safe, dark and light. Low-contrast is a failure, not a vibe.
+Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world and vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) the current-best technique, never hardcoded. Derive the palette from that EMOTION (method: color-psychology.md), not cliché or habit. **Contrast wins**: every pair meets WCAG AA, color-blind-safe, dark and light. Low-contrast is a failure, not a vibe.
 
 ## The token system (the artifact)
 
@@ -41,7 +41,7 @@ Competing directions: a team runs 2 to 3 spikes (TeamCreate + Agent, team_name),
 | "Dark bg plus one neon accent" | An AI-default look; research a palette |
 | "Inter / Space Grotesk is safe" | Safe is the template tell; distinctive type is the cheapest identity |
 | "Saffron because India" | Cliché is not researched emotion; derive color from the feeling the audience needs |
-| "Add a column or metric for big screens" | Then it is hidden on small ones; reflow the same content, never viewport-exclusive content |
+| "Add a column or metric for big screens" | Then it is hidden on small ones; reflow the same content, never viewport-exclusive |
 
 ## Red flags (stop)
 
@@ -50,6 +50,6 @@ Competing directions: a team runs 2 to 3 spikes (TeamCreate + Agent, team_name),
 - A default font stack, a dark-plus-neon palette, or color by habit.
 - One identity on every project, or ten unrelated looks inside one.
 
-**Headless:** research, derive tokens, build, screenshot-verify autonomously; PARK only brand calls (wordmark, hue), ship a logged default.
+**Headless:** research, derive tokens, build, screenshot-verify autonomously; PARK only brand calls (wordmark, hue), ship a default.
 
 Next: dmj:crafting-experiences (the bar this serves), dmj:selling-the-vision (marketing surfaces); dmj:verification-before-completion proves every breakpoint.
