@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.6.0] - 2026-06-21
+
+### Added
+
+- humanizing-output skill plus a portable pre-push gate for every project (not this plugin). humanize-guard.mjs blocks unicode dashes (always) and AI-tell phrases (gate mode) in prose files and commit messages, skipping fenced and inline code so command output is never flagged. humanize.mjs rewrites flagged prose to plain language via the claude CLI, shows a diff, and applies on approval. hooks/pre-push chains husky and lefthook, degrades to a dash-only grep check when Node is absent, and bypasses once with HUMANIZE_SKIP=1. install.sh wires it per-repo or sets a chained global core.hooksPath (with a warning, since that overrides per-repo hooks). Tunable per project via .humanize-allow. git calls use execFileSync with argument arrays, no shell. Mandated in global CLAUDE.md as an every-project artifact.
+
 ## [2.5.0] - 2026-06-21
 
 ### Changed

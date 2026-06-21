@@ -1,0 +1,36 @@
+#!/bin/sh
+# humanize pre-push gate. Blocks pushes with unicode dashes or AI-tell phrases in
+# prose. Bypass once: HUMANIZE_SKIP=1 git push. Chains husky/lefthook so it never
+# disables them. Degrades to a dash-only grep check when Node is unavailable.
+[ "${HUMANIZE_SKIP:-}" = "1" ] && exit 0
+HOOK_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+ROOT=$(git rev-parse --show-toplevel 2>/dev/null || echo .)
+
+GUARD=""
+for c in "$ROOT/.humanize/humanize-guard.mjs" "$HOOK_DIR/humanize-guard.mjs" "$HOOK_DIR/../humanize-guard.mjs"; do
+  [ -f "$c" ] && { GUARD="$c"; break; }
+done
+
+if command -v node >/dev/null 2>&1 && [ -n "$GUARD" ]; then
+  ( cd "$ROOT" && node "$GUARD" --gate ) || exit 1
+else
+  # Fallback when Node or the guard is unavailable: deterministic dash-only check.
+  RANGE="HEAD"
+  UP=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+  [ -n "$UP" ] && RANGE="$UP..HEAD"
+  HIT=0
+  for f in $(git diff --name-only --diff-filter=ACM "$RANGE" 2>/dev/null | grep -Ei '\.(md|mdx|markdown|txt)$'); do
+    [ -f "$ROOT/$f" ] || continue
+    if grep -nP '[\x{2012}\x{2013}\x{2014}\x{2015}\x{2212}]' "$ROOT/$f" 2>/dev/null; then
+      echo "humanize: unicode dash in $f (use , : ; or .)."; HIT=1
+    fi
+  done
+  [ "$HIT" = "1" ] && { echo "humanize: blocked (Node missing, dash-only check)."; exit 1; }
+  echo "humanize: Node or guard unavailable; ran dash-only fallback."
+fi
+
+# Chain existing repo hooks so husky/lefthook still run.
+for H in "$ROOT/.husky/pre-push" "$ROOT/.git/hooks/pre-push.local"; do
+  [ -x "$H" ] && { "$H" "$@" || exit 1; }
+done
+exit 0

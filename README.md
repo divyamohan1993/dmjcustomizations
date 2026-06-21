@@ -41,6 +41,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | art-directing | Research-driven visual identity: psychology-led palette, distinctive type, edge-to-edge responsive, screenshot-verified |
 | landing-sessions | Session teardown: learnings to memory, state to git, resources to zero, threads surfaced |
 | selling-the-vision | Launch persuasion: one-second hook, keynote arc, one message, one CTA, honest claims |
+| humanizing-output | Pre-push gate every project carries: strips em dashes and AI-tell language, reviewed humanize, prose that never reads AI-generated |
 
 ## Install
 

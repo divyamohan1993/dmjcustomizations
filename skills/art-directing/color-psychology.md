@@ -1,6 +1,6 @@
 # Color Psychology: deriving a palette from emotion
 
-Reference for the Gate 0 of dmj:art-directing. Color "meaning" is **not universal**. It is context-dependent, partly learned, partly biological (color-in-context theory; Elliot & Maier, 2012). Reject deterministic myths ("red means X" everywhere). Two levers are robust and usable:
+Reference for the Gate 0 of dmj:art-directing. Color "meaning" is **not universal**. It is context-dependent, partly learned, partly biological (color-in-context theory; Elliot & Maier, 2012). Reject deterministic myths ("red means X" everywhere). Two levers are solid and usable:
 
 1. **Ecological valence** (Palmer & Schloss, PNAS, 2010): people prefer colors tied to objects and experiences they like; the average valence of a color's associated objects predicted ~80% of preference. So a *positive* palette is hues whose real-world referents the audience finds pleasant (clear-sky and water blues, daylight, foliage greens, ripe-fruit warms), and avoids referents they dislike (rot and sludge browns, sickly yellow-greens, bile).
 2. **Context and culture**: the same hue shifts meaning by surrounding context and locale. Natural and perceptual associations travel; object-derived and symbolic ones do not (Madden, Hewett & Roth, 8-country study, 2000: gray read "cheap" in China and Japan but not the US; red meant "love" widely yet also "good-tasting" in China). Check the audience's locale before trusting any symbolic reading.
