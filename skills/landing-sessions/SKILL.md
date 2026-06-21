@@ -14,6 +14,7 @@ Land everything the session created: knowledge to memory, state to git, resource
 3. **Resources to zero.** Teammates sent shutdown_request and confirmed; spike and teammate worktrees removed (dmj:using-git-worktrees); background tasks stopped.
 4. **Threads surfaced.** One short list: done (verified, with evidence), decisions parked for the user, anything unresolved. No silent loose ends.
 5. **Debris.** Self-created scratch files inside the working folder: deleted. Anything outside it: the user confirms first, every time (hard conduct rule).
+6. **Skill learnings.** A skill that misfired this session, once the user confirms the learning, gets a file in `docs/dmj/skill-learnings/`; if any are queued, run the session-end proposal pass (dmj:evolving-skills) that opens gated PRs. User-confirmed only, never auto-merge.
 
 ## Red flags (stop)
 

@@ -15,7 +15,7 @@ try { MV = JSON.parse(read('.claude-plugin/marketplace.json')).plugins[0].versio
 if (PV && MV && PV !== MV) flag(`version mismatch: plugin=${PV} marketplace=${MV}`);
 try { if (!read('CHANGELOG.md').includes('[' + PV + ']')) flag(`CHANGELOG.md has no [${PV}] entry`); } catch { flag('CHANGELOG.md unreadable'); }
 
-const DASH = /[‒–—―−]/;
+const DASH = /[‒–—―−‐‑]/;
 const skillsDir = path.join(root, 'skills');
 const skills = fs.readdirSync(skillsDir).filter(n => fs.statSync(path.join(skillsDir, n)).isDirectory());
 for (const n of skills) {
@@ -48,6 +48,20 @@ for (const n of skills) {
   if (pw >= cap) flag(`${n}: prose ${pw} (cap ${cap})`);
   if (tw >= 1800) flag(`${n}: total ${tw} (cap 1800)`);
   if (!/(next:|handoff|back to)/i.test(content.slice(-400))) flag(`${n}: no handoff line at end`);
+}
+
+// A4: reference files (non-SKILL.md) steer behavior too; gate them for dashes + forbidden tokens.
+const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
+  const p = path.join(d, e.name);
+  return e.isDirectory() ? walk(p) : [p];
+});
+for (const p of walk(skillsDir)) {
+  if (!p.endsWith('.md') || path.basename(p) === 'SKILL.md') continue;
+  const rel = path.relative(root, p).replace(/\\/g, '/');
+  const ref = fs.readFileSync(p, 'utf8');
+  if (DASH.test(ref)) flag(`${rel}: unicode dash`);
+  if (/task tool/i.test(ref)) flag(`${rel}: forbidden 'Task tool'`);
+  if (/subagent/i.test(ref)) flag(`${rel}: forbidden 'subagent'`);
 }
 
 const rows = (read('README.md').match(/^\| [a-z]/gm) || []).length;

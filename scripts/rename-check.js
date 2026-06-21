@@ -16,6 +16,26 @@ const pairs = process.argv.slice(2).map(a => {
   return [a.slice(0, i), a.slice(i + 2)];
 }).sort((x, y) => y[0].length - x[0].length); // longest old-token first
 
+// Security (A1): ALLOWLIST, not denylist. A RENAME_MAP may only rename actual
+// skill slugs / plugin tokens, so a semantic word-swap (required=>optional,
+// fail-closed=>fail-open, ...) can never ride the mechanical fast-path; anything
+// not allowlisted falls through to the model gate. Retired slugs (the old side of
+// a rename, gone from disk) must be declared in RENAME_ALLOW.
+const TOKEN = /^[A-Za-z0-9][A-Za-z0-9:_./-]*$/;
+const fs = require('fs');
+const allow = new Set(['dmj', 'dmjcustomizations']);
+try { for (const e of fs.readdirSync('skills', { withFileTypes: true })) if (e.isDirectory()) allow.add(e.name); } catch {}
+for (const t of (process.env.RENAME_ALLOW || '').split(/\s+/).filter(Boolean)) allow.add(t);
+const baseTok = (s) => s.replace(/^docs\//, '').replace(/^dmj:/, '');
+for (const [o, n] of pairs) {
+  for (const side of [o, n]) {
+    if (!TOKEN.test(side) || !allow.has(baseTok(side))) {
+      console.error(`rename-check: "${side}" is not an allowlisted skill slug or plugin token. Declare retired slugs in RENAME_ALLOW; semantic changes go through the model gate.`);
+      process.exit(2);
+    }
+  }
+}
+
 let buf = '';
 process.stdin.on('data', d => buf += d);
 process.stdin.on('end', () => {

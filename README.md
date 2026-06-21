@@ -31,6 +31,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | using-git-worktrees | Isolation for parallel work and disposable spikes |
 | finishing-a-development-branch | Verified finish: merge, PR, or cleanup, with team and worktree teardown |
 | writing-skills | TDD for documentation: baseline, write, close loopholes, team-tested |
+| evolving-skills | Gated loop to improve skills from confirmed learnings: TDD proposal, gates, human-merged PR, never autonomous |
 | defending-in-depth | Security from line 1: threat model, OWASP, zero trust, quantum-safe defaults |
 | enforcing-performance-budgets | O(1)-first, measured budgets, cache-first, regressions block merges |
 | researching-deeply | Parallel research with adversarial source verification and dated citations |

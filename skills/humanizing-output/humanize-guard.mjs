@@ -24,7 +24,7 @@ for (let i = 0; i < args.length; i++) {
   explicit.push(args[i]);
 }
 
-const DASH = /[‒–—―−]/; // figure, en, em, horizontal bar, minus
+const DASH = /[‒–—―−‐‑]/; // figure, en, em, horizontal bar, minus, hyphen, non-breaking hyphen
 const PROSE = /\.(md|mdx|markdown|txt)$/i;
 
 // Curated AI-tell lexicon. Tune per project via .humanize-allow (one term per line).

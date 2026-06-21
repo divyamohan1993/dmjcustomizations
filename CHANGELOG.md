@@ -3,6 +3,20 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.7.0] - 2026-06-21
+
+### Added
+
+- evolving-skills skill: a gated proposal loop so skills improve from real use without ever rewriting themselves. Capture is trusted-input only (a learning enters docs/dmj/skill-learnings/ only with confirmed-by: user; raw session text is never auto-applied, which closes the prompt-injection persistence vector). Each confirmed learning becomes a writing-skills TDD proposal, passes validate.js plus the behavioral-diff gate, and opens a PR a human merges; never auto-merge, never straight to main. landing-sessions triggers a proposal pass at session end when the queue is non-empty. Ships the threat model and the docs/dmj/skill-learnings queue with its format.
+
+### Changed
+
+- landing-sessions: added a skill-learnings capture and session-end proposal-pass step (dmj:evolving-skills), user-confirmed only.
+
+### Security
+
+- Hardened the release gate and humanizer after a fresh-context adversarial review (two rounds). release.sh: the behavioral-diff gate now fails closed when claude is absent, reads the exact first verdict line (no grep first-match bypass), runs on opus, labels the diff untrusted, and reviews all skill .md including reference files (not just SKILL.md). rename-check.js: RENAME_MAP is now an allowlist (real skill slugs and plugin tokens only; retired slugs via RENAME_ALLOW), so a semantic word-swap (required to optional, fail-closed to fail-open) can no longer ride the mechanical fast-path. validate.js: scans reference files for dashes and forbidden tokens, with a wider dash class (adds U+2010 and U+2011). Humanizer: the pre-push hook checks only the commits being pushed (no first-push full-scan brick), NUL-delimits filenames so a name with spaces cannot evade the gate, chains husky and any native pre-push without recursing, and logs HUMANIZE_SKIP bypasses; install --global adds a pre-commit chainer so core.hooksPath cannot silently disable a repo secret scanner, and per-repo install backs up an existing pre-push; humanize.mjs warns when a rewrite changes code, URLs, or numbers.
+
 ## [2.6.0] - 2026-06-21
 
 ### Added
