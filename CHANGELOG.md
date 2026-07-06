@@ -3,6 +3,16 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.11.0] - 2026-07-06
+
+### Fixed
+
+- writing-plans: plan artifacts now save under docs/dmj/plans/, the same root as specs (brainstorming), maps (exploring-codebases), and skill-learnings (evolving-skills). Previously docs/dmjcustomizations/plans/ split project artifacts across two roots.
+
+### Changed
+
+- Full-plugin conflict audit, evidence-backed: all 30 dmj: cross-skill references resolve (zero dangling); the suspected equipping-projects vs brainstorming first-commit deadlock tested 2/2 clean in a dual-skill run (guard-rail wiring is hygiene the equip pass owns, the design gate governs the feature, they compose in parallel); the shipping-to-production vs enforcing-performance-budgets cost overlap confirmed complementary through their cross-links. One known name shadow remains, dmj:explore vs the harness builtin explore skill; the rename is parked for the user since it is a breaking slug change (RENAME_MAP release path exists for exactly this).
+
 ## [2.10.1] - 2026-07-06
 
 ### Added

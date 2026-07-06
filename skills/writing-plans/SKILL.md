@@ -7,7 +7,7 @@ description: Use when you have an approved spec or design and need an implementa
 
 Turn an approved design into a task graph a teammate with no session context can execute correctly. DRY, YAGNI, TDD, frequent commits.
 
-Announce: "Using writing-plans." Save to `docs/dmjcustomizations/plans/YYYY-MM-DD-<feature>.md` (user path preference wins).
+Announce: "Using writing-plans." Save to `docs/dmj/plans/YYYY-MM-DD-<feature>.md` (user path preference wins; same root as specs, maps, and skill-learnings).
 
 ## Before tasks
 
