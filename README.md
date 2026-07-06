@@ -30,6 +30,8 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | receiving-code-review | Rigor over performative agreement; verify before implementing feedback |
 | using-git-worktrees | Isolation for parallel work and disposable spikes |
 | finishing-a-development-branch | Verified finish: merge, PR, or cleanup, with team and worktree teardown |
+| shipping-to-production | Scripted, reversible deploys: idempotent script, health-probe gate, one-step rollback, priced resources |
+| equipping-projects | Detect-and-wire project guard rails in minutes: hooks, CI, MCP, preview, derived from the repo's signals |
 | writing-skills | TDD for documentation: baseline, write, close loopholes, team-tested |
 | evolving-skills | Gated loop to improve skills from confirmed learnings: TDD proposal, gates, human-merged PR, never autonomous |
 | defending-in-depth | Security from line 1: threat model, OWASP, zero trust, quantum-safe defaults |

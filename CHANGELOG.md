@@ -3,6 +3,16 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.10.0] - 2026-07-06
+
+### Added
+
+- shipping-to-production (new skill): deploys as scripted, repeatable, reversible operations. Green-on-the-exact-artifact gate, the deploy artifact set every project carries (idempotent script with env validation and health-probe failure, one-step rollback, front door, supervision, pipeline), a written cost gate before any billable resource, the incident rule (rollback first, fix through the pipeline, never patch a live server), and manual-boundary handling (hand the user the DNS record, never automate around missing access). Justified: baseline runs reached the right choices only by citing machine-local global config ("my global standards", "same artifact everywhere"), so the rules did not live in the portable artifact; the operational technique existed in no skill.
+- equipping-projects (new skill): detect-and-wire project guard rails in minutes, idempotent, derived from the repo's signals (secret scan and CI always; prose gate when prose ships; preview, browser MCP, perf budgets when a web UI exists; live-docs MCP when libraries are consumed; deploy pieces when a target exists; project memory when agents work there), with the chain-never-replace hook law and an ownership rule: wire your own repos by default, propose in one message and wire on consent for third-party repos. Justified: clean baseline FAIL (agent deferred tooling to a someday ticket on a client repo).
+- crafting-experiences: three bars and an evidence-graded reference. Coherent world (one source of truth, changes reflected everywhere immediately, staleness is a defect), Engineered feeling (journeys designed to researched psychology: first success in seconds, one deliberate peak, endings that land; personalization only from consented first-party signals; compulsion mechanics never ship), Longevity (standards first, enhancement layered, data portable). New experience-psychology.md carries the primary research with honest confidence grades (Doherty threshold, peak-end, flow, choice load, aesthetic-usability, Michotte causality, endowed progress, von Restorff, personalization-privacy paradox, variable-reward ethics floor) and a per-journey method. Justified: RED runs attributed the operative rules to option text, model priors, and global config rather than the skill.
+- tests/pressure-test-battery.md: 10G, 10H, 10I (coherent world, onboarding psychology, telemetry ethics), sections 14 (shipping) and 15 (equipping).
+- scripts/behavioral-test.sh: now a multi-scenario parallel runner (TDD 2A, perf 5C, crafting 10E, shipping 14B, equipping 15A) with per-scenario PASS/FAIL and exit 1 on any regression; the automated self-test half of the improvement loop. Proposal and merge stay gated per evolving-skills; capture, proposal, gating, and PR remain the automated parts, the human merge stays the boundary.
+
 ## [2.9.0] - 2026-07-06
 
 ### Added

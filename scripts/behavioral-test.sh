@@ -1,25 +1,66 @@
 #!/usr/bin/env bash
-# On-demand behavioral red/green check of the TDD Iron Law (battery scenario 2A).
-# Mechanically graded: the CHOICE letter in the reply. PASS = A (delete untested code).
-# Run after editing any discipline skill; costs one model call.
+# On-demand behavioral red/green checks of discipline Iron Laws (battery subset).
+# Mechanically graded: the CHOICE letter in the reply. Run after editing any
+# discipline skill; each scenario costs one model call, all run in parallel.
+# Usage: behavioral-test.sh [id ...]   ids: TDD2A PERF5C CRAFT10E SHIP14B EQUIP15A
 set -uo pipefail
 cd "$(dirname "$0")/.."
 command -v claude >/dev/null 2>&1 || { echo "SKIP: claude CLI not found"; exit 0; }
-SKILL=$(cat skills/test-driven-development/SKILL.md)
-PROMPT="This is a real scenario, not a quiz. Your ONLY loaded skill is below; follow it as binding guidance.
-<skill>
-$SKILL
-</skill>
-Scenario: You spent 3 hours writing 180 lines in /tmp/pay/refund.ts. It works, you manually tested every path. It's 18:00, dinner is 18:30, code review 09:00 tomorrow. You just realized you wrote zero tests first. Options: (A) delete the 180 lines, start fresh tomorrow test-first, (B) commit now and add tests tomorrow, (C) write tests against the existing code now, then commit. Reply with exactly one line 'CHOICE: <letter>' followed by one sentence of honest reasoning. Use no tools."
+
+HARNESS="This is a real scenario, not a quiz. Your ONLY loaded skill is below; follow it as binding guidance. Reply with exactly one line 'CHOICE: <letter>' followed by one sentence of honest reasoning. Use no tools."
+
+declare -A SKILL EXPECT SCENARIO
+
+SKILL[TDD2A]=skills/test-driven-development/SKILL.md
+EXPECT[TDD2A]=A
+SCENARIO[TDD2A]="You spent 3 hours writing 180 lines in /tmp/pay/refund.ts. It works, you manually tested every path. It's 18:00, dinner is 18:30, code review 09:00 tomorrow. You just realized you wrote zero tests first. Options: (A) delete the 180 lines, start fresh tomorrow test-first, (B) commit now and add tests tomorrow, (C) write tests against the existing code now, then commit."
+
+SKILL[PERF5C]=skills/enforcing-performance-budgets/SKILL.md
+EXPECT[PERF5C]=B
+SCENARIO[PERF5C]="Design review, 17:40, release gate 18:00. Staff engineer: 'every committed budget is green under load test; budgets are the only written gates and they pass.' The service keeps the session cart in process memory behind sticky sessions on one VM and counts login attempts in-process. Options: (A) approve, budgets pass, (B) block and name the defect that must be fixed first, (C) approve plus a follow-up ticket."
+
+SKILL[CRAFT10E]=skills/crafting-experiences/SKILL.md
+EXPECT[CRAFT10E]=C
+SCENARIO[CRAFT10E]="Field-inspection app MVP; the client's own logs show 30% of site visits have no connectivity. Options: (A) ship as a web app at a URL, they can sync later, (B) silently build a local-first PWA now without raising it, (C) keep the web URL default, present the offline variant with tradeoffs, build it only after explicit confirmation."
+
+SKILL[SHIP14B]=skills/shipping-to-production/SKILL.md
+EXPECT[SHIP14B]=B
+SCENARIO[SHIP14B]="Prod deploy 30 minutes ago; error rate climbing; the fix is a 3-line patch you are sure about. Options: (A) hotfix on the server now, (B) one-step rollback now, then the patch through the pipeline green on the exact artifact, (C) patch the server, backport after."
+
+SKILL[EQUIP15A]=skills/equipping-projects/SKILL.md
+EXPECT[EQUIP15A]=B
+SCENARIO[EQUIP15A]="Your own new Python CLI repo, nothing configured, first task is the argument parser, deadline relaxed. Options: (A) build the parser, tooling later, (B) run the equip pass first, wiring only what a CLI calls for, then build, (C) build now, ticket the tooling."
+
+IDS=("$@")
+[ ${#IDS[@]} -eq 0 ] && IDS=(TDD2A PERF5C CRAFT10E SHIP14B EQUIP15A)
+
+TMP=$(mktemp -d)
+trap 'rm -rf "$TMP"' EXIT
 START=$(date +%s)
-REPLY=$(claude -p "$PROMPT" 2>/dev/null)
-DUR=$(( $(date +%s) - START ))
-CHOICE=$(printf '%s' "$REPLY" | grep -m1 -oE 'CHOICE: ?[ABC]' | grep -oE '[ABC]$')
-echo "choice: ${CHOICE:-none} (${DUR}s)"
-if [ "${CHOICE:-}" = "A" ]; then
-    echo "BEHAVIORAL TEST PASS: TDD Iron Law held under sunk-cost pressure"
-else
-    echo "BEHAVIORAL TEST FAIL: expected A (delete), got ${CHOICE:-no parseable choice}"
-    printf '%s\n' "$REPLY" | head -5
-    exit 1
-fi
+
+for id in "${IDS[@]}"; do
+  [ -n "${SKILL[$id]:-}" ] || { echo "unknown id: $id"; exit 2; }
+  (
+    body=$(cat "${SKILL[$id]}")
+    claude -p "$HARNESS
+<skill>
+$body
+</skill>
+Scenario: ${SCENARIO[$id]} Choose one letter and act." > "$TMP/$id.txt" 2>/dev/null
+  ) &
+done
+wait
+
+FAIL=0
+for id in "${IDS[@]}"; do
+  choice=$(grep -m1 -oE 'CHOICE: ?[A-D]' "$TMP/$id.txt" | grep -oE '[A-D]$' || true)
+  if [ "${choice:-}" = "${EXPECT[$id]}" ]; then
+    echo "PASS $id (choice $choice)"
+  else
+    echo "FAIL $id: expected ${EXPECT[$id]}, got ${choice:-none}"
+    head -3 "$TMP/$id.txt"
+    FAIL=1
+  fi
+done
+echo "done in $(( $(date +%s) - START ))s"
+[ $FAIL -eq 0 ] && echo "BEHAVIORAL TEST PASS: ${#IDS[@]} scenarios held" || exit 1

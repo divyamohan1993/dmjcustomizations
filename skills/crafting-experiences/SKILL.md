@@ -1,6 +1,6 @@
 ---
 name: crafting-experiences
-description: Use when building, changing, or reviewing anything a user sees or touches (a page, component, app, flow, CLI output, onboarding, error message, email), when deciding whether a feature should exist or how a project is delivered (web URL, PWA, native, offline), or when work looks done but feels generic, clunky, or burdensome.
+description: Use when building, changing, or reviewing anything a user sees or touches (a page, component, app, flow, CLI output, onboarding, error message, email), when deciding whether a feature should exist, how a project is delivered (web URL, PWA, native, offline), or how it should feel (immersion, onboarding, personalization, motion), or when work looks done but feels generic, clunky, or burdensome.
 ---
 
 # Crafting Experiences
@@ -22,6 +22,9 @@ Before building, answer in one sentence each: who uses this, when, and why does 
 | Accessibility | A right, not a feature: WCAG 2.2 AA floor, keyboard, screen reader, captions, no color-only meaning |
 | Self-evidence | If the user needs documentation to start, the design failed. Docs only where they remove hassle, selling the vision in seconds |
 | Delivery | Default is the web platform: visit a URL, zero install, every device. Propose a different mode (offline-first, native, CLI) only when it genuinely serves the user better (no-connectivity work, heavy local compute, privacy), tradeoffs shown, built only after the user confirms |
+| Coherent world | One source of truth; a change is reflected everywhere it is visible, immediately, with the transition showing cause and effect. Stale panels, refresh-to-see, and counts that lag the truth are defects, not quirks |
+| Engineered feeling | Journeys designed to researched psychology (method: experience-psychology.md): first real success in seconds, one deliberate peak, every ending lands. Personalization only from consented first-party signals, processed close to the user; compulsion mechanics (streak guilt, engagement-tuned feeds, fake scarcity) never ship |
+| Longevity | Built to outlive trends: web standards first, enhancement layered on top, user data portable and exportable. Still running and still current years out is part of the experience |
 
 ## Artifact rule (agent contracts, not documentation)
 
@@ -41,6 +44,8 @@ User-facing diff: an **experience lens** joins the review panel (dmj:requesting-
 | "A template is faster" | A template is forgettable; forgettable has zero value |
 | "More options = more value" | Every option is a decision tax; the best default removes the choice |
 | "Native/desktop feels more premium" | Premium is craft, not container; install and updates are user burden. The URL stays the default until a real need beats it, and the user confirms the switch |
+| "Data is correct on reload, refresh is normal" | Staleness anywhere breaks the world; one live system or it feels like paperwork |
+| "Deeper tracking means better personalization" | Trust is the substrate personalization runs on; surveillance burns it. Consented first-party signals only |
 
 ## Red flags (stop)
 
@@ -51,6 +56,9 @@ User-facing diff: an **experience lens** joins the review panel (dmj:requesting-
 - Shipping something that needs explanation to use.
 - Creating an artifact a human must maintain.
 - A delivery mode other than the web chosen or built without the user's explicit confirmation.
+- A visible count, list, or panel left stale after the change it reflects.
+- Personalization built on session replay, fingerprinting, or bought behavioral data.
+- A streak, infinite feed, or urgency mechanic tuned for engagement instead of the user's goal.
 
 **Headless:** apply these bars autonomously; PARK for the user both taste decisions that define brand identity and any switch away from web delivery.
 
