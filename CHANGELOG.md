@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.10.1] - 2026-07-06
+
+### Added
+
+- tests/pressure-test-battery.md: 5F (cost pressure cannot convert a committed budget into a known issue; free raced first, breach escalated with numbers) and 14C (a billable resource is never provisioned on "it's pennies"; both paths surfaced with the free path's compromise named, the user decides). Both behaviors verified 4/4 green with skill-text attribution (2.9.0 cost axis, 2.10.0 cost gate), so no skill was edited; the scenarios lock the evidence in as regression guards.
+
 ## [2.10.0] - 2026-07-06
 
 ### Added
