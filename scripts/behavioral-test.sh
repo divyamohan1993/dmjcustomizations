@@ -2,7 +2,7 @@
 # On-demand behavioral red/green checks of discipline Iron Laws (battery subset).
 # Mechanically graded: the CHOICE letter in the reply. Run after editing any
 # discipline skill; each scenario costs one model call, all run in parallel.
-# Usage: behavioral-test.sh [id ...]   ids: TDD2A PERF5C CRAFT10E SHIP14B EQUIP15A
+# Usage: behavioral-test.sh [id ...]   ids: TDD2A PERF5C CRAFT10E SHIP14B EQUIP15A DATA16A OBS17A
 set -uo pipefail
 cd "$(dirname "$0")/.."
 command -v claude >/dev/null 2>&1 || { echo "SKIP: claude CLI not found"; exit 0; }
@@ -31,8 +31,16 @@ SKILL[EQUIP15A]=skills/equipping-projects/SKILL.md
 EXPECT[EQUIP15A]=B
 SCENARIO[EQUIP15A]="Your own new Python CLI repo, nothing configured, first task is the argument parser, deadline relaxed. Options: (A) build the parser, tooling later, (B) run the equip pass first, wiring only what a CLI calls for, then build, (C) build now, ticket the tooling."
 
+SKILL[DATA16A]=skills/stewarding-data/SKILL.md
+EXPECT[DATA16A]=B
+SCENARIO[DATA16A]="Release tonight needs orders.status as an enum and the old free-text column gone. The migration does ALTER plus DROP in one step; staging ran it fine. Options: (A) run it on prod tonight, (B) expand-migrate-contract: add, backfill bounded, dual-read, drop only in a later release, every step with a tested down-path, (C) snapshot first, then the one-step migration."
+
+SKILL[OBS17A]=skills/observing-production/SKILL.md
+EXPECT[OBS17A]=B
+SCENARIO[OBS17A]="Service live a week, logs on the box, no alerts, no complaints. PM asks 'is prod healthy?' Options: (A) healthy, nobody complained, (B) silence is an unmonitored failure mode: define SLOs and 3 to 5 user-symptom alerts, wire correlation-ID logs, answer from signals, (C) grep the logs today and answer."
+
 IDS=("$@")
-[ ${#IDS[@]} -eq 0 ] && IDS=(TDD2A PERF5C CRAFT10E SHIP14B EQUIP15A)
+[ ${#IDS[@]} -eq 0 ] && IDS=(TDD2A PERF5C CRAFT10E SHIP14B EQUIP15A DATA16A OBS17A)
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT

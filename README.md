@@ -32,13 +32,15 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | finishing-a-development-branch | Verified finish: merge, PR, or cleanup, with team and worktree teardown |
 | shipping-to-production | Scripted, reversible deploys: idempotent script, health-probe gate, one-step rollback, priced resources |
 | equipping-projects | Detect-and-wire project guard rails in minutes: hooks, CI, MCP, preview, derived from the repo's signals |
+| stewarding-data | Data outlives code: drilled restores, expand-migrate-contract, tested down-paths, retention and deletion by design |
+| observing-production | Health from signals, not silence: SLOs, symptom alerts, correlation IDs, blameless post-mortems that land as commits |
 | writing-skills | TDD for documentation: baseline, write, close loopholes, team-tested |
 | evolving-skills | Gated loop to improve skills from confirmed learnings: TDD proposal, gates, human-merged PR, never autonomous |
 | defending-in-depth | Security from line 1: threat model, OWASP, zero trust, quantum-safe defaults |
 | enforcing-performance-budgets | O(1)-first, measured budgets, cost as a budget, cache-first, regressions block merges |
 | researching-deeply | Parallel research with adversarial source verification and dated citations |
 | exploring-codebases | Five-lens parallel codebase mapping with an anti-redundancy gate: reuse before rebuild |
-| explore | Parallel slice-by-slice tracing of how a codebase really works, explained in chat, no artifacts |
+| tracing-codebases | Parallel slice-by-slice tracing of how a codebase really works, explained in chat, no artifacts |
 | harnessing-claude | Capability routing: strongest native Claude feature for every job, never hand-rolled substitutes |
 | crafting-experiences | Experience supremacy: Jobs test, first-second hook, cinematic with purpose, zero user burden, web-URL delivery default |
 | art-directing | Research-driven visual identity: psychology-led palette, distinctive type, edge-to-edge responsive, screenshot-verified |

@@ -3,6 +3,19 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.12.0] - 2026-07-07
+
+### Added
+
+- stewarding-data (new skill): data outlives code. Gate 0 restorable-before-touchable (a backup counts only after its restore is DRILLED to scratch with counts and checksums, on a schedule); expand-migrate-contract migrations with tested down-paths, contract in a later release; pipeline-only migration runs (hand-run prod SQL is an incident); lifecycle columns, field-level PII crypto, written retention per data type, executable right-to-deletion. Baselines passed curated choice probes on model priors, but no portable artifact carried the operational floors (drill schedule, down-path law, two-release contract); user-approved addition.
+- observing-production (new skill): health from signals, not silence. Gate 0 instrumented-before-deployed (SLOs tied to the perf budgets, 3 to 5 user-symptom alerts, a paging path, in writing); structured logs with correlation IDs propagated across boundaries; golden-signal dashboards; alert-fatigue law (ignored twice means deleted or fixed); incident loop of detect, rollback-first, root-cause, blameless post-mortem whose action items land as commits and tests with owners. Same justification pattern as stewarding-data.
+- equipping-projects: the Always row now wires dependency-update automation (Renovate or Dependabot, auto-merge patch and minor on green CI, majors reviewed) plus a dependency audit failing CI on high or critical.
+- tests/pressure-test-battery.md: sections 16 (stewarding-data) and 17 (observing-production); scripts/behavioral-test.sh grows DATA16A and OBS17A (7 scenarios total).
+
+### Changed
+
+- Renamed skill explore to tracing-codebases: the old slug was shadowed by the Claude Code builtin explore skill, so routing could land on the wrong one. Content unchanged; no other skill referenced the old slug (verified by grep); README row and battery section header updated.
+
 ## [2.11.0] - 2026-07-06
 
 ### Fixed
