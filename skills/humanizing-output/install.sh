@@ -28,6 +28,17 @@ repo() {
 
 global() {
   DIR="$HOME/.humanize-hooks"
+  # Fail closed if a global hooksPath already exists elsewhere: repointing it
+  # would silently disable every hook living at the current path (secret
+  # scanners included) for every repo on the machine.
+  EXISTING=$(git config --global --get core.hooksPath 2>/dev/null || true)
+  if [ -n "$EXISTING" ] && [ "$EXISTING" != "$DIR/hooks" ]; then
+    echo "ABORT: global core.hooksPath is already $EXISTING."
+    echo "Repointing it would silently disable the hooks living there for ALL repos."
+    echo "Instead: chain $DIR/hooks/pre-push from that path, or unset it first:"
+    echo "  git config --global --unset core.hooksPath"
+    exit 1
+  fi
   mkdir -p "$DIR/hooks"
   cp "$SRC/humanize-guard.mjs" "$SRC/humanize.mjs" "$DIR/"
   cp "$SRC/hooks/pre-push" "$DIR/hooks/pre-push"

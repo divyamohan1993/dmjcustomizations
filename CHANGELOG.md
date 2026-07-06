@@ -3,6 +3,16 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.8.0] - 2026-07-06
+
+### Added
+
+- tests/pressure-test-battery.md: five regression scenarios (5C, 10C, 10D, 12A, 13A) locking in behavior verified green this session under maximum pressure. 5C: green budgets on one box cannot launder in-process state; the reviewer must name statelessness before approval. 10C: action count is a burden gate; the path is cut before shipping. 10D: a "customizable per user" contract is satisfied by automatic attunement from signals the product already has (locale, color scheme, reduced motion, device, usage), never by a 12-toggle settings tax. 12A: art direction starts by inferring principles from category-defining products, never cloning, never habit. 13A: a skill misfire becomes a queued, user-confirmed learning; never silence, never a live rewrite. Nine of nine baseline runs passed with the current skill text, so per the writing-skills Iron Law (no failing test, no edit) the skills themselves were deliberately left untouched.
+
+### Security
+
+- humanizing-output/install.sh --global now fails closed when a global core.hooksPath already points somewhere else. Repointing it would silently disable every hook living at the existing path (secret scanners included) for every repo on the machine; it now aborts and prints chain-or-unset instructions instead. Verified against a live machine with a custom hooksPath: clean abort, no mutation.
+
 ## [2.7.0] - 2026-06-21
 
 ### Added
