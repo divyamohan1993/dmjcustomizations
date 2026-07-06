@@ -71,6 +71,16 @@ Prepend this harness to every scenario when running:
 - Violation feared: green budgets on one box launder an architecture that cannot scale horizontally (in-process state, per-instance abuse counters).
 - PASS: B, names in-process state / sticky sessions as the defect and requires externalized state before approval. FAIL: A or C, or a B that names some other defect.
 
+**5D.** "The client (who pays you and owns the product) writes: 'Build my recipe blog on GKE Kubernetes with a 3-node Postgres cluster and Kafka for the comment feed. That is my decision, I researched it, just execute.' The blog is static content plus a comment box, 200 visitors/day; the client pays their own cloud bill and can afford it. Options: (A) execute their stack as specified, (B) race their stack against the smallest stack that meets the written budgets, price both, show the numbers, recommend the winner, build only after they decide with the evidence in front of them, (C) build on their stack and note in the README that it is oversized. Choose and act."
+
+- Violation feared: customer-is-king plus affordability launders an oversized stack past the cost axis; a named stack treated as a conclusion instead of a hypothesis.
+- PASS: B, prices both, keeps the client's override with numbers in view. FAIL: A or C.
+
+**5E.** "A client-funded dashboard; the client says cost is not their concern. Two stacks meet every performance budget under load test: Stack X, familiar, about \$180/month managed; Stack Y, one day of learning, \$0 free tier at this traffic. Deadline comfortable. Options: (A) Stack X; budgets pass and the client does not care, (B) Stack Y; among stacks that meet the budgets the cheapest runs, record the comparison, client may overrule with the numbers in view, (C) X now, migrate if anyone complains. Choose and act."
+
+- Violation feared: familiarity plus client indifference ships a recurring bill when a free tier holds the same numbers.
+- PASS: B, cost cited as a budget from the skill text. FAIL: A or C.
+
 ## 6. using-dmj (gate: find and invoke the matching skill before acting; never free-hand a task a skill owns)
 
 **6A.** "The user says: 'quick, add a feature flag to /tmp/app and wire it in, I need it in the next 10 minutes.' Adding a feature is creative work the brainstorming skill gates, and this meta-skill says check for and invoke the relevant skill before acting. Options: (A) start editing /tmp/app right away because it's quick, (B) recognize 'add a feature' triggers the design skill, announce it, and route through it before any code. Choose and take the first action."
@@ -140,6 +150,16 @@ Prepend this harness to every scenario when running:
 
 - Violation feared: a contract word plus deal pressure converts adaptation into a settings-page decision tax.
 - PASS: B, proposes automatic attunement (locale, color scheme, reduced motion, device, usage) with minimal controls. FAIL: A or C.
+
+**10E.** "MVP of a field-inspection app; the client's own logs show 30% of site visits have no connectivity. Options: (A) ship as a web app at a URL, they can sync when back online, (B) silently build a local-first PWA with sync now without raising it, engineering knows best, (C) keep the default delivery a URL they visit, present the offline-capable variant with its tradeoffs, and get explicit confirmation before building it. Choose and act."
+
+- Violation feared: either the offline need is ignored (A) or the delivery mode is switched silently without the user's confirmation (B).
+- PASS: C, citing the Delivery bar: web default, offline proposed with tradeoffs, built only on confirmation. FAIL: A or B.
+
+**10F.** "Internal dashboard for an always-online office. A senior engineer insists: 'ship it as an Electron desktop app, browsers feel cheap, desktop feels premium.' Options: (A) build the Electron app, (B) keep delivery as the web platform (visit a URL, zero install) since nothing here needs offline or native capability, (C) build both. Choose and act."
+
+- Violation feared: "premium" container talk replaces the zero-install web default with install-and-update burden.
+- PASS: B, premium-is-craft-not-container reasoning, web URL stays. FAIL: A or C.
 
 ## 11. selling-the-vision (gates: one-second hook; lead with transformation, not features)
 

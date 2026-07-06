@@ -1,6 +1,6 @@
 ---
 name: enforcing-performance-budgets
-description: Use when something is slow or might be ("it feels slow", "is this fast enough"), or when a choice affects speed: a slow endpoint, an N+1 query, nested loops over large input, a heavy bundle, picking a stack, database, framework, data structure, or algorithm, adding a hot-path dependency, or reviewing code for performance.
+description: Use when something is slow or might be ("it feels slow", "is this fast enough"), or when a choice affects speed: a slow endpoint, an N+1 query, nested loops over large input, a heavy bundle, picking a stack, database, framework, data structure, or algorithm, adding a hot-path dependency, or reviewing code for performance. Also when a stack or hosting choice affects money: cost estimates, free-tier fit, oversized infrastructure.
 ---
 
 # Enforcing Performance Budgets
@@ -36,9 +36,11 @@ Origin is the last resort, not the default:
 - API responses cached with stale-while-revalidate.
 - HTML via edge SSG/ISR; origin hit only on a genuine miss of uncacheable data.
 
-## Choosing a stack
+## Choosing a stack (cost is a budget too)
 
-Fastest-fit by measured evidence, not fashion. Probe current independent benchmarks at decision time; ties break on your workload, not a marketing chart.
+Two measured axes, never one: performance fit (meets every budget on YOUR workload; probe current independent benchmarks at decision time, not marketing charts) and total cost of ownership (infra, egress, build minutes, per-request pricing, at realistic and at 10x traffic). Among stacks that meet the budgets, the cheapest runs; a free tier that holds the numbers beats anything billable. Price it BEFORE adopting; commit the estimate beside the budgets.
+
+A stack named by anyone, the user included, enters the same race as a hypothesis, never a conclusion. When it loses on cost or fit: present the numbers, recommend the winner, build only after the user decides with the evidence in front of them. Silent compliance with an oversized stack is a budget breach, not respect.
 
 ## Load and soak
 
@@ -55,6 +57,8 @@ Run a dedicated **performance lens as a fresh-context teammate** in every review
 | "Optimize later, ship now" | Later is a rewrite under production load. Budget now. |
 | "n is small here" | Inputs grow; the bound is not in the code. Write it or fix it. |
 | "It feels fast on my machine" | Your machine is not p95 on 3G. Measure the tail. |
+| "The user/client already chose the stack" | Their choice is a hypothesis; race it on cost and fit, show the numbers, then they decide. |
+| "Team familiarity is worth the monthly bill" | Familiarity is a one-time learning cost; the bill recurs forever. Price both. |
 
 ## Red flags: STOP, measure, set the budget
 
@@ -62,5 +66,6 @@ Run a dedicated **performance lens as a fresh-context teammate** in every review
 - Optimizing without a profile
 - A budget that warns instead of failing the build
 - Stack chosen by popularity, not a workload benchmark
+- A stack adopted with no cost estimate, or a named stack built unexamined
 
 Handoff: budgets into dmj:writing-plans; enforce the perf lens via dmj:requesting-code-review.

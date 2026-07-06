@@ -3,6 +3,14 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.9.0] - 2026-07-06
+
+### Added
+
+- enforcing-performance-budgets: cost is now a first-class budget axis in stack choice. Two measured axes (performance fit on your workload, total cost of ownership at realistic and 10x traffic); among stacks that meet the budgets the cheapest runs, free tier beating billable when the numbers hold; the estimate is committed beside the budgets. A stack named by anyone, the user included, enters the same race as a hypothesis, never a conclusion: numbers shown, winner recommended, built only after the decider sees the evidence. Two rationalization rows and a red flag added; description now routes cost questions. Justified by a contaminated baseline: RED runs quoted the machine-level zero-budget mandate from global CLAUDE.md rather than the skill, proving the rule lived outside the portable artifact (the same portability reasoning that created selling-the-vision in 2.2.0). GREEN 4/4 in a leak-proofed client-pays setting, each run citing the new text verbatim.
+- crafting-experiences: Delivery bar. Default delivery is the web platform (visit a URL, zero install, every device); an offline-first, native, or CLI variant is proposed only when it genuinely serves the user better, tradeoffs shown, and built only after the user confirms. Headless parks any switch away from web delivery. Same justification: RED runs imported the confirmation rule from global CLAUDE.md ("surface decisions rather than automate around them"), not from the skill.
+- tests/pressure-test-battery.md: 5D, 5E (stack cost race under customer-is-king and client-indifference pressure), 10E, 10F (delivery-mode gate under offline-need and premium-container pressure).
+
 ## [2.8.0] - 2026-07-06
 
 ### Added
