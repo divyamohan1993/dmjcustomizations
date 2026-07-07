@@ -5,5 +5,11 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 fail=0
 bash -n hooks/session-start || { echo "FAIL: hooks/session-start syntax"; fail=1; }
+bash -n hooks/pre-tool-guard || { echo "FAIL: hooks/pre-tool-guard syntax"; fail=1; }
+bash scripts/guard-test.sh || fail=1
 node scripts/validate.js || fail=1
+# Official plugin schema validation when the CLI is present (absent in CI).
+if command -v claude >/dev/null 2>&1; then
+  claude plugin validate . || { echo "FAIL: claude plugin validate"; fail=1; }
+fi
 exit $fail

@@ -9,8 +9,26 @@
     {
       "name": "dmj",
       "description": "Divya's parallel-first agentic engineering skills: team-based workflows, adversarial verification, security and performance gates from line 1",
-      "version": "2.13.0",
+      "version": "2.14.0",
       "source": "./",
+      "relevance": {
+        "topic": "parallel-first engineering discipline",
+        "signals": {
+          "cli": [
+            "git",
+            "pnpm",
+            "npm",
+            "cargo",
+            "go"
+          ],
+          "filesRead": [
+            "**/CLAUDE.md",
+            "**/package.json",
+            "**/Cargo.toml",
+            "**/go.mod"
+          ]
+        }
+      },
       "author": {
         "name": "Divya Mohan",
         "email": "divyamohan1993@gmail.com"

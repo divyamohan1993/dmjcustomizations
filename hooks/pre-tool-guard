@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# PreToolUse guard: turns three skill laws into hard gates at the harness level.
+# Blocks, via permissionDecision deny:
+#   1. --no-verify on git commands (finishing-a-development-branch: never skip hooks)
+#   2. git push --force / -f  (allowed: --force-with-lease)
+#   3. git reset --hard against origin/... or @{u} (history destruction)
+# Escape hatch: DMJ_ALLOW=1 in the environment skips the guard for that call,
+# loudly, and is meant to be set only with the user's explicit on-record consent.
+# Fail-open by design: no parser or unexpected input means exit 0 (skills still
+# instruct); this hook is defense in depth, not the only line.
+set -uo pipefail
+
+if [ "${DMJ_ALLOW:-}" = "1" ]; then
+  echo "dmj pre-tool-guard: BYPASSED via DMJ_ALLOW=1" >&2
+  exit 0
+fi
+
+command -v perl >/dev/null 2>&1 || exit 0
+
+INPUT=$(cat 2>/dev/null || true)
+[ -n "$INPUT" ] || exit 0
+
+# Extract tool_input.command from the hook JSON and unescape the JSON string.
+CMD=$(printf '%s' "$INPUT" | perl -0777 -ne '
+  if (/"command"\s*:\s*"((?:[^"\\]|\\.)*)"/s) {
+    my $c = $1;
+    $c =~ s/\\n/ /g; $c =~ s/\\t/ /g; $c =~ s/\\"/"/g; $c =~ s/\\\\/\\/g;
+    print $c;
+  }' 2>/dev/null || true)
+[ -n "$CMD" ] || exit 0
+
+deny() {
+  # JSON-escape the reason minimally (no quotes/backslashes used in reasons).
+  printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$1"
+  exit 0
+}
+
+# 1. --no-verify anywhere in a git invocation.
+if printf '%s' "$CMD" | perl -ne 'exit 1 unless /\bgit\b[^|;&]*--no-verify\b/'; then
+  deny "dmj guard: --no-verify skips hooks; fix the failing hook instead. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1."
+fi
+
+# 2. Force push, except --force-with-lease.
+if printf '%s' "$CMD" | perl -ne 'exit 1 unless /\bgit\b[^|;&]*\bpush\b[^|;&]*(--force(?!-with-lease)\b|\s-f\b)/'; then
+  deny "dmj guard: force push rewrites shared history; use --force-with-lease if truly needed. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1."
+fi
+
+# 3. Hard reset to a remote-tracking target.
+if printf '%s' "$CMD" | perl -ne 'exit 1 unless /\bgit\b[^|;&]*\breset\b[^|;&]*--hard\b[^|;&]*(origin\/|\@\{u\})/'; then
+  deny "dmj guard: reset --hard to a remote ref destroys local work; stash or branch first. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1."
+fi
+
+exit 0

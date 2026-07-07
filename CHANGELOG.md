@@ -3,6 +3,18 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.14.0] - 2026-07-07
+
+### Added
+
+- hooks/pre-tool-guard + PreToolUse wiring: three skill laws become hard gates at the harness level. Denies, via permissionDecision, any Bash or PowerShell call containing git --no-verify, git push --force or -f (--force-with-lease stays allowed), or git reset --hard against origin/ or @{u}. Escape hatch DMJ_ALLOW=1, logged loudly, meant only for the user's explicit on-record consent, mirroring HUMANIZE_SKIP. Fail-open without perl or on unexpected input: the guard is defense in depth on top of the skill instructions, never the only line. scripts/guard-test.sh: 13 deterministic probes (deny, allow, and bypass paths), wired into validate.sh.
+- marketplace.json relevance block (v2.1.152+ clients): suggests the plugin on real engineering sessions (git/pnpm/npm/cargo/go commands, common manifests read). Inert until an administrator allowlists the marketplace; older clients ignore it.
+- validate.sh now runs the official claude plugin validate when the CLI is present (skipped in CI where it is absent), plus syntax and probe checks for the new guard.
+
+### Audit notes
+
+- Full docs sweep (code.claude.com index, plugins reference, hooks reference, plugin-relevance, fetched 2026-07-07). Adopted: PreToolUse enforcement, relevance metadata, official schema validation. Deliberately not adopted, with reasons: plugin-shipped agents (the library's Agent-Teams law supersedes lone subagent definitions), bundled MCP servers (duplicate the playwright and context7 plugins already present), LSP servers and themes (language-specific and cosmetic, no discipline value), background monitors (experimental; a project-agnostic plugin has no universal thing to watch), channels (infrastructure product, not a skills-library concern).
+
 ## [2.13.0] - 2026-07-07
 
 ### Added
