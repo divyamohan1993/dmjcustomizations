@@ -3,6 +3,13 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.16.1] - 2026-07-07
+
+### Added
+
+- tests/pressure-test-battery.md: 19C (a product pivot mid-build re-opens the definition gate, invalidates downstream evidence, salvages valid research) and 19D (loop-done is not verified-done; a printed claim that games a small evaluator dies at the verification gate). Both captured from a 6/6-green extreme-edge run (tiny-task scoping, pivot, budget exhaustion, 1000-city mega-fanout collapsed to one parameterized product, evaluator gaming, stage-parallelism refusal).
+- Portability proof, on record: with the machine's global CLAUDE.md renamed away, skill-only probes held 4/4 (cost tiebreak, paid-consent, web delivery, tier floors) with zero references to machine config, confirming the 2.9.0 to 2.16.0 portability standard did its job. File restored and verified after the probe.
+
 ## [2.16.0] - 2026-07-07
 
 ### Added
