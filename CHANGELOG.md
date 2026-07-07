@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.16.2] - 2026-07-07
+
+### Added
+
+- tests/routing-gauntlet.workflow.js: the ultracode routing gauntlet as a rerunnable dynamic-workflow script. Eight scenario-writer agents (one per confusable cluster: exploration, execution, review, experience, cost-perf, lifecycle, bugflow, ops) generate boundary, extreme, and deceptive-bait prompts from the real skill files; a fresh router per scenario sees only the 31 name-description pairs (the true routing surface); every miss goes to an adversarial referee reading the actual skill texts; a confusion matrix comes out. First run, 2026-07-07: 38 scenarios, 36 primary hits, 2 acceptable alternates (inside the scenario authors' own also-valid lists), 0 hard misses, 0 confirmed description defects. 49 agents, ~2.3M tokens. Rerun after any description change.
+
 ## [2.16.1] - 2026-07-07
 
 ### Added
