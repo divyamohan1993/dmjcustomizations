@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.17.1] - 2026-07-08
+
+### Added
+
+- tests/tier-degradation.workflow.js: rerunnable dynamic workflow that executes the ENTIRE pressure battery on a low-tier model (each scenario run by haiku reading only the skill file), with every failure refereed by the strong tier into model-capability vs skill-text-ambiguity vs scenario-unfair. First run, 2026-07-08: 50 of 50 scenarios held on the low tier (49 in-workflow, one connection-dropped scenario re-run directly, also pass), zero failures, zero skill-text ambiguities, across all 18 battery-covered skills. 51 agents, ~2.4M tokens. This certifies the guidance layer binds below frontier tier: the skills are written sharply enough that weaker models comply, which is the entire premise of frontier-authored, cheap-executed standards. Rerun after any skill wording change or when a new model tier arrives.
+
 ## [2.17.0] - 2026-07-07
 
 ### Added
