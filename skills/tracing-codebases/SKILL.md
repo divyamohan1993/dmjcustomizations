@@ -1,6 +1,7 @@
 ---
 name: tracing-codebases
 description: Use when you need to understand how an unfamiliar or large codebase actually works (how modules interconnect, where execution starts, how data flows, how a feature is wired) and the deliverable is an explanation in chat, such as onboarding, "how does X work", "map the architecture", or auditing whether code matches its docs.
+disallowed-tools: Write, Edit, NotebookEdit
 ---
 
 # Tracing Codebases

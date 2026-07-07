@@ -3,6 +3,18 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.15.0] - 2026-07-07
+
+### Added
+
+- tracing-codebases: disallowed-tools frontmatter (Write, Edit, NotebookEdit). The skill's chat-only contract, previously instruction backed by battery scenario 8B, is now enforced by the harness itself while the skill is active. Same enforcement-over-instruction philosophy as the 2.14.0 PreToolUse guard.
+- equipping-projects: the project-memory row now wires path-scoped .claude/rules/ (globs in paths frontmatter) alongside CLAUDE.md, per current docs guidance (CLAUDE.md stays lean, conventions load only where they apply).
+- writing-skills: frontmatter rule updated from "two fields" to required-two-plus-earned-harness-fields: disallowed-tools, paths, or context enter only when they turn one of the skill's own contracts into enforcement, never as decoration.
+
+### Audit notes
+
+- Third docs sweep (skills frontmatter reference, .claude directory, memory pages, fetched 2026-07-07). Deliberately not adopted: when_to_use (descriptions already routing-optimized and capped), paths-gating on discipline skills (would suppress auto-load in conversations that precede file work), context fork (fights team orchestration where the lead spawns and coordinates), skill-scoped hooks and argument-hint (no consumer in this library). Docs surface relevant to a skills plugin is now fully adopted or consciously declined across three sweeps.
+
 ## [2.14.0] - 2026-07-07
 
 ### Added

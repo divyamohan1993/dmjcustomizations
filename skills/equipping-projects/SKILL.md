@@ -25,7 +25,7 @@ On any repo you work in: the equip pass has run, or was consciously proposed. A 
 | Web UI present | Preview or launch config, browser-automation MCP for the screenshot gate (dmj:art-directing), perf budgets asserted in CI (dmj:enforcing-performance-budgets) |
 | External libraries consumed | Live-docs MCP (context7-class) in project config so API answers come from current docs, never memory (dmj:harnessing-claude) |
 | Deploy target exists or is planned | Deploy script, health endpoints, pipeline job running the same gates (dmj:shipping-to-production) |
-| Agents will work here | Project CLAUDE.md seeded with build, test, and run commands and the repo's conventions |
+| Agents will work here | Project CLAUDE.md seeded with build, test, and run commands and the repo's conventions; file-type or directory conventions split into path-scoped .claude/rules/ (globs in paths frontmatter) so CLAUDE.md stays lean and rules load only where they apply |
 
 Nothing on the list fires without its signal: a headless CLI gets no browser tooling, a repo with no prose gets no prose gate. Fit is the point.
 

@@ -27,7 +27,7 @@ Fresh-context TEAM, never one agent, never same-context self-review: `TeamCreate
 
 Only enough to defeat the failures observed. No padding for hypotheticals.
 
-**Frontmatter:** YAML, two fields. `name` = the directory (kebab-case). `description`: third person, starts "Use when", ONLY triggering conditions and symptoms, NEVER a workflow summary, under 500 chars. A description summarizing steps becomes a shortcut Claude follows instead of reading the body. See best-practices.md.
+**Frontmatter:** YAML. Required: `name` = the directory (kebab-case); `description`: third person, starts "Use when", ONLY triggering conditions and symptoms, NEVER a workflow summary, under 500 chars. A description summarizing steps becomes a shortcut Claude follows instead of reading the body. A harness field (`disallowed-tools`, `paths`, `context`) enters ONLY when it turns one of the skill's own contracts into enforcement (a chat-only skill forbidding Write); every other field stays out. See best-practices.md.
 
 **Body:** under 500 words. Core principle up top, keyword-rich for discovery, one excellent example per concept, tables for reference. Cross-reference siblings as `dmj:<name>`, never `@`-links (force-load, burn context).
 
