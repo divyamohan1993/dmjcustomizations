@@ -3,6 +3,18 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.17.0] - 2026-07-07
+
+### Added
+
+- verification-before-completion: "Verified stays verified" law. A one-time green is an assumption with a timestamp; nontrivial completion leaves a standing guard (regression test in the suite, CI assertion or lint rule enforcing the new invariant, alert, or scheduled predicate) so the proof outlives the turn. New rationalization row and red flag. Derived from the standing-goals pattern in the circulating agentic-OS playbooks; adopted because RED runs pulled the mechanism from option text, proving it absent from the artifact.
+- orchestrating-products: earned-autonomy law. Unattended runs ship only work categories with a measured record (floor: 20 logged runs at 95 percent pass); below it, green runs land as reviewed drafts; any gate failure demotes the category loudly; new categories always start staged. Derived from the trust-ledger pattern in the same playbooks under the same attribution standard. Merge autonomy unchanged: finishing-a-development-branch still never auto-merges headless.
+- tests/pressure-test-battery.md: 3C (migration leaves a no-old-imports guard) and 19E (three green runs do not earn unattended shipping).
+
+### Audit notes
+
+- Playbook mining, on record. Adopted: standing guards, earned per-category autonomy. Already present, no change: extraction-into-standards (the plugin IS that artifact), checkable-criteria-for-weak-executors (writing-plans), four-party separation (plan review, workers, fresh verifier, deterministic gates), atomized memory (one fact per file plus index), compost loop (evolving-skills, gated, human-merged), quiet-tick economics and interval matching (harnessing-claude), pasted-proof goal conditions with turn caps (2.13.0). Declined: unverifiable model-pricing and CLI-flag claims in the source articles (patterns mined, specifics not trusted); per-repo trust-ledger tooling (project-side ops, not portable skill law; the law itself now lives in orchestrating-products).
+
 ## [2.16.2] - 2026-07-07
 
 ### Added

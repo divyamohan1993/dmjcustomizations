@@ -31,6 +31,7 @@ A stage opens ONLY on the prior stage's gate evidence (the owning skill's gate).
 - **Fresh minimal contexts.** Workers get task text, never transcripts; the lead stays thin, holds conclusions, implements nothing (dmj:dispatching-parallel-teams).
 - **Pilot before fleet.** One task through the full line before sixty fan out; pilot failures fix the plan at one-task price.
 - **Never re-derive.** This table IS the routing; process reconstructed in chat is the leak this skill exists to plug.
+- **Autonomy is earned per work category, never granted.** Unattended runs ship only categories with a measured record (floor: 20 logged runs at 95% pass); below it, green runs land as reviewed drafts. Any gate failure demotes the category, loudly. New categories always start staged.
 
 ## Ecosystems
 
@@ -56,6 +57,7 @@ Cheapest-sufficient buys the SAME bars for less: security (dmj:defending-in-dept
 - The lead session implementing instead of coordinating.
 - The pipeline re-derived in conversation instead of read from here.
 - A bar lowered because a cheaper tier missed it.
+- An unattended ship from a work category with no measured track record.
 
 **Headless:** run the line end to end; PARK what the owning skills park (definition approval, brand calls, paid resources, merges).
 

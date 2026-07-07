@@ -44,9 +44,13 @@ Fresh and complete is load-bearing: a stale green proves nothing, a passing subs
 
 Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmj:requesting-code-review`, or a lone teammate via `dmj:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. (No TeamCreate? Run the refutation as a fresh native Agent call, judge it yourself.) advisor tool present: consult it before the done-claim as a second independent reviewer.
 
+## Verified stays verified
+
+A one-time green is an assumption with a timestamp. Nontrivial completion leaves a STANDING GUARD so the proof outlives the turn: a regression test in the suite (dmj:test-driven-development), a CI assertion or lint rule enforcing the new invariant (a migration leaves a no-old-imports check), an alert (dmj:observing-production), or a scheduled predicate. Done without its guard is not done; the claim decays the moment the code evolves.
+
 ## Red flags: STOP
 
-"Should work," "probably," "seems to," any "Great! / Perfect! / Done!" before the command ran, about to commit/push/PR unverified, trusting a teammate's success report, "just this once," tired and wanting it over.
+"Should work," "probably," "seems to," any "Great! / Perfect! / Done!" before the command ran, about to commit/push/PR unverified, trusting a teammate's success report, "just this once," tired and wanting it over, a nontrivial completion leaving no standing guard behind.
 
 ## Rationalizations
 
@@ -58,6 +62,7 @@ Self-review in your own context is not enough: you believe it works, so you read
 | "Teammate said success" | Verify the diff independently. |
 | "Partial check is enough" | Partial proves nothing about the rest. |
 | "Different words, rule won't apply" | Spirit over letter. |
+| "Suite is green, the work is complete" | Green proves today; the guard proves tomorrow. Leave the invariant in CI. |
 
 ## Headless mode
 
