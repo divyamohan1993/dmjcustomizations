@@ -3,6 +3,13 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.16.0] - 2026-07-07
+
+### Added
+
+- orchestrating-products (new skill): the wireframe. One table routes an idea through ten gated stages (research, definition, identity, plan, equip, build, verify, ship, operate, evolve), each stage naming its owning skill, its loop primitive, and the cheapest model tier that holds the stage's bar; strongest tiers reserved for definition and adversarial review, scripts replacing inference wherever work is deterministic. Token-economy laws (scripts beat inference, criteria beat supervision, fresh minimal contexts, pilot before fleet, never re-derive), the ecosystem rule (a graph of pipeline runs sharing identity tokens and contracts, never one mega-build), and the floors law (a tier that misses a security, performance, or experience bar is not sufficient: escalate the tier, never lower the bar). Justified: no artifact carried the stage-to-skill-to-tier matrix, so every session re-derived it, which is itself the token leak; user-ordered. GREEN 3/3 with verbatim citations. Battery section 19; runner grows ORCH19B (9 scenarios).
+- Skill count honesty: this breaks the informal 30-skill cap at 31. On record: the conductor is the one skill whose job is reducing total inference cost across all the others; the cap intent (every addition must earn routing tax) is preserved by the RED evidence and by its role as entry point.
+
 ## [2.15.0] - 2026-07-07
 
 ### Added

@@ -18,6 +18,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | Skill | One-liner |
 |---|---|
 | using-dmj | Meta-skill, injected each session: how skills are found, routed, and prioritized |
+| orchestrating-products | The wireframe: idea to shipped ecosystem through staged gates, each stage on the cheapest tier that holds its bar |
 | brainstorming | Idea to approved spec: parallel context sweep, batched questions, evidence-based options |
 | writing-plans | Spec to implementation plan with per-task dependencies, parallelizability, acceptance criteria |
 | executing-plans | Team executes a plan: tasks claimed concurrently, worktree isolation, review gates |
