@@ -15,10 +15,11 @@ Route every job through the strongest native capability available. Probe availab
 | Deterministic fan-out: loops, judge panels, schema-validated outputs, resumable runs | Workflow tool (requires user opt-in): pipeline() default, parallel() only at true barriers, agent(prompt, {schema}) for validated structured returns |
 | Design approval gate | Native plan mode when present; else the skill's own gate |
 | Stronger reviewer at a gate | advisor tool when available: consult before committing to an approach and before any done-claim |
+| Deterministic finish line (tests pass, score threshold, queue empty) | Goal loop (/goal or the harness's goal primitive): hand it the machine-checkable criteria as the stop condition plus an explicit turn cap; an independent evaluator judges done, never the working model |
 | Fresh-context read-only sweep | Explore agent type; isolation:"worktree" when parallel edits could collide |
 | Library or API truth | context7 MCP or official docs via WebFetch; never memory (dmj:verification-before-completion) |
 | Deferred tool needed | ToolSearch "select:Name" first; direct call fails without it |
-| Long or recurring jobs | run_in_background, Monitor; Cron or schedule for routines |
+| Long or recurring jobs | run_in_background, Monitor; a time loop or Cron/schedule for routines, interval matched to how fast the watched thing changes |
 | Cross-session knowledge | memory files + MEMORY.md index, written at decision time (dmj:landing-sessions) |
 | User choices | AskUserQuestion: batch up to 4, multiSelect, previews for visual compare |
 
@@ -28,12 +29,17 @@ Dynamic skill authoring ($ARGUMENTS, !`cmd` preprocessing): dmj:writing-skills.
 
 Strongest available model on every spawn; max thinking and effort where the harness exposes them; long-context tier for large inputs. Probe first: set nothing the environment already forces.
 
+## Loops close the automation
+
+Skill gates are written machine-checkable precisely so loops can consume them: acceptance criteria (dmj:writing-plans), budgets (dmj:enforcing-performance-budgets), and screenshot gates (dmj:art-directing) double as goal conditions. Hand the criteria to the loop; the working model never certifies its own finish.
+
 ## Red flags (stop)
 
 - Hand-rolled orchestration where Workflow or teams exist.
 - Serial agent calls for independent work.
 - A from-memory library answer while context7 or WebFetch is available.
 - Polling a background task the harness will announce.
+- Babysitting turn-by-turn a task whose finish line is already machine-checkable: that is a goal loop.
 - A hardcoded model name in any instruction file.
 
 **Headless:** all routing applies unattended; advisor and plan-mode gates park for the user, never block.

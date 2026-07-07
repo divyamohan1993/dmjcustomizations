@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.13.0] - 2026-07-07
+
+### Added
+
+- harnessing-claude: goal-loop routing. New capability row sends any task with a deterministic finish line (tests pass, score threshold, queue empty) to the harness's goal primitive: the machine-checkable criteria become the stop condition, a turn cap bounds the run, and an independent evaluator judges done, never the working model. New "Loops close the automation" section states the design intent: skill gates are machine-checkable precisely so loops can consume them (acceptance criteria, budgets, screenshot gates double as goal conditions). Long-or-recurring row now names interval-matched time loops. New red flag: babysitting turn-by-turn what a goal loop would finish. Verified against live Claude Code docs (agents, goal, scheduling pages, fetched 2026-07-07). Justified: RED runs attributed the evaluator-decides-done rule to the skill when it was only in the scenario text (L2 time-loop routing cited real skill rows and needed no change); GREEN 2/2 citing the new row. Battery section 18; runner grows HARN18A (8 scenarios).
+
 ## [2.12.0] - 2026-07-07
 
 ### Added
