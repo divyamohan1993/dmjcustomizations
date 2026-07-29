@@ -104,7 +104,7 @@ Anything that makes an allow or deny decision, or parses input it did not create
 
 ## Machine-checkable gates (CI)
 
-SAST, dependency audit failing on high or critical, secret scanning, security headers, and the **crypto lane**: banned primitives (MD5, SHA-1, bcrypt, scrypt, RSA or ECDH key exchange without a hybrid PQC partner), hardcoded algorithm strings outside the crypto module, and unversioned ciphertext writes. Human review catches what these miss; it never replaces them.
+SAST, dependency audit failing on high or critical, secret scanning, security headers, and the **crypto lane**, which greps three things: banned primitives (MD5, SHA-1, bcrypt, scrypt, RC4, 3DES, ECB), algorithm names outside the crypto module, and non-crypto randomness in security-relevant files. What a grep cannot decide stays on the security review lens: a key exchange missing its hybrid PQC partner, a ciphertext written without a version prefix. Human review catches what the lanes miss; it never replaces them.
 
 ## Parallel pattern
 
@@ -133,8 +133,7 @@ Before implementation, an **adversarial attacker-mindset teammate** attacks the 
 - `eval`, `dangerouslySetInnerHTML`, unsanitized template.
 - `CORS: *`, missing security headers, TLS below 1.3.
 - A single key protecting more than one tenant's data.
-- An algorithm name hardcoded outside the crypto module.
-- A ciphertext with no version prefix.
+- An algorithm name hardcoded outside the crypto module, or a ciphertext with no version prefix.
 - Pure post-quantum key exchange with no classical hybrid partner.
 - A backup that has never been restored, or a key rotation that has never run.
 - A design review that never asked what an attacker with root already has.

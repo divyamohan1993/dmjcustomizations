@@ -24,7 +24,7 @@ Before any schema change or bulk edit on real data: a backup exists AND its rest
 | Lifecycle columns | Every table: id, created_at, updated_at, deleted_at. Soft delete first; hard delete is a policy decision |
 | PII | Field-level encrypted with current quantum-safe primitives (dmj:defending-in-depth); never plaintext, never in logs |
 | Retention | A written policy per data type at DESIGN time; expiry enforced by code, not memory |
-| Deletion rights | Right-to-deletion executable end to end (GDPR, DPDPA): one command finds and purges a subject's data, backups included in the plan |
+| Deletion rights | Right-to-deletion executable end to end (GDPR, DPDPA): one command finds and purges a subject's data, backups included in the plan (the mechanism that survives immutable backups is crypto-shredding: dmj:defending-in-depth) |
 
 ## Rationalizations (all false)
 
