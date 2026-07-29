@@ -13,7 +13,7 @@ Target O(1); else justify the lowest achievable in a comment at the call site: O
 
 ## Gate 2: Measure, never guess
 
-Profile before optimizing; the bottleneck is rarely where intuition points. No optimization lands without a before/after measurement. A guess is not evidence; a flame graph is.
+Profile before optimizing; the bottleneck is rarely where intuition points. No optimization lands without a before/after measurement: a guess is not evidence, a flame graph is.
 
 ## Gate 3: Written budgets, enforced in CI
 
@@ -27,7 +27,7 @@ Every budget written and machine-checked. From these floors, adjust per project,
 | CLS | < 0.1 | Lighthouse CI |
 | JS bundle | < 200KB gzip | bundlesize / size-limit |
 
-Confirm current Core Web Vitals thresholds at invocation (fetch web.dev; limits evolve, INP replaced FID). Lighthouse `budget.json` and bundlesize assert at `error` so a breach **fails the build**.
+Confirm current Core Web Vitals thresholds at invocation (fetch web.dev; the metric set and its limits evolve). Lighthouse `budget.json` and bundlesize assert at `error` so a breach **fails the build**.
 
 ## Gate 4: Cache-first architecture
 
@@ -44,11 +44,11 @@ A stack named by anyone, the user included, enters the same race as a hypothesis
 
 ## Load and soak
 
-Load-test at peak times a safety factor; soak to catch leaks and GC stalls. The bar: a graph that flatlines under normal plus moderate attack load.
+Load-test at peak times a safety factor; soak to catch leaks and GC stalls. The bar is a graph that flatlines under normal plus moderate attack load.
 
 ## Parallel pattern
 
-Run a dedicated **performance lens as a fresh-context teammate** in every review panel (never same-context self-review). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmj:using-git-worktrees); the benchmark decides. Coordinate via named `Agent` spawns issued in a single message.
+Run a dedicated **performance lens as a fresh-context teammate** in every review panel, never same-context self-review (delegation per dmj:dispatching-parallel-teams). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmj:using-git-worktrees); the benchmark decides.
 
 ## Rationalization table
 

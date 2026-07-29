@@ -13,7 +13,7 @@ If the harness exposes a deep-research tool or skill, prefer it: it already fans
 
 ## Fan out by angle, in parallel
 
-Spawn a research team: one `Agent` per angle, each with a `name`, background, all issued in a single message (`sonnet[1m]` for fetch-and-skim angles, `opus[1m]` for the refuting verifier and the synthesis); each posts midway progress via `SendMessage`. Each teammate owns one lens and cites **primary sources with publication dates**:
+Spawn a research team, one teammate per angle, delegated per dmj:dispatching-parallel-teams: `sonnet[1m]` for fetch-and-skim angles, `opus[1m]` for the refuting verifier and the synthesis. Each owns one angle and cites **primary sources with publication dates**:
 
 | Angle | Primary source |
 |-------|----------------|
@@ -48,17 +48,14 @@ Sort every finding into one bin, never blur:
 - **What would change the conclusion** (the trip-wire to re-open).
 - Established fact vs consensus vs open question, kept distinct.
 
-## Headless mode
-
-Fully autonomous: spawn the team, verify, synthesize, land the digest in the final report. No human-in-the-loop deadlock; a claim that cannot be verified ships labeled "unverified", never silently.
+**Headless:** fully autonomous, no user gate; spawn, verify, synthesize, land the digest in the final report. A claim that cannot be verified ships labeled "unverified", never silently.
 
 ## Red flags: STOP, widen the search
 
 - One source backing a load-bearing claim
 - No date on a fact in a fast-moving domain
-- Skipping the refutation pass because the claim "seems obvious"
+- Skipping or outrunning the refutation pass because the claim "seems obvious"
 - Author verifying their own claim (same-context self-review)
 - A vendor's own marketing as the only evidence it is fastest/safest
-- Deciding before the adversarial pass returns
 
 Handoff: the digest into dmj:brainstorming or dmj:writing-plans as the evidence base for the decision.

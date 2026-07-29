@@ -16,7 +16,7 @@ Code is the only source of truth: READMEs, comments, design docs are hints to ve
 
 1. **Recon** (you, fast): Glob and Grep for languages, manifests, entry points, top-level shape. No deep reads; triage for partitioning.
 2. **Partition**: 3-6 coherent slices by layer or feature boundary (API, domain, data, UI, jobs, shared). A user focus becomes the spine: still map everything, bias depth toward the focus.
-3. **Fan out**: one explorer teammate per slice via `Agent` (unique `name`) in a single message so all run concurrently; prefer the read-only Explore agent type. Synthesize yourself.
+3. **Fan out**: one explorer teammate per slice, all dispatched together (delegation per dmj:dispatching-parallel-teams); prefer the read-only Explore agent type. Synthesize yourself.
 4. **Explorer charter** (each): the slice's purpose and key files + paths; trace execution in and out; trace data reads and writes; find every cross-boundary link and CONFIRM the other side with the owning explorer via SendMessage, never assume; post a midway update; flag everything unverifiable and every place code contradicts docs.
 5. **Synthesize**: reconcile boundary claims (on conflict, read the code yourself), deliver in chat: system shape, execution flow, data flow, interconnection map, docs-vs-code discrepancies, unknowns. Cite file:line throughout.
 
