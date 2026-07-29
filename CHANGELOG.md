@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.23.0] - 2026-07-29
+
+### Removed
+
+- **Model-in-the-loop test infrastructure stripped** (user-ordered: no long-running tests in this repo). Deleted tests/pressure-test-battery.md, tests/routing-gauntlet.workflow.js, tests/tier-degradation.workflow.js, and scripts/behavioral-test.sh; a tier-degradation run in flight was stopped seconds after launch. writing-skills now routes discipline-skill re-verification to a fresh pressure team at authoring time (its own RED method) instead of committed batteries. Historical battery citations in CHANGELOG entries stay as history. Kept, deliberately: the sub-second structural gates wired into hooks and CI (validate.js, rename-check.js, humanize-guard) and the offline no-model guard suites for the security hook (fuzz-guard.sh, guard-test.sh); say the word and those go too.
+
 ## [2.22.1] - 2026-07-29
 
 ### Fixed

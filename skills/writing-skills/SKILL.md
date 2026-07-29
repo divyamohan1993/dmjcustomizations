@@ -55,7 +55,7 @@ Flowchart ONLY a non-obvious decision loop, never reference material, code, or l
 
 ## Dynamic skills
 
-SKILL.md supports preprocessing that runs BEFORE content loads: an arguments placeholder (dollar-prefixed ARGUMENTS), a skill-dir substitution, and inline shell blocks (exclamation mark plus a backticked command). Never write those token sequences literally in a skill body; the loader substitutes and executes them even inside code spans. Use them to inject live state (date, git status, env) instead of hardcoding. Discipline-skill edits: re-run the relevant battery scenario (tests/pressure-test-battery.md) and scripts/behavioral-test.sh before release.
+SKILL.md supports preprocessing that runs BEFORE content loads: an arguments placeholder (dollar-prefixed ARGUMENTS), a skill-dir substitution, and inline shell blocks (exclamation mark plus a backticked command). Never write those token sequences literally in a skill body; the loader substitutes and executes them even inside code spans. Use them to inject live state (date, git status, env) instead of hardcoding. Discipline-skill edits: re-verify with a fresh pressure team (the RED method above) before release.
 
 ## Anti-patterns
 
