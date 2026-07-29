@@ -76,9 +76,9 @@ in place" clause: it turns a stale rule into cascading edits.
 file."*
 
 `CLAUDE.md` rule 6: *"Always spawn agent-team members with the Opus 4.8 (1M context) model
-(`model: "opus[1m]"`) with max thinking — never any other model."*
+(`model: "opus[1m]"`) with max thinking: never any other model."*
 
-**Only the prose is stale — the selector is not.** `opus[1m]` is a floating alias, not a
+**Only the prose is stale: the selector is not.** `opus[1m]` is a floating alias, not a
 pinned version: `settings.json` sets `"model": "opus[1m]"` and this session resolved to
 `claude-opus-5[1m]`. So the selector already tracks the newest Opus, and
 `CLAUDE_CODE_SUBAGENT_MODEL: "opus[1m]"` is correct as written. The violation is the
@@ -87,7 +87,7 @@ selector that is current. The `dmj` repo itself is clean of hardcoded models.
 
 **Fix:** delete "Opus 4.8 (1M context)" from rule 6 and keep the intent plus the alias
 ("strongest available model via `opus[1m]`, max thinking"). Leave
-`CLAUDE_CODE_SUBAGENT_MODEL` alone — it needs no change.
+`CLAUDE_CODE_SUBAGENT_MODEL` alone: it needs no change.
 
 This is also the smallest item on the list: one phrase in one line. It reads worse than it
 is because a stale model name next to a correct one is exactly what a reader scanning for
@@ -222,13 +222,13 @@ differ only in deliverable (reuse-gate vs chat explanation). Merge candidate.
 
 ### 4.3 Cost and staleness
 
-- `CLAUDE_CODE_SUBAGENT_MODEL: "opus[1m]"` — **no change needed.** Floating alias, already
+- `CLAUDE_CODE_SUBAGENT_MODEL: "opus[1m]"`: **no change needed.** Floating alias, already
   resolves to Opus 5; see the correction in 2.2.
-- `effortLevel: "max"` **and** `CLAUDE_CODE_EFFORT_LEVEL: "max"` — duplicated, and max
+- `effortLevel: "max"` **and** `CLAUDE_CODE_EFFORT_LEVEL: "max"`: duplicated, and max
   effort on every trivial turn is a real spend against a zero budget. Consider `high` as
   the default with `max` reserved for the hard gates, which `harnessing-claude` can
   request per call.
-- `outputStyle: "verbose"` — see 2.4.
+- `outputStyle: "verbose"`: see 2.4.
 
 ---
 
@@ -329,7 +329,7 @@ The article's "delete constraints" applies to prose competing for the model's ju
 It does not apply to deterministic gates that live outside the context window and cost
 zero tokens:
 
-- `hooks/pre-tool-guard` — blocks `--no-verify`, force push, `reset --hard origin/*`.
+- `hooks/pre-tool-guard`: blocks `--no-verify`, force push, `reset --hard origin/*`.
   Exactly the worst-case class guardrails exist for, and it is free.
 - `scripts/pre-commit-secrets.sh`.
 - The humanizer pre-push gate.
@@ -372,13 +372,13 @@ the descriptions, or an independent routing check, before the battery counts as 
 
 0. User runs `/doctor` (first-party, built for exactly this; cannot be run
    non-interactively from here). Compare its findings against this document.
-1. Fix 2.1 and 2.2 — broken and stale, no taste involved.
-2. Section 4 settings surgery — biggest token win, zero judgement.
-3. Resolve 2.3 and 2.4 — needs one decision from the user each.
-4. `CLAUDE.md` cut (section 3) — needs review; it is the user's file.
+1. Fix 2.1 and 2.2: broken and stale, no taste involved.
+2. Section 4 settings surgery: biggest token win, zero judgement.
+3. Resolve 2.3 and 2.4: needs one decision from the user each.
+4. `CLAUDE.md` cut (section 3): needs review; it is the user's file.
 5. `using-dmj` rewrite (5.2), then descriptions (5.3).
 6. Re-run the battery (section 7).
-7. Only then, the additions in section 6 — new capability on a clean base.
+7. Only then, the additions in section 6: new capability on a clean base.
 
 ---
 
@@ -392,12 +392,12 @@ the descriptions, or an independent routing check, before the battery counts as 
 | `dmj` skill descriptions | 8,829 chars (~2.2k tok) | ~2.3k tokens | Match. |
 | Biggest always-loaded item | `CLAUDE.md`, top of table | "bigger than the entire skill listing (~3.6k)" | Same conclusion. |
 | Plugins duplicating `dmj` skills | `frontend-design`, `code-review`, `code-simplifier`, `claude-md-management` (§4.2) | same four, remove | Independent agreement. |
-| MCP connectors live at claude.ai, not `settings.json` | §4.1 bucket A | "I can't — claude.ai → Settings → Connectors" | Confirms the §4.1 correction. |
+| MCP connectors live at claude.ai, not `settings.json` | §4.1 bucket A | "I can't: claude.ai → Settings → Connectors" | Confirms the §4.1 correction. |
 | `CLAUDE.md` keep-list | §3 "keep verbatim" | "Devil's Advocate, Reality Standard, Core Principles, no-em-dashes, pnpm-only, paid-resource rule stay" | Near-identical. |
 
 ### What `/doctor` found that this audit missed
 
-**Hook latency — the biggest daily-friction item, and it is not in this document at all.**
+**Hook latency: the biggest daily-friction item, and it is not in this document at all.**
 Section 7 said "hooks cost zero context" and stopped there. Context is not the only cost:
 
 - `SessionStart`: p50 **4,589 ms**, p90 **14,296 ms**. Two hooks stacked (`dmj` + `security-guidance`).
@@ -411,13 +411,13 @@ blocks for minutes is worth profiling even if it is worth keeping.
 **`ralph-loop` fires a `Stop` hook at every turn end.** Its 1,388 "uses" are hook dispatches,
 not invocations. Never examined here.
 
-**Six plugins share an identical `lastUsedAt`** — the batch-install seed, not usage. Usage
+**Six plugins share an identical `lastUsedAt`**: the batch-install seed, not usage. Usage
 had to be read from transcripts instead.
 
 ### What this audit found that `/doctor` cannot see
 
 `/doctor` scores components by **usage**, not by **correctness**. It rates `dmj@dmj` "keep,
-5,505 uses" — true, and orthogonal to §2.1: `TeamCreate` no longer exists, so 20 references
+5,505 uses": true, and orthogonal to §2.1: `TeamCreate` no longer exists, so 20 references
 across 19 of those skill files instruct a tool that is not there. A heavily-used plugin can
 be heavily-used *and* substantially unexecutable; usage counts cannot distinguish them.
 
@@ -435,9 +435,9 @@ the kind newer models perform without prompting (this audit's axis). The user de
 
 `/doctor` scores deferred MCP tool schemas at ~0 resident and prices only the three prose-heavy
 servers' instructions at ~1.1k tokens. §1 counted ~1,900 tokens of MCP tool *names* as
-resident — those names are visibly present in the loaded context, so the true figure sits
+resident: those names are visibly present in the loaded context, so the true figure sits
 between the two. The recoverable portion both methods agree on is the **instructions**, not
-the names. Treat §1's ~14k as the fuller accounting and ~1.1k–3.2k as the honest range for
+the names. Treat §1's ~14k as the fuller accounting and ~1.1k to 3.2k as the honest range for
 the MCP line specifically.
 
 ---
