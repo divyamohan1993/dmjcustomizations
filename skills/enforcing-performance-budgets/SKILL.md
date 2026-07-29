@@ -36,6 +36,8 @@ Origin is the last resort, not the default:
 - API responses cached with stale-while-revalidate.
 - HTML via edge SSG/ISR; origin hit only on a genuine miss of uncacheable data.
 
+**Scale shape:** services stateless, state externalized (session store, queue, DB), so one instance and a thousand behave identically; event-driven, edge-first, degrading gracefully. These patterns carry a single box to sharded multi-region without a rewrite, which is what keeps 10x traffic a config change instead of a redesign.
+
 ## Choosing a stack (cost is a budget too)
 
 Two measured axes, never one: performance fit (meets every budget on YOUR workload; probe current independent benchmarks at decision time, not marketing charts) and total cost of ownership (infra, egress, build minutes, per-request pricing, at realistic and at 10x traffic). Among stacks that meet the budgets, the cheapest runs; a free tier that holds the numbers beats anything billable. Price it BEFORE adopting; commit the estimate beside the budgets.

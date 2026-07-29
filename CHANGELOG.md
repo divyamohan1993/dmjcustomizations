@@ -3,6 +3,22 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.24.0] - 2026-07-29
+
+### Added
+
+- **Measured-numbers law in dispatching-parallel-teams** (user-confirmed learning, docs/dmj/skill-learnings/2026-07-29-teammate-numbers-unmeasured.md): a number in a teammate's report is a hypothesis until measured; adopt it only with the measurement or its producing command attached. RED evidence: four confident estimates in the 2.22.0 pass, all wrong, all peer-caught by measurement, one already inside a CHANGELOG draft.
+- enforcing-performance-budgets gains the **Scale shape** floor (stateless services, externalized state, event-driven, edge-first, graceful degradation), closing the reviewer's finding that orchestrating-products pointed at it for statelessness content that did not exist.
+
+### Fixed
+
+- Reviewer findings F2 and F3 from the 2.22.0 pass: stewarding-data's expand-migrate-contract rule again names the size-exemption refusal ("small table, ALTER inline" is how small tables take outages), and selling-the-vision's Channel-fit bar states that one length pasted everywhere fails the bar.
+
+### Audit notes
+
+- The two defending-in-depth near-negation flags stay permanently under the security KEEP exemption: with the batteries removed (2.23.0), the revisit condition can never fire, and a missed stop trigger in a security scan stays asymmetrically expensive. Recorded as final, not pending.
+- brainstorming remains the library's one untested split candidate, deferred with the measure-first caution (a measured split returned 26 words against an estimated 150).
+
 ## [2.23.1] - 2026-07-29
 
 ### Removed

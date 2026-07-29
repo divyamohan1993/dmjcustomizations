@@ -53,7 +53,7 @@ A teammate's plain text is invisible to every other agent: `SendMessage` is the 
 
 ## Synthesize
 
-When teammates report: read each result, check for conflicting edits, run the full suite to confirm fixes compose, spot-check (parallel workers repeat the same systematic error). Resolve conflicts before integrating.
+When teammates report: read each result, check for conflicting edits, run the full suite to confirm fixes compose, spot-check (parallel workers repeat the same systematic error). Resolve conflicts before integrating. A number in a teammate's report is a hypothesis until measured: adopt it into an artifact or decision only with the measurement, or the command that produced it, attached; a confident estimate reads as measured and propagates faster than the check.
 
 **A teammate's final report is never shown to the user**: relay what matters in your own words. Never state or predict a still-running teammate's findings; wait for the completion notification.
 

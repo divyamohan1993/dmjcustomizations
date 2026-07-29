@@ -13,7 +13,7 @@ Before any schema change or bulk edit on real data: a backup exists AND its rest
 
 ## Migrations
 
-- **Expand, migrate, contract.** Add the new shape first; backfill in bounded, resumable batches (watch locks and load: dmj:enforcing-performance-budgets); dual-read or dual-write through the window; remove the old shape only in a LATER release, after nothing reads it.
+- **Expand, migrate, contract.** Add the new shape first; backfill in bounded, resumable batches (watch locks and load: dmj:enforcing-performance-budgets); dual-read or dual-write through the window; remove the old shape only in a LATER release, after nothing reads it. Table size grants no exemption: "small table, ALTER inline" is how small tables take outages.
 - **Every migration ships its down-path** and the down-path is tested. Genuinely irreversible (a DROP, a lossy cast)? It waits for explicit user confirmation, named as irreversible.
 - **Pipeline only.** Migrations run by the deploy process (dmj:shipping-to-production), versioned in the repo. Hand-run SQL on production is an incident, not a workflow.
 

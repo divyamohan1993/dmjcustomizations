@@ -24,7 +24,7 @@ The first line or frame lands the single most compelling promise, alone. Needs a
 | Show, not tell | The hero is a working demo or result, not a paragraph |
 | Tagline | A promise in 7 words or fewer; concrete beats clever |
 | Honest | Real metrics, outcomes the product actually delivers. A claim it cannot cash kills trust permanently (dmj:verification-before-completion) |
-| Channel fit | Same arc, sized: landing hero, one pitch slide, post (hook in line 1 + live URL + one real metric), README hero |
+| Channel fit | Same arc, sized per channel: landing hero, one pitch slide, post (hook in line 1 + live URL + one real metric), README hero. One length pasted everywhere fails the bar |
 
 ## Parallel pattern
 
