@@ -21,7 +21,7 @@ From each task's Depends-on, group into waves: a wave is the set whose dependenc
 
 Spawn a team (dmj:dispatching-parallel-teams): one named `Agent` per task, all in a single message so the wave runs concurrently, its tasks on a shared list, each teammate claiming one, never fire-and-forget. Hand each the full task text: a teammate inherits none of your context.
 
-Each teammate works the implementer contract from dmj:team-driven-development (skeleton in its `teammate-prompts.md`): dmj:test-driven-development discipline, a midway progress message plus the peer channel, any forced plan deviation logged under Deviations in `implementation-notes.md` (conservative option chosen) rather than stalling the wave, the task's verification command run and its ACTUAL output reported, commit inside its own worktree.
+Each teammate works the implementer contract from dmj:team-driven-development (skeleton in its `teammate-prompts.md`). The wave-specific delta: a forced plan deviation takes the conservative option and never stalls the wave; the Deviations log is reviewed at the gate because one deviation can invalidate a later task.
 
 You (lead) do not implement; you coordinate, unblock, hold the gates. Only the lead fans out a wave.
 
@@ -39,14 +39,6 @@ Unresolvable blocker (missing dep, unclear instruction, repeated verification fa
 
 ## Headless mode
 
-No interactive user: proceed wave by wave on the plan as written, record assumptions in the run log, PARK only decisions the user must own (irreversible, security, cost, public surface) as blocking notes. A failing gate halts the affected task, not the whole run; independent waves continue.
-
-## Red flags (stop)
-
-- One agent grinding tasks serially when the wave plan shows them independent.
-- Concurrent tasks sharing a file with no worktree.
-- Skipping a review gate, or the implementer reviewing its own task.
-- Opening the next wave before the full suite is green.
-- A teammate prompt that assumes the teammate can see your session.
+No interactive user: proceed wave by wave on the plan as written, record assumptions in the run log, PARK per the library default (dmj:using-dmj) as blocking notes. A failing gate halts the affected task, not the whole run; independent waves continue.
 
 Next: **dmj:verification-before-completion**, then **dmj:finishing-a-development-branch**.

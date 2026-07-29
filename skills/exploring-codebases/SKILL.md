@@ -31,22 +31,12 @@ Synthesize the fragments into ONE map at `docs/dmj/maps/YYYY-MM-DD-<repo>-map.md
 
 ## Anti-redundancy gate
 
-Before creating any function, helper, type, or file: search the map's asset index AND grep the repo for plausible names and synonyms. Record the searches and results in the plan or PR ("checked map + rg 'formatCurrency|toINR|money', none found"). A duplicate discovered later means this gate was skipped, not that it failed.
-
-## Rationalizations (all false)
-
-| Excuse | Reality |
-|---|---|
-| "Faster to write it than find it" | The search is one grep; a duplicate costs maintenance forever |
-| "The repo is too big to map" | Lenses fan out in parallel; breadth is cheap, only depth costs |
-| "It's just a small helper" | Small helpers are where duplication breeds |
+Before creating any function, helper, type, or file, small helpers included (small helpers are where duplication breeds): search the map's asset index AND grep the repo for plausible names and synonyms. Record the searches and results in the plan or PR ("checked map + rg 'formatCurrency|toINR|money', none found"). The search is one grep; a duplicate costs maintenance forever. A duplicate discovered later means this gate was skipped, not that it failed.
 
 ## Red flags (stop)
 
-- Any new code before the gate search, even a one-liner.
 - A map claim without a file path.
 - One serial read-through instead of a parallel sweep.
-- Trusting docs or memory over a fresh grep.
 
 **Headless:** fully autonomous, no user gate; the map and the gate-search evidence land in the final report.
 

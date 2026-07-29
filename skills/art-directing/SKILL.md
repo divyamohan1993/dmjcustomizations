@@ -9,7 +9,7 @@ Every project earns a researched visual identity, never a default. dmj:crafting-
 
 ## Gate 0: research before color
 
-Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world and vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) the current best technique, plus 2 to 3 category-defining products read for the principles behind them, never to clone a look and never to reuse a past project's identity. Derive the palette from that EMOTION, not from cliché, habit, or a flag (method, ratios, and the culture caveat: color-psychology.md). Contrast is a floor, not a vibe: every pair AA, color-blind-safe, dark and light.
+Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world and vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) the current best technique, plus 2 to 3 category-defining products read for the principles behind them, never to clone a look and never to reuse a past project's identity. Derive the palette from that EMOTION, not from cliché, habit, or a flag (method, ratios, and the culture caveat: color-psychology.md). Contrast is a floor, not a vibe: every pair AA, color-blind-safe, dark and light. Catching yourself reaching for a default attractor (dark plus one neon accent, the Inter / Space Grotesk stack, a 1200px centered column, a flag hue) is the signal that this research got skipped: every one is refused by a bar below.
 
 ## The token system (the artifact)
 
@@ -33,10 +33,6 @@ No "done" without it (dmj:verification-before-completion): screenshot every brea
 ## Parallel pattern
 
 Competing directions: a team runs 2 to 3 spikes (one named `Agent` per direction, spawned in a single message), screenshots decide (dmj:dispatching-parallel-teams, dmj:brainstorming). User-facing diffs carry the experience lens (dmj:requesting-code-review).
-
-## The default attractors
-
-Name them or you drift into them, because habit and hurry both land here: a dark background plus one neon accent; the Inter / Space Grotesk stack; a 1200px centered column with the screen wasted around it; a hue chosen from a flag or a logo; a column, metric, or panel that exists only above a breakpoint. Every one is already refused by a bar above. Reaching for one is the signal that research got skipped.
 
 **Headless:** research, derive tokens, build, screenshot-verify autonomously; PARK only brand calls (wordmark, hue), ship a default.
 

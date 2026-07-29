@@ -11,7 +11,7 @@ Healthy means the signals say so. Silence is an unmonitored failure mode, not go
 
 Before the first production deploy, in writing:
 - **SLOs**: availability and latency (p95 tied to the committed budgets, dmj:enforcing-performance-budgets).
-- **Symptom alerts, 3 to 5**: user-facing error rate, p95 latency, saturation. Alert on symptoms, never on causes; causes go on dashboards.
+- **Symptom alerts**: user-facing error rate, p95 latency, saturation. One alert per user-visible symptom, on symptoms, never on causes; causes go on dashboards, because fifty cause-pages a day train everyone to ignore the fifty-first.
 - **Paging path**: who or what reacts, and how fast.
 
 An alert that fires without action twice is deleted or fixed: fatigue buries the page that matters.
@@ -32,19 +32,10 @@ An alert that fires without action twice is deleted or fixed: fatigue buries the
 3. **Root cause** by dmj:systematic-debugging, never by guess.
 4. **Blameless post-mortem** for every user-visible incident: timeline, root cause, action items landing as commits and tests WITH OWNERS. A summary in chat is not a post-mortem; a recurrence with no landed action item is the real failure.
 
-## Rationalizations (all false)
-
-| Excuse | Reality |
-|---|---|
-| "No errors reported, so it is healthy" | Users leave before they report. Silence means unmonitored |
-| "Alert on everything to be safe" | Fifty pages a day trains everyone to ignore the fifty-first. Symptoms only |
-| "We fixed it, move on" | Unlanded lessons repeat. The post-mortem's commits are the fix |
-
 ## Red flags (stop)
 
 - A production deploy with zero alerts defined.
 - A request-path log line with no correlation ID.
-- An alert ignored twice and still enabled.
 - An incident closed with no landed action items.
 - Debugging production from user reports instead of signals.
 

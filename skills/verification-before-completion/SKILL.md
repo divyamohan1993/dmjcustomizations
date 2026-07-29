@@ -50,23 +50,11 @@ Self-review in your own context is not enough: you believe it works, so you read
 
 ## Verified stays verified
 
-A one-time green is an assumption with a timestamp. Nontrivial completion leaves a STANDING GUARD so the proof outlives the turn: a regression test in the suite (dmj:test-driven-development), a CI assertion or lint rule enforcing the new invariant (a migration leaves a no-old-imports check), an alert (dmj:observing-production), or a scheduled predicate. Done without its guard is not done; the claim decays the moment the code evolves.
+A one-time green is an assumption with a timestamp: green proves today, the guard proves tomorrow. Nontrivial completion leaves a STANDING GUARD so the proof outlives the turn: a regression test in the suite (dmj:test-driven-development), a CI assertion or lint rule enforcing the new invariant (a migration leaves a no-old-imports check), an alert (dmj:observing-production), or a scheduled predicate. Done without its guard is not done; the claim decays the moment the code evolves.
 
 ## Red flags: STOP
 
 "Should work," "probably," "seems to," any "Great! / Perfect! / Done!" before the command ran, about to commit/push/PR unverified, trusting a teammate's success report, "just this once," tired and wanting it over, a nontrivial completion leaving no standing guard behind.
-
-## Rationalizations
-
-| Excuse | Reality |
-|--------|---------|
-| "Should work now" | Run it. |
-| "I'm confident" | Confidence is not evidence. |
-| "Linter passed" | Linter is not the compiler or the tests. |
-| "Teammate said success" | Verify the diff independently. |
-| "Partial check is enough" | Partial proves nothing about the rest. |
-| "Different words, rule won't apply" | Spirit over letter. |
-| "Suite is green, the work is complete" | Green proves today; the guard proves tomorrow. Leave the invariant in CI. |
 
 ## Headless mode
 

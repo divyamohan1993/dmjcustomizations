@@ -29,29 +29,6 @@ Load when writing/changing tests, adding mocks, or tempted to add test-only meth
 - Adding a method to a production class: "called only by tests?" (move it out) and "does this class own this resource's lifecycle?" (no means wrong class).
 - Mocking anything: name the real method's side effects and whether the test depends on any. If it does, mock one level lower, at the actual slow or external call, never the high-level method. Unsure what the test needs? Run against the real implementation first, observe, then mock minimally. "I'll mock this to be safe" is the red flag.
 
-## Test-only production method
-
-```typescript
-// BAD: destroy() exists only so afterEach can call it
-class Session { async destroy() { await this._wm?.destroyWorkspace(this.id); } }
-// GOOD: keep Session stateless; cleanup lives in test-utils
-export async function cleanupSession(s: Session) {
-  const w = s.getWorkspaceInfo();
-  if (w) await workspaceManager.destroyWorkspace(w.id);
-}
-```
-
-## Mock without understanding
-
-```typescript
-// BAD: the mock removed the config write the test depends on, so the duplicate is never detected
-vi.mock('ToolCatalog', () => ({ discoverAndCacheTools: vi.fn().mockResolvedValue(undefined) }));
-await addServer(config);
-await addServer(config);   // should throw, silently does not
-// GOOD: mock only the slow external part, preserve the behavior under test
-vi.mock('MCPServerManager');  // just the slow server startup
-```
-
 ## Incomplete mock
 
 ```typescript

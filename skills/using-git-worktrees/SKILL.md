@@ -18,7 +18,7 @@ GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" && pwd -P)
 
 ## Step 1: Create
 
-Prefer a native tool if one exists (`EnterWorktree`, a `/worktree` command, a `--worktree` flag): it manages placement and cleanup. Raw `git worktree add` alongside a native tool creates phantom state. Fallback:
+Use the native tools (`EnterWorktree`/`ExitWorktree`, `isolation: "worktree"` on spawns): they manage placement and cleanup, and raw `git worktree add` beside them creates phantom state. Raw fallback, for a harness without them:
 
 ```bash
 git check-ignore -q .worktrees || { echo ".worktrees/" >> .gitignore && git add .gitignore && git commit -m "chore: ignore worktrees"; }

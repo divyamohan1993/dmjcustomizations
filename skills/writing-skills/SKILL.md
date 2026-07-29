@@ -15,7 +15,7 @@ A candidate that restates the system prompt, one person's opinions, or another s
 
 ## The Iron Law
 
-**No skill, no edit to a skill, without a failing test first.** Wrote it before testing? Delete, start over. Not "keep as reference," not "adapt while testing," not "just a section." Violating the letter is violating the spirit.
+**No new skill, and no change to what an agent may or must do, without a failing probe first.** The scope is a property, not a file list: any edit touching a floor, gate, threshold, Iron Law, or description needs a fresh-context pressure probe (RED below) run without the change, recorded in the commit message and CHANGELOG. Wrote it before probing? Delete, start over: not "keep as reference," not "adapt while testing." Mechanical edits that move no rule (typos, links, formatting, restructuring) skip the probe; under deadline, "this edit is mechanical" is itself the rationalization to check.
 
 ## RED: baseline (parallel)
 
@@ -33,21 +33,11 @@ Only enough to defeat the failures observed. No padding for hypotheticals.
 
 Re-run the same team WITH the skill. New rationalization? Add an explicit negation + a rationalization-table row + a red-flag line, re-test. Repeat until a maximum-pressure team complies and cites the skill.
 
-Each of those three is output for a rationalization you watched an agent produce, and it gets ONE home: a row or flag that only restates a floor, step, or rule stated above it is duplication rather than enforcement, and belongs cut. Which one is the home is a lookup, not a taste call:
-
-- **A test's PASS criterion cites a section** ("citing the Delivery bar"): that section is the home. Move the row's sharpest phrasing into it, then cut the row.
-- **The test or the CHANGELOG records the ROW itself** as what was added and passed: the row is the home and the prose gives way.
-- **No scenario maps to the row at all:** the test is whether it restates a bar, step, or rule in the same file. If it does, that is the home and the row goes. If it names a pressure no bar covers, it stays.
-
-A red flag is a detection trigger, not a restatement: it earns its place by naming the symptom or the thought that precedes the violation. One that repeats a bar's words is the duplicate, and two flags covering one law merge into one.
+Each of those three is output for a rationalization you watched an agent produce, and it gets ONE home. The test is single: a row or flag that restates a bar, step, or rule stated above it in the same file is duplication, cut it after moving its sharpest phrasing into the surviving bar; one that names a pressure or symptom no bar covers (deadline, authority, sunk cost, the thought that precedes the violation) stays. A red flag is a detection trigger, not a restatement, and two flags covering one law merge into one.
 
 ## This library's additions
 
-Every skill here must also specify, where applicable:
-- **headless mode** (autonomous behavior at each user gate: safe defaults, assumption ledger, park user-owned decisions),
-- **parallel structure** (what runs concurrently between gates, what serializes at gates).
-
-Add both to the skill's checklist.
+Every skill inherits the library defaults stated in dmj:using-dmj: headless runs are fully autonomous with assumptions recorded and user-owned decisions parked (irreversible, security, cost, public surface), and work is parallel by default, serialized only at user gates and real data dependencies. A skill writes its own Headless or parallel section ONLY where it deviates from that default: a gate it refuses to auto-pass, a coverage ledger its discipline demands, a serialization its ordering requires. Boilerplate restating the default is duplication, cut it.
 
 ## Flowcharts and files
 

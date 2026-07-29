@@ -27,7 +27,7 @@ Wrote code before the test? Delete it: no keeping as reference, no adapting, no 
 
 ## Edge-case taxonomy
 
-All input hostile. Cover every applicable row; for each that does not apply, say so and why.
+All input hostile. Name the rows covered and the rows judged out of scope; a silently missing row is the coverage drop nobody sees.
 
 | Row | Probe |
 |-----|-------|
@@ -50,12 +50,8 @@ A passing suite proves the code ran, not that anything was checked. The measure 
 | Excuse | Reality |
 |--------|---------|
 | "Too simple to test" | Simple code breaks. The test costs 30 seconds. |
-| "I'll test after" | Tests-after pass immediately and prove nothing. |
-| "Already manually tested" | Ad-hoc, no record, cannot re-run. |
+| "I'll test after" | Tests-after pass immediately and prove nothing. First = "what should it do"; after = "what does this do." |
 | "Deleting X hours is wasteful" | Sunk cost. Unverified code is debt, not an asset. |
-| "Keep it as reference" | You will adapt it. That is testing after. |
-| "Tests-after, same spirit" | After = "what does this do." First = "what should it do." |
-| "TDD is dogmatic, I'm pragmatic" | TDD is faster than debugging in production. |
 
 ## Red flags: STOP and start over
 

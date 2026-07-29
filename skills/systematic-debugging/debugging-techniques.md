@@ -42,22 +42,7 @@ await new Promise(r => setTimeout(r, 50));
 await waitFor(() => getResult() !== undefined, 'result ready');
 ```
 
-Minimal poller (poll ~10ms, always bound with a timeout that names what it waited for):
-
-```typescript
-async function waitFor<T>(cond: () => T | undefined | null | false,
-                          description: string, timeoutMs = 5000): Promise<T> {
-  const start = Date.now();
-  while (true) {
-    const r = cond();
-    if (r) return r;
-    if (Date.now() - start > timeoutMs) throw new Error(`Timeout waiting for ${description} after ${timeoutMs}ms`);
-    await new Promise(res => setTimeout(res, 10));
-  }
-}
-```
-
-Wait on the real predicate: an event in a list, a state field, a count reaching its threshold, a file existing.
+The poller's spec, from which the model writes it: poll the getter (fresh call each iteration) roughly every 10ms, bounded by a timeout that throws naming WHAT it waited for and for how long. Wait on the real predicate: an event in a list, a state field, a count reaching its threshold, a file existing.
 
 Mistakes: polling every 1ms (CPU burn, use 10ms), no timeout (hangs forever), caching state outside the loop (call the getter inside for fresh data).
 

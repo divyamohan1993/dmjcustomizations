@@ -31,7 +31,7 @@ Trigger: dmj:landing-sessions runs a proposal pass at session end when the queue
 | Human merge | A skill change lands only when a human merges a PR. Never auto-merge, never commit to main, never edit an installed skill mid-session. This is the boundary the whole loop exists to hold |
 | Reversible | One skill edit per PR, small and revertable; the CHANGELOG records intent |
 | Dated laws | Every added law names the failure or model behavior it compensates for, so a later pass can test whether that behavior still exists |
-| Retirement needs evidence | A law retires only after re-running the test that motivated it and showing the compensated behavior is gone. "The model handles this now" is an assertion, not evidence; a passing self-check is not the test. A law with no motivating test on record needs a fresh RED run against the same bar; a law the user ordered retires only when the user says so. Retirement is an ordinary proposal: same TDD, same gates, same human merge, and the reason is recorded so it can be reversed |
+| Retirement needs evidence | A law retires only on evidence the compensated behavior is gone: a fresh authoring-time pressure probe (the RED method, dmj:writing-skills) run WITHOUT the law, showing no teammate reproduces the failure it guards, recorded in the commit message and CHANGELOG. "The model handles this now" is an assertion, not evidence; a passing self-check is not the probe. A law the user ordered retires only when the user says so. Retirement is an ordinary proposal: same probe, same gates, same human merge, reason recorded so it can be reversed |
 
 ## Red flags (stop)
 

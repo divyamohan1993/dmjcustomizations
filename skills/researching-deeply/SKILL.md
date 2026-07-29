@@ -50,12 +50,4 @@ Sort every finding into one bin, never blur:
 
 **Headless:** fully autonomous, no user gate; spawn, verify, synthesize, land the digest in the final report. A claim that cannot be verified ships labeled "unverified", never silently.
 
-## Red flags: STOP, widen the search
-
-- One source backing a load-bearing claim
-- No date on a fact in a fast-moving domain
-- Skipping or outrunning the refutation pass because the claim "seems obvious"
-- Author verifying their own claim (same-context self-review)
-- A vendor's own marketing as the only evidence it is fastest/safest
-
 Handoff: the digest into dmj:brainstorming or dmj:writing-plans as the evidence base for the decision.

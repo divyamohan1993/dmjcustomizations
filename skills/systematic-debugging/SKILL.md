@@ -47,14 +47,14 @@ State it: "X is the root cause because Y." Test with the *smallest* change, one 
 3. **Verify** (`dmj:verification-before-completion`): test passes, nothing else broke.
 4. Add validation at every layer the bad value crossed, making the bug structurally impossible: `dmj:defending-in-depth`.
 
-**Fix failed?** Under 3 attempts: back to Phase 1 with new evidence. **3+ failed, or each fix exposes a new problem elsewhere: stop, the architecture is wrong, not the hypothesis.** Raise it with the user; do not attempt fix #4.
+**Fix failed?** First failure: back to Phase 1 with the new evidence. **Two consecutive failed fixes at the same root cause, or each fix exposing a new problem elsewhere: stop. The hypothesis space is wrong, not the hypothesis, and the agent judging whether it is thrashing is the thrashing agent, which is why this is a count and not a feeling.** Raise the architecture question with the user before any third attempt.
 
 ## Red flags: STOP, return to Phase 1
 
-"Quick fix now, investigate later," "just try changing X," "probably X," multiple changes at once, skipping the test, listing fixes before tracing data flow, "one more attempt" after 2+ failures.
+"Quick fix now, investigate later," "just try changing X," "probably X," multiple changes at once, skipping the test, listing fixes before tracing data flow, "one more attempt" after two failed fixes.
 
 ## Headless mode
 
-Complete every phase, capture all evidence in the final report, write safe minimal fixes, park architectural reversals (Phase 4, 3+ failures) as a flagged question rather than refactoring unsupervised.
+Complete every phase, capture all evidence in the final report, write safe minimal fixes, park architectural reversals (Phase 4, two failed fixes) as a flagged question rather than refactoring unsupervised.
 
 Root cause fixed with a guarding test? Next: `dmj:verification-before-completion`, then `dmj:requesting-code-review`.

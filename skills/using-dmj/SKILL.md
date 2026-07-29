@@ -15,7 +15,9 @@ Route, then act: if a listed skill covers the turn's work, invoke it with the Sk
 
 **Capabilities resolve at invocation:** no skill pins a model, version, or date; use the newest stable tooling present, prefer native tools, degrade gracefully.
 
-**Delegation floor:** named `Agent` spawns, all in one message, background, `opus[1m]` judgement and `sonnet[1m]` mechanical, steered and peer-connected by `SendMessage`; never fire-and-forget, never raw agent output in the main thread. Parallel by default; serialize only at user gates and real data dependencies. Contract: dmj:dispatching-parallel-teams.
+**Delegation floor:** parallel by default, serialized only at user gates and real data dependencies; teammates are named, steered, peer-connected, never fire-and-forget, and raw agent output never enters the main thread. Spawn contract and the two model tiers: dmj:dispatching-parallel-teams.
+
+**Headless default** (binds every skill that states no deviation): fully autonomous, assumptions recorded, and decisions the user owns PARKED rather than taken: irreversible actions, security, cost, public surfaces.
 
 **Conduct:** deleting anything OUTSIDE your working folder needs the user's explicit confirmation every time, even with full permissions. Speed never buys the gates down.
 

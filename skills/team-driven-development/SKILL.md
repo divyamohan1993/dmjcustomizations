@@ -12,7 +12,7 @@ Fresh session, or many parallel waves? Use dmj:executing-plans. No plan yet? Use
 ## Setup
 
 1. Read the plan ONCE. Extract every task with full text, file set, dependencies, acceptance criteria onto a shared task list (dmj:dispatching-parallel-teams). Never make a teammate read the plan file; hand it the text.
-2. Spawn teammates with `Agent`, unique `name` each, background, independent spawns in a **single message**: implementers on `sonnet[1m]` against the written criteria, reviewers and anything judgement-heavy on `opus[1m]`, max thinking. Overlapping file sets get `isolation: "worktree"` (dmj:using-git-worktrees). A task risky enough to be worth stopping before it edits gets spawned requiring plan approval, its approval criteria in the prompt. Mechanism, messaging, and the teams-off fallback: dmj:dispatching-parallel-teams.
+2. Spawn per the contract in dmj:dispatching-parallel-teams. This skill's role assignment: implementers on the mechanical tier against the written criteria, reviewers and anything judgement-heavy on the judgement tier. Overlapping file sets get `isolation: "worktree"` (dmj:using-git-worktrees). A task risky enough to be worth stopping before it edits gets spawned requiring plan approval, its approval criteria in the prompt.
 
 ## Per-task loop (continuous, no check-ins)
 
@@ -42,15 +42,12 @@ After the last task, one fresh-context reviewer checks the whole diff, then dmj:
 
 ## Headless mode
 
-No interactive user: run the loop autonomously, record assumptions, PARK only user-owned decisions (irreversible, security, cost, public surface) as blocking notes. A blocked task halts itself, not independent tasks.
+No interactive user: run the loop autonomously, record assumptions, PARK per the library default (dmj:using-dmj) as blocking notes. A blocked task halts itself, not independent tasks.
 
 ## Red flags (stop)
 
 - Implementing yourself instead of dispatching (context pollution).
 - Same context reviewing what it built; quality review before spec passes.
-- Fire-and-forget: no progress messages, no peer channel.
-- Re-spawning a fresh agent to apply review fixes instead of messaging the one that holds the context.
-- Proceeding with an open review finding, or onto a file-overlapping task without a worktree.
 - Starting on `main` without consent.
 
 Skeletons: `teammate-prompts.md`. Next: **dmj:verification-before-completion**, then **dmj:finishing-a-development-branch**.

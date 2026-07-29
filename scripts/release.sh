@@ -47,6 +47,8 @@ git commit -m "$MSG
 
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 git push
+# Rebuild the claude.ai export so dist/ never ships text the release removed.
+node scripts/export-claude-ai.mjs || echo "WARN: dist export failed; rerun 'node scripts/export-claude-ai.mjs' before uploading to claude.ai"
 if command -v claude >/dev/null 2>&1; then
     claude plugin marketplace update dmj || true
     claude plugin update dmj@dmj || true

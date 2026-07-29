@@ -66,7 +66,7 @@ Stacks sunk cost + time + exhaustion + consequences and forces a choice.
 | Social | Fear of seeming dogmatic |
 | Pragmatic | "Being pragmatic, not dogmatic" |
 
-Why pressure works: LLMs are parahuman, defer to authority, scarcity, and commitment cues from training data. Bright-line rules ("YOU MUST", "No exceptions", "Delete means delete") beat soft guidance: they remove the "is this an exception?" question the agent rationalizes through. Use authority + commitment + social-proof framing for discipline skills; never liking or reciprocity (breed sycophancy).
+Why pressure works: models defer to authority, scarcity, and commitment cues. Bright-line rules ("YOU MUST", "Delete means delete") earn their rigidity where a violation is irreversible or expensive (security, deletion, approval gates, false completion claims), because they remove the "is this an exception?" question pressure exploits. Everywhere else, state the floor and what it protects and trust judgement: a bright line guarding a cheap mistake spends reader trust the expensive lines need. Use authority + commitment framing for discipline skills; never liking or reciprocity (they breed sycophancy).
 
 ## GREEN and VERIFY
 
@@ -74,14 +74,7 @@ Write the skill addressing the specific baseline failures, nothing extra. Re-run
 
 ## REFACTOR: close loopholes (stay green)
 
-A teammate complied but a different one found a new escape? Regression. Per new rationalization, add three things:
-
-1. **Explicit negation** in the rules:
-   > Write code before test? Delete it. Start over. No exceptions. Don't keep it as "reference." Don't "adapt" it. Don't look at it. Delete means delete.
-2. **Rationalization-table row:** the excuse, and the one-line reality that defeats it.
-3. **Red-flag line:** the thought that signals the agent is about to violate.
-
-Each new rationalization gets one home, never a copy in every section; the home lookup is in SKILL.md. Then re-run the team. Continue until a maximum-pressure team finds no new escape.
+A teammate complied but a different one found a new escape? Regression. Give each new rationalization exactly ONE home, whichever defeats it best: an explicit negation inside the rule it dodges ("Don't keep it as reference. Delete means delete."), a rationalization-table row (the excuse and the one-line reality), or a red-flag line naming the thought that precedes the violation. Never a copy in every section; the home test is in SKILL.md. Then re-run the team. Continue until a maximum-pressure team finds no new escape.
 
 ## Meta-testing (when GREEN won't hold)
 

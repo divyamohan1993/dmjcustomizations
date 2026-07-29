@@ -61,4 +61,4 @@ for (const name of fs.readdirSync(path.join(root, 'skills')).sort()) {
 }
 console.log(`exported ${n} skills to dist/claude-ai/*.zip (upload at claude.ai Settings > Capabilities)`);
 if (over.length) console.log(`descriptions clipped to 200 chars for this surface: ${over.join(', ')}`);
-console.log('note: claude.ai Chat has no repo, git, or agent-team tools; orchestration skills act as advisory guidance there.');
+console.log('note: claude.ai Chat has no repo, git, or delegation tools; orchestration skills act as advisory guidance there.');

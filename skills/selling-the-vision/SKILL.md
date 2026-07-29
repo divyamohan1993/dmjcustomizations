@@ -22,22 +22,13 @@ The first line or frame lands the single most compelling promise, alone. Needs a
 | One message | A single reason to care. Every competing idea cut or moved below the fold |
 | One CTA | Exactly one next action. Two choices is zero conversions |
 | Show, not tell | The hero is a working demo or result, not a paragraph |
-| Tagline | A promise in 7 words or fewer; concrete beats clever |
+| Tagline | A promise in 7 words or fewer; concrete beats clever, and a deadline is not a reason to ship the pun |
 | Honest | Real metrics, outcomes the product actually delivers. A claim it cannot cash kills trust permanently (dmj:verification-before-completion) |
 | Channel fit | Same arc, sized per channel: landing hero, one pitch slide, post (hook in line 1 + live URL + one real metric), README hero. One length pasted everywhere fails the bar |
 
 ## Parallel pattern
 
 Competing hooks or taglines: write 3 to 5 as parallel spikes, a fresh-context "would this stop the scroll?" judge picks (dmj:dispatching-parallel-teams). Marketing copy in review gets the experience lens (dmj:requesting-code-review).
-
-## Rationalizations (all false)
-
-| Excuse | Reality |
-|---|---|
-| "Explain the tech first so they respect it" | They leave before respect. Lead with the transformation |
-| "List every feature so it looks powerful" | Each extra feature dilutes the one reason to care |
-| "Clever and vague is memorable" | Confused prospects do not buy; clear beats clever, and a deadline is not a reason to ship the pun |
-| "Hype sells" | Overclaim converts once, then refunds and reputation loss |
 
 **Headless:** produce the artifact; PARK brand voice and identity calls for the user.
 

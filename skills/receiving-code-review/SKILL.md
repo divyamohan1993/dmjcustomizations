@@ -5,18 +5,7 @@ description: Use when receiving code review feedback, before implementing any su
 
 # Receiving Code Review
 
-Review feedback is input to evaluate, not orders to obey. Technical correctness over social comfort.
-
-## The response pattern
-
-```
-1. READ the whole feedback without reacting
-2. UNDERSTAND: restate each item in your own words, or ask
-3. VERIFY each item against the actual code
-4. EVALUATE: is it sound for THIS codebase?
-5. RESPOND: technical acknowledgment, or reasoned pushback
-6. IMPLEMENT verified items one at a time, testing each
-```
+Review feedback is input to evaluate, not orders to obey. Technical correctness over social comfort. Understand every item before judging it, judge it against this codebase before touching code, and implement verified items one at a time, testing each.
 
 ## Never implement a suggestion you have not verified
 

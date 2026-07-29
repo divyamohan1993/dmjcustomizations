@@ -22,14 +22,14 @@ Route every job through the strongest native capability available. Probe availab
 | Library or API truth | context7 MCP or official docs via WebFetch; never memory (dmj:verification-before-completion) |
 | Deferred tool needed | ToolSearch "select:Name" first; direct call fails without it |
 | Long or recurring jobs | run_in_background, Monitor; a time loop or Cron/schedule for routines, interval matched to how fast the watched thing changes |
-| Cross-session knowledge | memory files + MEMORY.md index, written at decision time (dmj:landing-sessions) |
+| Cross-session knowledge | auto-memory records what sessions surface; deliberately capture decisions and their reasoning at decision time, curate at landing (dmj:landing-sessions) |
 | User choices | AskUserQuestion: batch up to 4, multiSelect, previews for visual compare |
 
 Dynamic skill authoring (argument and inline-command preprocessing): dmj:writing-skills.
 
 ## Tiers
 
-Declare a spawn's tier by ROLE, never by family member: `opus[1m]` for judgement work, `sonnet[1m]` for mechanical or criteria-bounded work, never below Sonnet, max thinking and effort where the harness exposes them. Model menus differ by surface and generation, so probe what the spawn tool advertises, let the alias resolve to the newest stable model in that role, and set nothing the environment already forces. The lead orchestrates on whatever model the session runs. Full spawn contract: dmj:dispatching-parallel-teams.
+Declare a spawn's tier by ROLE, never by family member: the judgement tier for definition, review, security, synthesis; the mechanical tier for criteria-bounded work; never below Sonnet, max thinking and effort where the harness exposes them. The two floating tier aliases live in dmj:dispatching-parallel-teams with the full spawn contract. Model menus differ by surface and generation, so probe what the spawn tool advertises and set nothing the environment already forces. The lead orchestrates on whatever model the session runs.
 
 ## Loops close the automation
 
@@ -42,7 +42,7 @@ Skill gates are written machine-checkable precisely so loops can consume them: a
 - A from-memory library answer while context7 or WebFetch is available.
 - Polling a background task the harness will announce.
 - Babysitting turn-by-turn a task whose finish line is already machine-checkable: that is a goal loop.
-- A pinned model version in any instruction file; the floating tier aliases (`opus[1m]`, `sonnet[1m]`) are the mechanism, not a violation.
+- A pinned model version in any instruction file (the floating tier aliases named in dmj:dispatching-parallel-teams are the mechanism).
 - Raw agent transcripts relayed into the orchestration thread.
 
 **Headless:** all routing applies unattended; advisor and plan-mode gates park for the user, never block.

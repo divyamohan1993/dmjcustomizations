@@ -32,7 +32,7 @@ A stage opens ONLY on the prior stage's gate evidence (the owning skill's gate).
 - **Fresh minimal contexts.** Workers get task text, never transcripts; the lead stays thin, holds conclusions, implements nothing. Each teammate is a full session whose tokens scale linearly, so a stage fans out only where parallel work genuinely pays, and a stage that needs its own team runs at the lead, which is the only agent that can fan out (dmj:dispatching-parallel-teams).
 - **Pilot before fleet.** One task through the full line before sixty fan out; pilot failures fix the plan at one-task price.
 - **Never re-derive.** This table IS the routing; process reconstructed in chat is the leak this skill exists to plug.
-- **Autonomy is earned per work category, never granted.** Unattended runs ship only categories with a measured record (floor: 20 logged runs at 95% pass); below it, green runs land as reviewed drafts. Any gate failure demotes the category, loudly. New categories always start staged.
+- **Autonomy is earned per work category, never granted.** Unattended runs ship only categories whose unattended record is measured and clean; until then, green runs land as reviewed drafts. No numeric floor is stated because no ledger records one, and a number without a producer reads as measured when it is not. Any gate failure demotes the category, loudly. New categories always start staged.
 
 ## Ecosystems
 

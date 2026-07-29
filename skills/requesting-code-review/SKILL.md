@@ -36,7 +36,7 @@ Fix Critical immediately, Important before proceeding, note Minor. A finding you
 
 ## Blast radius
 
-Default panel is four teammates. For a tiny, low-risk diff you may state the tier to the user and run a narrower panel (e.g. correctness + security only). Name the tier when you narrow it; never narrow silently.
+Panel size follows blast radius: the lens table by default, narrowed (correctness + security only, say) for a tiny low-risk diff. Name the tier to the user when you narrow it; never narrow silently.
 
 ## Red flags
 

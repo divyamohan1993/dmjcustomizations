@@ -35,7 +35,7 @@ Save to `docs/dmj/plans/YYYY-MM-DD-<feature>.md` (user path preference wins; sam
 
 ## Task template
 
-Steps carry actual code, not descriptions.
+Steps carry the spec at full fidelity: actual code inline, or a pointer to a COMMITTED artifact that already is the spec (a failing test file, a fixture, an HTML mock, a source function to port), whichever states the behavior more precisely. Prose carries only the decision and the criteria.
 
 ````markdown
 ### Task N: <name>
@@ -48,7 +48,7 @@ Steps carry actual code, not descriptions.
 
 ## No placeholders (plan failures)
 
-A step that describes WHAT without the code block is a placeholder, and so are "TBD", "implement later", "add error handling / validation / edge cases", and "write tests for the above". Two that hide better: "similar to Task N" (tasks run out of order and land in fresh contexts, so repeat it in full) and a symbol no task defines.
+A step that describes WHAT without the code block or a committed-artifact pointer is a placeholder, and so are "TBD", "implement later", "add error handling / validation / edge cases", and "write tests for the above". Three that hide better: "similar to Task N" (tasks run out of order and land in fresh contexts, so repeat it in full), a symbol no task defines, and a pointer to an artifact that is not committed yet ("like the mock we discussed" points at nothing a fresh context can read).
 
 ## Performance and security
 
@@ -59,12 +59,5 @@ Bake budgets into acceptance criteria (dmj:enforcing-performance-budgets): lowes
 Plan complete: dispatch ONE fresh-context teammate (no session history) with spec + plan to check: every spec requirement maps to a task; no placeholders; type and signature names consistent across tasks; dependency edges acyclic; each acceptance criterion machine-checkable. Fix blocking findings; re-dispatch only if a blocker was structural.
 
 Headless: run the same checklist yourself in a SEPARATE pass (or as a fresh `Agent` call) and record it ran; never skip the gate silently.
-
-## Red flags (stop)
-
-- A task with no machine-checkable acceptance criterion.
-- "Parallel-safe: yes" on tasks that share a file.
-- Reviewing your own plan in the same context.
-- A dependency cycle, or a task using an undefined symbol.
 
 Next: **dmj:team-driven-development** (same session) or **dmj:executing-plans** (fresh session).

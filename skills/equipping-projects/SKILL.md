@@ -9,7 +9,7 @@ Every repo gets its guard rails wired in minutes, idempotent, DERIVED from what 
 
 ## Gate: before the first commit leaves the machine
 
-On any repo you work in: the equip pass has run, or was consciously proposed. A commit pushed from an unequipped repo (no secret scan, no CI) is the failure this skill exists to prevent.
+On any repo you work in: the equip pass has run, or was consciously proposed. A commit pushed from an unequipped repo (no secret scan, no CI) is the failure this skill exists to prevent: the first unscanned commit is the one with the key in it, and "tooling later" or "open a ticket" is deferral wearing a paper trail. The pass runs in minutes; propose it now.
 
 ## Ownership rule
 
@@ -25,32 +25,17 @@ On any repo you work in: the equip pass has run, or was consciously proposed. A 
 | Web UI present | Preview or launch config, browser-automation MCP for the screenshot gate (dmj:art-directing), perf budgets asserted in CI (dmj:enforcing-performance-budgets) |
 | External libraries consumed | Live-docs MCP (context7-class) in project config so API answers come from current docs, never memory (dmj:harnessing-claude) |
 | Deploy target exists or is planned | Deploy script, health endpoints, pipeline job running the same gates (dmj:shipping-to-production) |
-| Agents will work here | Project CLAUDE.md seeded with build, test, and run commands and the repo's conventions; file-type or directory conventions split into path-scoped .claude/rules/ (globs in paths frontmatter) so CLAUDE.md stays lean and rules load only where they apply |
+| Agents will work here | Project CLAUDE.md seeded via the native `/init` command (build, test, run commands, conventions); what /init cannot know: file-type or directory conventions split into path-scoped .claude/rules/ (globs in paths frontmatter) so CLAUDE.md stays lean and rules load only where they apply |
 
 Nothing on the list fires without its signal: a headless CLI gets no browser tooling, a repo with no prose gets no prose gate. Fit is the point.
 
 ## Wire the quality gate
 
-Part of equipping any repo is generating its gate: `bash install-gate.sh <repo>` (dmj:enforcing-quality-gates) detects the stack and writes `qgate.sh`, `qgate.config.sh`, and a CI job. Commit all three. Pre-commit runs `--fast`, pre-push and PR run `--merge`, nightly runs `--deep`. A repo is not equipped until its gate runs and reports every lane.
+Part of equipping any repo is generating its gate: `bash install-gate.sh <repo>` (dmj:enforcing-quality-gates) detects every stack present and writes four files: `qgate.sh`, `qgate.config.sh`, `.qgate-lanes.sh`, and a CI job. Commit all four. Pre-commit runs `--fast`, pre-push and PR run `--merge`, nightly runs `--deep`. A repo is not equipped until its gate runs and reports every lane.
 
 ## Chain, never replace
 
 Installers CHAIN existing hooks (husky, lefthook, native) and fail closed when they cannot; a global hooks path must re-run repo-level hooks or it silently disables them machine-wide. Rerunning the pass converges: no duplicate hooks, no clobbered config, existing managers detected and respected.
-
-## Rationalizations (all false)
-
-| Excuse | Reality |
-|---|---|
-| "Just fix the task, tooling later" | The first unscanned commit is the one with the key in it. Minutes now, breach never |
-| "Open a ticket for the tooling" | A ticket is deferral with a paper trail. Propose the pass now; it runs in minutes |
-| "One standard kit for every repo" | Web gear on a CLI is dead weight and noise. Derive from the repo's signals |
-
-## Red flags (stop)
-
-- A commit leaving an unequipped repo unscanned.
-- The same kit installed regardless of stack.
-- An installer that replaces or shadows an existing hook instead of chaining.
-- Equipping a third-party repo with no proposal on record.
 
 **Headless:** wire your own and new repos fully; for third-party repos, prepare the pass and PARK the consent.
 

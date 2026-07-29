@@ -4,14 +4,14 @@ Parallel-first engineering skills for Claude Code: terse, date-agnostic, adversa
 
 ## Why
 
-Built for the current Claude generation: agent teams, cheap code, models trusted with judgement, hard gates where judgement is not enough.
+Built for the current Claude generation: teammate fan-out, cheap code, models trusted with judgement, hard gates where judgement is not enough.
 
-- **Parallel between gates, serial at gates.** Agent teams fan out; the user approves at a few hard checkpoints. Nothing else blocks.
+- **Parallel between gates, serial at gates.** Teammates fan out; the user approves at a few hard checkpoints. Nothing else blocks.
 - **Evidence over claims.** Fresh-context teammates adversarially verify specs, code, and every "done". Self-review is not review.
 - **Demonstrate, don't describe.** Competing approaches become disposable worktree spikes with benchmarks, not paragraphs.
 - **Dynamic by design.** No hardcoded models, versions, or dates. Skills probe for the strongest model and newest stable tooling at invocation time.
 - **Security and performance from line 1.** Threat models at design time, quantum-safe crypto defaults, O(1)-first thinking, budgets the skills require projects to enforce in CI.
-- **Terse.** Every skill is context-budgeted: concise by design, with a generous hard cap as a runaway-bloat guardrail (the always-loaded meta-skill kept tightest). Substance is never cut just to hit a number.
+- **Terse.** Every skill is context-budgeted: concise by design, each rule living once at its owning home, with a runaway cap only as a backstop (the always-loaded meta-skill kept tightest). Substance is never cut just to hit a number.
 
 ## Skills
 

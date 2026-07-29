@@ -9,7 +9,7 @@ Run independent work concurrently: spawn named teammates with the context you ha
 
 ## When to fan out
 
-2+ genuinely independent tasks: one teammate each, and any pair whose file sets overlap gets its own worktree (dmj:using-git-worktrees). Everything else stays in one session, because a team costs linear tokens plus coordination overhead and returns nothing on sequential work, dependency-heavy chains, one logical change spread across a file set, coupled failures (fixing one may fix the rest), exploratory debugging before you know what broke, or anything needing one whole-system view. Strongest fits: separate root causes, independent subsystems, competing hypotheses that argue each other down, parallel research angles, review lenses, cross-layer slices with one owner each. Deterministic fan-out (loops, judge panels, schema-validated outputs, resumable runs) with user opt-in: Workflow tool, routing table in dmj:harnessing-claude.
+2+ genuinely independent tasks: one teammate each, and any pair whose file sets overlap gets its own worktree (dmj:using-git-worktrees). Everything else stays in one session. A team costs linear tokens plus coordination and returns nothing on a causal chain: sequential work, one logical change spread across files, coupled failures (fixing one may fix the rest), exploratory debugging before you know what broke, anything needing one whole-system view. Strongest fits: separate root causes, independent subsystems, competing hypotheses that argue each other down, parallel research angles, review lenses. Deterministic fan-out (loops, judge panels, schema-validated outputs, resumable runs) with user opt-in: Workflow tool, routing table in dmj:harnessing-claude.
 
 ## The mechanism
 
@@ -64,13 +64,7 @@ No interactive user: dispatch on the plan as written, record assumptions, PARK o
 ## Red flags (stop)
 
 - Spawning teammates with no progress messages or peer channel (fire-and-forget).
-- Spawn calls split across separate messages when the work is independent (that is serial, not parallel).
-- Two teammates on overlapping files with no worktree.
 - A scope so broad ("fix all tests") the teammate gets lost.
-- A prompt that assumes the teammate saw your conversation.
-- Integrating without a full-suite run and conflict check.
-- Reporting a pending teammate's result before its completion notification arrived.
 - Fanning out coupled work that one investigation would solve faster.
-- A spawn below the Sonnet tier, a pinned model version, or a foreground wait whose result does not gate the immediate next step.
 
 Handoff: this primitive powers **dmj:brainstorming** (context sweep, review lenses), **dmj:executing-plans**, and **dmj:team-driven-development** (per-wave fan-out).
