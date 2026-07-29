@@ -5,7 +5,7 @@ description: Use when substantial work is wrapping up (a deliverable shipped, a 
 
 # Landing Sessions
 
-Land everything the session created: knowledge to memory, state to git, resources to zero, threads to the user. Context dies; only what lands survives.
+Land everything the session created: knowledge to memory, state to git, resources to zero, threads to the user. Context dies; only what lands survives, and the two thoughts that lose it are "the user will remember" and "next session can figure it out".
 
 ## Checklist (parallel where independent)
 
@@ -15,14 +15,6 @@ Land everything the session created: knowledge to memory, state to git, resource
 4. **Threads surfaced.** One short list: done (verified, with evidence), decisions parked for the user, anything unresolved. No silent loose ends.
 5. **Debris.** Self-created scratch files inside the working folder: deleted. Anything outside it: the user confirms first, every time (hard conduct rule).
 6. **Skill learnings.** A skill that misfired this session, once the user confirms the learning, gets a file in `docs/dmj/skill-learnings/`; if any are queued, run the session-end proposal pass (dmj:evolving-skills) that opens gated PRs. User-confirmed only, never auto-merge.
-
-## Red flags (stop)
-
-- Ending with an idle team still alive.
-- A learning that exists only in this conversation.
-- "The user will remember" or "next session can figure it out".
-- Uncommitted work nobody was told about.
-- A worktree or background task outliving its purpose.
 
 **Headless:** land automatically; the thread list and evidence go in the final report.
 

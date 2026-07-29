@@ -23,12 +23,10 @@ Reference for the Gate 0 of dmj:art-directing. Color "meaning" is **not universa
 | Warmth, care | Soft warm earths, rose, peach | Muddy browns carry negative valence (rot); keep them clean and light |
 | Premium, depth | Deep tinted near-blacks + one precise accent | This is the AI-default "dark + neon"; use only if research earns it, and make the accent ownable |
 
-These are starting points from valence and convention, NOT universal rules. Color effects on emotion are real but modest and context-dependent; the durable wins are valence (liked referents), legibility, and a distinctive, non-default execution.
-
 ## Confidence
 
 - Ecological-valence preference, context-dependence of meaning, cultural variance of symbolic colors: **established** (primary sources below).
-- Specific hue -> emotion mappings: **weak and contested**. Treat the table as hypotheses, test on the real audience.
+- Specific hue -> emotion mappings: **weak and contested**. Treat the table as hypotheses, test on the real audience. Hue effects on emotion are real but modest; the durable wins are valence (liked referents), legibility, and a distinctive, non-default execution.
 - What reopens this: a palette that tests poorly with the actual audience, or any pair failing the contrast math. Vibe never overrides the math.
 
 ## Sources

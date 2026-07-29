@@ -36,18 +36,8 @@ Competing hooks or taglines: write 3 to 5 as parallel spikes, a fresh-context "w
 |---|---|
 | "Explain the tech first so they respect it" | They leave before respect. Lead with the transformation |
 | "List every feature so it looks powerful" | Each extra feature dilutes the one reason to care |
-| "Clever and vague is memorable" | Confused prospects do not buy; clear beats clever |
-| "Add the hook later" | The first second already happened. Hook first or never |
+| "Clever and vague is memorable" | Confused prospects do not buy; clear beats clever, and a deadline is not a reason to ship the pun |
 | "Hype sells" | Overclaim converts once, then refunds and reputation loss |
-
-## Red flags (stop)
-
-- A headline that needs a second sentence.
-- Features or architecture before the benefit.
-- More than one call to action.
-- A hero made of text instead of a demo or result.
-- A claim the product cannot deliver.
-- The same pitch length on every channel.
 
 **Headless:** produce the artifact; PARK brand voice and identity calls for the user.
 
