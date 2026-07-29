@@ -1,6 +1,6 @@
 ---
 name: shipping-to-production
-description: Use when a build must go live (deploy, ship it, put it on the VM or platform, release tonight), when writing or fixing a deploy script or pipeline, when production breaks after a release, or when adding any billable infrastructure. Symptoms: hand-run deploy steps, SSH-and-restart, no rollback path, no health check, an unpriced cloud resource.
+description: Use when a build must go live (deploy, ship it, release tonight), when writing or fixing a deploy script or pipeline, when production breaks after a release, or when adding any billable infrastructure. Symptoms: hand-run deploy steps, no rollback path, no health check, an unpriced cloud resource.
 ---
 
 # Shipping To Production

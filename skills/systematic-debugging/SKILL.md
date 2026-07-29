@@ -34,7 +34,7 @@ List every plausible root cause. For 2+ live hypotheses, do not test serially in
 | minimal-repro | smallest input that triggers it |
 | dependency-diff | version/lockfile/config deltas vs last-good |
 
-Each reports evidence via SendMessage and posts progress midway. **No fix is written until the evidence is in.** Consolidate: which hypothesis it supports, which it kills. (No TeamCreate? Run the same investigations as native parallel Agent calls, consolidate yourself.)
+Each reports evidence via SendMessage and posts progress midway. **No fix is written until the evidence is in.** Consolidate: which hypothesis it supports, which it kills.
 
 ## Phase 3: Confirm one hypothesis
 

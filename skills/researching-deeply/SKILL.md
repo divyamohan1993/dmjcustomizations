@@ -1,6 +1,6 @@
 ---
 name: researching-deeply
-description: Use when choosing a library, framework, model, or stack, asking "what is the current best" or "is this still true", or verifying a claim before relying on it. Other triggers: a factual or technology question that affects a decision, entering unfamiliar territory, checking prior art, any assertion you are about to build on.
+description: Use when choosing a library, framework, model, or stack, asking "what is the current best" or "is this still true", or verifying any claim before relying on it: a factual question that affects a decision, unfamiliar territory, prior art, an assertion you are about to build on.
 ---
 
 # Researching Deeply
@@ -13,7 +13,7 @@ If the harness exposes a deep-research tool or skill, prefer it: it already fans
 
 ## Fan out by angle, in parallel
 
-Spawn a research team (TeamCreate, then Agent with team_name + a name per angle; SendMessage midway progress posts). TeamCreate unavailable: run the same angles as native parallel Agent calls, synthesize yourself. Each teammate owns one lens and cites **primary sources with publication dates**:
+Spawn a research team: one `Agent` per angle, each with a `name`, all issued in a single message; each posts midway progress via `SendMessage`. Each teammate owns one lens and cites **primary sources with publication dates**:
 
 | Angle | Primary source |
 |-------|----------------|

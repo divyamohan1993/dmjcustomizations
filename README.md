@@ -47,6 +47,7 @@ Superpowers encoded the right discipline on old assumptions: one agent, one chat
 | art-directing | Research-driven visual identity: psychology-led palette, distinctive type, edge-to-edge responsive, screenshot-verified |
 | landing-sessions | Session teardown: learnings to memory, state to git, resources to zero, threads surfaced |
 | selling-the-vision | Launch persuasion: one-second hook, keynote arc, one message, one CTA, honest claims |
+| enforcing-quality-gates | Every repo carries its own generated gate: unit, Gherkin acceptance, mutation, coverage, complexity caps, fuzz, and security lanes, tiered so the slow ones never get disabled |
 | humanizing-output | Pre-push gate every project carries: strips em dashes and AI-tell language, reviewed humanize, prose that never reads AI-generated |
 
 ## Install
@@ -72,6 +73,18 @@ Then disable superpowers so the two rule systems do not compete:
 ```
 /plugin uninstall superpowers
 ```
+
+## Surfaces
+
+| Surface | How it loads |
+|---|---|
+| Claude Code CLI, desktop, VS Code | The install above; one config serves all three |
+| Claude Code on the web | Automatic: this repo commits `.claude/settings.json` declaring the marketplace and plugin, installed at session start |
+| Cowork | Customize, Plugins, Add marketplace, `divyamohan1993/dmjcustomizations` (Cowork reads your claude.ai account, not `~/.claude`) |
+| Claude.ai chat | No plugins on that surface. Run `node scripts/export-claude-ai.mjs`, upload the zips you need under Settings, Capabilities |
+| Agent SDK | `plugins: [{ type: "local", path: "<clone>" }]` |
+
+The git-safety guard runs on perl when present and falls back to node (cloud VMs ship node, not perl); with neither it fails open and the skill instructions remain the line.
 
 ## Provenance
 

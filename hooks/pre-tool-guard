@@ -8,6 +8,11 @@
 # loudly, and is meant to be set only with the user's explicit on-record consent.
 # Fail-open by design: no parser or unexpected input means exit 0 (skills still
 # instruct); this hook is defense in depth, not the only line.
+#
+# Perf: this runs on EVERY Bash/PowerShell tool call, so process spawns are the
+# whole cost (~170ms each on Windows). Extraction and all three checks share a
+# single perl invocation for that reason. Adding a second one measurably taxes
+# every command the user runs -- keep it to one.
 set -uo pipefail
 
 if [ "${DMJ_ALLOW:-}" = "1" ]; then
@@ -15,19 +20,53 @@ if [ "${DMJ_ALLOW:-}" = "1" ]; then
   exit 0
 fi
 
-command -v perl >/dev/null 2>&1 || exit 0
+# Engine select: perl is fastest (one spawn, ~130ms), node is the fallback so
+# the guard still binds on hosts without perl (Ubuntu cloud VMs ship node).
+# Neither present: fail open by design. DMJ_GUARD_ENGINE forces one for tests.
+ENGINE="${DMJ_GUARD_ENGINE:-}"
+if [ -z "$ENGINE" ]; then
+  if command -v perl >/dev/null 2>&1; then ENGINE=perl
+  elif command -v node >/dev/null 2>&1; then ENGINE=node
+  else exit 0; fi
+fi
 
 INPUT=$(cat 2>/dev/null || true)
 [ -n "$INPUT" ] || exit 0
 
-# Extract tool_input.command from the hook JSON and unescape the JSON string.
-CMD=$(printf '%s' "$INPUT" | perl -0777 -ne '
-  if (/"command"\s*:\s*"((?:[^"\\]|\\.)*)"/s) {
-    my $c = $1;
-    $c =~ s/\\n/ /g; $c =~ s/\\t/ /g; $c =~ s/\\"/"/g; $c =~ s/\\\\/\\/g;
-    print $c;
-  }' 2>/dev/null || true)
-[ -n "$CMD" ] || exit 0
+# One perl pass: extract tool_input.command, fully JSON-unescape it, and test all
+# three patterns. Prints one verdict token per match; bash reads the first.
+#
+# Three properties this must hold, each of which was a live bypass found by
+# scripts/fuzz-guard.sh before it was written this way:
+#   1. Scope to tool_input. Grepping the first "command" anywhere lets an
+#      attacker put a harmless decoy in an earlier field and hide the real one.
+#   2. Decode \uXXXX and \/ . The harness decodes before executing, so anything
+#      the guard leaves encoded is a command it inspects in a different form
+#      than the one that runs.
+#   3. Match the program name case-insensitively. Windows resolves GIT to
+#      git.exe. Flags stay case-sensitive: git rejects --FORCE, but -f and -F
+#      mean different things, so folding case there would deny valid commands.
+if [ "$ENGINE" = "node" ]; then
+  VERDICT=$(printf '%s' "$INPUT" | node "$(cd "$(dirname "$0")" && pwd)/pre-tool-guard.js" 2>/dev/null || true)
+else
+VERDICT=$(printf '%s' "$INPUT" | perl -0777 -ne '
+  my $scope = /"tool_input"\s*:\s*\{(.*)$/s ? $1 : $_;
+  exit 0 unless $scope =~ /"command"\s*:\s*"((?:[^"\\]|\\.)*)"/s;
+  my $c = $1;
+  # Single left-to-right unescape pass: \uXXXX, then \n \t \r to space, then
+  # any \X to X (covers \" \\ \/). One pass so a decoded backslash cannot be
+  # re-read as the start of another escape.
+  $c =~ s/\\(u([0-9a-fA-F]{4})|.)/
+    defined($2) ? chr(hex($2))
+                : ($1 =~ m{^[ntr]$} ? " " : $1)/ge;
+  my $git = qr/\b(?i:git)\b/;
+  print "noverify\n"  if $c =~ /$git[^|;&]*--no-verify\b/;
+  print "forcepush\n" if $c =~ /$git[^|;&]*\bpush\b[^|;&]*(--force(?!-with-lease)\b|\s-f\b)/;
+  print "hardreset\n" if $c =~ /$git[^|;&]*\breset\b[^|;&]*--hard\b[^|;&]*(origin\/|\@\{u\})/;
+' 2>/dev/null || true)
+fi
+
+[ -n "$VERDICT" ] || exit 0
 
 deny() {
   # JSON-escape the reason minimally (no quotes/backslashes used in reasons).
@@ -35,19 +74,13 @@ deny() {
   exit 0
 }
 
-# 1. --no-verify anywhere in a git invocation.
-if printf '%s' "$CMD" | perl -ne 'exit 1 unless /\bgit\b[^|;&]*--no-verify\b/'; then
-  deny "dmj guard: --no-verify skips hooks; fix the failing hook instead. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1."
-fi
-
-# 2. Force push, except --force-with-lease.
-if printf '%s' "$CMD" | perl -ne 'exit 1 unless /\bgit\b[^|;&]*\bpush\b[^|;&]*(--force(?!-with-lease)\b|\s-f\b)/'; then
-  deny "dmj guard: force push rewrites shared history; use --force-with-lease if truly needed. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1."
-fi
-
-# 3. Hard reset to a remote-tracking target.
-if printf '%s' "$CMD" | perl -ne 'exit 1 unless /\bgit\b[^|;&]*\breset\b[^|;&]*--hard\b[^|;&]*(origin\/|\@\{u\})/'; then
-  deny "dmj guard: reset --hard to a remote ref destroys local work; stash or branch first. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1."
-fi
+case "${VERDICT%%$'\n'*}" in
+  noverify)
+    deny "dmj guard: --no-verify skips hooks; fix the failing hook instead. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1." ;;
+  forcepush)
+    deny "dmj guard: force push rewrites shared history; use --force-with-lease if truly needed. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1." ;;
+  hardreset)
+    deny "dmj guard: reset --hard to a remote ref destroys local work; stash or branch first. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1." ;;
+esac
 
 exit 0

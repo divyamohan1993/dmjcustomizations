@@ -57,7 +57,7 @@ Bake budgets into acceptance criteria (dmj:enforcing-performance-budgets): lowes
 
 Plan complete: dispatch ONE fresh-context teammate (no session history) with spec + plan to check: every spec requirement maps to a task; no placeholders; type and signature names consistent across tasks; dependency edges acyclic; each acceptance criterion machine-checkable. Fix blocking findings; re-dispatch only if a blocker was structural.
 
-Headless or TeamCreate unavailable: run the same checklist yourself in a SEPARATE pass (or as a native `Agent` call) and record it ran; never skip the gate silently.
+Headless: run the same checklist yourself in a SEPARATE pass (or as a fresh `Agent` call) and record it ran; never skip the gate silently.
 
 ## Red flags (stop)
 

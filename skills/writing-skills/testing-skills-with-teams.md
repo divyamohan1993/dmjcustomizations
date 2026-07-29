@@ -20,7 +20,7 @@ Testing a skill is TDD for docs. Run scenarios WITHOUT the skill (RED, watch fre
 
 Evidence comes from FRESH-context teammates, never same-context self-review: an agent that helped write the skill holds the intended answer, cannot test it impartially. A team also runs many scenarios at once and surfaces more rationalizations per cycle, since teammates break differently.
 
-Spawn: `TeamCreate`, then one `Agent` teammate per scenario, name tied to it, run concurrently. Each reports its choice and verbatim reasoning back (messages are its only channel; ask for midway notes on long scenarios). Recurring rationalizations are the ones the skill must kill. dmj:dispatching-parallel-teams applied to skill QA.
+Spawn: one `Agent` teammate per scenario, `name` tied to it, all in a single message so they run concurrently. Each reports its choice and verbatim reasoning back (messages are its only channel; ask for midway notes on long scenarios). Recurring rationalizations are the ones the skill must kill. dmj:dispatching-parallel-teams applied to skill QA.
 
 Do NOT test this way: pure reference skills (API docs, syntax), or skills with no rule to violate. DO test: discipline skills, skills with a compliance cost, anything an agent has incentive to bypass.
 

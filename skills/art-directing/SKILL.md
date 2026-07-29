@@ -1,6 +1,6 @@
 ---
 name: art-directing
-description: Use when designing or restyling any UI surface (page, panel, dashboard, component, landing) and picking its visual identity (palette, type, layout, motion, morphic language), especially when it risks looking templated or generic, must fill every screen size, or needs colors that psychologically fit the project. Symptoms: "make it unique", "design the UI", "what colors", "responsive across all devices", "don't make it look AI-generated".
+description: Use when designing or restyling any UI surface (page, panel, dashboard, landing) or picking its visual identity (palette, type, layout, motion, morphic language). Symptoms: looks templated or AI-generated, must fill every screen size, "make it unique", "what colors".
 ---
 
 # Art Directing
@@ -32,7 +32,7 @@ No "done" without it (dmj:verification-before-completion): screenshot every brea
 
 ## Parallel pattern
 
-Competing directions: a team runs 2 to 3 spikes (TeamCreate + Agent, team_name), screenshots decide (dmj:dispatching-parallel-teams, dmj:brainstorming). User-facing diffs carry the experience lens (dmj:requesting-code-review). TeamCreate unavailable: native parallel Agent calls, judge yourself.
+Competing directions: a team runs 2 to 3 spikes (one named `Agent` per direction, spawned in a single message), screenshots decide (dmj:dispatching-parallel-teams, dmj:brainstorming). User-facing diffs carry the experience lens (dmj:requesting-code-review).
 
 ## Rationalizations (all false)
 

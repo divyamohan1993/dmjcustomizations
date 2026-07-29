@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "dmj": {
+      "source": {
+        "source": "github",
+        "repo": "divyamohan1993/dmjcustomizations"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "dmj@dmj": true
+  }
+}

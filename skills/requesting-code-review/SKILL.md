@@ -24,7 +24,7 @@ A single reviewer misses by lens. Spin a team (`dmj:dispatching-parallel-teams`)
 
 User-facing diff: add a fifth **Experience** lens (template-generic look, added user burden, dead ends, animation without purpose, needs-docs-to-use), anchored by `dmj:crafting-experiences`.
 
-TeamCreate unavailable? Run the four lenses as native parallel Agent calls and synthesize the reports yourself. Give every teammate the diff range, not your history:
+Spawn all four in a single message so they run concurrently, then synthesize the reports yourself. Give every teammate the diff range, not your history:
 
 ```bash
 BASE_SHA=$(git rev-parse origin/main)   # or HEAD~1, or the task's start SHA

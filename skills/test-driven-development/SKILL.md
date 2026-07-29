@@ -41,6 +41,10 @@ All input hostile. Cover every applicable row; for each that does not apply, say
 
 Security past the input layer: `dmj:defending-in-depth`. Complexity floor: `dmj:enforcing-performance-budgets`.
 
+## Tests that execute but never assert
+
+A passing suite proves the code ran, not that anything was checked. The honest measure is the mutation score: deliberately break the code and count how many broken versions the suite catches. High coverage with a low mutation score means tests that call functions and assert nothing, which is the characteristic failure of quickly-written tests whatever wrote them. Run it (dmj:enforcing-quality-gates, T3) rather than trusting the green.
+
 ## Rationalizations: all mean "delete the code, start over"
 
 | Excuse | Reality |

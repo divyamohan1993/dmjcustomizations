@@ -40,9 +40,13 @@ Fresh and complete is load-bearing: a stale green proves nothing, a passing subs
 | Teammate finished | VCS diff inspected | their "success" report |
 | Requirements met | line-by-line vs the plan | tests pass |
 
+## The machine gate comes first
+
+Before any human or teammate judgement, the repo's own gate must be green: `bash qgate.sh --merge` (dmj:enforcing-quality-gates). A repo with no gate is not passing, it is unmeasured; generate one and run it. "Tests pass" is not the gate, and neither is a clean read of the diff. Everything below is what you do *after* the gate is green, because a green gate proves the code does what its tests say, not that its tests say the right thing.
+
 ## Adversarial fresh-context verification
 
-Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmj:requesting-code-review`, or a lone teammate via `dmj:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. (No TeamCreate? Run the refutation as a fresh native Agent call, judge it yourself.) advisor tool present: consult it before the done-claim as a second independent reviewer.
+Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmj:requesting-code-review`, or a lone teammate via `dmj:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. advisor tool present: consult it before the done-claim as a second independent reviewer.
 
 ## Verified stays verified
 

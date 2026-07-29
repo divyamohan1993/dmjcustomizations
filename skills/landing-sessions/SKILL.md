@@ -1,6 +1,6 @@
 ---
 name: landing-sessions
-description: Use when substantial work is wrapping up (a deliverable shipped, a long session winding down, the user signals done or thanks), before context is lost, or when teammates, worktrees, background tasks, or unrecorded learnings may be left dangling.
+description: Use when substantial work is wrapping up (a deliverable shipped, a session winding down, the user signals done), before context is lost, or when teammates, worktrees, background tasks, or unrecorded learnings may be left dangling.
 ---
 
 # Landing Sessions

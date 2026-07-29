@@ -13,7 +13,7 @@ NO new code in unmapped territory. Cannot name where similar logic already lives
 
 ## Parallel sweep (one lens per teammate)
 
-TeamCreate, then one teammate per lens via Agent (team_name, name, strongest available model); each posts findings with file:line evidence via SendMessage and may message other lenses to resolve overlaps. TeamCreate unavailable: run the lenses as native parallel Agent calls (prefer the harness's read-only Explore agent type when present), synthesize yourself.
+One teammate per lens via `Agent` (unique `name`, strongest available model), all spawned in a single message; prefer the harness's read-only Explore agent type for pure reads. Each posts findings with file:line evidence via `SendMessage` and may message other lenses to resolve overlaps. Synthesize yourself.
 
 | Lens | Question | Reads |
 |---|---|---|

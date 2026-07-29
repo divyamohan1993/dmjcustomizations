@@ -1,13 +1,11 @@
 ---
 name: using-dmj
-description: Use when starting any conversation or before any response, including clarifying questions, to find and apply the right skill before acting.
+description: Use when starting any conversation or task, to route the turn through the right skill before acting.
 ---
 
 # Using dmjcustomizations
 
-**1% rule: any chance a skill applies, invoke it via the Skill tool BEFORE responding**, clarifying questions included. Wrong invocation costs nothing; a skip costs the task. Not optional, not rationalizable. Scope: any turn that acts (reads or edits files, runs commands, spawns agents, commits to an approach). Pure conversation about already-verified state: answer directly.
-
-Never `Read` a skill file. Use the `Skill` tool so it loads correctly.
+Route, then act: when a listed skill covers the turn's work, invoke it via the Skill tool before acting, clarifying questions included. The skill, not the feeling, decides how much process the work deserves; CLAUDE.md's trivial-change threshold is the only exemption, and the skill is what confirms it applies. Pure conversation about already-verified state: answer directly. Never `Read` a skill file; the Skill tool loads it correctly.
 
 ## Priority when sources conflict
 
@@ -15,37 +13,19 @@ Never `Read` a skill file. Use the `Skill` tool so it loads correctly.
 2. Skills override default behavior.
 3. Default behavior is the floor.
 
-"Add X" / "fix Y" gives WHAT, not HOW: never skip a skill.
+"Add X" / "fix Y" gives WHAT, not HOW; the HOW lives in a skill.
 
-## Order
+## Order and types
 
-Process skills before implementation skills. "Build X" -> brainstorming. "Fix this bug" -> systematic-debugging. Then domain skills.
-
-## Types
-
-- **Rigid** (TDD, debugging, verification): follow exactly, never adapt away the discipline.
-- **Flexible** (patterns): adapt the principle to context.
-
-Skill states which.
+Process skills before implementation skills: "build X" -> dmj:brainstorming, "fix this bug" -> dmj:systematic-debugging, then domain skills. **Rigid** skills (TDD, debugging, verification) are followed exactly; **flexible** ones adapt the principle to context. Each states which.
 
 ## Capabilities resolve at invocation
 
-Skills name no fixed model, version, or date. At invocation use the strongest model and newest stable tooling, prefer native tools, degrade gracefully if absent. Delegated work uses Agent Teams (teammates that message each other), never a lone fire-and-forget agent. No TeamCreate -> same stages as parallel Agent calls.
-
-Default everything to parallel (teams, in-turn tool batching, spikes, lenses); serialize ONLY at user gates and real data dependencies. Speed never buys robustness, features, or performance down: the gates stay.
+Skills hardcode no model, version, or date: at invocation use the strongest model and newest stable tooling present, prefer native tools, degrade gracefully. Delegated work is named `Agent` spawns issued together in one message, coordinated via `SendMessage`; never a lone fire-and-forget agent. Default to parallel (teams, in-turn tool batching, spikes, lenses); serialize only at user gates and real data dependencies. Speed never buys the gates down.
 
 ## Hard conduct rule
 
 Deleting anything OUTSIDE your working folder needs the user's explicit confirmation, every time, even with full permissions. Cleaning up files you created inside it is free.
-
-## Red flags (you are rationalizing)
-
-| Thought | Reality |
-|---|---|
-| "Just a simple question" | A question that leads to action is a task. Check before acting. |
-| "I need context first" | Skill check precedes clarifying questions. |
-| "I'll do one thing first" | Check BEFORE any action. |
-| "I remember this skill" | Skills evolve. Re-invoke it. |
 
 Substantial work wrapping up: dmj:landing-sessions.
 

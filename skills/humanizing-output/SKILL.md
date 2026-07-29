@@ -1,6 +1,6 @@
 ---
 name: humanizing-output
-description: Use when shipping or finishing any project and before pushing prose (README, docs, landing copy, CHANGELOG, commit messages), or when setting up a repo, to strip em dashes and AI-tell language so the writing reads human. Symptoms: "remove em dashes", "sounds AI-generated", "humanize the copy", "before push", "no AI language".
+description: Use when shipping or finishing any project, before pushing prose (README, docs, landing copy, CHANGELOG, commit messages), or when setting up a repo, to strip em dashes and AI-tell language. Symptoms: "sounds AI-generated", "humanize the copy", "before push".
 ---
 
 # Humanizing Output

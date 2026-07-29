@@ -49,7 +49,7 @@ escape_for_json() {
 }
 
 escaped=$(escape_for_json "$content")
-session_context="<EXTREMELY_IMPORTANT>\nYou have dmj.\n\n**Below is your 'dmj:using-dmj' skill - how to find and use skills. For all other skills, use the 'Skill' tool:**\n\n${escaped}\n</EXTREMELY_IMPORTANT>${update_notice}"
+session_context="<dmj>\nYou have dmj. The routing skill below is pre-loaded; invoke every other skill via the 'Skill' tool.\n\n${escaped}\n</dmj>${update_notice}"
 
 # printf instead of heredoc: works around bash 5.3+ heredoc hang
 # (see obra/superpowers#571).

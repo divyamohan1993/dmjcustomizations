@@ -1,6 +1,6 @@
 ---
 name: observing-production
-description: Use when a service is heading to or running in production and health must be known without waiting for complaints: defining SLOs and alerts, wiring structured logs, correlation IDs, dashboards, or error tracking, or responding to and post-morteming an incident. Symptoms: "is prod healthy", no alerts defined, debugging from user reports, a repeat incident, an unread dashboard.
+description: Use when a service is heading to or running in production and health must be known without waiting for complaints: SLOs, alerts, structured logs, correlation IDs, dashboards, error tracking, incidents. Symptoms: "is prod healthy", no alerts defined, debugging from user reports, a repeat incident.
 ---
 
 # Observing Production

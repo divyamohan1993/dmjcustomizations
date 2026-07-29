@@ -21,7 +21,7 @@ Announce: "Writing this skill via TDD-for-docs."
 
 ## RED: baseline (parallel)
 
-Fresh-context TEAM, never one agent, never same-context self-review: `TeamCreate`, then an `Agent` teammate per pressure scenario, concurrent (TeamCreate unavailable: same scenarios as native parallel Agent calls). Each gets a realistic task WITHOUT the skill. Discipline skills: combine 3+ pressures (time, sunk cost, authority, exhaustion). Collect every choice and rationalization verbatim; the repeated excuses are your spec. Full method: testing-skills-with-teams.md.
+Fresh-context TEAM, never one agent, never same-context self-review: one `Agent` teammate per pressure scenario, all spawned in a single message so they run concurrently. Each gets a realistic task WITHOUT the skill. Discipline skills: combine 3+ pressures (time, sunk cost, authority, exhaustion). Collect every choice and rationalization verbatim; the repeated excuses are your spec. Full method: testing-skills-with-teams.md.
 
 ## GREEN: minimal skill
 
@@ -49,7 +49,7 @@ Flowchart ONLY a non-obvious decision loop, never reference material, code, or l
 
 ## Dynamic skills
 
-SKILL.md supports $ARGUMENTS, ${CLAUDE_SKILL_DIR}, and inline !`cmd` blocks executing BEFORE content loads: inject live state (date, git status, env) instead of hardcoding. Discipline-skill edits: re-run the relevant battery scenario (tests/pressure-test-battery.md) and scripts/behavioral-test.sh before release.
+SKILL.md supports preprocessing that runs BEFORE content loads: an arguments placeholder (dollar-prefixed ARGUMENTS), a skill-dir substitution, and inline shell blocks (exclamation mark plus a backticked command). Never write those token sequences literally in a skill body; the loader substitutes and executes them even inside code spans. Use them to inject live state (date, git status, env) instead of hardcoding. Discipline-skill edits: re-run the relevant battery scenario (tests/pressure-test-battery.md) and scripts/behavioral-test.sh before release.
 
 ## Anti-patterns
 

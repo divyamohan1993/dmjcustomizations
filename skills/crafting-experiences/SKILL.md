@@ -1,6 +1,6 @@
 ---
 name: crafting-experiences
-description: Use when building, changing, or reviewing anything a user sees or touches (a page, component, app, flow, CLI output, onboarding, error message, email), when deciding whether a feature should exist, how a project is delivered (web URL, PWA, native, offline), or how it should feel (immersion, onboarding, personalization, motion), or when work looks done but feels generic, clunky, or burdensome.
+description: Use when building, changing, or reviewing anything a user sees or touches (page, component, app, flow, CLI output, error message), when deciding whether a feature should exist, how a project is delivered, or how it should feel, or when work looks done but feels generic, clunky, or burdensome.
 ---
 
 # Crafting Experiences
@@ -16,6 +16,8 @@ Before building, answer in one sentence each: who uses this, when, and why does 
 | Bar | Floor |
 |---|---|
 | First second | The experience hooks attention immediately; distinctive, memorable, never mistakable for a template. Mistakable for a template: redesign |
+| One story | An app is one complete story with a minimal interaction surface: an obvious next step at every moment, nothing to configure or tend, Apple-grade straightforwardness. One narrator: a single voice across UI, errors, receipts, email, tone tuned to the domain's seriousness, never default-playful. A feature that forks the narrative or adds a control the story does not need: cut |
+| Story edges | The journey's edges are designed beats, not leftovers. First frame: every zero-data state names status, teaches one thing, opens one path to first value. Failure: recover in place, input preserved, undo offered, no blame. Interruption: one-tap resume with exact state, never a return-nag (the pull to resume already exists; remove re-entry friction). Ending: export and deletion are reachable, confirmed, executable end to end |
 | Cinematic with purpose | Tactile depth, micro-interactions, transitions that serve comprehension. Delight beats decoration; every animation earns existence; reduced motion respected |
 | Burden | Every feature must subtract hassle. A feature that adds steps, choices, or upkeep does not ship |
 | Completeness | End-to-end working or not shipped. No TODO, placeholder, or dead control in any user-facing path |
@@ -32,7 +34,7 @@ Specs, maps, and plans this library writes are working artifacts for agents: one
 
 ## Parallel pattern
 
-User-facing diff: an **experience lens** joins the review panel (dmj:requesting-code-review) beside security and performance. Competing visual directions: parallel spikes in disposable worktrees, screenshots decide (dmj:brainstorming). TeamCreate unavailable: run the lens as a native parallel Agent call.
+User-facing diff: an **experience lens** joins the review panel (dmj:requesting-code-review) beside security and performance. Competing visual directions: parallel spikes in disposable worktrees, screenshots decide (dmj:brainstorming).
 
 ## Rationalizations (all false)
 
@@ -46,6 +48,7 @@ User-facing diff: an **experience lens** joins the review panel (dmj:requesting-
 | "Native/desktop feels more premium" | Premium is craft, not container; install and updates are user burden. The URL stays the default until a real need beats it, and the user confirms the switch |
 | "Data is correct on reload, refresh is normal" | Staleness anywhere breaks the world; one live system or it feels like paperwork |
 | "Deeper tracking means better personalization" | Trust is the substrate personalization runs on; surveillance burns it. Consented first-party signals only |
+| "Nudge them back with what they left unfinished" | Zeigarnik tension lacks validity (2025 meta-analysis); the evidenced effect is spontaneous resumption. Make re-entry effortless instead; a return-nag is a compulsion mechanic |
 
 ## Red flags (stop)
 
@@ -58,7 +61,8 @@ User-facing diff: an **experience lens** joins the review panel (dmj:requesting-
 - A delivery mode other than the web chosen or built without the user's explicit confirmation.
 - A visible count, list, or panel left stale after the change it reflects.
 - Personalization built on session replay, fingerprinting, or bought behavioral data.
-- A streak, infinite feed, or urgency mechanic tuned for engagement instead of the user's goal.
+- A streak, infinite feed, urgency mechanic, return-nag, unclosable curiosity gap, or points-badges veneer tuned for engagement instead of the user's goal.
+- An error that dead-ends, wipes input, or blames the user; an empty state that is just blank.
 
 **Headless:** apply these bars autonomously; PARK for the user both taste decisions that define brand identity and any switch away from web delivery.
 

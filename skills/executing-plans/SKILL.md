@@ -21,10 +21,11 @@ From each task's Depends-on, group into waves: a wave is the set whose dependenc
 
 ## Step 3: Fan out per wave (parallel between gates)
 
-Spawn a team (dmj:dispatching-parallel-teams; if TeamCreate is unavailable, run the wave as native parallel `Agent` calls and synthesize yourself); put the wave's tasks on a shared list. Teammates CLAIM one each, never fire-and-forget. Each teammate:
+Spawn a team (dmj:dispatching-parallel-teams): one named `Agent` per task, all in a single message so the wave runs concurrently. Put the wave's tasks on a shared list. Teammates CLAIM one each, never fire-and-forget. Each teammate:
 
 - works the task by dmj:test-driven-development,
 - posts a midway progress message, can message peers about shared interfaces,
+- logs any forced plan deviation under Deviations in `implementation-notes.md` (conservative option chosen) and keeps going,
 - runs the task's verification command, reports the actual output,
 - commits inside its own worktree.
 
@@ -32,7 +33,7 @@ You (lead) do not implement; you coordinate, unblock, hold the gates.
 
 ## Step 4: Review gate (serial, fresh-context)
 
-A wave's tasks report done: gate before the next wave. Per task, a FRESH-context reviewer (not the implementer) confirms acceptance criteria pass and spec is met (dmj:requesting-code-review). Re-dispatch the implementer for blocking findings; re-review only what failed. Integrate worktrees, then run the full suite to catch cross-task breakage before opening the next wave.
+A wave's tasks report done: gate before the next wave. Per task, a FRESH-context reviewer (not the implementer) confirms acceptance criteria pass and spec is met (dmj:requesting-code-review); the lead reviews the Deviations log, since a deviation can invalidate a later task. Re-dispatch the implementer for blocking findings; re-review only what failed. Integrate worktrees, then run the full suite to catch cross-task breakage before opening the next wave.
 
 ## Step 5: Finish
 

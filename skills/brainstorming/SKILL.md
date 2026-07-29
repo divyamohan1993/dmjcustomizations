@@ -9,7 +9,9 @@ Idea to approved, reviewed design before implementation.
 
 ## Iron Law
 
-NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, user-approved. Every task, including ones that look too simple to need a design: "too simple" is where unexamined assumptions waste the most work. Spikes are the only code allowed first, and only in a disposable worktree.
+NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, user-approved. Spikes are the only code allowed first, and only in a disposable worktree.
+
+**Exactly one exemption exists**, the trivial-change threshold defined in CLAUDE.md: one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. Every clause must hold; fail one and this law applies in full. The list is conjunctive because "too simple to need a design" is the rationalization this law stops: judge against the clauses, not the feeling.
 
 ## Ceremony tiers (state the tier to the user)
 
@@ -32,19 +34,19 @@ Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, 
 
 ## Flow (parallel between gates, serial at gates)
 
-1. **Fan out context + first questions together.** Teammate sweep (dmj:dispatching-parallel-teams) over existing code, patterns, constraints WHILE asking up to 4 batched AskUserQuestion items. Never serialize.
+1. **Fan out context + first questions together.** Teammate sweep (dmj:dispatching-parallel-teams) over existing code, patterns, constraints WHILE asking up to 4 batched AskUserQuestion items; switch to a one-question-at-a-time interview, highest architectural impact first, only when each answer shapes the next question. Territory unfamiliar to you or the user: open with a **blind-spot pass**, naming the unknown unknowns (what good looks like, prior art, potholes) before any design.
 2. **Decompose if oversized.** Request spans independent subsystems: split into sub-projects, brainstorm only the first. Each gets its own spec, plan, build.
 3. **Approaches.** Prose tradeoff comparison + your recommendation. When they genuinely compete on a measurable axis, run parallel spikes, decide on evidence. Threat-model security (dmj:defending-in-depth); weigh complexity (dmj:enforcing-performance-budgets).
 4. **Present the design ONCE**, one annotation pass. Cover architecture, interfaces, data flow, error handling, testing, security, a machine-checkable acceptance-criteria list, and an assumption ledger (every belief, confirmed or assumed).
-5. **Write and commit** to `docs/dmj/specs/YYYY-MM-DD-<topic>-design.md` (user path wins).
-6. **Adversarial review by FRESH-context teammates**, never self-review. One lens each: pre-mortem (prod failure), YAGNI (cut unrequested scope), ambiguity (two engineers building different things), security (dmj:defending-in-depth). TeamCreate unavailable: run lenses as native parallel `Agent` calls. Fix blocking findings; re-run only the failed lens.
+5. **Write and commit** to `docs/dmj/specs/YYYY-MM-DD-<topic>-design.md` (user path wins). A reference beats prose: when source code, a failing test suite, or a throwaway HTML mock carries the intent better, the spec links that reference and keeps only the decisions and criteria.
+6. **Adversarial review by FRESH-context teammates**, never self-review. One lens each: pre-mortem (prod failure), YAGNI (cut unrequested scope), ambiguity (two engineers building different things), security (dmj:defending-in-depth). One named `Agent` per lens, all spawned in a single message. Fix blocking findings; re-run only the failed lens.
 7. **User approval gate.** User reviews the committed spec; apply changes, re-review, proceed only on approval. Native plan mode present: its approval satisfies this gate.
 
 ## Spikes, visuals, headless
 
 **Spikes:** one disposable worktree each (dmj:using-git-worktrees), force-discarded after. Conclusions and evidence survive in the doc; code never merges.
 
-**Visuals:** no local server; AskUserQuestion previews, one Playwright-rendered HTML file, or text comparison.
+**Visuals:** react before wiring: a throwaway HTML mock with fake data, AskUserQuestion previews, one Playwright-rendered file, or text comparison. No local server.
 
 **Headless (no interactive user):** at each gate, record the choice in the assumption ledger, pick the lowest-blast-radius safe default, PARK decisions the user must own (irreversible, security, cost, public surface). Never deadlock.
 

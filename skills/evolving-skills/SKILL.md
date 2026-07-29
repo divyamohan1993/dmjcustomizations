@@ -1,6 +1,6 @@
 ---
 name: evolving-skills
-description: Use when a skill misfired or proved incomplete in real use and a learning should improve it, when wrapping a session that produced skill learnings, or when running the skill-improvement pass. Symptoms: "this skill was wrong", "update the skill from what we learned", "self-improving skills", "process skill learnings".
+description: Use when a skill misfired or proved incomplete in real use, when wrapping a session that produced skill learnings, or when running the skill-improvement pass. Symptoms: "this skill was wrong", "update the skill from what we learned".
 ---
 
 # Evolving Skills
@@ -32,6 +32,7 @@ Trigger: dmj:landing-sessions runs a proposal pass at session end when the queue
 | Gated proposal | No proposal skips validate plus the behavioral-diff gate |
 | Human merge | A skill change lands only when a human merges a PR. Never auto-merge |
 | Reversible | One skill edit per PR, small and revertable; the CHANGELOG records intent |
+| Dated laws | Every added law names the failure or model behavior it compensates for, so a later pass can test whether that behavior still exists and retire the law when it does not |
 
 ## Red flags (stop)
 

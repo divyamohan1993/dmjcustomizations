@@ -1,6 +1,6 @@
 ---
 name: enforcing-performance-budgets
-description: Use when something is slow or might be ("it feels slow", "is this fast enough"), or when a choice affects speed: a slow endpoint, an N+1 query, nested loops over large input, a heavy bundle, picking a stack, database, framework, data structure, or algorithm, adding a hot-path dependency, or reviewing code for performance. Also when a stack or hosting choice affects money: cost estimates, free-tier fit, oversized infrastructure.
+description: Use when something is slow or might be, or when a choice affects speed or money: a slow endpoint, an N+1 query, nested loops over large input, a heavy bundle, picking a stack or data structure, a hot-path dependency, a perf review, a cost estimate, free-tier fit.
 ---
 
 # Enforcing Performance Budgets
@@ -48,7 +48,7 @@ Load-test at peak times a safety factor; soak to catch leaks and GC stalls. The 
 
 ## Parallel pattern
 
-Run a dedicated **performance lens as a fresh-context teammate** in every review panel (never same-context self-review). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmj:using-git-worktrees); the benchmark decides. Coordinate via TeamCreate + Agent (team_name, name); TeamCreate unavailable: race as native parallel Agent calls.
+Run a dedicated **performance lens as a fresh-context teammate** in every review panel (never same-context self-review). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmj:using-git-worktrees); the benchmark decides. Coordinate via named `Agent` spawns issued in a single message.
 
 ## Rationalization table
 

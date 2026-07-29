@@ -1,6 +1,6 @@
 ---
 name: tracing-codebases
-description: Use when you need to understand how an unfamiliar or large codebase actually works (how modules interconnect, where execution starts, how data flows, how a feature is wired) and the deliverable is an explanation in chat, such as onboarding, "how does X work", "map the architecture", or auditing whether code matches its docs.
+description: Use when you need to understand how an unfamiliar or large codebase actually works (module interconnection, execution start, data flow, feature wiring) and the deliverable is an explanation in chat: onboarding, "how does X work", "map the architecture", auditing code against docs.
 disallowed-tools: Write, Edit, NotebookEdit
 ---
 
@@ -16,7 +16,7 @@ Code is the only source of truth: READMEs, comments, design docs are hints to ve
 
 1. **Recon** (you, fast): Glob and Grep for languages, manifests, entry points, top-level shape. No deep reads; triage for partitioning.
 2. **Partition**: 3-6 coherent slices by layer or feature boundary (API, domain, data, UI, jobs, shared). A user focus becomes the spine: still map everything, bias depth toward the focus.
-3. **Fan out**: TeamCreate, then one explorer teammate per slice via Agent (team_name, name) in a single message so all run concurrently. No TeamCreate: run the slices as native parallel Agent calls (read-only Explore agent type when present) and synthesize yourself.
+3. **Fan out**: one explorer teammate per slice via `Agent` (unique `name`) in a single message so all run concurrently; prefer the read-only Explore agent type. Synthesize yourself.
 4. **Explorer charter** (each): the slice's purpose and key files + paths; trace execution in and out; trace data reads and writes; find every cross-boundary link and CONFIRM the other side with the owning explorer via SendMessage, never assume; post a midway update; flag everything unverifiable and every place code contradicts docs.
 5. **Synthesize**: reconcile boundary claims (on conflict, read the code yourself), deliver in chat: system shape, execution flow, data flow, interconnection map, docs-vs-code discrepancies, unknowns. Cite file:line throughout.
 

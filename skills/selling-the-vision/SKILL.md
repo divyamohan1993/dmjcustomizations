@@ -1,6 +1,6 @@
 ---
 name: selling-the-vision
-description: Use when writing anything whose job is to make a prospect CARE in seconds, a landing-page hero, pitch deck, launch or LinkedIn post, tagline, headline, README hero, demo script, announcement, or ad. Not the product's own UI (that is dmj:crafting-experiences); this is the persuasion that gets someone to try it.
+description: Use when writing anything whose job is to make a prospect CARE in seconds: a landing hero, pitch deck, launch or LinkedIn post, tagline, README hero, demo script, ad. Not the product's own UI (dmj:crafting-experiences); this is the persuasion that gets someone to try it.
 ---
 
 # Selling the Vision
@@ -28,7 +28,7 @@ The first line or frame lands the single most compelling promise, alone. Needs a
 
 ## Parallel pattern
 
-Competing hooks or taglines: write 3 to 5 as parallel spikes, a fresh-context "would this stop the scroll?" judge picks (dmj:dispatching-parallel-teams). Marketing copy in review gets the experience lens (dmj:requesting-code-review). TeamCreate unavailable: native parallel Agent calls, judge yourself.
+Competing hooks or taglines: write 3 to 5 as parallel spikes, a fresh-context "would this stop the scroll?" judge picks (dmj:dispatching-parallel-teams). Marketing copy in review gets the experience lens (dmj:requesting-code-review).
 
 ## Rationalizations (all false)
 

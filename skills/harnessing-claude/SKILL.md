@@ -1,6 +1,6 @@
 ---
 name: harnessing-claude
-description: Use when orchestrating any nontrivial task and choosing its execution shape (teams, workflows, plan mode, background runs), when a stronger reviewer or structured output would raise quality, when library or API knowledge may be stale, or when unsure which Claude Code capability fits the job.
+description: Use when orchestrating any nontrivial task and choosing its execution shape (teams, workflows, plan mode, goal loops, background runs), when a stronger reviewer or structured output would raise quality, or when library or API knowledge may be stale.
 ---
 
 # Harnessing Claude
@@ -11,7 +11,7 @@ Route every job through the strongest native capability available. Probe availab
 
 | Need | Use |
 |---|---|
-| Parallel work, shared context, peer messaging | Agent Teams: TeamCreate + Agent(team_name, name) + SendMessage |
+| Parallel work, shared context, peer messaging | Named teammates: several `Agent(name:)` calls in ONE message + `SendMessage({to: name})`. No team object to create; `team_name` is deprecated and ignored |
 | Deterministic fan-out: loops, judge panels, schema-validated outputs, resumable runs | Workflow tool (requires user opt-in): pipeline() default, parallel() only at true barriers, agent(prompt, {schema}) for validated structured returns |
 | Design approval gate | Native plan mode when present; else the skill's own gate |
 | Stronger reviewer at a gate | advisor tool when available: consult before committing to an approach and before any done-claim |
@@ -23,7 +23,7 @@ Route every job through the strongest native capability available. Probe availab
 | Cross-session knowledge | memory files + MEMORY.md index, written at decision time (dmj:landing-sessions) |
 | User choices | AskUserQuestion: batch up to 4, multiSelect, previews for visual compare |
 
-Dynamic skill authoring ($ARGUMENTS, !`cmd` preprocessing): dmj:writing-skills.
+Dynamic skill authoring (argument and inline-command preprocessing): dmj:writing-skills.
 
 ## Maximums
 

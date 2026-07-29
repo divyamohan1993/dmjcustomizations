@@ -1,6 +1,6 @@
 ---
 name: equipping-projects
-description: Use when entering a fresh or under-tooled repo, starting a new project, or before the first commit leaves the machine, to detect and wire the guard rails and harness the project calls for: hooks (secret scan, prose gate), CI mirroring local gates, MCP and preview config, project memory. Symptoms: no hooks, no CI, no scanner, "set up the repo", "wire the tooling", a first task in an unequipped codebase.
+description: Use when entering a fresh or under-tooled repo, starting a new project, or before the first commit leaves the machine, to wire the guard rails the project calls for (hooks, secret scan, CI mirroring local gates, MCP config, project memory). Symptoms: no hooks, no CI, "set up the repo", a first task in an unequipped codebase.
 ---
 
 # Equipping Projects
@@ -28,6 +28,10 @@ On any repo you work in: the equip pass has run, or was consciously proposed. A 
 | Agents will work here | Project CLAUDE.md seeded with build, test, and run commands and the repo's conventions; file-type or directory conventions split into path-scoped .claude/rules/ (globs in paths frontmatter) so CLAUDE.md stays lean and rules load only where they apply |
 
 Nothing on the list fires without its signal: a headless CLI gets no browser tooling, a repo with no prose gets no prose gate. Fit is the point.
+
+## Wire the quality gate
+
+Part of equipping any repo is generating its gate: `bash install-gate.sh <repo>` (dmj:enforcing-quality-gates) detects the stack and writes `qgate.sh`, `qgate.config.sh`, and a CI job. Commit all three. Pre-commit runs `--fast`, pre-push and PR run `--merge`, nightly runs `--deep`. A repo is not equipped until its gate runs and reports every lane.
 
 ## Chain, never replace
 
