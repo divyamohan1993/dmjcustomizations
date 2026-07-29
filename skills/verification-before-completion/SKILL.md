@@ -26,7 +26,7 @@ BEFORE any status claim or expression of satisfaction:
 Skipping a step is lying, not verifying.
 ```
 
-Fresh and complete is load-bearing: a stale green proves nothing, a passing subset hides the failure you skipped. Quote output verbatim, do not summarize: "all green" is a claim, the runner's `34 passed, 0 failed` is auditable evidence.
+A stale green proves nothing and a passing subset hides the failure you skipped. Quote output verbatim, do not summarize: "all green" is a claim, the runner's `34 passed, 0 failed` is auditable evidence.
 
 ## Claim to evidence
 
@@ -42,7 +42,7 @@ Fresh and complete is load-bearing: a stale green proves nothing, a passing subs
 
 ## The machine gate comes first
 
-Before any human or teammate judgement, the repo's own gate must be green: `bash qgate.sh --merge` (dmj:enforcing-quality-gates). A repo with no gate is not passing, it is unmeasured; generate one and run it. "Tests pass" is not the gate, and neither is a clean read of the diff. Everything below is what you do *after* the gate is green, because a green gate proves the code does what its tests say, not that its tests say the right thing.
+Before any human or teammate judgement, the repo's own gate must be green: `bash qgate.sh --merge`. No gate in the repo means generate one first (dmj:enforcing-quality-gates), then run it. "Tests pass" is not the gate, and neither is a clean read of the diff. Everything below is what you do *after* the gate is green, because a green gate proves the code does what its tests say, not that its tests say the right thing.
 
 ## Adversarial fresh-context verification
 

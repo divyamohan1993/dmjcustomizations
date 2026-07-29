@@ -23,19 +23,13 @@ Load when writing/changing tests, adding mocks, or tempted to add test-only meth
 | Tests as afterthought | "implementation done, tests next" | tests first; you cannot claim done without them |
 | Over-complex mock | mock setup is >50% of the test | use real components in an integration test |
 
-## 1. Asserting on mock behavior
+## Gates before you write it
 
-```typescript
-// BAD: proves the mock exists, nothing about the component
-expect(screen.getByTestId('sidebar-mock')).toBeInTheDocument();
-// GOOD: test real behavior
-render(<Page />);                                   // do not mock the sidebar
-expect(screen.getByRole('navigation')).toBeInTheDocument();
-```
+- Asserting on a mock element: "real behavior, or mock existence?" Existence means delete the assertion or unmock it.
+- Adding a method to a production class: "called only by tests?" (move it out) and "does this class own this resource's lifecycle?" (no means wrong class).
+- Mocking anything: name the real method's side effects and whether the test depends on any. If it does, mock one level lower, at the actual slow or external call, never the high-level method. Unsure what the test needs? Run against the real implementation first, observe, then mock minimally. "I'll mock this to be safe" is the red flag.
 
-Gate: before asserting on any mock element, ask "real behavior or mock existence?" If existence, delete the assertion or unmock.
-
-## 2. Test-only methods in production
+## Test-only production method
 
 ```typescript
 // BAD: destroy() exists only so afterEach can call it
@@ -47,9 +41,7 @@ export async function cleanupSession(s: Session) {
 }
 ```
 
-Gate: before adding a method to a production class, ask "only used by tests?" (yes, move it out) and "does this class own this resource's lifecycle?" (no, wrong class).
-
-## 3. Mocking without understanding
+## Mock without understanding
 
 ```typescript
 // BAD: the mock removed the config write the test depends on, so the duplicate is never detected
@@ -60,9 +52,7 @@ await addServer(config);   // should throw, silently does not
 vi.mock('MCPServerManager');  // just the slow server startup
 ```
 
-Gate: before mocking, ask what side effects the real method has and whether the test depends on any. If so, mock one level lower (the actual slow/external call), not the high-level method. Unsure what the test needs? Run against the real implementation first, observe, then add minimal mocking. Red flag: "I'll mock this to be safe."
-
-## 4. Incomplete mocks
+## Incomplete mock
 
 ```typescript
 // BAD: omits metadata that downstream code reads -> passes here, breaks in integration
@@ -72,11 +62,7 @@ const res = { status: 'success', data: { userId: '123', name: 'Alice' },
               metadata: { requestId: 'req-789', timestamp: 1234567890 } };
 ```
 
-Iron rule: mock the COMPLETE structure as it exists in reality, not just the fields this test reads. Partial mocks fail silently when other code depends on omitted fields. Uncertain? Include every documented field.
-
-## 5. Tests as afterthought
-
-"Implementation complete, no tests, ready for testing" is not complete. Testing is part of implementation. TDD makes this structurally impossible: the test came first.
+Iron rule: mock the COMPLETE structure as it exists in reality, not just the fields this test reads. `metadata` is there because downstream code reads it, not because this test does. Partial mocks fail silently; uncertain means include every documented field.
 
 ## The bottom line
 
