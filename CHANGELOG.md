@@ -5,6 +5,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 
 ## [Unreleased]
 
+### Changed
+
+- **validate.js rewritten for judgement-era lint**: the "Use when" literal-prefix gate and the "subagent" word ban are gone (the first compelled a format where the situation-naming is the real bar, now stated in dmj:writing-skills; the second bans the harness's own current vocabulary). The handoff check accepts any routing pointer (`dmj:` reference included). Word caps stay as runaway guards. Three protections added, all sub-second: security-token presence in defending-in-depth (ten classes, so relocation can never become deletion), a per-skill protection-line ratchet (`scripts/protection-baseline.json`; a drop fails CI unless a CHANGELOG "Removed" entry names the skill), and a guard-engine parity tripwire (both pre-tool-guard engines must carry the same verdict and pattern tokens).
+- writing-skills and best-practices description doctrine synced to the new lint: the bar is a sharply named triggering situation, not a compelled prefix; description edits are deliberate, keep the distinguishing trigger, and land in their own commit. The dead routing-gauntlet certification language is replaced by that live constraint.
+
 ### Security
 
 - **Gate contradiction closed**: pre-commit-secrets.sh advised `git commit` with the exact hook-skipping flag that hooks/pre-tool-guard hard-denies, in 5 places. All advice now names only the per-line `gitleaks:allow` pragma (in-diff, reviewable, scoped); the no-engine fail-closed branch offers no bypass at all, because nothing was scanned.

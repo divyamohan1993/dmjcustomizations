@@ -33,7 +33,7 @@ Narrow bridge with cliffs -> low freedom and guardrails. Open field -> high free
 
 The description is the ONLY thing pre-loaded for discovery, and Claude picks skills from it among many. Rules:
 
-- Third person, starts "Use when", under 500 chars.
+- Third person, under 500 chars, naming the situation that triggers it (most read naturally as "Use when...", but the situation, not the prefix, is the rule).
 - ONLY triggering conditions and symptoms. Include the error strings, symptom words, synonyms an agent would search for.
 - NEVER summarize the workflow.
 
@@ -49,7 +49,7 @@ description: Use when executing an implementation plan with independent tasks
 
 Describe the problem (race condition, flaky test), not a language-specific symptom (setTimeout), unless the skill itself is technology-specific.
 
-A shipped description is a certified artifact, not prose: the routing gauntlet tests exactly these name and description pairs against confusable siblings. Editing one invalidates that certification for the pair, so either re-run the gauntlet or leave the wording alone. Body edits carry no such cost.
+A shipped description is load-bearing routing state, not prose: Claude picks among skills by these lines alone, against confusable siblings. Edit one deliberately, preserve the distinguishing trigger, and land description edits in their own commit so a routing regression is bisectable. Body edits carry no such cost.
 
 ## Naming
 
@@ -86,7 +86,7 @@ No "before August 2025, use the old API." It rots. Put superseded guidance in a 
 
 ## Quick checklist
 
-- [ ] Description: third person, "Use when", triggers only, no workflow, under 500 chars; unchanged, or the gauntlet re-run
+- [ ] Description: third person, triggers only, no workflow, under 500 chars; edits deliberate, distinguishing trigger kept, own commit
 - [ ] Body assumes a smart reader; every sentence earns its tokens
 - [ ] Freedom level matches task fragility; steps prescribed only where the path is narrow
 - [ ] Name is verb-first and equals the directory

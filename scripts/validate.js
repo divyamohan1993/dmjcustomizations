@@ -1,10 +1,21 @@
 #!/usr/bin/env node
-// Structural self-audit in ONE process (was ~180 subprocess spawns in bash,
-// ~13s on Git-Bash; this is ~0.1s). Exit 1 on any violation.
+// Structural self-audit in ONE process (~0.1s). Exit 1 on any violation.
+// Checks structure and invariants, not judgement: caps are runaway guards,
+// the description bar lives in dmj:writing-skills, and content decisions
+// belong to authors plus review. Three protections are mechanical here:
+//   - security tokens must stay present in defending-in-depth (relocation
+//     during a dedup pass must never become deletion),
+//   - a skill's protection-line count may only drop with a CHANGELOG
+//     "Removed" entry naming the skill (silent law deletion fails CI),
+//   - the two pre-tool-guard engines must keep matching pattern tokens
+//     (drift tripwire; the suites that once covered them are gone by order).
+// Regenerate the protection baseline after a deliberate change:
+//   node scripts/validate.js --update-baseline
 'use strict';
 const fs = require('fs');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
+const UPDATE_BASELINE = process.argv.includes('--update-baseline');
 let fail = 0;
 const flag = (m) => { console.log('FAIL: ' + m); fail = 1; };
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
@@ -13,11 +24,29 @@ let PV, MV;
 try { PV = JSON.parse(read('.claude-plugin/plugin.json')).version; } catch { flag('plugin.json does not parse'); }
 try { MV = JSON.parse(read('.claude-plugin/marketplace.json')).plugins[0].version; } catch { flag('marketplace.json does not parse'); }
 if (PV && MV && PV !== MV) flag(`version mismatch: plugin=${PV} marketplace=${MV}`);
-try { if (!read('CHANGELOG.md').includes('[' + PV + ']')) flag(`CHANGELOG.md has no [${PV}] entry`); } catch { flag('CHANGELOG.md unreadable'); }
+let changelog = '';
+try {
+  changelog = read('CHANGELOG.md');
+  if (!changelog.includes('[' + PV + ']')) flag(`CHANGELOG.md has no [${PV}] entry`);
+} catch { flag('CHANGELOG.md unreadable'); }
+// Topmost slice: [Unreleased] plus the newest release section, where a
+// deliberate protection removal must be recorded.
+const clTop = (() => {
+  const parts = changelog.split(/\n## \[/);
+  return parts.slice(0, 3).join('\n## [');
+})();
 
 const DASH = /[‒–—―−‐‑]/;
 const skillsDir = path.join(root, 'skills');
 const skills = fs.readdirSync(skillsDir).filter(n => fs.statSync(path.join(skillsDir, n)).isDirectory());
+
+// Protection-line metric: MUST/NEVER (exact case, word-bound) + "Iron Law".
+const protCount = (s) => (s.match(/\b(MUST|NEVER)\b/g) || []).length + (s.match(/Iron Law/g) || []).length;
+const BASELINE_PATH = 'scripts/protection-baseline.json';
+let baseline = {};
+try { baseline = JSON.parse(read(BASELINE_PATH)); } catch { if (!UPDATE_BASELINE) flag(`${BASELINE_PATH} missing or unparsable; run: node scripts/validate.js --update-baseline`); }
+const newBaseline = {};
+
 for (const n of skills) {
   const rel = `skills/${n}/SKILL.md`;
   let body;
@@ -29,10 +58,8 @@ for (const n of skills) {
   if (name !== n) flag(`${n}: frontmatter name '${name}' != dir`);
   const desc = (front.match(/^description:\s*(.+)$/m) || [])[1] || '';
   if (desc.length >= 500) flag(`${n}: description ${desc.length} chars`);
-  if (!desc.startsWith('Use when')) flag(`${n}: description must start 'Use when'`);
   if (DASH.test(body)) flag(`${n}: unicode dash`);
   if (/task tool/i.test(body)) flag(`${n}: forbidden 'Task tool'`);
-  if (/subagent/i.test(body)) flag(`${n}: forbidden 'subagent'`);
   // word counts: total = all body words; prose = excluding fenced blocks + table rows
   let inFence = false, prose = [], total = [];
   for (const line of content.split('\n')) {
@@ -47,10 +74,18 @@ for (const n of skills) {
   const pw = wc(prose), tw = wc(total);
   if (pw >= cap) flag(`${n}: prose ${pw} (cap ${cap})`);
   if (tw >= 1800) flag(`${n}: total ${tw} (cap 1800)`);
-  if (!/(next:|handoff|back to)/i.test(content.slice(-400))) flag(`${n}: no handoff line at end`);
+  if (!/(next:|handoff|back to|dmj:[a-z][a-z-]+)/i.test(content.slice(-400))) flag(`${n}: no handoff or routing pointer at end`);
+
+  // Protection-line ratchet: a drop needs a CHANGELOG "Removed" entry naming the skill.
+  const pc = protCount(content);
+  newBaseline[n] = pc;
+  if (!UPDATE_BASELINE && baseline[n] !== undefined && pc < baseline[n]) {
+    const recorded = /### Removed/.test(clTop) && clTop.includes(n);
+    if (!recorded) flag(`${n}: protection lines dropped ${baseline[n]} -> ${pc} with no CHANGELOG "Removed" entry naming the skill`);
+  }
 }
 
-// A4: reference files (non-SKILL.md) steer behavior too; gate them for dashes + forbidden tokens.
+// Reference files (non-SKILL.md) steer behavior too; gate them for dashes + dead vocab.
 const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
   const p = path.join(d, e.name);
   return e.isDirectory() ? walk(p) : [p];
@@ -61,11 +96,42 @@ for (const p of walk(skillsDir)) {
   const ref = fs.readFileSync(p, 'utf8');
   if (DASH.test(ref)) flag(`${rel}: unicode dash`);
   if (/task tool/i.test(ref)) flag(`${rel}: forbidden 'Task tool'`);
-  if (/subagent/i.test(ref)) flag(`${rel}: forbidden 'subagent'`);
 }
+
+// Security-token presence: consolidation must never become deletion. Each class
+// greps positive in defending-in-depth/SKILL.md, the surviving home.
+try {
+  const did = read('skills/defending-in-depth/SKILL.md');
+  const TOKENS = [
+    [/AEGIS-256/, 'AEGIS-256'], [/ML-KEM-1024/, 'ML-KEM-1024'],
+    [/ML-DSA-87/, 'ML-DSA-87'], [/SLH-DSA/, 'SLH-DSA'],
+    [/argon2id/i, 'Argon2id'], [/per-record/i, 'per-record DEK'],
+    [/KEK/, 'KEK wrapping'], [/hash-chain/i, 'hash-chained audit'],
+    [/egress/i, 'egress allowlist'], [/hybrid/i, 'hybrid PQC'],
+  ];
+  for (const [re, label] of TOKENS) {
+    if (!re.test(did)) flag(`defending-in-depth: security token missing: ${label}`);
+  }
+} catch { flag('skills/defending-in-depth/SKILL.md unreadable'); }
+
+// Guard-engine parity tripwire: both engines must carry the same verdict and
+// pattern tokens. Token-level, not regex-equivalence: it catches a deleted or
+// renamed rule, which is the drift that matters.
+try {
+  const guardSh = read('hooks/pre-tool-guard');
+  const guardJs = read('hooks/pre-tool-guard.js');
+  for (const tok of ['noverify', 'forcepush', 'hardreset', '--no-verify', '-with-lease', '--hard']) {
+    if (!guardSh.includes(tok)) flag(`hooks/pre-tool-guard: guard token missing: ${tok}`);
+    if (!guardJs.includes(tok)) flag(`hooks/pre-tool-guard.js: guard token missing: ${tok}`);
+  }
+} catch { flag('pre-tool-guard engine files unreadable'); }
 
 const rows = (read('README.md').match(/^\| [a-z]/gm) || []).length;
 if (rows !== skills.length) flag(`README rows (${rows}) != skill count (${skills.length})`);
 
+if (UPDATE_BASELINE) {
+  fs.writeFileSync(path.join(root, BASELINE_PATH), JSON.stringify(newBaseline, null, 2) + '\n');
+  console.log(`baseline written: ${BASELINE_PATH} (${Object.keys(newBaseline).length} skills)`);
+}
 if (fail) process.exit(1);
 console.log(`VALIDATION PASS: ${skills.length} skills, version ${PV}`);
