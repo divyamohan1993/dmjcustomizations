@@ -11,11 +11,11 @@ Same session with no plan file? Use dmj:team-driven-development instead.
 
 ## Step 1: Load and critique
 
-Read the plan. Verify each task carries Depends-on, Parallel-safe, machine-checkable acceptance criteria, a verification step (dmj:writing-plans). Raise blocking gaps with the user before starting. Never begin on `main`/`master` without explicit consent; isolate first (dmj:using-git-worktrees).
+Read the plan. Verify each task carries Depends-on, Parallel-safe, machine-checkable acceptance criteria, a verification step (dmj:writing-plans). Raise blocking gaps with the user before starting. Never begin on `main`/`master` without explicit consent; branch first (dmj:using-git-worktrees policy: main checkout, never a worktree).
 
 ## Step 2: Build the dependency wave plan
 
-From each task's Depends-on, group into waves: a wave is the set whose dependencies are all satisfied. Within a wave, file-overlapping tasks cannot run together: give each its own worktree or push to a later wave. State the wave plan to the user.
+From each task's Depends-on, group into waves: a wave is the set whose dependencies are all satisfied. Within a wave, file-overlapping tasks cannot run together: push one to a later wave (worktrees are banned; ownership boundaries + sequencing are the policy). State the wave plan to the user.
 
 ## Step 3: Fan out per wave (parallel between gates)
 
@@ -27,7 +27,7 @@ You (lead) do not implement; you coordinate, unblock, hold the gates. Only the l
 
 ## Step 4: Review gate (serial, fresh-context)
 
-A wave's tasks report done: gate before the next wave. Per task, a FRESH-context reviewer (not the implementer) confirms acceptance criteria pass and spec is met (dmj:requesting-code-review); the lead reviews the Deviations log, since a deviation can invalidate a later task. Re-dispatch the implementer for blocking findings; re-review only what failed. Integrate worktrees, then run the full suite to catch cross-task breakage before opening the next wave.
+A wave's tasks report done: gate before the next wave. Per task, a FRESH-context reviewer (not the implementer) confirms acceptance criteria pass and spec is met (dmj:requesting-code-review); the lead reviews the Deviations log, since a deviation can invalidate a later task. Re-dispatch the implementer for blocking findings; re-review only what failed. Run the full suite to catch cross-task breakage before opening the next wave.
 
 ## Step 5: Finish
 

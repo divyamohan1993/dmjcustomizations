@@ -97,6 +97,7 @@ Under law 1 detection outranks prevention: prevention already failed in the scen
 | Secrets | Never in source or logs. Short TTL, injected at runtime, rotated on every deploy. |
 | Audit | Hash-chained, append-only, head replicated off-host. |
 | Abuse | Static early-reject (small fixed response) before any DB/CPU/memory work. Brute-force backoff, rate limits day one. |
+| Privacy and residency | DPDP Act 2023 + GDPR always; India users' data stays in India. Consent explicit, granular, revocable, no dark patterns. Deletion is real: DB, backups (crypto-shred), logs, caches, analytics. Collect the minimum; PII never in logs, errors, or URLs. |
 | Blast radius | Smallest reversible diff, sandbox first, every credential scoped tightly and short-lived. |
 
 ## Fuzz what decides, not what sounds security-shaped

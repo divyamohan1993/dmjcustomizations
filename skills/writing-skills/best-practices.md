@@ -82,7 +82,7 @@ One term, kept: always "field," not field/box/element. Always "extract," not ext
 
 ## Avoid time-sensitive content
 
-No "before August 2025, use the old API." It rots. Put superseded guidance in a collapsed "Old patterns" section with the deprecation noted, keep the current method as live text. Pin no model version or date in the main flow; the floating tier aliases (`opus[1m]` judgement, `sonnet[1m]` mechanical) are the only model references a skill may carry, and tooling resolves to the newest stable at invocation.
+No "before August 2025, use the old API." It rots. Put superseded guidance in a collapsed "Old patterns" section with the deprecation noted, keep the current method as live text. Pin no model version or date in the main flow; the floating judgement-tier alias (`opus[1m]`, every spawn, per user law in dmj:dispatching-parallel-teams) is the only model reference a skill may carry, and tooling resolves it to the newest stable at invocation.
 
 ## Quick checklist
 

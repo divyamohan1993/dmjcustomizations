@@ -21,6 +21,7 @@ On any repo you work in: the equip pass has run, or was consciously proposed. A 
 | Signal in the repo | Wire |
 |---|---|
 | Always | Secret-scan pre-commit (fail closed, diff-scoped), tests in CI on every push, CHANGELOG present, .env.example committed when env vars exist, dependency-update automation (Renovate or Dependabot: auto-merge patch and minor on green CI, majors reviewed) plus a dependency audit failing CI on high or critical |
+| Endpoints exposed | REST or GraphQL, never mixed; versioned `/v1/` from day one; uniform error shape `{ error: { code, message, requestId, details? } }` that never leaks internals; cursor pagination; per-user per-endpoint rate limits with `Retry-After`; idempotency keys on mutations; docs auto-generated, stale docs fail the build |
 | Prose ships (README, docs, marketing) | Prose pre-push gate (dashes, AI-tell language) plus the same check in CI (dmj:humanizing-output) |
 | Web UI present | Preview or launch config, browser-automation MCP for the screenshot gate (dmj:art-directing), perf budgets asserted in CI (dmj:enforcing-performance-budgets) |
 | External libraries consumed | Live-docs MCP (context7-class) in project config so API answers come from current docs, never memory (dmj:harnessing-claude) |

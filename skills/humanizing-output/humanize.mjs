@@ -34,7 +34,7 @@ for (const f of files) {
   const orig = readFileSync(f, 'utf8');
   let out;
   try {
-    out = execFileSync('claude', ['-p', '--model', 'sonnet'],
+    out = execFileSync('claude', ['-p', '--model', 'opus'],
       { input: PROMPT + '\n\n---\n' + orig, maxBuffer: 1 << 24 }).toString();
   } catch (e) { console.log(`humanize: claude failed on ${f}: ${e.message}`); continue; }
   out = out.replace(/\s+$/, '') + '\n';

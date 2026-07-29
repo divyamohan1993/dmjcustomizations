@@ -33,6 +33,12 @@ export const AI_TELLS = [
   'in the ever-evolving', 'when it comes to', 'rich tapestry',
   'at the end of the day', 'needless to say', 'first and foremost',
   'meticulous', 'meticulously', 'crucial role', 'vibrant landscape',
+  'streamline', 'streamlines', 'streamlining', 'game-changing',
+  'game changing', 'innovative', 'revolutionize', 'revolutionizes',
+  'revolutionizing', 'empower', 'empowers', 'empowering', 'spearhead',
+  'spearheads', 'holistic', 'synergy', 'paradigm', 'deep-dive',
+  'deep dive', 'comprehensive', 'notably', 'essentially',
+  'fundamentally', 'additionally',
 ];
 
 const DASH = /[‒–—―−‐‑]/; // figure, en, em, horizontal bar, minus, hyphen, non-breaking hyphen

@@ -17,9 +17,12 @@ Nothing deploys, ever, without the full suite green on the EXACT artifact being 
 |---|---|
 | Idempotent deploy script | Blank machine to running app in one command; rerun converges, never duplicates or breaks. Env validated at startup, crash loud on misconfiguration; secret rotation safe on rerun |
 | Health verification | Shallow (`/health`) and deep (`/health/ready`) endpoints; the script FAILS the deploy when they do not answer after start. No green without the probe |
-| One-step rollback | Previous artifact retained and switchable in one command. A deploy without a rollback path is not finished |
+| One-step rollback | Previous artifact retained and switchable in one command, under 60 seconds. A deploy without a rollback path is not finished |
+| Deploy is not release | Feature flags gate exposure; a kill switch exists per risky surface; risky paths roll out staged (canary a small slice, watch error rates, auto-roll-back on a spike, then widen); migrations are zero-downtime (dmj:stewarding-data) |
 | Front door | Reverse proxy or edge in front of the app; the process never faces raw traffic; TLS terminated properly (dmj:defending-in-depth) |
 | Supervision | Process manager or unit file: crash restarts, boot starts, log rotation. One project's crash never takes down another's |
+| Hardened container | Multi-stage Dockerfile, distroless or alpine base, non-root user, read-only filesystem, no secrets in any layer (runtime mount only) |
+| Super-admin panel | `/super-admin` for DR, factory reset, and master controls: quantum-safe access (session-tier parameters, dmj:defending-in-depth), brute-force backoff, DDoS early-reject, audit-logged, zero external dependencies, no recovery path. Verified before ship |
 | Pipeline | CI runs the same gates as local hooks and deploys the built artifact; local hand-deploys are for emergencies that do not exist |
 
 ## Cost gate
@@ -39,16 +42,11 @@ A step needing access you do not have (DNS record, dashboard toggle): hand the u
 | Excuse | Reality |
 |---|---|
 | "SSH and restart is faster tonight" | Tonight's hand deploy is next month's unreproducible server. The script ships tonight too, correctly |
-| "Rollback is overkill for this change" | Every deploy believes that; the one that needs it decides your night |
-| "We will price the resource after launch" | After launch it is a bill, not a decision |
 
 ## Red flags (stop)
 
 - A deploy done by hand, or a script that breaks on rerun.
-- A deploy reported done with no health-probe output.
 - Editing code or config directly on a production machine.
-- No retained previous artifact, or rollback untested.
-- A billable resource provisioned with no written price.
 
 **Headless:** deploy through the script and report probe output; PARK new billable resources and any step needing credentials the user holds.
 

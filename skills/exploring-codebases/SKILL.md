@@ -13,7 +13,7 @@ NO new code in unmapped territory. Cannot name where similar logic already lives
 
 ## Parallel sweep (one lens per teammate)
 
-One teammate per lens, delegated per dmj:dispatching-parallel-teams; prefer the harness's read-only Explore agent type for pure reads, and put the map-refuting verifier on `opus[1m]`. Every finding carries file:line evidence, lenses resolve overlaps with each other, and you synthesize.
+One teammate per lens, delegated per dmj:dispatching-parallel-teams; prefer the harness's read-only Explore agent type for pure reads, and put the map-refuting verifier on the judgement tier. Every finding carries file:line evidence, lenses resolve overlaps with each other, and you synthesize.
 
 | Lens | Question | Reads |
 |---|---|---|

@@ -50,7 +50,7 @@ Load-test at peak times a safety factor; soak to catch leaks and GC stalls. The 
 
 ## Parallel pattern
 
-Run a dedicated **performance lens as a fresh-context teammate** in every review panel, never same-context self-review (delegation per dmj:dispatching-parallel-teams). Two implementations plausible: race them as **parallel spikes in disposable worktrees** (dmj:using-git-worktrees); the benchmark decides.
+Run a dedicated **performance lens as a fresh-context teammate** in every review panel, never same-context self-review (delegation per dmj:dispatching-parallel-teams). Two implementations plausible: race them as **parallel spikes in disposable temp clones** (dmj:using-git-worktrees policy); the benchmark decides.
 
 ## Rationalization table
 
@@ -59,7 +59,6 @@ Run a dedicated **performance lens as a fresh-context teammate** in every review
 | "Optimize later, ship now" | Later is a rewrite under production load. Budget now. |
 | "n is small here" | Inputs grow; the bound is not in the code. Write it or fix it. |
 | "It feels fast on my machine" | Your machine is not p95 on 3G. Measure the tail. |
-| "The user/client already chose the stack" | Their choice is a hypothesis; race it on cost and fit, show the numbers, then they decide. |
 | "Team familiarity is worth the monthly bill" | Familiarity is a one-time learning cost; the bill recurs forever. Price both. |
 
 ## Red flags: STOP, measure, set the budget
@@ -68,6 +67,5 @@ Run a dedicated **performance lens as a fresh-context teammate** in every review
 - Optimizing without a profile
 - A budget that warns instead of failing the build
 - Stack chosen by popularity, not a workload benchmark
-- A stack adopted with no cost estimate, or a named stack built unexamined
 
 Handoff: budgets into dmj:writing-plans; enforce the perf lens via dmj:requesting-code-review.

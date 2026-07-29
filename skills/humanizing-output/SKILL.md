@@ -9,9 +9,9 @@ Shipped prose must read like a careful human wrote it, never an AI. No em dashes
 
 ## What blocks
 
-Prose only: `.md`, `.mdx`, `.markdown`, `.txt`, and commit messages. Fenced and inline code are skipped, so real command output is never flagged.
+Prose only: `.md`, `.mdx`, `.markdown`, `.txt`, plus commit messages in repos that wire the guard's `--commit-msg` hook (the flag exists; the default install wires pre-push only). Fenced and inline code are skipped, so real command output is never flagged.
 
-- **Unicode dashes** (em, en, horizontal bar, minus, figure, non-breaking hyphen): block in every mode, always. Use commas, colons, semicolons, or periods.
+- **Unicode dashes**: block in every mode, always. The exact character set is the `DASH` regex in `humanize-guard.mjs`; read it there rather than from memory. Use commas, colons, semicolons, or periods.
 - **AI-tell words and phrases**: warn by default, block under `--gate`, which is the mode the hook and CI both run. Rewrite to plain words. A sample, not the list: `delve`, `seamless`, `robust`, `leverage`, `utilize`, `it's worth noting`, `testament to`, `moreover`. The list itself is `AI_TELLS` in `humanize-guard.mjs`: read it there rather than from memory, and tune per project in `.humanize-allow`, one term per line.
 
 ## The pieces (each file is its own spec; read it, do not re-derive it)

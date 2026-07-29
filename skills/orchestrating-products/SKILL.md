@@ -16,7 +16,7 @@ One idea enters; a complete product leaves. This wireframe routes every stage to
 | 3 Identity | dmj:art-directing | Strong tier sets direction; cheap tier grinds the screenshot-compare loop |
 | 4 Plan | dmj:writing-plans | Strong author; fresh-context reviewer; criteria written machine-checkable HERE become every later stage's stop conditions |
 | 5 Equip | dmj:equipping-projects | Scripts, minutes, near-zero inference |
-| 6 Build | dmj:team-driven-development or dmj:executing-plans, discipline dmj:test-driven-development | Waves of fresh minimal-context workers on `sonnet[1m]` against written criteria; a goal loop per task, `sonnet[1m]` evaluating done |
+| 6 Build | dmj:team-driven-development or dmj:executing-plans, discipline dmj:test-driven-development | Waves of fresh minimal-context workers against written criteria; a goal loop per task with an independent evaluator judging done |
 | 7 Verify | dmj:verification-before-completion, dmj:requesting-code-review | Strongest tier on the adversarial panel; that judgment is what the savings above paid for |
 | 8 Ship | dmj:shipping-to-production | Scripts and probes decide; models only narrate |
 | 9 Operate | dmj:observing-production, dmj:stewarding-data | Interval-matched time loops on a cheap routine tier; strong tier wakes only for incidents (dmj:systematic-debugging) |
@@ -26,7 +26,7 @@ A stage opens ONLY on the prior stage's gate evidence (the owning skill's gate).
 
 ## Token economy
 
-- **Two tiers only.** Judgement stages spawn `opus[1m]`; every mechanical or criteria-bounded stage spawns `sonnet[1m]`. No spawn below Sonnet; "cheapest tier" everywhere in this table resolves to this menu. All spawns background, steerable, quiet in the lead thread (dmj:dispatching-parallel-teams).
+- **One tier, user law.** Every spawn runs the judgement tier (alias: dmj:dispatching-parallel-teams); "cheapest tier" anywhere in this table resolves to it. What varies per stage is the SHAPE (scripts vs criteria-bounded workers vs adversarial panels), never the model. All spawns background, steerable, quiet in the lead thread.
 - **Scripts beat inference.** Anything deterministic (deploys, validation, drills, formatting) is a committed script: zero tokens forever after.
 - **Criteria beat supervision.** Written criteria let mid tiers build and the smallest tier judge; strong-tier review then inspects the product, not the process.
 - **Fresh minimal contexts.** Workers get task text, never transcripts; the lead stays thin, holds conclusions, implements nothing. Each teammate is a full session whose tokens scale linearly, so a stage fans out only where parallel work genuinely pays, and a stage that needs its own team runs at the lead, which is the only agent that can fan out (dmj:dispatching-parallel-teams).

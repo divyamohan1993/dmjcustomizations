@@ -1,6 +1,6 @@
 ---
 name: landing-sessions
-description: Use when substantial work is wrapping up (a deliverable shipped, a session winding down, the user signals done), before context is lost, or when teammates, worktrees, background tasks, or unrecorded learnings may be left dangling.
+description: Use when substantial work is wrapping up (a deliverable shipped, a session winding down, the user signals done), before context is lost, or when teammates, scratch clones, background tasks, or unrecorded learnings may be left dangling.
 ---
 
 # Landing Sessions
@@ -11,7 +11,7 @@ Land everything the session created: knowledge to memory, state to git, resource
 
 1. **Memory write-back.** Auto-memory captures what a session surfaces; landing curates what it decided. Confirm every non-obvious learning, decision, and gotcha actually landed in memory, correct or delete what it got wrong, add deliberately what it missed. Never repo-derivable facts; prune stale entries while there.
 2. **State durable.** Work committed (CHANGELOG in the same commit, hooks run) and pushed where a remote exists. Uncommitted experiments: named to the user, never silent.
-3. **Resources to zero.** Teammates drained (messaged to flush, replied) then stopped by name; spike and teammate worktrees removed (dmj:using-git-worktrees); background tasks stopped.
+3. **Resources to zero.** Teammates drained (messaged to flush, replied) then stopped by name; spike temp clones deleted (dmj:using-git-worktrees policy); background tasks stopped.
 4. **Threads surfaced.** One short list: done (verified, with evidence), decisions parked for the user, anything unresolved. No silent loose ends.
 5. **Debris.** Self-created scratch files inside the working folder: deleted. Anything outside it: the user confirms first, every time (hard conduct rule).
 6. **Skill learnings.** A skill that misfired this session, once the user confirms the learning, gets a file in `docs/dmj/skill-learnings/`; if any are queued, run the session-end proposal pass (dmj:evolving-skills) that opens gated PRs. User-confirmed only, never auto-merge.

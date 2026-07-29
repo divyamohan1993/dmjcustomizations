@@ -20,8 +20,9 @@ An alert that fires without action twice is deleted or fixed: fatigue buries the
 
 | Floor | Rule |
 |---|---|
-| Logs | Structured (JSON), leveled, to stdout; a correlation ID on every request, propagated across every service boundary; secrets and PII never logged (dmj:defending-in-depth) |
-| Golden signals | Latency, traffic, errors, saturation per service; one dashboard answers "is it healthy" in one glance |
+| Logs | Structured (JSON), leveled, to stdout, verbose: timestamp, file:line, function, severity, correlation ID, anonymized user context on every line; the trace ID travels through every hop; secrets and PII never logged (dmj:defending-in-depth) |
+| Two audiences | The user sees zero raw errors, friendly recovery only. The super-admin panel sees everything: a SIEM-grade real-time feed, filterable and searchable, every error a row with timestamp, file:line, stack, request ID, sanitized payload |
+| Golden signals | Latency (p50/p95/p99), traffic, errors, saturation per endpoint; dashboards day one; one glance answers "is it healthy" |
 | Probes | Shallow and deep health endpoints wired to the deploy gate (dmj:shipping-to-production) |
 | Errors | Every unhandled exception captured with release tag and correlation ID, deduplicated, triaged |
 | Edge | WAF and edge logs reviewed on a cadence, not only during incidents; traffic anomalies surface here first |

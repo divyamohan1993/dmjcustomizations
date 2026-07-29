@@ -27,7 +27,7 @@ Save to `docs/dmj/plans/YYYY-MM-DD-<feature>.md` (user path preference wins; sam
 ## Each task declares (parallel-first)
 
 - **Depends on:** task IDs that must finish first (or `none`).
-- **Parallel-safe:** `yes` only if no unlisted dependency AND its file set does not overlap another runnable task. Overlap forces a worktree (dmj:using-git-worktrees) or serialization.
+- **Parallel-safe:** `yes` only if no unlisted dependency AND its file set does not overlap another runnable task. Overlap forces serialization (worktrees banned: dmj:using-git-worktrees).
 - **Files:** exact create / modify (`path:lines`) / test paths.
 - **Acceptance criteria:** machine-checkable, each a command + expected result (exit code, test name, output, benchmark threshold).
 - **Steps:** TDD, one action each (2-5 min): failing test, run it fail, minimal code, run it pass, commit.

@@ -9,7 +9,7 @@ Idea to approved, reviewed design before implementation.
 
 ## Iron Law
 
-NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, user-approved. Spikes are the only code allowed first, and only in a disposable worktree.
+NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, user-approved. Spikes are the only code allowed first, and only in a disposable temp clone (dmj:using-git-worktrees policy; never a worktree).
 
 **Exactly one exemption exists**, the trivial-change threshold: its conjunctive clause list lives in CLAUDE.md and, for surfaces without CLAUDE.md, in dmj:enforcing-quality-gates. Every clause must hold; fail one and this law applies in full. Judge against the clauses, not against how simple it feels.
 
@@ -21,7 +21,7 @@ NO merged implementation before an approved design: no code, scaffold, or implem
 | Cross-module / new dependency / data shape | Standard | Full flow below |
 | Security, auth, migration, money, deletion, public API | Heavy | Full flow + spikes + four lenses + threat model (dmj:defending-in-depth) |
 
-Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, Light included, ends with explicit user approval in THIS conversation before any merge-bound artifact: a tracked-file edit, commit, PR, or scaffold. Staging a change in the main tree IS a tracked-file edit. While waiting, prepare only in a disposable worktree; never open a PR pre-approval.
+Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, Light included, ends with explicit user approval in THIS conversation before any merge-bound artifact: a tracked-file edit, commit, PR, or scaffold. Staging a change in the main tree IS a tracked-file edit. While waiting, prepare only in a disposable temp clone; never open a PR pre-approval.
 
 ## Rationalizations (all false)
 
@@ -42,7 +42,7 @@ Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, 
 
 ## Spikes, visuals, headless
 
-**Spikes:** one disposable worktree each (dmj:using-git-worktrees), force-discarded after. Conclusions and evidence survive in the doc; code never merges.
+**Spikes:** one disposable temp clone each (dmj:using-git-worktrees policy), deleted after. Conclusions and evidence survive in the doc; code never merges.
 
 **Visuals:** react before wiring: a throwaway HTML mock with fake data, AskUserQuestion previews, one Playwright-rendered file, or text comparison. No local server.
 

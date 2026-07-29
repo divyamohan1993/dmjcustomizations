@@ -48,7 +48,7 @@ This is the enforcement path for a gate that must not depend on a teammate remem
 - **Resumption does not restore in-process teammates.** After a resume the lead may message teammates that no longer exist; spawn new ones instead.
 - **Task status lags.** A teammate can finish work and fail to mark the task complete, silently blocking its dependents. Check the work, then nudge or update the status.
 - **Shutdown is not instant.** A teammate finishes its current request or tool call first.
-- **Two teammates editing one file overwrite each other.** Disjoint file sets, or a worktree each (dmj:using-git-worktrees).
+- **Two teammates editing one file overwrite each other.** Disjoint file-ownership sets in the prompts, or sequence the tasks (dmj:using-git-worktrees; worktrees banned by user law).
 - **Permission prompts surface at the lead.** Pre-approving the run's common operations before spawning prevents a fan-out that stalls on prompts.
 
 ## Where state lives

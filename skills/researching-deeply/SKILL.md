@@ -13,7 +13,7 @@ If the harness exposes a deep-research tool or skill, prefer it: it already fans
 
 ## Fan out by angle, in parallel
 
-Spawn a research team, one teammate per angle, delegated per dmj:dispatching-parallel-teams: `sonnet[1m]` for fetch-and-skim angles, `opus[1m]` for the refuting verifier and the synthesis. Each owns one angle and cites **primary sources with publication dates**:
+Spawn a research team, one teammate per angle, delegated per dmj:dispatching-parallel-teams (every spawn the judgement tier, user law). Each owns one angle and cites **primary sources with publication dates**:
 
 | Angle | Primary source |
 |-------|----------------|

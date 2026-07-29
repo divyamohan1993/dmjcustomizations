@@ -15,7 +15,7 @@ Route, then act: if a listed skill covers the turn's work, invoke it with the Sk
 
 **Capabilities resolve at invocation:** no skill pins a model, version, or date; use the newest stable tooling present, prefer native tools, degrade gracefully.
 
-**Delegation floor:** parallel by default, serialized only at user gates and real data dependencies; teammates are named, steered, peer-connected, never fire-and-forget, and raw agent output never enters the main thread. Spawn contract and the two model tiers: dmj:dispatching-parallel-teams.
+**Orchestrator law:** the main thread orchestrates; it does not labor. Substantive work of every kind (implementing, sweeping files, reviewing, researching, bulk reading) runs in background agents, each with its own full context window, so the orchestrator's context holds routing, gates, and conclusions rather than work product. Parallel by default, serialized only at user gates and real data dependencies; teammates are named, steered, peer-connected, never fire-and-forget, and raw agent output never enters the main thread. What stays in the main thread: routing, spawn prompts, synthesis, user gates, and trivial single-shot lookups cheaper than a spawn. Every spawn runs the judgement tier (`opus[1m]`, user law: never Sonnet). Spawn contract: dmj:dispatching-parallel-teams.
 
 **Headless default** (binds every skill that states no deviation): fully autonomous, assumptions recorded, and decisions the user owns PARKED rather than taken: irreversible actions, security, cost, public surfaces.
 

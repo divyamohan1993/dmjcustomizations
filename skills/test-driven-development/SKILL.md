@@ -15,7 +15,7 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 
 Wrote code before the test? Delete it: no keeping as reference, no adapting, no looking. Reimplement fresh from the test. Letter and spirit are one rule.
 
-**Exceptions (throwaway only):** spikes, generated code, config. A spike lives in a force-discarded worktree (`dmj:using-git-worktrees`): conclusions survive, code does not. "Skip just this once" on real code is rationalization.
+**Exceptions (throwaway only):** spikes, generated code, config. A spike lives in a deleted-after temp clone (`dmj:using-git-worktrees` policy; never a worktree): conclusions survive, code does not. "Skip just this once" on real code is rationalization.
 
 ## RED-GREEN-REFACTOR
 

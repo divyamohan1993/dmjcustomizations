@@ -18,7 +18,7 @@ Route every job through the strongest native capability available. Probe availab
 | Enforce a gate on team work | `TeammateIdle`, `TaskCreated`, `TaskCompleted` hooks: exit code 2 blocks the transition and returns feedback to the agent. Enforcement outranks instruction |
 | Stronger reviewer at a gate | advisor tool when available: consult before committing to an approach and before any done-claim |
 | Deterministic finish line (tests pass, score threshold, queue empty) | Goal loop (/goal or the harness's goal primitive): hand it the machine-checkable criteria as the stop condition plus an explicit turn cap; an independent evaluator judges done, never the working model |
-| Fresh-context read-only sweep | Explore agent type; isolation:"worktree" when parallel edits could collide |
+| Fresh-context read-only sweep | Explore agent type (worktree isolation never: banned by user law, dmj:using-git-worktrees) |
 | Library or API truth | context7 MCP or official docs via WebFetch; never memory (dmj:verification-before-completion) |
 | Deferred tool needed | ToolSearch "select:Name" first; direct call fails without it |
 | Long or recurring jobs | run_in_background, Monitor; a time loop or Cron/schedule for routines, interval matched to how fast the watched thing changes |
@@ -29,7 +29,7 @@ Dynamic skill authoring (argument and inline-command preprocessing): dmj:writing
 
 ## Tiers
 
-Declare a spawn's tier by ROLE, never by family member: the judgement tier for definition, review, security, synthesis; the mechanical tier for criteria-bounded work; never below Sonnet, max thinking and effort where the harness exposes them. The two floating tier aliases live in dmj:dispatching-parallel-teams with the full spawn contract. Model menus differ by surface and generation, so probe what the spawn tool advertises and set nothing the environment already forces. The lead orchestrates on whatever model the session runs.
+Every spawn runs the judgement tier, user law: the floating alias lives in dmj:dispatching-parallel-teams with the full spawn contract; never Sonnet, never below, max thinking and effort where the harness exposes them. Model menus differ by surface and generation, so probe what the spawn tool advertises and set nothing the environment already forces. The lead orchestrates on whatever model the session runs.
 
 ## Loops close the automation
 
