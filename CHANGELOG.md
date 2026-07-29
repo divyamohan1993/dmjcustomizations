@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [Unreleased]
+
+### Added
+
+- Design spec for the Claude 5 "then and now" pass (docs/dmj/specs/2026-07-29-claude5-then-now-pass-design.md): five-sweep audit of all 73 repo files plus 8 global context files against the six context-engineering shifts; five workstreams, sequencing, machine-checkable acceptance criteria, four parked user decisions.
+
 ## [2.24.0] - 2026-07-29
 
 ### Added
