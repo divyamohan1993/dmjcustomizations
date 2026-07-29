@@ -2,6 +2,16 @@
 
 Per-stack tools for each lane. `install-gate.sh` picks the row for the detected stack and writes the commands into `qgate.config.sh`. A cell marked "none stable" means the lane reports UNAVAILABLE for that stack rather than pretending to pass.
 
+## Contents
+- Detection
+- Unit + coverage
+- Acceptance (Gherkin)
+- Mutation
+- Complexity + size caps
+- Fuzz
+- Security
+- Thresholds file
+
 ## Detection
 
 | Signal | Stack |
@@ -43,11 +53,9 @@ A repo can match more than one. Run every matched stack's lanes; a polyglot repo
 | dotnet | `Reqnroll` (SpecFlow's maintained successor) |
 | shell | `bats` with `@test` names written as scenarios |
 
-Feature files live in `features/`, are written before implementation, and are the artifact handed to whoever (or whatever) implements the task.
+Feature files live in `features/`, written before implementation.
 
 ## Mutation
-
-The lane that catches tests which execute without asserting.
 
 | Stack | Tool |
 |---|---|
@@ -77,7 +85,7 @@ Always scope mutation to changed files in T3. Whole-repo mutation on a mature co
 
 ## Fuzz
 
-Target selection and harness patterns: `fuzzing.md`.
+Target selection, harness patterns, and which tier each kind of fuzzer belongs in: `fuzzing.md`.
 
 | Stack | Tool |
 |---|---|
@@ -89,8 +97,6 @@ Target selection and harness patterns: `fuzzing.md`.
 | php | `php-fuzzer` |
 | dotnet | `SharpFuzz` |
 | shell | hand-written adversarial corpus, see `scripts/fuzz-guard.sh` in this repo |
-
-Coverage-guided fuzzers (atheris, cargo-fuzz, go-fuzz, Jazzer) find deeper bugs than property-based ones but need a time box. Property-based testing is the cheaper lane that belongs in T2; coverage-guided belongs in T3.
 
 ## Security
 

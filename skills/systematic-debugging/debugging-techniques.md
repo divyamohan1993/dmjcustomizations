@@ -4,9 +4,9 @@ Two techniques used inside `dmj:systematic-debugging`. Validation-at-every-layer
 
 ## Root-cause tracing (Phase 1, step 5)
 
-Bugs surface deep in the call stack (git init in the wrong dir, file written to the wrong path). Fixing where the error appears treats a symptom. Trace backward to the original trigger and fix there.
+Bugs surface deep in the call stack (git init in the wrong dir, a file written to the wrong path), so fixing where the error appears treats a symptom.
 
-**Process:** observe the symptom, find the code directly causing it, then ask "what called this with that value?" repeatedly up the chain until you reach the source.
+**Process:** observe the symptom, find the code directly causing it, then ask "what called this with that value?" repeatedly up the chain until you reach the source. Fix there.
 
 ```
 git init fails in packages/core      <- symptom: cwd is process.cwd()
@@ -57,7 +57,7 @@ async function waitFor<T>(cond: () => T | undefined | null | false,
 }
 ```
 
-Patterns: wait for event `waitFor(() => events.find(e => e.type === 'DONE'))`, state `waitFor(() => m.state === 'ready')`, count `waitFor(() => items.length >= 5)`, file `waitFor(() => fs.existsSync(p))`.
+Wait on the real predicate: an event in a list, a state field, a count reaching its threshold, a file existing.
 
 Mistakes: polling every 1ms (CPU burn, use 10ms), no timeout (hangs forever), caching state outside the loop (call the getter inside for fresh data).
 

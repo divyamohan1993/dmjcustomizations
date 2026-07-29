@@ -11,7 +11,7 @@ Idea to approved, reviewed design before implementation.
 
 NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, user-approved. Spikes are the only code allowed first, and only in a disposable worktree.
 
-**Exactly one exemption exists**, the trivial-change threshold defined in CLAUDE.md: one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. Every clause must hold; fail one and this law applies in full. The list is conjunctive because "too simple to need a design" is the rationalization this law stops: judge against the clauses, not the feeling.
+**Exactly one exemption exists**, the trivial-change threshold defined in CLAUDE.md: one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. Every clause must hold; fail one and this law applies in full. Judge against the clauses, not against how simple it feels.
 
 ## Ceremony tiers (state the tier to the user)
 
@@ -39,7 +39,7 @@ Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, 
 3. **Approaches.** Prose tradeoff comparison + your recommendation. When they genuinely compete on a measurable axis, run parallel spikes, decide on evidence. Threat-model security (dmj:defending-in-depth); weigh complexity (dmj:enforcing-performance-budgets).
 4. **Present the design ONCE**, one annotation pass. Cover architecture, interfaces, data flow, error handling, testing, security, a machine-checkable acceptance-criteria list, and an assumption ledger (every belief, confirmed or assumed).
 5. **Write and commit** to `docs/dmj/specs/YYYY-MM-DD-<topic>-design.md` (user path wins). A reference beats prose: when source code, a failing test suite, or a throwaway HTML mock carries the intent better, the spec links that reference and keeps only the decisions and criteria.
-6. **Adversarial review by FRESH-context teammates**, never self-review. One lens each: pre-mortem (prod failure), YAGNI (cut unrequested scope), ambiguity (two engineers building different things), security (dmj:defending-in-depth). One named `Agent` per lens, all spawned in a single message. Fix blocking findings; re-run only the failed lens.
+6. **Adversarial review by FRESH-context teammates**, never self-review. One teammate per lens, dispatched concurrently: pre-mortem (prod failure), YAGNI (cut unrequested scope), ambiguity (two engineers building different things), security (dmj:defending-in-depth). Fix blocking findings; re-run only the failed lens.
 7. **User approval gate.** User reviews the committed spec; apply changes, re-review, proceed only on approval. Native plan mode present: its approval satisfies this gate.
 
 ## Spikes, visuals, headless
@@ -52,11 +52,7 @@ Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, 
 
 ## Red flags (stop)
 
-- Code or an implementation skill before approval.
-- Editing a tracked file, committing, or opening a PR before approval, even "small/reversible", even holding only the final click.
-- Treating a tier as permission to skip approval; tiers size the design, not the gate.
-- Reviewing your own design in the same context.
-- Questions one at a time instead of batched.
+- Code, an implementation skill, a tracked-file edit, a commit, or a PR before approval, even "small/reversible", even holding only the final click.
 - An acceptance criterion no script could check, or a spike that merged.
 
 Next: **dmj:writing-plans**.

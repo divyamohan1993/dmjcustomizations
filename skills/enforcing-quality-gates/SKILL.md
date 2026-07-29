@@ -13,7 +13,7 @@ Every repo carries its own gate. The gate is generated from the repo's actual st
 
 A repo with no gate is not "passing". It is unmeasured. Generate the gate first (`install-gate.sh`), then run it.
 
-**One exemption**, the trivial-change threshold in CLAUDE.md: one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. All clauses must hold. A trivial change needs **T1 green only**. Anything else needs T2, and shipping needs T3. Note that a change touching crypto or auth can never be trivial, so the security lanes are never the ones skipped.
+**One exemption**, the trivial-change threshold in CLAUDE.md: one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. All clauses must hold, and a change touching crypto or auth can never be trivial, so the security lanes are never the ones skipped. A trivial change needs **T1 green only**.
 
 ## Tier by feedback loop, not by importance
 
@@ -25,7 +25,7 @@ Gates die by slowness: mutation and fuzz in the pre-commit path means a nine-min
 | **T2 merge** | < 10min | full unit, Gherkin acceptance, coverage thresholds, complexity and size caps, SAST, dependency audit, fuzz smoke over the committed corpus | pre-push, PR, before any done-claim |
 | **T3 deep** | unbounded | mutation testing, extended fuzz (time-boxed), DAST against a running instance, license audit | nightly, pre-release, after a security-relevant change |
 
-A done-claim needs **T2 green**. Shipping to production needs **T3 green** since the last release (dmj:shipping-to-production).
+A done-claim needs **T2 green**. Shipping needs **T3 green** since the last release (dmj:shipping-to-production).
 
 ## The lanes, and what each one actually proves
 
@@ -57,11 +57,9 @@ Tighten per repo, never loosen silently.
 - Cyclomatic complexity: **10 per function**. Function length **50 lines**. File length **400 lines**.
 - SAST, dependency, secret findings: **zero** critical or high. Binary, not a percentage.
 
-Size and complexity caps are not style. They bound how much an agent can change in one reviewable step and they keep mutation runs tractable.
+Size and complexity caps are not style: they bound how much an agent changes in one reviewable step and keep mutation runs tractable.
 
 ## Adopted writing and security frameworks
-
-Three frameworks, non-overlapping jobs, one layer each.
 
 | Framework | Controls | Enforcement |
 |---|---|---|
@@ -69,7 +67,7 @@ Three frameworks, non-overlapping jobs, one layer each.
 | **ASD-STE100** (Simplified Technical English) | the **vocabulary and sentence length** of prose | **warn only.** Reported, never blocking, with a per-repo domain allowlist. Its dictionary is aerospace-derived and flags ordinary software terms. |
 | **OWASP ASVS L2** | what "secure enough" means, testably | **enforced.** The security lanes assert against ASVS L2 rather than a vague pass. |
 
-EARS patterns, in the order you will use them:
+EARS patterns:
 
 | Pattern | Template |
 |---|---|
@@ -79,7 +77,7 @@ EARS patterns, in the order you will use them:
 | Unwanted behaviour | **If** `<trigger>`, **then** the `<system>` shall `<response>` |
 | Optional feature | **Where** `<feature>`, the `<system>` shall `<response>` |
 
-"Users must be able to reset passwords somehow" fails the lane; "When a user requests a password reset, the system shall send a single-use link valid for 15 minutes" passes and cannot be built wrong. EARS converts an unknown into a testable statement before code exists.
+"Users must be able to reset passwords somehow" fails the lane; "When a user requests a password reset, the system shall send a single-use link valid for 15 minutes" passes and cannot be built wrong.
 
 STE limits ship as **defaults to calibrate, not verified values**: download Issue 9 (free, asd-ste100.org) and tune `qgate.config.sh` before ever setting `STE_ENFORCE=1`.
 
@@ -90,23 +88,16 @@ STE limits ship as **defaults to calibrate, not verified values**: download Issu
 3. **Run T1 continuously** while working.
 4. **Run T2 before any done-claim.** Red or SKIP means not done. Fix, rerun.
 5. **Run T3** before release and after any change to authentication, parsing, crypto, money, or deletion.
-6. **Feed failures back.** A fuzz crash or a surviving mutant becomes a committed regression case in the corpus or the suite. A finding you fix without a test is a finding you will get again.
+6. **Feed failures back.** A fuzz crash or a surviving mutant becomes a committed regression case; a finding fixed without a test is one you will get again.
 
-Per-stack tools and exact commands: `gate-matrix.md`. Choosing fuzz targets and writing harnesses: `fuzzing.md`. Threat model behind the security lanes: dmj:defending-in-depth. Evidence discipline around the claim itself: dmj:verification-before-completion.
-
-## Worked example: the fuzz lane finding a real bypass
-
-`hooks/pre-tool-guard` (fail-open, allow/deny decider) passed a 13-probe behavior suite for weeks; `scripts/fuzz-guard.sh` attacked the same control on four axes and found **10 live bypasses** (`\uXXXX`-escaped flags, a decoy `"command"` key before `tool_input`, uppercase `GIT`), each executing the blocked command while the guard returned allow. The behavior suite tested the cases someone thought of; that gap is what the fuzz lane closes, on every repo, not only the security-shaped ones.
+Per-stack tools and exact commands: `gate-matrix.md`. Fuzz target selection, the four attack axes, and harness discipline: `fuzzing.md`, which ends with the run that found **10 live bypasses** in a fail-open control that had passed a 13-probe behavior suite for weeks. That gap is why every repo gets a fuzz lane, not only the security-shaped ones. Threat model behind the security lanes: dmj:defending-in-depth. Evidence discipline around the claim itself: dmj:verification-before-completion.
 
 ## Red flags (stop)
 
 - "Tests pass" as the done-claim, with no gate run.
 - Mutation or fuzz lanes moved into T1, then disabled for slowness.
-- A green gate with a SKIP in it.
 - Coverage raised by tests with no assertions; a mutation score that never moves.
-- A fuzz crash or surviving mutant fixed without adding the case to the corpus.
 - Thresholds lowered to make a red gate green.
-- A new repo with no gate, called done.
 - Fuzzing only the "security" component. The parser, the config loader, and the CLI argument handler are all attack surface.
 
 Next: **dmj:verification-before-completion** for the claim itself, then **dmj:shipping-to-production**.

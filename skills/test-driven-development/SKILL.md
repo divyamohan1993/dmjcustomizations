@@ -43,7 +43,7 @@ Security past the input layer: `dmj:defending-in-depth`. Complexity floor: `dmj:
 
 ## Tests that execute but never assert
 
-A passing suite proves the code ran, not that anything was checked. The honest measure is the mutation score: deliberately break the code and count how many broken versions the suite catches. High coverage with a low mutation score means tests that call functions and assert nothing, which is the characteristic failure of quickly-written tests whatever wrote them. Run it (dmj:enforcing-quality-gates, T3) rather than trusting the green.
+A passing suite proves the code ran, not that anything was checked. The measure that catches it is the mutation score, and it is a gate lane rather than a judgement call: run it (`dmj:enforcing-quality-gates`, T3) instead of trusting the green.
 
 ## Rationalizations: all mean "delete the code, start over"
 
@@ -59,7 +59,7 @@ A passing suite proves the code ran, not that anything was checked. The honest m
 
 ## Red flags: STOP and start over
 
-Code before test, test passes first run, cannot explain the failure, "too simple to test," tests added "later," "this is different because…," any rationalization above.
+Code before test, test passes first run, cannot explain the failure, "this is different because…," any rationalization above.
 
 ## When stuck
 

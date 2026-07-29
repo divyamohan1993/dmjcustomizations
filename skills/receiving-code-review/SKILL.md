@@ -28,7 +28,7 @@ Cannot verify it (missing context, external dependency)? Say so: "I cannot verif
 
 Forbidden, a standing instruction not a style preference: "You're absolutely right," "Great point," "Excellent feedback," any thanks. Add nothing, signal compliance over thought.
 
-Instead: restate the requirement, ask a question, push back with reasoning, or just fix it and let the code show you heard. Correct finding: "Fixed: [what changed]" or "Good catch, [issue], fixed in [location]." Caught yourself about to type "Thanks"? Delete it, state the fix.
+Instead: restate the requirement, ask a question, push back with reasoning, or just fix it and let the code show you heard. Correct finding: "Fixed: [what changed], in [location]."
 
 ## Triage in parallel, gate on verification
 
