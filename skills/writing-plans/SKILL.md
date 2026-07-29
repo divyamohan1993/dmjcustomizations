@@ -13,6 +13,7 @@ Save to `docs/dmj/plans/YYYY-MM-DD-<feature>.md` (user path preference wins; sam
 
 - **Scope.** Design spans independent subsystems: one plan each. Each must produce working, testable software alone.
 - **File map.** List every file created/modified + its one responsibility. Small focused files; split by responsibility not layer; follow patterns.
+- **Granularity.** One task = one self-contained deliverable (a function, a test file, a review). Too small and coordination costs more than the work; too large and it runs long before a wrong turn can be caught.
 
 ## Plan header
 
@@ -47,7 +48,7 @@ Steps carry actual code, not descriptions.
 
 ## No placeholders (plan failures)
 
-Never: "TBD" / "implement later", "add error handling / validation / edge cases" without code, "write tests for the above" without test code, "similar to Task N" (repeat it, tasks run out of order), a step describing what without the code block, or a symbol defined in no task.
+A step that describes WHAT without the code block is a placeholder, and so are "TBD", "implement later", "add error handling / validation / edge cases", and "write tests for the above". Two that hide better: "similar to Task N" (tasks run out of order and land in fresh contexts, so repeat it in full) and a symbol no task defines.
 
 ## Performance and security
 

@@ -19,15 +19,11 @@ From each task's Depends-on, group into waves: a wave is the set whose dependenc
 
 ## Step 3: Fan out per wave (parallel between gates)
 
-Spawn a team (dmj:dispatching-parallel-teams): one named `Agent` per task, all in a single message so the wave runs concurrently. Put the wave's tasks on a shared list. Teammates CLAIM one each, never fire-and-forget. Each teammate:
+Spawn a team (dmj:dispatching-parallel-teams): one named `Agent` per task, all in a single message so the wave runs concurrently, its tasks on a shared list, each teammate claiming one, never fire-and-forget. Hand each the full task text: a teammate inherits none of your context.
 
-- works the task by dmj:test-driven-development,
-- posts a midway progress message, can message peers about shared interfaces,
-- logs any forced plan deviation under Deviations in `implementation-notes.md` (conservative option chosen) and keeps going,
-- runs the task's verification command, reports the actual output,
-- commits inside its own worktree.
+Each teammate works the implementer contract from dmj:team-driven-development (skeleton in its `teammate-prompts.md`): dmj:test-driven-development discipline, a midway progress message plus the peer channel, any forced plan deviation logged under Deviations in `implementation-notes.md` (conservative option chosen) rather than stalling the wave, the task's verification command run and its ACTUAL output reported, commit inside its own worktree.
 
-You (lead) do not implement; you coordinate, unblock, hold the gates.
+You (lead) do not implement; you coordinate, unblock, hold the gates. Only the lead fans out a wave.
 
 ## Step 4: Review gate (serial, fresh-context)
 
@@ -51,6 +47,6 @@ No interactive user: proceed wave by wave on the plan as written, record assumpt
 - Concurrent tasks sharing a file with no worktree.
 - Skipping a review gate, or the implementer reviewing its own task.
 - Opening the next wave before the full suite is green.
-- Starting on `main` without consent.
+- A teammate prompt that assumes the teammate can see your session.
 
 Next: **dmj:verification-before-completion**, then **dmj:finishing-a-development-branch**.
