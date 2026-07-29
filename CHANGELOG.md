@@ -14,6 +14,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 
 - **Per-surface dedup verdict on the security files**: the four-lens review established that defending-in-depth's repeated statements are distinct trigger surfaces (law, method section, floors row, rationalization row, red flag), not echoes, so the sweep's proposed cuts were rejected and the structure stands. The two real fixes: the CI section no longer claims the crypto lane greps hybrid-partner and ciphertext-version checks it cannot make (those are named as review-lens checks), and the two red flags covering the one agility law merged into one. stewarding-data's deletion-rights floor now names crypto-shredding via pointer instead of leaving the mechanism implicit. Every security token verified present by the new validate.js check; no law moved or removed.
 
+### Added
+
+- **Ship-checklist rescues homed before the checklist rewrite**: defending-in-depth gains a Session-and-auth floor (refresh rotation, session invalidation on credential change, MFA on admin surfaces, failed-auth alerting) and business-logic abuse classes in Gate 0 (quota gaming, unintended use, social engineering); observing-production gains the Edge floor (WAF and edge logs reviewed on a cadence). These protections previously lived only in the global ship-checklist, which becomes pointer rows.
+
 ### Changed
 
 - **Routing descriptions sharpened to disjoint triggers** (own commit for bisectability): exploring-codebases now triggers on building-in-unmapped-code with the persisted map as its named deliverable; tracing-codebases on chat-only explanation with nothing written; both bodies state what they add over the harness-native explore skill (persisted map + gate; parallel slice owners + seam cross-confirmation + refutation bar). The skills stay separate: merging would have dropped tracing's harness-enforced read-only frontmatter, the library's only one (declined once before at 2.19.0 for the same reason).

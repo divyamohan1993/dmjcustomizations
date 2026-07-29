@@ -21,7 +21,7 @@ Write four lists first:
 - **Assets**: PII, secrets, money, trust.
 - **Entry points**: every input, route, header, file, queue, env var.
 - **Trust boundaries**: where data crosses less-trusted to more-trusted.
-- **Abuse cases**: how a hostile user attacks each entry point.
+- **Abuse cases**: how a hostile user attacks each entry point, business logic included: quota gaming (referral exploits, trial resets, free-tier abuse), unintended use (a text field storing files, account sharing), and social engineering of users or support.
 
 Then **post-compromise cases.** Per asset, what does an attacker with root and a DB dump get? "The data" means the design is not finished.
 
@@ -90,6 +90,7 @@ Under law 1 detection outranks prevention: prevention already failed in the scen
 |---|---|
 | Input | All input hostile. Server-side validation, parameterized queries only, output-encode on render. No dynamic code execution. |
 | Authz | Zero trust, verify every layer, never trust internal. Least privilege, deny-by-default. |
+| Session and auth | Short-expiry tokens with refresh rotation; every session invalidated on credential change; MFA on admin surfaces; failed-auth attempts alerted and backed off (see Abuse). |
 | Crypto | Hybrid post-quantum per the table above. One module owns selection. Versioned ciphertexts. Confirm current FIPS parameters at invocation. |
 | Keys | Per-record DEK, per-tenant KEK, rotation tested. Keys never share a blast radius with the data they protect. |
 | Transport | TLS 1.3 floor with hybrid key exchange. HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy on every response. Nonce-based CSP. CORS explicit origins, never `*`. |

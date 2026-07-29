@@ -24,6 +24,7 @@ An alert that fires without action twice is deleted or fixed: fatigue buries the
 | Golden signals | Latency, traffic, errors, saturation per service; one dashboard answers "is it healthy" in one glance |
 | Probes | Shallow and deep health endpoints wired to the deploy gate (dmj:shipping-to-production) |
 | Errors | Every unhandled exception captured with release tag and correlation ID, deduplicated, triaged |
+| Edge | WAF and edge logs reviewed on a cadence, not only during incidents; traffic anomalies surface here first |
 
 ## Incident loop
 
