@@ -22,7 +22,7 @@ for (const n of skills) {
   const rel = `skills/${n}/SKILL.md`;
   let body;
   try { body = read(rel); } catch { flag(`${n}: missing SKILL.md`); continue; }
-  const fm = body.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  const fm = body.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!fm) { flag(`${n}: no frontmatter`); continue; }
   const front = fm[1], content = fm[2];
   const name = (front.match(/^name:\s*(.+)$/m) || [])[1];

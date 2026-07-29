@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.22.1] - 2026-07-29
+
+### Fixed
+
+- **CRLF checkout broke every LF-only parser.** The repo had no .gitattributes, so a Windows checkout with core.autocrlf=true rematerialized the working tree as CRLF (surfaced by the 2.22.0 merge itself: validate.js failed all 32 skills with "no frontmatter" while CI on Linux stayed green). Two-layer fix: .gitattributes now pins `* text=auto eol=lf` so every platform checks out LF (node parsers, bash hooks, and the skill loader all read files raw), and the frontmatter regexes in validate.js and export-claude-ai.mjs accept `\r?\n` as defense for clones that predate the attributes file.
+
 ## [2.22.0] - 2026-07-29
 
 ### Changed

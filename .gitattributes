@@ -1,0 +1,5 @@
+# LF everywhere: node parsers, bash hooks, and the skill loader all read these
+# files raw, and a CRLF checkout (Windows core.autocrlf=true) breaks LF-only
+# frontmatter regexes and bash shebang lines. Binary artifacts live only in
+# gitignored dist/, so a blanket text rule is safe.
+* text=auto eol=lf

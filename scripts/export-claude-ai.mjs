@@ -45,7 +45,7 @@ for (const name of fs.readdirSync(path.join(root, 'skills')).sort()) {
       if (fs.statSync(s).isDirectory()) { copy(s, path.join(dst, f)); continue; }
       let text = fs.readFileSync(s, 'utf8');
       if (f === 'SKILL.md' && src === srcDir) {
-        const m = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+        const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
         if (!m) { console.error('no frontmatter: ' + name); process.exit(1); }
         const desc = (m[1].match(/^description:\s*(.+)$/m) || [])[1] || '';
         if (desc.length > 200) over.push(name);
