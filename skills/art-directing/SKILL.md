@@ -9,11 +9,11 @@ Every project earns a researched visual identity, never a default. dmj:crafting-
 
 ## Gate 0: research before color
 
-Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world and vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) the current-best technique, never hardcoded. Derive the palette from that EMOTION (method: color-psychology.md), not cliché or habit. **Contrast wins**: every pair meets WCAG AA, color-blind-safe, dark and light. Low-contrast is a failure, not a vibe.
+Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world and vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) the current best technique, plus 2 to 3 category-defining products read for the principles behind them, never to clone a look and never to reuse a past project's identity. Derive the palette from that EMOTION, not from cliché, habit, or a flag (method, ratios, and the culture caveat: color-psychology.md). Contrast is a floor, not a vibe: every pair AA, color-blind-safe, dark and light.
 
 ## The token system (the artifact)
 
-Emit named tokens, never prose: 4 to 6 core palette hex with roles (plus text tiers), type scale, spacing, radii, motion, as CSS vars or Tailwind. 2 to 3 type roles (display with personality, legible body, optional mono); **never the AI-default stack** (Inter / Space Grotesk / JetBrains Mono is the tell). Perf wins (dmj:enforcing-performance-budgets): variable fonts, latin-subset, self-host or font-display:swap, preload hero weights. Morphic language (skeuo, neu, glass, clay, flat, brutalist, aurora, bento, blend) research-chosen, never locked.
+Emit named tokens, never prose: 4 to 6 core palette hex with roles (plus text tiers), type scale, spacing, radii, motion, as CSS vars or Tailwind. 2 to 3 type roles (display with personality, legible body, optional mono); **never the AI-default stack** (Inter / Space Grotesk / JetBrains Mono is the tell). Perf wins (dmj:enforcing-performance-budgets): variable fonts, latin-subset, self-host or font-display:swap, preload hero weights. Morphic language (skeuo, neu, glass, clay, flat, brutalist, aurora, bento, blend) research-chosen, never locked. Hand a direction over as the token file plus a live mock; a paragraph describing a look is not a spec.
 
 ## Non-negotiables
 
@@ -34,22 +34,9 @@ No "done" without it (dmj:verification-before-completion): screenshot every brea
 
 Competing directions: a team runs 2 to 3 spikes (one named `Agent` per direction, spawned in a single message), screenshots decide (dmj:dispatching-parallel-teams, dmj:brainstorming). User-facing diffs carry the experience lens (dmj:requesting-code-review).
 
-## Rationalizations (all false)
+## The default attractors
 
-| Excuse | Reality |
-|---|---|
-| "Dark bg plus one neon accent is modern" | An AI-default look; every agent lands there. Research a palette instead |
-| "Inter / Space Grotesk is safe" | Safe is the template tell; distinctive type is the cheapest identity |
-| "Cap at 1200px and center" | Wastes the screen you were told to fill; scale density, not margins |
-| "Saffron because India" | Cliché is not researched emotion; derive color from the feeling the audience needs |
-| "Add a column or metric for big screens" | Then it is hidden on small ones; reflow the same content, never viewport-exclusive content |
-
-## Red flags (stop)
-
-- Any element shown at one screen size and hidden at another.
-- "Done" or "verified" without proof (a failed launch, a per-shot page check).
-- A default font stack, a dark-plus-neon palette, or color by habit.
-- One identity on every project, or ten unrelated looks inside one.
+Name them or you drift into them, because habit and hurry both land here: a dark background plus one neon accent; the Inter / Space Grotesk stack; a 1200px centered column with the screen wasted around it; a hue chosen from a flag or a logo; a column, metric, or panel that exists only above a breakpoint. Every one is already refused by a bar above. Reaching for one is the signal that research got skipped.
 
 **Headless:** research, derive tokens, build, screenshot-verify autonomously; PARK only brand calls (wordmark, hue), ship a default.
 

@@ -5,26 +5,25 @@ description: Use when shipping or finishing any project, before pushing prose (R
 
 # Humanizing Output
 
-Shipped prose must read like a careful human wrote it, never an AI. No em dashes, no AI-tell vocabulary. This is a gate every project carries, enforced before push, not a habit you hope to remember. It lives in the project (and in CI), so collaborators and pull requests pass the same bar.
+Shipped prose must read like a careful human wrote it, never an AI. No em dashes, no AI-tell vocabulary. This is a gate every project carries, enforced before push and in CI, not a habit you hope to remember, so collaborators and pull requests pass the same bar.
 
-## What it checks (prose only: md, mdx, txt, and commit messages)
+## What blocks
 
-- **Unicode dashes** (em, en, horizontal bar, minus, figure): always blocks. Use commas, colons, semicolons, or periods.
-- **AI-tell words and phrases** (`delve`, `tapestry`, `robust`, `seamless`, `leverage`, `utilize`, `it's worth noting`, `boasts`, `testament to`, `underscores`, `moreover`, `elevate`, `unlock`, `myriad`, `plethora`, `pivotal`, and kin): blocks in gate mode; rewrite to plain words.
+Prose only: `.md`, `.mdx`, `.markdown`, `.txt`, and commit messages. Fenced and inline code are skipped, so real command output is never flagged.
 
-Fenced and inline code are skipped, so real command output is never flagged. Tune false positives per project in `.humanize-allow`, one term per line.
+- **Unicode dashes** (em, en, horizontal bar, minus, figure, non-breaking hyphen): block in every mode, always. Use commas, colons, semicolons, or periods.
+- **AI-tell words and phrases**: warn by default, block under `--gate`, which is the mode the hook and CI both run. Rewrite to plain words. A sample, not the list: `delve`, `seamless`, `robust`, `leverage`, `utilize`, `it's worth noting`, `testament to`, `moreover`. The list itself is `AI_TELLS` in `humanize-guard.mjs`: read it there rather than from memory, and tune per project in `.humanize-allow`, one term per line.
 
-## The gate (every project includes it)
+## The pieces (each file is its own spec; read it, do not re-derive it)
 
-- `humanize-guard.mjs`: the checker. `node humanize-guard.mjs --gate [files]`. Zero dependencies. No files given means it scans the prose changed in the push range.
-- `hooks/pre-push`: blocks a push that has violations. Bypass once with `HUMANIZE_SKIP=1 git push`. It chains an existing `.husky/pre-push`, so it never disables husky or lefthook, and it falls back to a dash-only check when Node is absent rather than erroring.
-- `humanize.mjs`: the fix. It rewrites flagged prose to plain language with the `claude` CLI, shows a diff, and applies only on your approval. No `claude` present means it reports and stops.
-- CI step: `node .humanize/humanize-guard.mjs --gate` in the pipeline covers collaborators and pull requests.
+| File | What it is |
+|---|---|
+| `humanize-guard.mjs` | The checker, zero dependencies. `node humanize-guard.mjs --gate [files]`; given no files it scans the prose changed in the push range |
+| `hooks/pre-push` | The enforcement. Checks only prose in the commits being pushed, chains husky, lefthook, and a native hook, degrades to a dash-only check when Node is missing, bypassed once by `HUMANIZE_SKIP=1 git push` |
+| `humanize.mjs` | The fix. Rewrites flagged prose to plain language with the `claude` CLI, shows a diff, applies only on your approval. No `claude` present means it reports and stops |
+| `install.sh` | `sh install.sh` wires one repo (`.humanize/` plus the hook) and prints the CI line. `sh install.sh --global` sets a chained `core.hooksPath` for every repo on the machine, and aborts when a global one already points elsewhere, because repointing it silently disables every hook living there, secret scanners included |
 
-## Install
-
-- One repo: `sh install.sh` copies the guard and fixer into `.humanize/` and wires the pre-push hook (or `.husky/`), then prints the CI line.
-- Every repo on the machine: `sh install.sh --global` sets a chained `core.hooksPath`. It warns first, because that path overrides per-repo `.git/hooks` for every repo; the hook chains husky so nothing breaks.
+CI step: `node .humanize/humanize-guard.mjs --gate`.
 
 ## Non-negotiables
 
@@ -34,13 +33,6 @@ Fenced and inline code are skipped, so real command output is never flagged. Tun
 | Never brick a push | A missing Node or `claude` degrades to a dash-only check, never a hard error. `HUMANIZE_SKIP=1` is the on-the-record escape hatch |
 | Protect code and meaning | Only prose is scanned; code, strings, links, numbers, and facts stay byte-identical through a humanize pass |
 | Travels with the repo | Hook plus CI committed, so the gate is enforced everywhere, not just on your machine |
-
-## Red flags (stop)
-
-- Auto-rewriting prose and pushing it with no human seeing the diff.
-- A global hook that quietly disables a project's husky or lefthook.
-- Scanning or rewriting source code instead of only prose.
-- An em dash shipped because the check was skipped silently rather than with `HUMANIZE_SKIP=1` on the record.
 
 **Headless:** run the guard and report; apply a humanize rewrite only with recorded approval, and never push an unreviewed rewrite.
 

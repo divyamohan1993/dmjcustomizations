@@ -25,13 +25,21 @@ Fresh-context TEAM, never one agent, never same-context self-review: one `Agent`
 
 Only enough to defeat the failures observed. No padding for hypotheticals.
 
-**Frontmatter:** YAML. Required: `name` = the directory (kebab-case); `description`: third person, starts "Use when", ONLY triggering conditions and symptoms, NEVER a workflow summary, under 500 chars. A description summarizing steps becomes a shortcut Claude follows instead of reading the body. A harness field (`disallowed-tools`, `paths`, `context`) enters ONLY when it turns one of the skill's own contracts into enforcement (a chat-only skill forbidding Write); every other field stays out. See best-practices.md.
+**Frontmatter:** YAML. Required: `name` = the directory (kebab-case); `description`: third person, starts "Use when", ONLY triggering conditions and symptoms, NEVER a workflow summary, under 500 chars. A harness field (`disallowed-tools`, `paths`, `context`) enters ONLY when it turns one of the skill's own contracts into enforcement (a chat-only skill forbidding Write); every other field stays out. Descriptions are the routing surface: editing a shipped one invalidates the routing gauntlet's certification of that trigger pair, so re-run it or leave the wording alone. Craft: best-practices.md.
 
-**Body:** under 500 words. Core principle up top, keyword-rich for discovery, one excellent example per concept, tables for reference. Cross-reference siblings as `dmj:<name>`, never `@`-links (force-load, burn context).
+**Body:** the trigger, the floors, and the decision rules, nothing else, which is about 500 words. Past that, the excess is usually depth, and depth belongs in a sibling reference file linked from SKILL.md; that split is the norm for anything long, not a last resort. (`validate.js` holds the hard caps.) Write to inform judgement: state the floor and what it protects, then trust the reader to apply it; specify step by step only where the task is fragile or order-critical. Prefer a reference to a description: point at the code, rubric, or failing test that already defines the behavior instead of restating it, because the restatement is the copy that goes stale. Keep an example only where it pins a contract more precisely than prose can. Cross-reference siblings as `dmj:<name>`, never `@`-links (force-load, burn context).
 
 ## REFACTOR: close loopholes (parallel)
 
 Re-run the same team WITH the skill. New rationalization? Add an explicit negation + a rationalization-table row + a red-flag line, re-test. Repeat until a maximum-pressure team complies and cites the skill.
+
+Each of those three is output for a rationalization you watched an agent produce, and it gets ONE home: a row or flag that only restates a floor, step, or rule stated above it is duplication rather than enforcement, and belongs cut. Which one is the home is a lookup, not a taste call:
+
+- **A test's PASS criterion cites a section** ("citing the Delivery bar"): that section is the home. Move the row's sharpest phrasing into it, then cut the row.
+- **The test or the CHANGELOG records the ROW itself** as what was added and passed: the row is the home and the prose gives way.
+- **No scenario maps to the row at all:** the test is whether it restates a bar, step, or rule in the same file. If it does, that is the home and the row goes. If it names a pressure no bar covers, it stays.
+
+A red flag is a detection trigger, not a restatement: it earns its place by naming the symptom or the thought that precedes the violation. One that repeats a bar's words is the duplicate, and two flags covering one law merge into one.
 
 ## This library's additions
 
@@ -43,7 +51,7 @@ Add both to the skill's checklist.
 
 ## Flowcharts and files
 
-Flowchart ONLY a non-obvious decision loop, never reference material, code, or linear steps. Separate file only for heavy reference or a reusable tool; references one level deep from SKILL.md.
+Flowchart ONLY a non-obvious decision loop, never reference material, code, or linear steps. Reference files sit one level deep from SKILL.md, each carrying a table of contents once it passes ~100 lines (split rules: best-practices.md).
 
 ## Dynamic skills
 
@@ -51,6 +59,6 @@ SKILL.md supports preprocessing that runs BEFORE content loads: an arguments pla
 
 ## Anti-patterns
 
-Narrative ("the time we fixed..."); the same example in five languages; code inside flowcharts; generic labels (step1, helper2); shipping untested because "batching is efficient."
+Narrative ("the time we fixed..."); the same example in five languages; code inside flowcharts; generic labels (step1, helper2); restating a script, rubric, or config the skill could point at; shipping untested because "batching is efficient."
 
 Next: dmj:verification-before-completion, then dmj:requesting-code-review.

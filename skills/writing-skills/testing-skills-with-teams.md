@@ -18,9 +18,11 @@ Testing a skill is TDD for docs. Run scenarios WITHOUT the skill (RED, watch fre
 
 ## Why a team, not a lone agent
 
-Evidence comes from FRESH-context teammates, never same-context self-review: an agent that helped write the skill holds the intended answer, cannot test it impartially. A team also runs many scenarios at once and surfaces more rationalizations per cycle, since teammates break differently.
+Evidence comes from FRESH-context teammates, never same-context self-review. A teammate starts clean and loads the skill file itself, inheriting none of the conversation where you wrote it, so its choice is evidence about the text rather than about your intent. An agent that helped write the skill already holds the intended answer and cannot judge it impartially. A team also runs many scenarios at once and surfaces more rationalizations per cycle, since teammates break differently.
 
-Spawn: one `Agent` teammate per scenario, `name` tied to it, all in a single message so they run concurrently. Each reports its choice and verbatim reasoning back (messages are its only channel; ask for midway notes on long scenarios). Recurring rationalizations are the ones the skill must kill. dmj:dispatching-parallel-teams applied to skill QA.
+Spawn: one `Agent` per scenario, `name` tied to it, all in a single message so they run concurrently. Each reports its choice and verbatim reasoning back. Recurring rationalizations are the ones the skill must kill.
+
+Teams are experimental and OFF unless `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set (settings.json `env` block). Without it a named spawn is a result-only worker: it reports to you and cannot message peers, so the lead carries the coordination. The fallback loses peer messaging and mid-run steering, never the one-message batch or the no-fire-and-forget floor. Skill QA survives it intact, since every scenario is independent, one shot, and graded on the reply. Mechanics: dmj:dispatching-parallel-teams.
 
 Do NOT test this way: pure reference skills (API docs, syntax), or skills with no rule to violate. DO test: discipline skills, skills with a compliance cost, anything an agent has incentive to bypass.
 
@@ -79,7 +81,7 @@ A teammate complied but a different one found a new escape? Regression. Per new 
 2. **Rationalization-table row:** the excuse, and the one-line reality that defeats it.
 3. **Red-flag line:** the thought that signals the agent is about to violate.
 
-Then re-run the team. Continue until a maximum-pressure team finds no new escape.
+Each new rationalization gets one home, never a copy in every section; the home lookup is in SKILL.md. Then re-run the team. Continue until a maximum-pressure team finds no new escape.
 
 ## Meta-testing (when GREEN won't hold)
 
