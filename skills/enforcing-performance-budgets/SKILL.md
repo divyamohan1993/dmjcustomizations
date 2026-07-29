@@ -5,19 +5,19 @@ description: Use when something is slow or might be, or when a choice affects sp
 
 # Enforcing Performance Budgets
 
-Performance is a gate, not an afterthought. An unenforced budget is a wish. Regressions block merges.
+performance = a gate, not an afterthought. unenforced budget = a wish. regressions block merges.
 
 ## Gate 1: Complexity first
 
-Target O(1); else justify the lowest achievable in a comment at the call site: O(log n) > O(n) > O(n log n). **O(n^2) or worse requires written justification next to the code**, naming the input bound that keeps it safe. No silent quadratics on unbounded input.
+target O(1). else justify the lowest achievable in a comment at the call site: O(log n) > O(n) > O(n log n). **O(n^2) or worse requires written justification next to the code**, naming the input bound that keeps it safe. no silent quadratics on unbounded input.
 
 ## Gate 2: Measure, never guess
 
-Profile before optimizing; the bottleneck is rarely where intuition points. No optimization lands without a before/after measurement: a guess is not evidence, a flame graph is.
+profile before optimizing. bottleneck rarely sits where intuition points. no optimization lands without a before/after measurement. guess: not evidence. flame graph: evidence.
 
 ## Gate 3: Written budgets, enforced in CI
 
-Every budget written and machine-checked. From these floors, adjust per project, always commit the number:
+every budget written and machine-checked. floors below, adjust per project, always commit the number:
 
 | Budget | Floor | Gate |
 |--------|-------|------|
@@ -27,45 +27,49 @@ Every budget written and machine-checked. From these floors, adjust per project,
 | CLS | < 0.1 | Lighthouse CI |
 | JS bundle | < 200KB gzip | bundlesize / size-limit |
 
-Confirm current Core Web Vitals thresholds at invocation (fetch web.dev; the metric set and its limits evolve). Lighthouse `budget.json` and bundlesize assert at `error` so a breach **fails the build**.
+confirm current Core Web Vitals thresholds at invocation (fetch web.dev; metric set and limits evolve). Lighthouse `budget.json` + bundlesize assert at `error` -> a breach **fails the build**.
 
 ## Gate 4: Cache-first architecture
 
-Origin is the last resort, not the default:
-- Immutable static assets at the edge, long TTL, content-hashed.
-- API responses cached with stale-while-revalidate.
-- HTML via edge SSG/ISR; origin hit only on a genuine miss of uncacheable data.
+origin = last resort, not default:
+- immutable static assets at the edge, long TTL, content-hashed.
+- API responses cached, stale-while-revalidate.
+- HTML via edge SSG/ISR. origin hit only on a genuine miss of uncacheable data.
 
-**Scale shape:** services stateless, state externalized (session store, queue, DB), so one instance and a thousand behave identically; event-driven, edge-first, degrading gracefully. These patterns carry a single box to sharded multi-region without a rewrite, which is what keeps 10x traffic a config change instead of a redesign.
+**scale shape:** services stateless, state externalized (session store, queue, DB) -> one instance and a thousand behave identically. event-driven, edge-first, degrades gracefully. these patterns carry a single box to sharded multi-region without a rewrite, keeping 10x traffic a config change instead of a redesign.
 
 ## Choosing a stack (cost is a budget too)
 
-Two measured axes, never one: performance fit (meets every budget on YOUR workload; probe current independent benchmarks at decision time, not marketing charts) and total cost of ownership (infra, egress, build minutes, per-request pricing, at realistic and at 10x traffic). Among stacks that meet the budgets, the cheapest runs; a free tier that holds the numbers beats anything billable. Price it BEFORE adopting; commit the estimate beside the budgets.
+two measured axes, never one:
+- **performance fit**: meets every budget on YOUR workload. current independent benchmarks at decision time, not marketing charts.
+- **total cost of ownership**: infra, egress, build minutes, per-request pricing, at realistic and at 10x traffic.
 
-A stack named by anyone, the user included, enters the same race as a hypothesis, never a conclusion. When it loses on cost or fit: present the numbers, recommend the winner, build only after the user decides with the evidence in front of them. Silent compliance with an oversized stack is a budget breach, not respect.
+cheapest stack meeting the budgets runs. free tier holding the numbers beats anything billable. price BEFORE adopting, commit the estimate beside the budgets.
+
+a stack named by anyone, the user included, enters the same race as a hypothesis, never a conclusion. loses on cost or fit -> present the numbers, recommend the winner, build only after the user decides with the evidence in front of them. silent compliance with an oversized stack = a budget breach, not respect.
 
 ## Load and soak
 
-Load-test at peak times a safety factor; soak to catch leaks and GC stalls. The bar is a graph that flatlines under normal plus moderate attack load.
+load-test at peak times a safety factor. soak to catch leaks and GC stalls. bar = a graph flatlining under normal plus moderate attack load.
 
 ## Parallel pattern
 
-Run a dedicated **performance lens as a fresh-context teammate** in every review panel, never same-context self-review (delegation per dmj:dispatching-parallel-teams). Two implementations plausible: race them as **parallel spikes in disposable temp clones** (dmj:using-git-worktrees policy); the benchmark decides.
+every review panel runs a **performance lens as a fresh-context teammate**, never same-context self-review (dmj:dispatching-parallel-teams). two implementations plausible -> race them as **parallel spikes in disposable temp clones** (dmj:using-git-worktrees policy); the benchmark decides.
 
 ## Rationalization table
 
 | Excuse | Reality |
 |--------|---------|
-| "Optimize later, ship now" | Later is a rewrite under production load. Budget now. |
-| "n is small here" | Inputs grow; the bound is not in the code. Write it or fix it. |
-| "It feels fast on my machine" | Your machine is not p95 on 3G. Measure the tail. |
-| "Team familiarity is worth the monthly bill" | Familiarity is a one-time learning cost; the bill recurs forever. Price both. |
+| "Optimize later, ship now" | later = a rewrite under production load. budget now. |
+| "n is small here" | inputs grow; the bound is not in the code. write it or fix it. |
+| "It feels fast on my machine" | your machine is not p95 on 3G. measure the tail. |
+| "Team familiarity is worth the monthly bill" | familiarity = one-time learning cost. the bill recurs forever. price both. |
 
 ## Red flags: STOP, measure, set the budget
 
-- Nested loop or N+1 over unbounded input, no justification comment
-- Optimizing without a profile
-- A budget that warns instead of failing the build
-- Stack chosen by popularity, not a workload benchmark
+- nested loop or N+1 over unbounded input, no justification comment
+- optimizing without a profile
+- a budget that warns instead of failing the build
+- stack chosen by popularity, not a workload benchmark
 
-Handoff: budgets into dmj:writing-plans; enforce the perf lens via dmj:requesting-code-review.
+Handoff: budgets -> dmj:writing-plans; perf lens enforced via dmj:requesting-code-review.

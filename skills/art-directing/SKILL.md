@@ -5,34 +5,34 @@ description: Use when designing or restyling any UI surface (page, panel, dashbo
 
 # Art Directing
 
-Every project earns a researched visual identity, never a default. dmj:crafting-experiences sets the bar; this hits it. **One identity per project**: panels share its tokens, each earns a signature; distinct across projects, cohesive within one.
+Every project earns a researched visual identity, never a default. dmj:crafting-experiences sets the bar, this hits it. **One identity per project**: panels share its tokens, each earns a signature. distinct across projects, cohesive within one.
 
 ## Gate 0: research before color
 
-Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world and vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) the current best technique, plus 2 to 3 category-defining products read for the principles behind them, never to clone a look and never to reuse a past project's identity. Derive the palette from that EMOTION, not from cliché, habit, or a flag (method, ratios, and the culture caveat: color-psychology.md). Contrast is a floor, not a vibe: every pair AA, color-blind-safe, dark and light. Catching yourself reaching for a default attractor (dark plus one neon accent, the Inter / Space Grotesk stack, a 1200px centered column, a flag hue) is the signal that this research got skipped: every one is refused by a bar below.
+Before any pixel, in parallel (dmj:researching-deeply): (1) what the project IS, its world/vernacular; (2) the emotion the audience needs (trust, calm, focus, energy); (3) current best technique + 2 to 3 category-defining products read for principles, never to clone a look, never to reuse a past identity. palette derives from that EMOTION, not cliche/habit/flag (method, ratios, culture caveat: color-psychology.md). contrast = floor, not vibe: every pair AA, color-blind-safe, dark and light. reaching for a default attractor (dark + one neon accent, Inter/Space Grotesk, 1200px centered column, flag hue) = the signal this research got skipped; each is refused by a bar below.
 
 ## The token system (the artifact)
 
-Emit named tokens, never prose: 4 to 6 core palette hex with roles (plus text tiers), type scale, spacing, radii, motion, as CSS vars or Tailwind. 2 to 3 type roles (display with personality, legible body, optional mono); **never the AI-default stack** (Inter / Space Grotesk / JetBrains Mono is the tell). Perf wins (dmj:enforcing-performance-budgets): variable fonts, latin-subset, self-host or font-display:swap, preload hero weights. Morphic language (skeuo, neu, glass, clay, flat, brutalist, aurora, bento, blend) research-chosen, never locked. Hand a direction over as the token file plus a live mock; a paragraph describing a look is not a spec.
+Named tokens, never prose: 4 to 6 core palette hex with roles (plus text tiers), type scale, spacing, radii, motion, as CSS vars or Tailwind. 2 to 3 type roles (display with personality, legible body, optional mono); **never the AI-default stack** (Inter/Space Grotesk/JetBrains Mono = the tell). perf (dmj:enforcing-performance-budgets): variable fonts, latin-subset, self-host or font-display:swap, preload hero weights. morphic language (skeuo, neu, glass, clay, flat, brutalist, aurora, bento, blend) research-chosen, never locked. handover = token file + live mock. a paragraph describing a look is not a spec.
 
 ## Non-negotiables
 
 | Bar | Floor |
 |---|---|
-| Hero is a thesis | Open with the most characteristic thing in the subject's world, not a headline on a gradient |
-| Hide nothing by size | Every element reaches every breakpoint; responsive reflows and rescales, never removes or display:none by width. A nav may collapse to an accessible menu, items still reachable |
-| Fill every edge, stay readable | Chrome, grids, visuals run edge-to-edge at every size. Fill large and 4k by scaling the composition and reflowing the SAME content into columns, never adding data a small screen never sees, never a centered column in whitespace. Text holds a 66 to 75ch measure as its type grows |
-| One signature | A single element carries the boldness; everything around it stays disciplined. High-energy is not noisy |
-| Show, not tell | Cut chrome and decoration, not content: demonstrate, do not narrate, yet every needed fact stays visible. Full semantic HTML and ARIA beneath (screen readers need the words); active voice, name what the user controls |
-| Structure encodes meaning | Numbering, eyebrows, dividers only when they carry real information, never decoration |
+| Hero is a thesis | Open on the most characteristic thing in the subject's world, not a headline on a gradient |
+| Hide nothing by size | Every element reaches every breakpoint. responsive reflows and rescales, never removes, never display:none by width. a nav may collapse to an accessible menu, items still reachable |
+| Fill every edge, stay readable | Chrome/grids/visuals run edge-to-edge at every size. fill large and 4k by scaling the composition and reflowing the SAME content into columns, never data a small screen never sees, never a centered column in whitespace. text holds a 66 to 75ch measure as its type grows |
+| One signature | One element carries the boldness, everything around it stays disciplined. high-energy is not noisy |
+| Show, not tell | Cut chrome and decoration, not content: demonstrate, never narrate, every needed fact still visible. full semantic HTML+ARIA beneath (screen readers need the words). active voice, name what the user controls |
+| Structure encodes meaning | Numbering, eyebrows, dividers only where they carry real information, never decoration |
 
 ## Screenshot-verify (HARD gate)
 
-No "done" without it (dmj:verification-before-completion): screenshot every breakpoint (mobile-portrait, mobile-landscape, tablet, laptop, desktop, 4k) via Playwright MCP, contrast-check, critique, fix. Confirm each shot is your page. Playwright genuinely absent (a failed launch, never a mere claim): a per-breakpoint checklist plus contrast math, numbers shown. Self-asserted "looks responsive/AA" is not verification.
+No "done" without it (dmj:verification-before-completion): screenshot every breakpoint (mobile-portrait, mobile-landscape, tablet, laptop, desktop, 4k) via Playwright MCP, contrast-check, critique, fix. confirm each shot is your page. Playwright genuinely absent (a failed launch, never a mere claim) -> per-breakpoint checklist + contrast math, numbers shown. self-asserted "looks responsive/AA" = not verification.
 
 ## Parallel pattern
 
-Competing directions: a team runs 2 to 3 spikes (one named `Agent` per direction, spawned in a single message), screenshots decide (dmj:dispatching-parallel-teams, dmj:brainstorming). User-facing diffs carry the experience lens (dmj:requesting-code-review).
+Competing directions: 2 to 3 spikes (one named `Agent` each, single message), screenshots decide (dmj:dispatching-parallel-teams, dmj:brainstorming). user-facing diffs carry the experience lens (dmj:requesting-code-review).
 
 **Headless:** research, derive tokens, build, screenshot-verify autonomously; PARK only brand calls (wordmark, hue), ship a default.
 

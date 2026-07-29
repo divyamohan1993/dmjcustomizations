@@ -5,7 +5,9 @@ description: Use when an idea or feature set must become a complete shipped prod
 
 # Orchestrating Products
 
-One idea enters; a complete product leaves. This wireframe routes every stage to its owning discipline, its loop primitive, and the cheapest tier that meets the stage's bar. The bars never move; only the price of meeting them does. Judgment is the scarce good: spend the strongest model there and nowhere else.
+A research-grade, production-deployable agentic delivery line: skills = policy, hooks = enforcement, generated gates = verification, teams = execution.
+
+One idea enters; a complete product leaves. Every stage routes to its owning discipline, its loop primitive, and the cheapest tier meeting the stage's bar. Bars never move; only the price does. Judgment is the scarce good: spend the strongest model there, nowhere else.
 
 ## The assembly line
 
@@ -16,31 +18,31 @@ One idea enters; a complete product leaves. This wireframe routes every stage to
 | 3 Identity | dmj:art-directing | Strong tier sets direction; cheap tier grinds the screenshot-compare loop |
 | 4 Plan | dmj:writing-plans | Strong author; fresh-context reviewer; criteria written machine-checkable HERE become every later stage's stop conditions |
 | 5 Equip | dmj:equipping-projects | Scripts, minutes, near-zero inference |
-| 6 Build | dmj:team-driven-development or dmj:executing-plans, discipline dmj:test-driven-development | Waves of fresh minimal-context workers against written criteria; a goal loop per task with an independent evaluator judging done |
+| 6 Build | dmj:team-driven-development or dmj:executing-plans, discipline dmj:test-driven-development | Waves of fresh minimal-context workers against written criteria; a goal loop per task, independent evaluator judging done |
 | 7 Verify | dmj:verification-before-completion, dmj:requesting-code-review | Strongest tier on the adversarial panel; that judgment is what the savings above paid for |
 | 8 Ship | dmj:shipping-to-production | Scripts and probes decide; models only narrate |
 | 9 Operate | dmj:observing-production, dmj:stewarding-data | Interval-matched time loops on a cheap routine tier; strong tier wakes only for incidents (dmj:systematic-debugging) |
 | 10 Evolve | dmj:landing-sessions into dmj:evolving-skills | Gated queue, human merge |
 
-A stage opens ONLY on the prior stage's gate evidence (the owning skill's gate). dmj:using-dmj still routes each stage's skill at invocation.
+A stage opens ONLY on the prior stage's gate evidence (the owning skill's gate). dmj:using-dmj routes each stage's skill at invocation.
 
 ## Token economy
 
-- **One tier, user law.** Every spawn runs the judgement tier (alias: dmj:dispatching-parallel-teams); "cheapest tier" anywhere in this table resolves to it. What varies per stage is the SHAPE (scripts vs criteria-bounded workers vs adversarial panels), never the model. All spawns background, steerable, quiet in the lead thread.
-- **Scripts beat inference.** Anything deterministic (deploys, validation, drills, formatting) is a committed script: zero tokens forever after.
-- **Criteria beat supervision.** Written criteria let mid tiers build and the smallest tier judge; strong-tier review then inspects the product, not the process.
-- **Fresh minimal contexts.** Workers get task text, never transcripts; the lead stays thin, holds conclusions, implements nothing. Each teammate is a full session whose tokens scale linearly, so a stage fans out only where parallel work genuinely pays, and a stage that needs its own team runs at the lead, which is the only agent that can fan out (dmj:dispatching-parallel-teams).
+- **One tier, user law.** Every spawn runs the judgement tier (alias: dmj:dispatching-parallel-teams); "cheapest tier" in the table resolves to it. Per stage the SHAPE varies (scripts / criteria-bounded workers / adversarial panels), never the model. All spawns background, steerable, quiet in the lead thread.
+- **Scripts beat inference.** Anything deterministic (deploys, validation, drills, formatting) = a committed script. Zero tokens after.
+- **Criteria beat supervision.** Written criteria let mid tiers build and the smallest tier judge; strong-tier review inspects the product, not the process.
+- **Fresh minimal contexts.** Workers get task text, never transcripts (orchestrator law: dmj:using-dmj). Teammate tokens scale linearly -> fan out only where parallel work pays. A stage needing its own team runs at the lead (dmj:dispatching-parallel-teams).
 - **Pilot before fleet.** One task through the full line before sixty fan out; pilot failures fix the plan at one-task price.
-- **Never re-derive.** This table IS the routing; process reconstructed in chat is the leak this skill exists to plug.
-- **Autonomy is earned per work category, never granted.** Unattended runs ship only categories whose unattended record is measured and clean; until then, green runs land as reviewed drafts. No numeric floor is stated because no ledger records one, and a number without a producer reads as measured when it is not. Any gate failure demotes the category, loudly. New categories always start staged.
+- **Never re-derive.** This table IS the routing; process rebuilt in chat is the leak this skill plugs.
+- **Autonomy is earned per work category, never granted.** Unattended runs ship only categories with a measured clean record; until then green runs land as reviewed drafts. No numeric floor: no ledger records one, and a number without a producer reads as measured. Any gate failure demotes the category, loudly. New categories start staged.
 
 ## Ecosystems
 
-An ecosystem is a graph of pipeline runs, never one mega-build: each product runs the line alone (own spec, plan, budgets, deploy), all share one identity token system, one equip standard, and contract-first APIs between them.
+An ecosystem = a graph of pipeline runs, never one mega-build. Each product runs the line alone (own spec, plan, budgets, deploy); all share one identity token system, one equip standard, contract-first APIs.
 
 ## Floors that never move with tier
 
-Cheapest-sufficient buys the SAME bars for less: security (dmj:defending-in-depth), performance and 1-billion-scale statelessness (dmj:enforcing-performance-budgets), cinematic experience and psychology (dmj:crafting-experiences). A tier that misses a bar is not sufficient: escalate the tier, never lower the bar.
+Cheapest-sufficient buys the SAME bars for less: security (dmj:defending-in-depth), performance and 1-billion-scale statelessness (dmj:enforcing-performance-budgets), cinematic experience and psychology (dmj:crafting-experiences). A tier missing a bar is not sufficient: escalate the tier, never lower the bar.
 
 ## Red flags (stop)
 

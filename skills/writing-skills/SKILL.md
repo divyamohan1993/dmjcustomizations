@@ -5,50 +5,50 @@ description: Use when creating a new skill, editing an existing skill, or verify
 
 # Writing Skills
 
-A skill IS test-driven development for docs. Watch a fresh agent fail without it (RED), write the minimal skill fixing those exact failures (GREEN), close the loopholes it finds (REFACTOR).
+A skill IS test-driven development for docs. watch a fresh agent fail without it (RED), write the minimal skill fixing those exact failures (GREEN), close the loopholes it finds (REFACTOR).
 
 ## Kill criterion (no skill without it)
 
-A candidate that restates the system prompt, one person's opinions, or another skill is a PARAGRAPH in an existing skill, never a new skill. Each new skill taxes every future routing decision; it must earn that tax with a gate or technique that exists nowhere else.
+Candidate restating the system prompt, one person's opinions, or another skill = a PARAGRAPH in an existing skill, never a new skill. every new skill taxes every future routing decision; it earns that tax with a gate or technique existing nowhere else.
 
 **REQUIRED BACKGROUND:** dmj:test-driven-development defines the RED-GREEN-REFACTOR cycle this adapts.
 
 ## The Iron Law
 
-**No new skill, and no change to what an agent may or must do, without a failing probe first.** The scope is a property, not a file list: any edit touching a floor, gate, threshold, Iron Law, or description needs a fresh-context pressure probe (RED below) run without the change, recorded in the commit message and CHANGELOG. Wrote it before probing? Delete, start over: not "keep as reference," not "adapt while testing." Mechanical edits that move no rule (typos, links, formatting, restructuring) skip the probe; under deadline, "this edit is mechanical" is itself the rationalization to check.
+**No new skill, and no change to what an agent may or must do, without a failing probe first.** scope = a property, not a file list: any edit touching a floor, gate, threshold, Iron Law, or description needs a fresh-context pressure probe (RED below) run without the change, recorded in commit message + CHANGELOG. wrote it before probing -> delete, start over: not "keep as reference," not "adapt while testing." mechanical edits moving no rule (typos, links, formatting, restructuring) skip the probe; under deadline, "this edit is mechanical" is itself the rationalization to check.
 
 ## RED: baseline (parallel)
 
-Fresh-context TEAM, never one agent, never same-context self-review: one `Agent` teammate per pressure scenario, all spawned in a single message so they run concurrently. Each gets a realistic task WITHOUT the skill. Discipline skills: combine 3+ pressures (time, sunk cost, authority, exhaustion). Collect every choice and rationalization verbatim; the repeated excuses are your spec. Full method: testing-skills-with-teams.md.
+Fresh-context TEAM, never one agent, never same-context self-review: one `Agent` per pressure scenario, single message, concurrent. each gets a realistic task WITHOUT the skill. discipline skills: 3+ combined pressures (time, sunk cost, authority, exhaustion). capture every choice and rationalization verbatim; repeated excuses = the spec. method: testing-skills-with-teams.md.
 
 ## GREEN: minimal skill
 
-Only enough to defeat the failures observed. No padding for hypotheticals.
+Only enough to defeat the failures observed. no padding for hypotheticals.
 
-**Frontmatter:** YAML. Required: `name` = the directory (kebab-case); `description`: third person, ONLY triggering conditions and symptoms, named sharply enough that Claude picks THIS skill over its confusable siblings, NEVER a workflow summary, under 500 chars. A harness field (`disallowed-tools`, `paths`, `context`) enters ONLY when it turns one of the skill's own contracts into enforcement (a chat-only skill forbidding Write); every other field stays out. Descriptions are the always-loaded routing surface: edit a shipped one deliberately, keep the trigger that distinguishes it from siblings, and land description edits in their own commit so a routing regression is bisectable. Craft: best-practices.md.
+**Frontmatter:** YAML. `name` = directory (kebab-case). `description` = third person, ONLY triggering conditions and symptoms, sharp enough that Claude picks THIS skill over confusable siblings, NEVER a workflow summary, under 500 chars. harness field (`disallowed-tools`, `paths`, `context`) ONLY where it turns a skill's own contract into enforcement (chat-only skill forbidding Write), every other field out. descriptions = the always-loaded routing surface: edit a shipped one deliberately, keep the distinguishing trigger, land description edits in their own commit so a routing regression is bisectable. craft: best-practices.md.
 
-**Body:** the trigger, the floors, and the decision rules, nothing else, which is about 500 words. Past that, the excess is usually depth, and depth belongs in a sibling reference file linked from SKILL.md; that split is the norm for anything long, not a last resort. (`validate.js` holds the hard caps.) Write to inform judgement: state the floor and what it protects, then trust the reader to apply it; specify step by step only where the task is fragile or order-critical. Prefer a reference to a description: point at the code, rubric, or failing test that already defines the behavior instead of restating it, because the restatement is the copy that goes stale. Keep an example only where it pins a contract more precisely than prose can. Cross-reference siblings as `dmj:<name>`, never `@`-links (force-load, burn context).
+**Body:** trigger + floors + decision rules, nothing else, about 500 words. excess past that = usually depth -> a sibling reference file linked from SKILL.md, the norm for anything long, not a last resort. (`validate.js` holds the hard caps.) write to inform judgement: floor + what it protects, then trust the reader; step-by-step only where the task is fragile or order-critical. reference over description: point at the code, rubric, or failing test already defining the behavior, since a restatement is the copy that goes stale. example only where it pins a contract prose cannot. siblings as `dmj:<name>`, never `@`-links (force-load, burn context).
 
 ## REFACTOR: close loopholes (parallel)
 
-Re-run the same team WITH the skill. New rationalization? Add an explicit negation + a rationalization-table row + a red-flag line, re-test. Repeat until a maximum-pressure team complies and cites the skill.
+Same team, WITH the skill. new rationalization -> explicit negation + rationalization-table row + red-flag line, re-test. repeat until a maximum-pressure team complies and cites the skill.
 
-Each of those three is output for a rationalization you watched an agent produce, and it gets ONE home. The test is single: a row or flag that restates a bar, step, or rule stated above it in the same file is duplication, cut it after moving its sharpest phrasing into the surviving bar; one that names a pressure or symptom no bar covers (deadline, authority, sunk cost, the thought that precedes the violation) stays. A red flag is a detection trigger, not a restatement, and two flags covering one law merge into one.
+Each of the three is output for a rationalization you watched an agent produce, and gets ONE home. single test: a row or flag restating a bar, step, or rule already stated above it in the same file = duplication, cut it, sharpest phrasing moved into the surviving bar; one naming a pressure or symptom no bar covers (deadline, authority, sunk cost, the thought preceding the violation) stays. red flag = detection trigger, not restatement; two flags on one law merge.
 
 ## This library's additions
 
-Every skill inherits the library defaults stated in dmj:using-dmj: headless runs are fully autonomous with assumptions recorded and user-owned decisions parked (irreversible, security, cost, public surface), and work is parallel by default, serialized only at user gates and real data dependencies. A skill writes its own Headless or parallel section ONLY where it deviates from that default: a gate it refuses to auto-pass, a coverage ledger its discipline demands, a serialization its ordering requires. Boilerplate restating the default is duplication, cut it.
+Every skill inherits the dmj:using-dmj defaults: headless = fully autonomous, assumptions recorded, user-owned decisions parked (irreversible, security, cost, public surface); parallel by default, serialized only at user gates and real data dependencies. own Headless or parallel section ONLY where a skill deviates: a gate it refuses to auto-pass, a coverage ledger its discipline demands, a serialization its ordering requires. boilerplate restating the default = duplication, cut.
 
 ## Flowcharts and files
 
-Flowchart ONLY a non-obvious decision loop, never reference material, code, or linear steps. Reference files sit one level deep from SKILL.md, each carrying a table of contents once it passes ~100 lines (split rules: best-practices.md).
+Flowchart ONLY a non-obvious decision loop, never reference material, code, or linear steps. reference files one level deep from SKILL.md, each with a table of contents past ~100 lines (split rules: best-practices.md).
 
 ## Dynamic skills
 
-SKILL.md supports preprocessing that runs BEFORE content loads: an arguments placeholder (dollar-prefixed ARGUMENTS), a skill-dir substitution, and inline shell blocks (exclamation mark plus a backticked command). Never write those token sequences literally in a skill body; the loader substitutes and executes them even inside code spans. Use them to inject live state (date, git status, env) instead of hardcoding. Discipline-skill edits: re-verify with a fresh pressure team (the RED method above) before release.
+SKILL.md preprocessing runs BEFORE content loads: arguments placeholder (dollar-prefixed ARGUMENTS), skill-dir substitution, inline shell blocks (exclamation mark + backticked command). never write those token sequences literally in a skill body: the loader substitutes and executes them even inside code spans. use them for live state (date, git status, env), never hardcoding. discipline-skill edits: re-verify with a fresh pressure team (RED above) before release.
 
 ## Anti-patterns
 
-Narrative ("the time we fixed..."); the same example in five languages; code inside flowcharts; generic labels (step1, helper2); restating a script, rubric, or config the skill could point at; shipping untested because "batching is efficient."
+Narrative ("the time we fixed..."); one example in five languages; code inside flowcharts; generic labels (step1, helper2); restating a script, rubric, or config the skill could point at; shipping untested because "batching is efficient."
 
 Next: dmj:verification-before-completion, then dmj:requesting-code-review.

@@ -5,7 +5,7 @@ description: Use when about to claim work is complete, fixed, passing, or ready,
 
 # Verification Before Completion
 
-Claiming done without verifying is dishonesty, not efficiency. Evidence before claims.
+Claiming done without verifying = dishonesty, not efficiency. Evidence before claims.
 
 ## The Iron Law
 
@@ -13,7 +13,7 @@ Claiming done without verifying is dishonesty, not efficiency. Evidence before c
 NO COMPLETION CLAIM WITHOUT FRESH VERIFICATION EVIDENCE
 ```
 
-Did not run the command in *this* turn? You cannot say it passes. A paraphrase, synonym, or implied success is still a claim: letter and spirit are one rule.
+Did not run the command in *this* turn = cannot say it passes. Paraphrase, synonym, implied success: still a claim. Letter = spirit.
 
 ## The gate
 
@@ -26,7 +26,7 @@ BEFORE any status claim or expression of satisfaction:
 Skipping a step is lying, not verifying.
 ```
 
-A stale green proves nothing and a passing subset hides the failure you skipped. Quote output verbatim, do not summarize: "all green" is a claim, the runner's `34 passed, 0 failed` is auditable evidence.
+Stale green proves nothing; a passing subset hides the failure you skipped. Quote verbatim, never summarize: "all green" = a claim, the runner's `34 passed, 0 failed` = auditable evidence.
 
 ## Claim to evidence
 
@@ -42,22 +42,22 @@ A stale green proves nothing and a passing subset hides the failure you skipped.
 
 ## The machine gate comes first
 
-Before any human or teammate judgement, the repo's own gate must be green: `bash qgate.sh --merge`. No gate in the repo means generate one first (dmj:enforcing-quality-gates), then run it. "Tests pass" is not the gate, and neither is a clean read of the diff. Everything below is what you do *after* the gate is green, because a green gate proves the code does what its tests say, not that its tests say the right thing.
+Before any human or teammate judgement, the repo's gate must be green: `bash qgate.sh --merge`. No gate -> generate one (dmj:enforcing-quality-gates), then run it. "Tests pass" is not the gate; nor is a clean read of the diff. Everything below happens *after* green: a green gate proves the code does what its tests say, not that its tests say the right thing.
 
 ## Adversarial fresh-context verification
 
-Self-review in your own context is not enough: you believe it works, so you read output charitably. For any nontrivial deliverable, before claiming success, dispatch one FRESH-context teammate (`dmj:requesting-code-review`, or a lone teammate via `dmj:dispatching-parallel-teams`) to *refute* "it works": clean checkout, full suite, edge-case taxonomy, try to break it. Claim done only after it fails to refute; a passing self-test proves only that your own test agreed with you. advisor tool present: consult it before the done-claim as a second independent reviewer.
+Self-review in your own context is not enough: you believe it works, so you read output charitably. Any nontrivial deliverable, before the success claim: dispatch one FRESH-context teammate (`dmj:requesting-code-review`, or a lone teammate via `dmj:dispatching-parallel-teams`) to *refute* "it works" -> clean checkout, full suite, edge-case taxonomy, try to break it. Done only after it fails to refute; a passing self-test proves only that your own test agreed with you. advisor tool present -> consult it before the done-claim, a second independent reviewer.
 
 ## Verified stays verified
 
-A one-time green is an assumption with a timestamp: green proves today, the guard proves tomorrow. Nontrivial completion leaves a STANDING GUARD so the proof outlives the turn: a regression test in the suite (dmj:test-driven-development), a CI assertion or lint rule enforcing the new invariant (a migration leaves a no-old-imports check), an alert (dmj:observing-production), or a scheduled predicate. Done without its guard is not done; the claim decays the moment the code evolves.
+One-time green = an assumption with a timestamp. Green proves today; the guard proves tomorrow. Nontrivial completion leaves a STANDING GUARD so the proof outlives the turn: regression test in the suite (dmj:test-driven-development), CI assertion or lint rule enforcing the new invariant (a migration leaves a no-old-imports check), an alert (dmj:observing-production), or a scheduled predicate. Done without its guard is not done; the claim decays the moment the code evolves.
 
 ## Red flags: STOP
 
-"Should work," "probably," "seems to," any "Great! / Perfect! / Done!" before the command ran, about to commit/push/PR unverified, trusting a teammate's success report, "just this once," tired and wanting it over, a nontrivial completion leaving no standing guard behind.
+"Should work" / "probably" / "seems to" / any "Great! / Perfect! / Done!" before the command ran / about to commit/push/PR unverified / trusting a teammate's success report / "just this once" / tired and wanting it over / a nontrivial completion leaving no standing guard behind.
 
 ## Headless mode
 
-No user to reassure means no excuse to skip evidence: every verification still runs fresh, the adversarial pass still runs, the quoted output goes in the final report. Cannot verify something (missing secret, external dependency)? Report it unverified with the reason; never assert a green you did not see.
+No user to reassure = no excuse to skip evidence. Every verification runs fresh, the adversarial pass runs, quoted output goes in the final report. Cannot verify (missing secret, external dependency)? Report it unverified with the reason; never assert a green you did not see.
 
 Verified with quoted evidence and an independent refutation? Next: `dmj:requesting-code-review`, then `dmj:finishing-a-development-branch`.

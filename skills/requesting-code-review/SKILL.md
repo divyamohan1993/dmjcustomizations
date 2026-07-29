@@ -5,7 +5,7 @@ description: Use when a task or major feature is complete, before merging to mai
 
 # Requesting Code Review
 
-Review early, review often, never review your own diff in your own context: you already believe it is correct. Dispatch fresh-context teammates who see only the work product, never your reasoning.
+Review early, review often. Never your own diff in your own context: you already believe it is correct. Dispatch fresh-context teammates who see only the work product, never your reasoning.
 
 ## When
 
@@ -13,7 +13,7 @@ Review early, review often, never review your own diff in your own context: you 
 
 ## Run a parallel review panel, not one reviewer
 
-A single reviewer misses by lens. Spin a team (`dmj:dispatching-parallel-teams`): one fresh-context teammate per lens, all dispatched concurrently with the same diff, each posting progress midway.
+One reviewer misses by lens. Spin a team (`dmj:dispatching-parallel-teams`): one fresh-context teammate per lens, same diff, all concurrent, each posting progress midway.
 
 | Lens | Hunts for | Anchored by |
 |------|-----------|-------------|
@@ -22,17 +22,17 @@ A single reviewer misses by lens. Spin a team (`dmj:dispatching-parallel-teams`)
 | Performance | complexity regressions, N+1, missing caching, budget breaches | `dmj:enforcing-performance-budgets` |
 | Simplicity | dead code, premature abstraction, duplication, YAGNI, naming | matching surrounding code |
 
-User-facing diff: add a fifth **Experience** lens hunting breaches of the non-negotiables table in `dmj:crafting-experiences`, which is where those bars are defined.
+User-facing diff -> add a fifth **Experience** lens hunting breaches of the non-negotiables table in `dmj:crafting-experiences`, where those bars are defined.
 
-Synthesize the reports yourself. Give each teammate the diff range (`git rev-parse origin/main`, or `HEAD~1`, or the task's start SHA, through `HEAD`) and never your history. Each returns findings as `file:line + what + why + severity (Critical/Important/Minor)`. Prompt skeleton: `review-lens.md`.
+Synthesize the reports yourself. Give each teammate the diff range (`git rev-parse origin/main`, or `HEAD~1`, or the task's start SHA, through `HEAD`), never your history. Each returns findings as `file:line + what + why + severity (Critical/Important/Minor)`. Prompt skeleton: `review-lens.md`.
 
 ## Consolidate, dedupe, spot-verify
 
-Lenses overlap, so collapse duplicate findings to one. Then spot-verify before anything reaches the user, because a lens can hallucinate a bug: for each Critical/Important finding, confirm against the actual code that the cited line really does what the finding says, and drop or downgrade what does not survive. Unverified speculation never reaches the user as fact.
+Lenses overlap: collapse duplicates to one. Spot-verify before anything reaches the user, because a lens can hallucinate. Per Critical/Important finding, confirm against the actual code that the cited line does what the finding says; drop or downgrade what does not survive. Unverified speculation never reaches the user as fact.
 
 ## Act on surviving findings
 
-Fix Critical immediately, Important before proceeding, note Minor. A finding you believe is wrong: neither silently comply nor silently ignore, push back with technical reasoning (`dmj:receiving-code-review`).
+Critical -> fix immediately. Important -> before proceeding. Minor -> note. A finding you believe is wrong: neither silently comply nor silently ignore, push back with technical reasoning (`dmj:receiving-code-review`).
 
 ## Blast radius
 
@@ -40,10 +40,10 @@ Panel size follows blast radius: the lens table by default, narrowed (correctnes
 
 ## Red flags
 
-Skipping review because "it is simple," a diff covering more than one concern, ignoring a Critical, proceeding with unfixed Important.
+Skipping review because "it is simple" / a diff covering more than one concern / ignoring a Critical / proceeding with unfixed Important.
 
 ## Headless mode
 
-A background agent runs the full panel unprompted, consolidates and spot-verifies, then puts surviving findings with their fixes (and any pushback with reasoning) in the final report. Park nothing it can verify itself; flag only genuine judgment calls the user owns.
+Background agent: full panel unprompted, consolidate, spot-verify, report surviving findings with fixes and any pushback with reasoning. Park nothing it can verify itself; flag only genuine judgment calls the user owns.
 
 Findings resolved? Next: `dmj:finishing-a-development-branch`. Receiving the feedback: `dmj:receiving-code-review`.

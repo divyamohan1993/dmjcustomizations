@@ -147,10 +147,12 @@ SEVERITY_FAIL=high
 EARS_PATHS="docs/dmj/specs docs/specs specs"
 EARS_ENFORCE=1
 
-# ASD-STE100: warn-only by decision. Sentence limits below are the commonly
-# cited defaults and are NOT verified against Issue 9. Download Issue 9 from
-# asd-ste100.org and calibrate before ever setting STE_ENFORCE=1.
-STE_ENFORCE=0
+# ASD-STE100: ACTIVE for AI-authored prose, user law. The aerospace dictionary
+# flags ordinary software terms: grow STE_ALLOWLIST per repo, waive legacy
+# human-written docs with dated waivers, never disable the lane. Sentence
+# limits are commonly cited defaults; calibrate against Issue 9
+# (asd-ste100.org) when tuning.
+STE_ENFORCE=1
 STE_MAX_WORDS_PROCEDURAL=20
 STE_MAX_WORDS_DESCRIPTIVE=25
 STE_PATHS="README.md docs"
@@ -334,12 +336,15 @@ ears_check() {
   return $bad
 }
 
-# ASD-STE100: warn-only sentence-length heuristic with a domain allowlist.
+# ASD-STE100: sentence-length heuristic with a domain allowlist. Blocking when
+# STE_ENFORCE=1 (the default: AI-authored prose is held to it), warn-only
+# otherwise. Zero files in scope returns 77 (UNAVAILABLE, never PASS).
 ste_check() {
-  local bad=0 f
+  local bad=0 any=0 f
   for p in $STE_PATHS; do
     [ -e "$p" ] || continue
     while IFS= read -r f; do
+      any=1
       awk -v maxw="$STE_MAX_WORDS_DESCRIPTIVE" -v file="$f" '
         /^```/ {inblock=!inblock} inblock {next}
         {
@@ -348,6 +353,7 @@ ste_check() {
         } END {exit bad}' "$f" || bad=1
     done < <(find "$p" -name '*.md' 2>/dev/null)
   done
+  [ $any = 1 ] || return 77
   return $bad
 }
 
@@ -411,7 +417,8 @@ if [ "$TIER" = --merge ] || [ "$TIER" = --deep ]; then
   slot sast       SAST
   slot deps       DEPS
   slot fuzz-smoke FUZZ_SMOKE
-  lane ste        "ste_check" warn
+  # STE blocks when enforced (AI-authored prose, user law); warns otherwise.
+  if [ "${STE_ENFORCE:-0}" = 1 ]; then lane ste "ste_check"; else lane ste "ste_check" warn; fi
 fi
 
 if [ "$TIER" = --deep ]; then

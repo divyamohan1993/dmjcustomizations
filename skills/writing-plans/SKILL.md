@@ -5,15 +5,16 @@ description: Use when you have an approved spec or design and need an implementa
 
 # Writing Plans
 
-Turn an approved design into a task graph a teammate with no session context can execute correctly. DRY, YAGNI, TDD, frequent commits.
+Approved design -> a task graph a teammate with zero session context can execute correctly. DRY, YAGNI, TDD, frequent commits.
 
-Save to `docs/dmj/plans/YYYY-MM-DD-<feature>.md` (user path preference wins; same root as specs, maps, and skill-learnings).
+Save to `docs/dmj/plans/YYYY-MM-DD-<feature>.md` (user path wins; same root as specs, maps, skill-learnings).
 
 ## Before tasks
 
-- **Scope.** Design spans independent subsystems: one plan each. Each must produce working, testable software alone.
-- **File map.** List every file created/modified + its one responsibility. Small focused files; split by responsibility not layer; follow patterns.
-- **Granularity.** One task = one self-contained deliverable (a function, a test file, a review). Too small and coordination costs more than the work; too large and it runs long before a wrong turn can be caught.
+- **Scope.** Design spans independent subsystems -> one plan each, each producing working testable software alone.
+- **File map.** Every file created/modified + its one responsibility. Small focused files; split by responsibility, not layer; follow existing patterns.
+- **Granularity.** One task = one self-contained deliverable (a function, a test file, a review). Too small -> coordination outweighs the work; too large -> it runs long before a wrong turn surfaces.
+- **Requirements.** Every requirement goes as an EARS pattern under `## Requirements` (The / When / While / If-then / Where), so the generated ears lane verifies it. Acceptance criteria stay machine-checkable commands.
 
 ## Plan header
 
@@ -27,15 +28,15 @@ Save to `docs/dmj/plans/YYYY-MM-DD-<feature>.md` (user path preference wins; sam
 ## Each task declares (parallel-first)
 
 - **Depends on:** task IDs that must finish first (or `none`).
-- **Parallel-safe:** `yes` only if no unlisted dependency AND its file set does not overlap another runnable task. Overlap forces serialization (worktrees banned: dmj:using-git-worktrees).
+- **Parallel-safe:** `yes` only if no unlisted dependency AND its file set overlaps no other runnable task. Overlap -> serialize (worktrees banned: dmj:using-git-worktrees).
 - **Files:** exact create / modify (`path:lines`) / test paths.
 - **Acceptance criteria:** machine-checkable, each a command + expected result (exit code, test name, output, benchmark threshold).
 - **Steps:** TDD, one action each (2-5 min): failing test, run it fail, minimal code, run it pass, commit.
-- **Verification step:** the command(s) proving the criteria, run before marking done.
+- **Verification:** the command(s) proving the criteria, run before marking done.
 
 ## Task template
 
-Steps carry the spec at full fidelity: actual code inline, or a pointer to a COMMITTED artifact that already is the spec (a failing test file, a fixture, an HTML mock, a source function to port), whichever states the behavior more precisely. Prose carries only the decision and the criteria.
+Steps carry the spec at full fidelity: code inline, or a pointer to a COMMITTED artifact that already is the spec (failing test file, fixture, HTML mock, source function to port). Prose carries the decision and the criteria, nothing else.
 
 ````markdown
 ### Task N: <name>
@@ -48,16 +49,16 @@ Steps carry the spec at full fidelity: actual code inline, or a pointer to a COM
 
 ## No placeholders (plan failures)
 
-A step that describes WHAT without the code block or a committed-artifact pointer is a placeholder, and so are "TBD", "implement later", "add error handling / validation / edge cases", and "write tests for the above". Three that hide better: "similar to Task N" (tasks run out of order and land in fresh contexts, so repeat it in full), a symbol no task defines, and a pointer to an artifact that is not committed yet ("like the mock we discussed" points at nothing a fresh context can read).
+A step describing WHAT with no code block and no committed-artifact pointer = a placeholder. So are "TBD", "implement later", "add error handling / validation / edge cases", "write tests for the above". Three that hide better: "similar to Task N" (tasks land out of order in fresh contexts; repeat it in full), a symbol no task defines, a pointer to an uncommitted artifact.
 
 ## Performance and security
 
-Bake budgets into acceptance criteria (dmj:enforcing-performance-budgets): lowest achievable complexity, no O(n²)+ unjustified. Carry the design's threat model into tasks as explicit steps + criteria (dmj:defending-in-depth): validation, parameterized queries, least privilege.
+Budgets into acceptance criteria (dmj:enforcing-performance-budgets): lowest achievable complexity, no unjustified O(n²)+. Threat model into tasks as explicit steps + criteria (dmj:defending-in-depth): validation, parameterized queries, least privilege.
 
 ## Fresh-context review (never self-review)
 
-Plan complete: dispatch ONE fresh-context teammate (no session history) with spec + plan to check: every spec requirement maps to a task; no placeholders; type and signature names consistent across tasks; dependency edges acyclic; each acceptance criterion machine-checkable. Fix blocking findings; re-dispatch only if a blocker was structural.
+Plan complete -> ONE fresh-context teammate, handed spec + plan, checks: every spec requirement maps to a task; no placeholders; type and signature names consistent across tasks; dependency edges acyclic; every acceptance criterion machine-checkable. Fix blockers; re-dispatch only for a structural blocker.
 
-Headless: run the same checklist yourself in a SEPARATE pass (or as a fresh `Agent` call) and record it ran; never skip the gate silently.
+Headless: same checklist, SEPARATE pass (or a fresh `Agent` call), recorded as run. Never skip the gate silently.
 
 Next: **dmj:team-driven-development** (same session) or **dmj:executing-plans** (fresh session).

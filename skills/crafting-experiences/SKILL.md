@@ -5,42 +5,42 @@ description: Use when building, changing, or reviewing anything a user sees or t
 
 # Crafting Experiences
 
-We ship experiences, not software. Code is the means; how it makes the user feel is the product. Tech exists to remove hassle and automate burden, never to create chores (dashboards, settings, manuals, documentation) the user must tend. (Selling it to a prospect, not designing its use? dmj:selling-the-vision.)
+Ship experiences, not software. code = means, feeling = product. tech removes hassle, automates burden, never mints chores (dashboards/settings/manuals/docs) the user tends. selling to a prospect, not designing use -> dmj:selling-the-vision.
 
 ## Gate 0: the Jobs test
 
-Before building, answer in one sentence each: who uses this, when, and why does it make their life genuinely easier? An answer that needs explanation means rethink the product, not the pitch. No concrete user, moment, and relief: a perfect product of no use. Kill it.
+One sentence each: who, when, why life gets genuinely easier. needs explanation -> rethink the product, not the pitch. no concrete user+moment+relief = perfect product of no use. kill it.
 
 ## Non-negotiables
 
 | Bar | Floor |
 |---|---|
-| First second | The experience hooks attention immediately; distinctive, memorable, never mistakable for a template. Mistakable for a template: redesign. First impressions happen once, so polish scheduled for later is polish the user never sees |
-| One story | An app is one complete story with a minimal interaction surface: an obvious next step at every moment, nothing to configure or tend, Apple-grade straightforwardness. One narrator: a single voice across UI, errors, receipts, email, tone tuned to the domain's seriousness, never default-playful. A feature that forks the narrative or adds a control the story does not need: cut |
-| Story edges | The journey's edges are designed beats, not leftovers. Onboarding: first value inside 30 seconds or the user is lost forever. First frame: every zero-data state names status, teaches one thing, opens one path to first value. Failure: an error is a product moment, recover in place, input preserved, undo offered, no blame. Loading: progress, never blank. Interruption: one-tap resume with exact state, never a return-nag. Ending: export and deletion reachable, confirmed, executable end to end |
-| Cinematic with purpose | Tactile depth, micro-interactions, transitions that serve comprehension. Delight beats decoration; every animation earns existence; reduced motion respected |
-| Burden | Every feature must subtract hassle. A feature that adds steps, choices, or upkeep does not ship; every option is a decision tax, so adapt from signals the product already has (locale, color scheme, reduced motion, device, usage) and add a visible control only where adaptation is impossible. Count the user's actions along the path and cut it to the minimum (saved defaults, one primary action per screen, optional fields collapsed) before shipping, never in a later sprint |
-| Completeness | MLP, not MVP: minimum LOVABLE product. End-to-end working or not shipped; the last 10% is where the product lives. Defaults ARE the product; say no to 100, ship 1. No TODO, placeholder, or dead control in any user-facing path |
-| Accessibility | A right, not a feature: WCAG 2.2 AAA target (AA is the never-below floor), keyboard, screen reader, focus order, reduced motion, high contrast, captions, alt text, no color-only meaning. Blind, deaf, motor, ADHD, anxiety, cognitive, low-vision, color-blind users are equal userbase from line one; never degrade one for another |
-| Baseline device | Design for a slow phone, bad internet, a small town: works there means works everywhere. Core flow completes on 3G on low-end Android |
-| Language | Multilingual from the start: Hindi + English + regional baseline, no hardcoded strings, RTL-ready, locale-aware dates/numbers/currency/pluralization, tested with Devanagari and long-text expansion |
-| Offline | Offline-first where the product plausibly meets a dead zone: the network is a lie, show cached instantly with staleness indicated subtly, queue writes with retry, never lose user data, conflict resolution defined before code |
-| Self-evidence | If the user needs documentation to start, the design failed. Docs only where they remove hassle, selling the vision in seconds |
-| Delivery | Default is the web platform: visit a URL, zero install, every device. Propose a different mode (offline-first, native, CLI) only when it genuinely serves the user better (no-connectivity work, heavy local compute, privacy), tradeoffs shown, built only after the user confirms |
-| Coherent world | One source of truth; a change is reflected everywhere it is visible, immediately, with the transition showing cause and effect. Stale panels, refresh-to-see, and counts that lag the truth are defects, not quirks |
-| Engineered feeling | Journeys designed to researched psychology (method: experience-psychology.md): first real success in seconds, one deliberate peak, every ending lands. Personalization only from consented first-party signals, processed close to the user; compulsion mechanics (streak guilt, engagement-tuned feeds, fake scarcity) never ship |
-| Longevity | Built to outlive trends: web standards first, enhancement layered on top, user data portable and exportable. Still running and still current years out is part of the experience |
+| First second | Hooks instantly. distinctive, memorable, never template-mistakable; mistakable -> redesign. first impressions happen once: polish deferred = polish never seen |
+| One story | One story, minimal interaction surface: obvious next step always, zero config/upkeep, Apple-grade straightforward. one narrator = one voice across UI/errors/receipts/email, tone tuned to domain seriousness, never default-playful. story-forking feature, or a control the story does not need -> cut |
+| Story edges | Edges = designed beats, not leftovers. onboarding: first value < 30s or user lost forever. first frame: every zero-data state names status, teaches one thing, opens one path to first value. failure: error = product moment, recover in place, input preserved, undo offered, no blame. loading: progress, never blank. interruption: one-tap resume at exact state, never a return-nag. ending: export+deletion reachable, confirmed, executable end to end |
+| Cinematic with purpose | Tactile depth, micro-interactions, transitions serving comprehension. delight > decoration. every animation earns existence. reduced motion respected |
+| Burden | Every feature subtracts hassle; adds steps/choices/upkeep -> no ship. every option = decision tax: adapt from signals already held (locale, color scheme, reduced motion, device, usage), visible control only where adaptation is impossible. count user actions on the path, cut to minimum (saved defaults, one primary action per screen, optional fields collapsed) before shipping, never a later sprint |
+| Completeness | MLP not MVP = minimum LOVABLE product. end-to-end working or not shipped. last 10% = where the product lives. defaults ARE the product. say no to 100, ship 1. zero TODO/placeholder/dead control in any user-facing path |
+| Accessibility | A right, not a feature. WCAG 2.2 AAA target, AA = never-below floor: keyboard, screen reader, focus order, reduced motion, high contrast, captions, alt text, no color-only meaning. blind/deaf/motor/ADHD/anxiety/cognitive/low-vision/color-blind = equal userbase from line one, never degrade one for another |
+| Baseline device | Slow phone, bad internet, small town. works there = works everywhere: core flow completes on 3G on low-end Android |
+| Language | Multilingual from line one: Hindi+English+regional baseline, zero hardcoded strings, RTL-ready, locale-aware dates/numbers/currency/pluralization, tested in Devanagari + long-text expansion |
+| Offline | Offline-first wherever the product plausibly meets a dead zone. network = a lie: cache shown instantly, staleness marked subtly, writes queued+retried, user data never lost, conflict resolution defined before code |
+| Self-evidence | Needs docs to start -> design failed. docs only where they remove hassle, selling the vision in seconds |
+| Delivery | Default = web: one URL, zero install, every device. other mode (offline-first, native, CLI) only where it genuinely serves the user better (no connectivity, heavy local compute, privacy), tradeoffs shown, built after the user confirms |
+| Coherent world | One source of truth. a change lands everywhere visible, immediately, transition showing cause and effect. stale panels, refresh-to-see, lagging counts = defects, not quirks |
+| Engineered feeling | Journeys built to researched psychology (method: experience-psychology.md): first real success in seconds, one deliberate peak, every ending lands. personalization only from consented first-party signals processed close to the user. compulsion mechanics (streak guilt, engagement-tuned feeds, fake scarcity) never ship |
+| Longevity | Outlives trends: web standards first, enhancement on top, user data portable+exportable. still running and still current years out = part of the experience |
 
 ## Artifact rule (agent contracts, not documentation)
 
-Specs, maps, and plans this library writes are working artifacts for agents: one screen, terse, feeding machine-checkable gates. Never produce documentation a human must read to proceed or maintain to stay correct.
+Specs/maps/plans here = working artifacts for agents: one screen, terse, feeding machine-checkable gates. never docs a human must read to proceed, or maintain to keep correct.
 
 ## Parallel pattern
 
-User-facing diff: an **experience lens** joins the review panel (dmj:requesting-code-review) beside security and performance. Competing visual directions run as parallel spikes decided by screenshots, in dmj:art-directing.
+User-facing diff -> experience lens on the review panel (dmj:requesting-code-review), beside security and performance. competing visual directions = parallel spikes decided by screenshots, in dmj:art-directing.
 
-Under deadline pressure the bars hold: a deadline buys a fast distinctive pass, never a default one, and "it works" without the feeling fails the product.
+Deadline moves no bar: it buys a fast distinctive pass, never a default one. "it works" without the feeling fails the product.
 
-**Headless:** apply these bars autonomously; PARK for the user both taste decisions that define brand identity and any switch away from web delivery.
+**Headless:** apply autonomously; PARK taste calls that define brand identity + any switch off web delivery.
 
-Next: dmj:brainstorming gates what gets built; dmj:requesting-code-review carries the lens; dmj:verification-before-completion proves it works end to end.
+Next: dmj:brainstorming gates what gets built; dmj:requesting-code-review carries the lens; dmj:verification-before-completion proves end to end.

@@ -1,6 +1,6 @@
 # Gate Matrix
 
-Per-stack tools for each lane. `install-gate.sh` picks every matched stack's rows and writes the commands into `.qgate-lanes.sh` (thresholds and waivers go to `qgate.config.sh`). A cell marked "none stable" means the lane reports UNAVAILABLE for that stack rather than pretending to pass.
+Per-stack tools per lane. `install-gate.sh` picks every matched stack's rows and writes the commands into `.qgate-lanes.sh` (thresholds and waivers go to `qgate.config.sh`). "none stable" = the lane reports UNAVAILABLE for that stack rather than pretending to pass.
 
 ## Contents
 - Detection
@@ -68,7 +68,7 @@ Feature files live in `features/`, written before implementation.
 | dotnet | `Stryker.NET` |
 | shell | none stable, report UNAVAILABLE |
 
-Always scope mutation to changed files in T3. Whole-repo mutation on a mature codebase runs for hours and gets switched off.
+Scope mutation to changed files in T3, always. Whole-repo mutation on a mature codebase runs for hours, then gets switched off.
 
 ## Complexity + size caps
 
@@ -85,7 +85,7 @@ Always scope mutation to changed files in T3. Whole-repo mutation on a mature co
 
 ## Fuzz
 
-Target selection, harness patterns, and which tier each kind of fuzzer belongs in: `fuzzing.md`.
+Target selection, harness patterns, tier per fuzzer kind: `fuzzing.md`.
 
 | Stack | Tool |
 |---|---|
@@ -100,23 +100,23 @@ Target selection, harness patterns, and which tier each kind of fuzzer belongs i
 
 ## Security
 
-Mostly stack-agnostic, which is why these are the lanes worth wiring first in an unfamiliar repo.
+Mostly stack-agnostic = the lanes worth wiring first in an unfamiliar repo.
 
 | Lane | Tool | Notes |
 |---|---|---|
 | Secrets | `gitleaks`, `trufflehog` | full history, not just the diff |
-| SAST | `semgrep` (multi-language), CodeQL | GitHub Actions has CodeQL free for public repos |
-| SAST, python | `bandit` | in addition to semgrep |
+| SAST | `semgrep` (multi-language), CodeQL | CodeQL free for public repos in GitHub Actions |
+| SAST, python | `bandit` | + semgrep |
 | SAST, go | `gosec` | |
 | SAST, jvm/dotnet | `SpotBugs` + `find-sec-bugs`, `security-code-scan` | |
 | Dependencies | `pnpm audit`, `pip-audit`, `cargo audit`, `govulncheck`, `composer audit`, `dotnet list package --vulnerable`, OWASP dependency-check | fail on critical and high |
 | Containers + IaC | `trivy`, `grype` | if a Dockerfile or terraform is present |
 | DAST | OWASP ZAP baseline scan | needs a running instance, T3 only |
-| Supply chain | SBOM via `syft` or `cyclonedx`, lockfile integrity, license audit | matches the existing supply-chain rule in CLAUDE.md |
+| Supply chain | SBOM via `syft` or `cyclonedx`, lockfile integrity, license audit | matches the supply-chain rule in CLAUDE.md |
 
 ## Thresholds file
 
-`install-gate.sh` writes these into `qgate.config.sh` so they are visible, diffable, and reviewable rather than buried in tool configs.
+`install-gate.sh` writes these into `qgate.config.sh`: visible, diffable, reviewable rather than buried in tool configs.
 
 ```sh
 COVERAGE_CHANGED_MIN=80
@@ -128,7 +128,12 @@ FILE_LINES_MAX=400
 FUZZ_SMOKE_SECONDS=30      # T2
 FUZZ_DEEP_SECONDS=900      # T3
 SEVERITY_FAIL=high         # SAST, deps, secrets, DAST
-WAIVERS=""                 # "lane:reason:YYYY-MM-DD" entries, printed every run
+EARS_ENFORCE=1             # requirement lines under "## Requirements" / REQ- must be EARS
+EARS_PATHS="docs/dmj/specs docs/specs specs"
+STE_ENFORCE=1              # ACTIVE for AI-authored prose, user law; blocking lane
+STE_ALLOWLIST="webhook idempotent middleware serverless runtime API SDK CLI JSON YAML OAuth JWT"   # grow per repo
+STE_PATHS="README.md docs"
+WAIVERS=""                 # "lane:reason:YYYY-MM-DD" entries, printed every run; legacy human docs get dated waivers, never a disabled lane
 ```
 
-Raising a threshold is a normal commit. Lowering one is a decision that needs a reason in the commit message, because it is the cheapest way to turn a red gate green without fixing anything.
+Raising a threshold = a normal commit. Lowering one needs a reason in the commit message: it is the cheapest way to turn a red gate green without fixing anything.

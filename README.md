@@ -1,10 +1,10 @@
 # dmjcustomizations
 
-Parallel-first engineering skills for Claude Code: terse, date-agnostic, adversarially verified, secure from line 1.
+Research-grade, production-deployable agentic software engineering framework for Claude Code. Skills = policy. Hooks = enforcement. Generated gates = verification. Teams = execution. Terse, date-agnostic, adversarially verified, secure from line 1.
 
 ## Why
 
-Built for the current Claude generation: teammate fan-out, cheap code, models trusted with judgement, hard gates where judgement is not enough.
+Built for the current Claude generation: teammate fan-out, cheap code, models trusted with judgement, hard gates where judgement is not enough. Adopted frameworks bind everything AI writes into a target repo, actively: EARS requirements, ASD-STE100 prose, Gherkin acceptance, OWASP ASVS L2, WCAG 2.2 AAA, Keep a Changelog, conventional commits, DPDP + GDPR.
 
 - **Parallel between gates, serial at gates.** Teammates fan out; the user approves at a few hard checkpoints. Nothing else blocks.
 - **Evidence over claims.** Fresh-context teammates adversarially verify specs, code, and every "done". Self-review is not review.
