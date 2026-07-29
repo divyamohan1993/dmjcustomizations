@@ -30,7 +30,7 @@ cd ".worktrees/<branch>"
 
 ## Parallel work
 
-- **Concurrent teammates, overlapping files:** one worktree per teammate, each on its own branch named for the teammate or slice. Disjoint files in one tree is fine; overlap without separate trees corrupts each other's diffs. Merge at the gate, not mid-flight. See dmj:dispatching-parallel-teams.
+- **Concurrent teammates, overlapping files:** one worktree per teammate (`isolation: "worktree"` on the spawn), each on its own branch named for the teammate or slice. Disjoint files in one tree is fine; overlap without separate trees corrupts each other's diffs. Merge at the gate, not mid-flight. See dmj:dispatching-parallel-teams.
 - **Spikes:** throwaway tree `spike-<question>`, answer the design question, record the conclusion, force-discard: `git worktree remove --force` + `git branch -D`. Conclusion survives; code never merges.
 
 ## Setup and baseline

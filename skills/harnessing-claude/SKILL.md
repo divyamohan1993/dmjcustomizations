@@ -11,9 +11,11 @@ Route every job through the strongest native capability available. Probe availab
 
 | Need | Use |
 |---|---|
-| Parallel work, shared context, peer messaging | Named teammates: several `Agent(name:)` calls in ONE message, background by default, steered mid-run via `SendMessage({to: name})`. One implicit team; no team object to create |
+| Parallel work, shared context, peer messaging | Named teammates: several `Agent(name:)` calls in ONE message, background, steered mid-run via `SendMessage({to: name})`. Spawn contract, the enabling gate, and the no-teams fallback: dmj:dispatching-parallel-teams |
 | Deterministic fan-out: loops, judge panels, schema-validated outputs, resumable runs | Workflow tool (requires user opt-in): pipeline() default, parallel() only at true barriers, agent(prompt, {schema}) for validated structured returns |
-| Design approval gate | Native plan mode when present; else the skill's own gate |
+| A procedure a skill already owns | Skill tool: invoke it, never re-derive it (dmj:using-dmj) |
+| Design approval gate | Native plan mode when present; else the skill's own gate. A teammate can be spawned needing plan approval: it stays read-only until the lead approves, and the lead approves autonomously, so its approval criteria belong in the spawn prompt |
+| Enforce a gate on team work | `TeammateIdle`, `TaskCreated`, `TaskCompleted` hooks: exit code 2 blocks the transition and returns feedback to the agent. Enforcement outranks instruction |
 | Stronger reviewer at a gate | advisor tool when available: consult before committing to an approach and before any done-claim |
 | Deterministic finish line (tests pass, score threshold, queue empty) | Goal loop (/goal or the harness's goal primitive): hand it the machine-checkable criteria as the stop condition plus an explicit turn cap; an independent evaluator judges done, never the working model |
 | Fresh-context read-only sweep | Explore agent type; isolation:"worktree" when parallel edits could collide |
@@ -27,7 +29,7 @@ Dynamic skill authoring (argument and inline-command preprocessing): dmj:writing
 
 ## Tiers
 
-Every spawn declares its tier: `opus[1m]` for judgement work, `sonnet[1m]` for mechanical or criteria-bounded work, never below Sonnet; max thinking and effort where the harness exposes them. Floating aliases where accepted, the session's configured spawn-model setting otherwise; the lead orchestrates on whatever model the session runs. Probe first: set nothing the environment already forces.
+Declare a spawn's tier by ROLE, never by family member: `opus[1m]` for judgement work, `sonnet[1m]` for mechanical or criteria-bounded work, never below Sonnet, max thinking and effort where the harness exposes them. Model menus differ by surface and generation, so probe what the spawn tool advertises, let the alias resolve to the newest stable model in that role, and set nothing the environment already forces. The lead orchestrates on whatever model the session runs. Full spawn contract: dmj:dispatching-parallel-teams.
 
 ## Loops close the automation
 

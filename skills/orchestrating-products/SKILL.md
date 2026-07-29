@@ -29,7 +29,7 @@ A stage opens ONLY on the prior stage's gate evidence (the owning skill's gate).
 - **Two tiers only.** Judgement stages spawn `opus[1m]`; every mechanical or criteria-bounded stage spawns `sonnet[1m]`. No spawn below Sonnet; "cheapest tier" everywhere in this table resolves to this menu. All spawns background, steerable, quiet in the lead thread (dmj:dispatching-parallel-teams).
 - **Scripts beat inference.** Anything deterministic (deploys, validation, drills, formatting) is a committed script: zero tokens forever after.
 - **Criteria beat supervision.** Written criteria let mid tiers build and the smallest tier judge; strong-tier review then inspects the product, not the process.
-- **Fresh minimal contexts.** Workers get task text, never transcripts; the lead stays thin, holds conclusions, implements nothing (dmj:dispatching-parallel-teams).
+- **Fresh minimal contexts.** Workers get task text, never transcripts; the lead stays thin, holds conclusions, implements nothing. Each teammate is a full session whose tokens scale linearly, so a stage fans out only where parallel work genuinely pays, and a stage that needs its own team runs at the lead, which is the only agent that can fan out (dmj:dispatching-parallel-teams).
 - **Pilot before fleet.** One task through the full line before sixty fan out; pilot failures fix the plan at one-task price.
 - **Never re-derive.** This table IS the routing; process reconstructed in chat is the leak this skill exists to plug.
 - **Autonomy is earned per work category, never granted.** Unattended runs ship only categories with a measured record (floor: 20 logged runs at 95% pass); below it, green runs land as reviewed drafts. Any gate failure demotes the category, loudly. New categories always start staged.
@@ -41,15 +41,6 @@ An ecosystem is a graph of pipeline runs, never one mega-build: each product run
 ## Floors that never move with tier
 
 Cheapest-sufficient buys the SAME bars for less: security (dmj:defending-in-depth), performance and 1-billion-scale statelessness (dmj:enforcing-performance-budgets), cinematic experience and psychology (dmj:crafting-experiences). A tier that misses a bar is not sufficient: escalate the tier, never lower the bar.
-
-## Rationalizations (all false)
-
-| Excuse | Reality |
-|---|---|
-| "Strongest model everywhere means best product" | Implementation against written criteria is not scarce; judgment is. Strong-tier prices on rote work buy zero quality |
-| "The lead knows the codebase, let it implement" | The fat lead context is the most expensive worker in the fleet. Hand criteria to fresh workers |
-| "Stages slow us down" | A skipped gate resurfaces as rework at a later, costlier stage, paid at review-tier prices |
-| "One mega-build for the ecosystem" | Coupled builds fail together. Products ship alone and share contracts |
 
 ## Red flags (stop)
 

@@ -1,6 +1,6 @@
 # Teammate Prompt Skeletons
 
-Prompts for the three team-driven-development roles. Spawn each with `Agent` (unique `name`, background, implementers `sonnet[1m]`, reviewers `opus[1m]`, max thinking); independent spawns go in a single message. Hand the FULL task text, never a file path. Reviewers run in FRESH context, never the implementer reviewing itself.
+Prompts for the three team-driven-development roles. A teammate loads CLAUDE.md, MCP servers, and skills like any session, but inherits NONE of the lead's conversation, so every field below is literal: paste the task text, the report, and the diff range. A file path where the text belongs, or an "as we discussed", resolves to nothing on the other side. Spawn shape (unique name, background, single message, `sonnet[1m]` implementers and `opus[1m]` reviewers): dmj:dispatching-parallel-teams. Reviewers run in FRESH context, never the implementer reviewing itself.
 
 ## Implementer
 
@@ -9,6 +9,7 @@ You are implementing Task N: <name>. Work in <worktree path>.
 
 TASK (full text): <paste from plan, including Files and Acceptance criteria>
 CONTEXT: <where this fits, dependencies, interfaces other teammates own>
+YOU OWN THESE FILES: <exact set>. Editing outside it collides with a peer.
 
 Before coding: if requirements, approach, or assumptions are unclear, SendMessage
 the lead and wait. Do not guess.
