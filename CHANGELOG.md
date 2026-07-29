@@ -1,9 +1,9 @@
 # Changelog
 
 All notable changes to dmjcustomizations are documented here.
-Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning tracks the Claude family: major.minor = the model generation this library is tuned for (Fable 5 = 5.0.x; Fable 5.1 -> 5.1.x), patch = this repo's releases within it.
 
-## [5.1.0] - 2026-07-29
+## [5.0.1] - 2026-07-29
 
 ### Changed
 
