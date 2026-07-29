@@ -11,7 +11,7 @@ Route every job through the strongest native capability available. Probe availab
 
 | Need | Use |
 |---|---|
-| Parallel work, shared context, peer messaging | Named teammates: several `Agent(name:)` calls in ONE message, background by default, steered mid-run via `SendMessage({to: name})`. No team object to create; `team_name` is deprecated and ignored |
+| Parallel work, shared context, peer messaging | Named teammates: several `Agent(name:)` calls in ONE message, background by default, steered mid-run via `SendMessage({to: name})`. One implicit team; no team object to create |
 | Deterministic fan-out: loops, judge panels, schema-validated outputs, resumable runs | Workflow tool (requires user opt-in): pipeline() default, parallel() only at true barriers, agent(prompt, {schema}) for validated structured returns |
 | Design approval gate | Native plan mode when present; else the skill's own gate |
 | Stronger reviewer at a gate | advisor tool when available: consult before committing to an approach and before any done-claim |

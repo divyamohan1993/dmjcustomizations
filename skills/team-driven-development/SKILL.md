@@ -7,8 +7,6 @@ description: Use when you have an implementation plan with independent tasks and
 
 Execute a plan in this session with a team of named teammates: a fresh-context teammate implements each task; each task passes a two-stage review (spec compliance, then code quality) before the next. Independent tasks run in parallel; gates are serial.
 
-Announce: "Using team-driven-development to execute this plan."
-
 Fresh session, or many parallel waves? Use dmj:executing-plans. No plan yet? Use dmj:brainstorming.
 
 ## Setup

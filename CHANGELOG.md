@@ -3,6 +3,16 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.21.0] - 2026-07-29
+
+### Removed
+
+- **Transition-era residue purged from every live surface**, optimizing the library solely for the current Claude generation (user-ordered). The `team_name`-is-deprecated shims in dispatching-parallel-teams and harnessing-claude are gone: a model reading these files fresh never saw the dead mechanism, so negating it taught history, not behavior. The six scripted "Announce:" ritual lines (executing-plans, writing-skills, writing-plans, using-git-worktrees, finishing-a-development-branch, team-driven-development) are gone: they forced older models to commit to a skill; current models narrate naturally and the routing gate is what the battery actually tests. README drops the rebuild-of-superpowers framing and the uninstall-superpowers step; the Provenance section and MIT attribution stay, history belongs in CHANGELOG and LICENSE, not in live guidance.
+
+### Fixed
+
+- scripts/release.sh review gate fed via stdin instead of argv (a 120KB skill diff as a process argument blew the Windows ~32K limit and killed the spawn before any verdict, silently under set -e). Shipped inside the 2.19.0 commit; recorded here for the changelog-before-commit law.
+
 ## [2.20.0] - 2026-07-29
 
 ### Changed

@@ -42,8 +42,6 @@ The session has ONE implicit team; there is no team to create. A teammate is an 
 | Model on any spawn | `model: "opus[1m]"` for judgement work (definition, adversarial review, security, synthesis); `model: "sonnet[1m]"` for mechanical or criteria-bounded work. Long-context aliases where the harness accepts them, the session's configured spawn-model setting otherwise; never below Sonnet, never a pinned version. The lead orchestrates on whatever model the session runs |
 | Wait for a result before continuing | `run_in_background: false`, ONLY when that single result gates the immediate next step. Everything else stays in the background and notifies on completion |
 
-Any `team_name` argument is deprecated and ignored. Do not write it.
-
 ## Fan out
 
 1. **Split into domains.** One task per independent problem; name the file set each touches so overlaps surface now.

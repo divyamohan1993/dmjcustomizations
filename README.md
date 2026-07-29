@@ -1,10 +1,10 @@
 # dmjcustomizations
 
-Parallel-first engineering skills for Claude Code. A ground-up rebuild of [superpowers](https://github.com/obra/superpowers) for the agent-team era: terse, date-agnostic, adversarially verified, secure from line 1.
+Parallel-first engineering skills for Claude Code: terse, date-agnostic, adversarially verified, secure from line 1.
 
 ## Why
 
-Superpowers encoded the right discipline on old assumptions: one agent, one chat thread, expensive code, a human watching every step. All four flipped. dmjcustomizations keeps the gates and rebuilds the mechanics.
+Built for the current Claude generation: agent teams, cheap code, models trusted with judgement, hard gates where judgement is not enough.
 
 - **Parallel between gates, serial at gates.** Agent teams fan out; the user approves at a few hard checkpoints. Nothing else blocks.
 - **Evidence over claims.** Fresh-context teammates adversarially verify specs, code, and every "done". Self-review is not review.
@@ -66,12 +66,6 @@ Or from a local clone:
 ```
 /plugin marketplace add D:\dmjcustomizations
 /plugin install dmj@dmj
-```
-
-Then disable superpowers so the two rule systems do not compete:
-
-```
-/plugin uninstall superpowers
 ```
 
 ## Surfaces

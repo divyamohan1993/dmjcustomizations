@@ -7,8 +7,6 @@ description: Use when implementation is complete and tests pass and you must dec
 
 Verify -> options -> execute -> tear down. Never reach options without verification evidence.
 
-Announce: "Finishing this branch."
-
 ## Step 1: Require verification evidence
 
 No options on a *claim* that tests pass. Run them, read output. **REQUIRED:** dmj:verification-before-completion. Failures: report the failing output, stop, no merge or PR until green.

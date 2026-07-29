@@ -7,8 +7,6 @@ description: Use when starting feature work that needs isolation, before executi
 
 Lowest-blast-radius workspace: changes stay off your branch, trivially discarded. One per non-trivial change, per concurrent teammate, per spike.
 
-Announce: "Setting up an isolated worktree."
-
 ## Step 0: Detect existing isolation
 
 ```bash

@@ -13,8 +13,6 @@ A candidate that restates the system prompt, one person's opinions, or another s
 
 **REQUIRED BACKGROUND:** dmj:test-driven-development defines the RED-GREEN-REFACTOR cycle this adapts.
 
-Announce: "Writing this skill via TDD-for-docs."
-
 ## The Iron Law
 
 **No skill, no edit to a skill, without a failing test first.** Wrote it before testing? Delete, start over. Not "keep as reference," not "adapt while testing," not "just a section." Violating the letter is violating the spirit.

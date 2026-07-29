@@ -7,8 +7,6 @@ description: Use when you have a written implementation plan to carry out in a f
 
 Execute a saved plan in a fresh session by fanning its tasks across a team. Independent tasks are claimed concurrently from a shared list; gates stay serial.
 
-Announce: "Using executing-plans to implement this plan as a team."
-
 Same session with no plan file? Use dmj:team-driven-development instead.
 
 ## Step 1: Load and critique
