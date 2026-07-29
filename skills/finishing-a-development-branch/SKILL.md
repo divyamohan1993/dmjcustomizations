@@ -16,7 +16,7 @@ No options on a *claim* that tests pass. Run them, read output. **REQUIRED:** dm
 ```bash
 GIT_DIR=$(cd "$(git rev-parse --git-dir)" && pwd -P)
 GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" && pwd -P)
-BASE=$(git merge-base HEAD main 2>/dev/null && echo main || echo master)
+BASE=$(git show-ref -q --verify refs/heads/main && echo main || echo master)
 ```
 
 `GIT_DIR != GIT_COMMON` = worktree (cleanup applies). Detached HEAD removes the local-merge option.

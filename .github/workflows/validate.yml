@@ -9,3 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bash scripts/validate.sh
+      - name: humanize-guard (all tracked prose, blocking)
+        run: node skills/humanizing-output/humanize-guard.mjs --gate

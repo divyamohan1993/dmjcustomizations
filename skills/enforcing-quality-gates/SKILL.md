@@ -83,7 +83,7 @@ STE limits ship as **defaults to calibrate, not verified values**: download Issu
 
 ## Flow
 
-1. **Generate.** `bash install-gate.sh <repo>` detects the stack, writes `qgate.sh` + `qgate.config.sh` + a CI job, and reports every lane as WIRED or UNAVAILABLE. Commit them. Wiring into hooks and CI: dmj:equipping-projects.
+1. **Generate.** `bash install-gate.sh <repo>` detects every stack present, writes four files (`qgate.sh`, `qgate.config.sh`, `.qgate-lanes.sh`, `.github/workflows/qgate.yml`), and reports every lane as WIRED or UNAVAILABLE per stack. Commit all four. Wiring into hooks and CI: dmj:equipping-projects.
 2. **Write the acceptance feature first** for anything user-facing, then unit tests (dmj:test-driven-development), then implementation.
 3. **Run T1 continuously** while working.
 4. **Run T2 before any done-claim.** Red or SKIP means not done. Fix, rerun.

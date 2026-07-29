@@ -1,6 +1,6 @@
 # Gate Matrix
 
-Per-stack tools for each lane. `install-gate.sh` picks the row for the detected stack and writes the commands into `qgate.config.sh`. A cell marked "none stable" means the lane reports UNAVAILABLE for that stack rather than pretending to pass.
+Per-stack tools for each lane. `install-gate.sh` picks every matched stack's rows and writes the commands into `.qgate-lanes.sh` (thresholds and waivers go to `qgate.config.sh`). A cell marked "none stable" means the lane reports UNAVAILABLE for that stack rather than pretending to pass.
 
 ## Contents
 - Detection

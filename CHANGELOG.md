@@ -5,6 +5,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 
 ## [Unreleased]
 
+### Fixed
+
+- **install-gate.sh polyglot clobber**: lanes are now stored per stack (`L_UNIT_node`, `L_UNIT_shell`, ...) and the runner executes every matched stack's command per slot, so the last-detected stack no longer overwrites the others' suites. Repro evidence, node+shell fixture manifest now contains both: `L_UNIT_node=npm exec vitest run` and `L_UNIT_shell=bats tests`. Each command keeps its own tool_present verdict (no `&&`-chaining, which would report one stack's missing tool as another stack's FAIL).
+- install-gate.sh writes four files and both prose homes said three; `qgate.sh` now detects a missing `.qgate-lanes.sh` and prints the regenerate hint instead of dying with an unbound-variable trace that read as a red gate.
+- The install report's tool probe was weaker than the runner's (`pnpm exec X --version` resolves over the network); tool_present is now defined once and injected into both, so WIRED/UNAVAILABLE can no longer disagree.
+- EARS lane scoped to marked requirements (`## Requirements` sections or `REQ-` lines); prose that merely contains shall/must/should no longer trips it, and a spec tree with no marked requirements reports UNAVAILABLE (exit 77), never PASS.
+- find-polluter.sh returned a false all-clear on its own documented invocation (`find -path` never matches `src/**/...` and `wc -l` counts an empty string as 1); now resolves the glob via `git ls-files` with a find fallback and exits 2 when nothing matches.
+- finishing-a-development-branch Step 2 captured two lines into `BASE` (`git merge-base` output plus the branch name); replaced with a `git show-ref` existence probe.
+- hooks/session-start no longer blocks session boot on a network call: the 24h update check runs in a detached background subshell writing a notice file that the NEXT boot injects.
+- gate-matrix.md named `qgate.config.sh` as the lane-command destination; commands live in `.qgate-lanes.sh`.
+- CI now runs humanize-guard in gate mode over all tracked prose (README, docs, CHANGELOG included), closing the gap against the exported per-repo humanizer law.
+
 ### Added
 
 - Design spec for the Claude 5 "then and now" pass (docs/dmj/specs/2026-07-29-claude5-then-now-pass-design.md): five-sweep audit of all 73 repo files plus 8 global context files against the six context-engineering shifts; five workstreams, sequencing, machine-checkable acceptance criteria, four parked user decisions.

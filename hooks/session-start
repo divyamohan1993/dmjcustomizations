@@ -11,30 +11,38 @@ PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 content=$(cat "${PLUGIN_ROOT}/skills/using-dmj/SKILL.md" 2>&1 || echo "Error reading using-dmj skill")
 
-# --- Update check: at most once per 24h, every failure silent, never blocks boot ---
+# --- Update check ---------------------------------------------------------
+# Skill injection must stay synchronous (it is the hook's whole job), but the
+# network call must not sit on the boot path: the curl runs in a detached
+# background subshell that writes a notice file, and THIS boot only reads the
+# notice a previous boot left behind. Worst case the notice is one session
+# stale; boot never waits on the network. At most one check per 24h, every
+# failure silent.
 update_notice=""
-check_update() {
-    command -v curl >/dev/null 2>&1 || return 0
-    local data_dir="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/dmj}"
-    mkdir -p "$data_dir" 2>/dev/null || return 0
-    local stamp="$data_dir/update-check-stamp"
-    local now epoch_last
+DATA_DIR="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/dmj}"
+NOTICE_FILE="$DATA_DIR/update-notice"
+if [ -s "$NOTICE_FILE" ]; then
+    update_notice="\n\n<dmj-update>$(cat "$NOTICE_FILE" 2>/dev/null)</dmj-update>"
+    rm -f "$NOTICE_FILE" 2>/dev/null || true
+fi
+(
+    command -v curl >/dev/null 2>&1 || exit 0
+    mkdir -p "$DATA_DIR" 2>/dev/null || exit 0
+    stamp="$DATA_DIR/update-check-stamp"
     now=$(date +%s)
     epoch_last=$(cat "$stamp" 2>/dev/null || echo 0)
-    [ $((now - epoch_last)) -lt 86400 ] && return 0
+    [ $((now - epoch_last)) -lt 86400 ] && exit 0
     echo "$now" > "$stamp" 2>/dev/null || true
-    local local_v remote_v newest
     local_v=$(grep -o '"version"[^,]*' "${PLUGIN_ROOT}/.claude-plugin/plugin.json" 2>/dev/null | head -1 | grep -o '[0-9][0-9.]*' || echo "")
     remote_v=$(curl -fsS --max-time 4 "https://raw.githubusercontent.com/divyamohan1993/dmjcustomizations/main/.claude-plugin/plugin.json" 2>/dev/null | grep -o '"version"[^,]*' | head -1 | grep -o '[0-9][0-9.]*' || echo "")
-    [ -n "$local_v" ] && [ -n "$remote_v" ] || return 0
-    [ "$local_v" = "$remote_v" ] && return 0
+    [ -n "$local_v" ] && [ -n "$remote_v" ] || exit 0
+    [ "$local_v" = "$remote_v" ] && exit 0
     newest=$(printf '%s\n%s\n' "$local_v" "$remote_v" | sort -V | tail -1)
     if [ "$newest" = "$remote_v" ]; then
-        update_notice="\n\n<dmj-update>dmj ${remote_v} is available (installed: ${local_v}). Tell the user, and offer to run for them: claude plugin marketplace update dmj && claude plugin update dmj@dmj (restart applies it).</dmj-update>"
+        printf 'dmj %s is available (installed: %s). Tell the user, and offer to run for them: claude plugin marketplace update dmj && claude plugin update dmj@dmj (restart applies it).' "$remote_v" "$local_v" > "$NOTICE_FILE" 2>/dev/null || true
     fi
-    return 0
-}
-check_update || true
+) >/dev/null 2>&1 &
+disown 2>/dev/null || true
 
 # Escape string for JSON embedding using bash parameter substitution
 # (single C-level pass per substitution; fast even for large skills).

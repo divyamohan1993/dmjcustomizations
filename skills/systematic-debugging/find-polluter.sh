@@ -20,8 +20,18 @@ echo "Searching for the test that creates: $POLLUTION_CHECK"
 echo "Test glob: $TEST_PATTERN   Runner: $TEST_CMD"
 echo ""
 
-TEST_FILES=$(find . -path "$TEST_PATTERN" | sort)
-TOTAL=$(echo "$TEST_FILES" | wc -l | tr -d ' ')
+# git ls-files understands the ** glob the usage line documents; plain find
+# -path does not (it never matches the leading ./), which used to report
+# "Found 1 test files" on an empty match and exit green without running
+# anything: a false all-clear from the tool whose whole job is suspicion.
+TEST_FILES=$(git ls-files "$TEST_PATTERN" 2>/dev/null | sort)
+[ -n "$TEST_FILES" ] || TEST_FILES=$(find . -path "*/${TEST_PATTERN#./}" -o -path "./$TEST_PATTERN" 2>/dev/null | sort)
+if [ -z "$TEST_FILES" ]; then
+  echo "No files match glob: $TEST_PATTERN" >&2
+  echo "Nothing was run; this is not an all-clear." >&2
+  exit 2
+fi
+TOTAL=$(printf '%s\n' "$TEST_FILES" | wc -l | tr -d ' ')
 echo "Found $TOTAL test files"
 echo ""
 
