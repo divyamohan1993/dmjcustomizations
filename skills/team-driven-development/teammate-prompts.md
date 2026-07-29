@@ -1,6 +1,6 @@
 # Teammate Prompt Skeletons
 
-Prompts for the three team-driven-development roles. Spawn each with `Agent` (unique `name`, strongest model, max thinking); independent spawns go in a single message. Hand the FULL task text, never a file path. Reviewers run in FRESH context, never the implementer reviewing itself.
+Prompts for the three team-driven-development roles. Spawn each with `Agent` (unique `name`, background, implementers `sonnet[1m]`, reviewers `opus[1m]`, max thinking); independent spawns go in a single message. Hand the FULL task text, never a file path. Reviewers run in FRESH context, never the implementer reviewing itself.
 
 ## Implementer
 

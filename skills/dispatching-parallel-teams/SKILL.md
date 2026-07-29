@@ -39,14 +39,15 @@ The session has ONE implicit team; there is no team to create. A teammate is an 
 | Talk to one | `SendMessage({to: "<name>"})` |
 | Continue one that already finished | `SendMessage` to the same name: it resumes from its transcript, context intact |
 | Parallel edits to overlapping files | `isolation: "worktree"` on the spawn (dmj:using-git-worktrees) |
-| Wait for a result before continuing | `run_in_background: false`; otherwise it runs in background and you are notified on completion |
+| Model on any spawn | `model: "opus[1m]"` for judgement work (definition, adversarial review, security, synthesis); `model: "sonnet[1m]"` for mechanical or criteria-bounded work. Long-context aliases where the harness accepts them, the session's configured spawn-model setting otherwise; never below Sonnet, never a pinned version. The lead orchestrates on whatever model the session runs |
+| Wait for a result before continuing | `run_in_background: false`, ONLY when that single result gates the immediate next step. Everything else stays in the background and notifies on completion |
 
 Any `team_name` argument is deprecated and ignored. Do not write it.
 
 ## Fan out
 
 1. **Split into domains.** One task per independent problem; name the file set each touches so overlaps surface now.
-2. **One `Agent` per domain, all in a single message**, each with a unique `name`, strongest model available at invocation, max thinking. Overlapping file sets get `isolation: "worktree"` or serialize.
+2. **One `Agent` per domain, all in a single message**, each with a unique `name`, background, model per the tier row above, max thinking. Overlapping file sets get `isolation: "worktree"` or serialize.
 3. **Shared task list.** Post all tasks; each teammate CLAIMS one, marks it in-progress, moves to the next free one when done. Claiming prevents two teammates colliding on the same task.
 
 ## Each teammate prompt carries
@@ -60,7 +61,7 @@ Any `team_name` argument is deprecated and ignored. Do not write it.
 
 A teammate's plain text is invisible to every other agent: `SendMessage` is the only channel. Teammates MUST send a midway progress update and MAY message peers about anything shared (an interface, a fixture, a root cause). Fire-and-forget is forbidden: you lose visibility, teammates duplicate or conflict. Incoming messages arrive automatically; the lead stays available to unblock.
 
-**Orchestrator posture.** The lead session is the control plane: delegate processing and bulk reading, hold conclusions not transcripts, stay responsive to the user. A user update mid-run is a STEER: relay it to the affected running teammates via `SendMessage` (they receive it on their next turn); never stop or respawn agents for a course correction.
+**Orchestrator posture.** The lead session is the control plane, not a log sink: delegate processing and bulk reading, hold conclusions not transcripts, stay responsive to the user. Teammate traffic stays out of the main thread: midway updates are one-line messages, raw transcripts and file dumps never enter the lead context, and the user sees your synthesis, never agent output. A user update mid-run is a STEER: relay it to the affected running teammates via `SendMessage` (they receive it on their next turn); never stop or respawn agents for a course correction.
 
 ## Synthesize
 
@@ -81,5 +82,6 @@ No interactive user: dispatch on the plan as written, record assumptions, PARK o
 - Integrating without a full-suite run and conflict check.
 - Reporting a pending teammate's result before its completion notification arrived.
 - Fanning out coupled work that one investigation would solve faster.
+- A spawn below the Sonnet tier, a pinned model version, or a foreground wait whose result does not gate the immediate next step.
 
 Handoff: this primitive powers **dmj:brainstorming** (context sweep, review lenses), **dmj:executing-plans**, and **dmj:team-driven-development** (per-wave fan-out).

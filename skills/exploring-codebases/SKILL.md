@@ -13,7 +13,7 @@ NO new code in unmapped territory. Cannot name where similar logic already lives
 
 ## Parallel sweep (one lens per teammate)
 
-One teammate per lens via `Agent` (unique `name`, strongest available model), all spawned in a single message; prefer the harness's read-only Explore agent type for pure reads. Each posts findings with file:line evidence via `SendMessage` and may message other lenses to resolve overlaps. Synthesize yourself.
+One teammate per lens via `Agent` (unique `name`, background, `sonnet[1m]`; the map-refuting verifier on `opus[1m]`), all spawned in a single message; prefer the harness's read-only Explore agent type for pure reads. Each posts findings with file:line evidence via `SendMessage` and may message other lenses to resolve overlaps. Synthesize yourself; only conclusions enter the main thread.
 
 | Lens | Question | Reads |
 |---|---|---|

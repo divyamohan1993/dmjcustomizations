@@ -3,6 +3,14 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.20.0] - 2026-07-29
+
+### Changed
+
+- **Delegation contract tightened across the library** (user-ordered): every spawned teammate runs in the BACKGROUND (a foreground wait is legal only when that single result gates the immediate next step), stays steerable mid-run and peer-connected via `SendMessage`, and keeps the orchestration thread quiet: one-line midway updates, conclusions only, raw transcripts and file dumps never enter the lead context. Encoded once in dispatching-parallel-teams (the mechanism owner) and referenced from using-dmj, harnessing-claude, team-driven-development (plus teammate-prompts.md), exploring-codebases, researching-deeply, orchestrating-products.
+- **Two-tier spawn menu replaces strongest-model-everywhere**: `opus[1m]` for judgement work (definition, adversarial review, security, synthesis), `sonnet[1m]` for mechanical or criteria-bounded work. No spawn below Sonnet, never a pinned version: the aliases float with the newest long-context Opus and Sonnet, and where a harness rejects the alias form the session's subagent-model setting carries it. The lead orchestrates on whatever model the session runs. harnessing-claude's red flag reworded from "hardcoded model name" to "pinned model version" so the floating aliases are the mechanism, not a violation; writing-skills best-practices.md now names the aliases as the only model references a skill may carry. orchestrating-products' "cheapest tier" language resolves to this menu; its build-stage row now names `sonnet[1m]` explicitly.
+- Global CLAUDE.md rule 6 rewritten to the same contract, so the always-loaded rule and the skills describe one delegation scheme, not two.
+
 ## [2.19.0] - 2026-07-29
 
 ### Changed

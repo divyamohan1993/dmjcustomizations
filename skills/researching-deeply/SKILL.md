@@ -13,7 +13,7 @@ If the harness exposes a deep-research tool or skill, prefer it: it already fans
 
 ## Fan out by angle, in parallel
 
-Spawn a research team: one `Agent` per angle, each with a `name`, all issued in a single message; each posts midway progress via `SendMessage`. Each teammate owns one lens and cites **primary sources with publication dates**:
+Spawn a research team: one `Agent` per angle, each with a `name`, background, all issued in a single message (`sonnet[1m]` for fetch-and-skim angles, `opus[1m]` for the refuting verifier and the synthesis); each posts midway progress via `SendMessage`. Each teammate owns one lens and cites **primary sources with publication dates**:
 
 | Angle | Primary source |
 |-------|----------------|

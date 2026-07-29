@@ -14,7 +14,7 @@ Fresh session, or many parallel waves? Use dmj:executing-plans. No plan yet? Use
 ## Setup
 
 1. Read the plan ONCE. Extract every task with full text, file set, dependencies, acceptance criteria onto a shared task list (dmj:dispatching-parallel-teams). Never make a teammate read the plan file; hand it the text.
-2. Spawn teammates with `Agent`, each with a unique `name`, on the strongest model available at invocation with max thinking. Independent spawns go in a **single message** so they run concurrently. Isolate overlapping work with `isolation: "worktree"` (dmj:using-git-worktrees). Address a teammate later, including after it has finished, with `SendMessage({to: "<name>"})`; it resumes with its context intact. Mechanism details: dmj:dispatching-parallel-teams.
+2. Spawn teammates with `Agent`, each with a unique `name`, in the background: implementers on `sonnet[1m]` against the written criteria, reviewers and anything judgement-heavy on `opus[1m]`, max thinking. Independent spawns go in a **single message** so they run concurrently. Isolate overlapping work with `isolation: "worktree"` (dmj:using-git-worktrees). Address a teammate later, including after it has finished, with `SendMessage({to: "<name>"})`; it resumes with its context intact. Mechanism details: dmj:dispatching-parallel-teams.
 
 ## Per-task loop (continuous, no check-ins)
 

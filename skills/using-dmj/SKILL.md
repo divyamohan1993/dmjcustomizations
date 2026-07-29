@@ -21,7 +21,7 @@ Process skills before implementation skills: "build X" -> dmj:brainstorming, "fi
 
 ## Capabilities resolve at invocation
 
-Skills hardcode no model, version, or date: at invocation use the strongest model and newest stable tooling present, prefer native tools, degrade gracefully. Delegated work is named `Agent` spawns issued together in one message, coordinated via `SendMessage`; never a lone fire-and-forget agent. Default to parallel (teams, in-turn tool batching, spikes, lenses); serialize only at user gates and real data dependencies. Speed never buys the gates down.
+Skills pin no model, version, or date: at invocation use the newest stable tooling present, prefer native tools, degrade gracefully. Delegated work is named `Agent` spawns issued together in one message, background by default, on `opus[1m]` (judgement) or `sonnet[1m]` (mechanical), steered mid-run and coordinated via `SendMessage`; never a lone fire-and-forget agent, never raw agent output in the main thread. Default to parallel (teams, in-turn tool batching, spikes, lenses); serialize only at user gates and real data dependencies. Speed never buys the gates down.
 
 ## Hard conduct rule
 

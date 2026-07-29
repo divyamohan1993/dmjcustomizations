@@ -65,7 +65,7 @@ One term, kept: always "field," not field/box/element. Always "extract," not ext
 
 ## Avoid time-sensitive content
 
-No "before August 2025, use the old API." It rots. Put superseded guidance in a collapsed "Old patterns" section with the deprecation noted, keep the current method as live text. Name no model, version, or date in the main flow; tell the reader to use the strongest model and newest stable tooling at invocation.
+No "before August 2025, use the old API." It rots. Put superseded guidance in a collapsed "Old patterns" section with the deprecation noted, keep the current method as live text. Pin no model version or date in the main flow; the floating tier aliases (`opus[1m]` judgement, `sonnet[1m]` mechanical) are the only model references a skill may carry, and tooling resolves to the newest stable at invocation.
 
 ## Quick checklist
 
