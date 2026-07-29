@@ -7,28 +7,20 @@
 // Zero dependencies. Skips fenced ``` blocks and `inline code` so real command
 // output is never flagged. Exit 1 on any blocking violation, else 0.
 //
+// AI_TELLS is exported: humanize.mjs imports it so the rewriter removes exactly
+// the terms this gate blocks. One lexicon, one home. Importing this module runs
+// no scan; the scan only runs when the file is executed directly.
+//
 // Usage:
 //   node humanize-guard.mjs [--gate] [--commit-msg <file>] [files...]
 //   (no files given -> scans prose files changed vs the upstream/HEAD range)
 'use strict';
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-
-const args = process.argv.slice(2);
-const GATE = args.includes('--gate');
-let commitMsgFile = null;
-const explicit = [];
-for (let i = 0; i < args.length; i++) {
-  if (args[i] === '--gate') continue;
-  if (args[i] === '--commit-msg') { commitMsgFile = args[++i]; continue; }
-  explicit.push(args[i]);
-}
-
-const DASH = /[‒–—―−‐‑]/; // figure, en, em, horizontal bar, minus, hyphen, non-breaking hyphen
-const PROSE = /\.(md|mdx|markdown|txt)$/i;
+import { pathToFileURL } from 'node:url';
 
 // Curated AI-tell lexicon. Tune per project via .humanize-allow (one term per line).
-const AI_TELLS = [
+export const AI_TELLS = [
   'delve', 'tapestry', 'in the realm of', 'realm of', "it's worth noting",
   'it is worth noting', "it's important to note", 'it is important to note',
   'boasts', 'seamless', 'seamlessly', 'robust', 'leverage', 'leverages',
@@ -43,16 +35,8 @@ const AI_TELLS = [
   'meticulous', 'meticulously', 'crucial role', 'vibrant landscape',
 ];
 
-let allow = new Set();
-if (existsSync('.humanize-allow')) {
-  for (const l of readFileSync('.humanize-allow', 'utf8').split('\n')) {
-    const t = l.trim().toLowerCase();
-    if (t && !t.startsWith('#')) allow.add(t);
-  }
-}
-const tells = AI_TELLS.filter((t) => !allow.has(t.toLowerCase()));
-const tellRe = new RegExp('\\b(' + tells.map((t) =>
-  t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'i');
+const DASH = /[‒–—―−‐‑]/; // figure, en, em, horizontal bar, minus, hyphen, non-breaking hyphen
+const PROSE = /\.(md|mdx|markdown|txt)$/i;
 
 function stripCode(md) {
   // Blank out fenced blocks and inline code so command output is not flagged.
@@ -60,49 +44,73 @@ function stripCode(md) {
            .replace(/`[^`\n]*`/g, (m) => ' '.repeat(m.length));
 }
 
-function targetFiles() {
-  if (explicit.length) return explicit.filter((f) => PROSE.test(f) && existsSync(f));
-  const git = (a) => execFileSync('git', a, { stdio: ['ignore', 'pipe', 'ignore'] }).toString();
-  const prose = (out) => out.split('\n').map((s) => s.trim())
-    .filter((f) => f && PROSE.test(f) && existsSync(f) && statSync(f).isFile());
-  let up = null;
-  try { up = git(['rev-parse', '--abbrev-ref', '--symbolic-full-name', '@{u}']).trim(); } catch {}
-  if (up) { // range is a single argv element, never a shell string
-    try { return prose(git(['diff', '--name-only', '--diff-filter=ACM', up + '..HEAD'])); } catch {}
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isMain) {
+  const args = process.argv.slice(2);
+  const GATE = args.includes('--gate');
+  let commitMsgFile = null;
+  const explicit = [];
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--gate') continue;
+    if (args[i] === '--commit-msg') { commitMsgFile = args[++i]; continue; }
+    explicit.push(args[i]);
   }
-  // First push or no upstream: scan all tracked prose so nothing slips through.
-  try { return prose(git(['ls-files'])); } catch { return []; }
-}
 
-let dashHits = [], tellHits = [];
-function scan(label, raw) {
-  const text = label.endsWith('.txt') ? raw : stripCode(raw);
-  text.split('\n').forEach((line, i) => {
-    if (DASH.test(line)) dashHits.push(`${label}:${i + 1}: ${line.trim().slice(0, 100)}`);
-    const m = line.match(tellRe);
-    if (m) tellHits.push(`${label}:${i + 1}: "${m[1]}"  ->  ${line.trim().slice(0, 100)}`);
-  });
-}
+  let allow = new Set();
+  if (existsSync('.humanize-allow')) {
+    for (const l of readFileSync('.humanize-allow', 'utf8').split('\n')) {
+      const t = l.trim().toLowerCase();
+      if (t && !t.startsWith('#')) allow.add(t);
+    }
+  }
+  const tells = AI_TELLS.filter((t) => !allow.has(t.toLowerCase()));
+  const tellRe = new RegExp('\\b(' + tells.map((t) =>
+    t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'i');
 
-for (const f of targetFiles()) { try { scan(f, readFileSync(f, 'utf8')); } catch {} }
-if (commitMsgFile && existsSync(commitMsgFile)) {
-  scan('COMMIT_MSG', readFileSync(commitMsgFile, 'utf8'));
-}
+  function targetFiles() {
+    if (explicit.length) return explicit.filter((f) => PROSE.test(f) && existsSync(f));
+    const git = (a) => execFileSync('git', a, { stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+    const prose = (out) => out.split('\n').map((s) => s.trim())
+      .filter((f) => f && PROSE.test(f) && existsSync(f) && statSync(f).isFile());
+    let up = null;
+    try { up = git(['rev-parse', '--abbrev-ref', '--symbolic-full-name', '@{u}']).trim(); } catch {}
+    if (up) { // range is a single argv element, never a shell string
+      try { return prose(git(['diff', '--name-only', '--diff-filter=ACM', up + '..HEAD'])); } catch {}
+    }
+    // First push or no upstream: scan all tracked prose so nothing slips through.
+    try { return prose(git(['ls-files'])); } catch { return []; }
+  }
 
-const C = { red: '\x1b[31m', yel: '\x1b[33m', grn: '\x1b[32m', dim: '\x1b[2m', off: '\x1b[0m' };
-if (dashHits.length) {
-  console.log(`${C.red}humanize-guard: ${dashHits.length} unicode dash(es) (use , : ; or .):${C.off}`);
-  dashHits.forEach((h) => console.log('  ' + h));
+  let dashHits = [], tellHits = [];
+  function scan(label, raw) {
+    const text = label.endsWith('.txt') ? raw : stripCode(raw);
+    text.split('\n').forEach((line, i) => {
+      if (DASH.test(line)) dashHits.push(`${label}:${i + 1}: ${line.trim().slice(0, 100)}`);
+      const m = line.match(tellRe);
+      if (m) tellHits.push(`${label}:${i + 1}: "${m[1]}"  ->  ${line.trim().slice(0, 100)}`);
+    });
+  }
+
+  for (const f of targetFiles()) { try { scan(f, readFileSync(f, 'utf8')); } catch {} }
+  if (commitMsgFile && existsSync(commitMsgFile)) {
+    scan('COMMIT_MSG', readFileSync(commitMsgFile, 'utf8'));
+  }
+
+  const C = { red: '\x1b[31m', yel: '\x1b[33m', grn: '\x1b[32m', dim: '\x1b[2m', off: '\x1b[0m' };
+  if (dashHits.length) {
+    console.log(`${C.red}humanize-guard: ${dashHits.length} unicode dash(es) (use , : ; or .):${C.off}`);
+    dashHits.forEach((h) => console.log('  ' + h));
+  }
+  if (tellHits.length) {
+    const tag = GATE ? `${C.red}BLOCK` : `${C.yel}warn`;
+    console.log(`${tag}: ${tellHits.length} AI-tell phrase(s) (rewrite plain, or allowlist in .humanize-allow):${C.off}`);
+    tellHits.forEach((h) => console.log('  ' + h));
+  }
+  const blocked = dashHits.length > 0 || (GATE && tellHits.length > 0);
+  if (blocked) {
+    console.log(`${C.dim}Fix, or run the humanize command, or bypass once with HUMANIZE_SKIP=1.${C.off}`);
+    process.exit(1);
+  }
+  if (!dashHits.length && !tellHits.length) console.log(`${C.grn}humanize-guard: clean.${C.off}`);
+  process.exit(0);
 }
-if (tellHits.length) {
-  const tag = GATE ? `${C.red}BLOCK` : `${C.yel}warn`;
-  console.log(`${tag}: ${tellHits.length} AI-tell phrase(s) (rewrite plain, or allowlist in .humanize-allow):${C.off}`);
-  tellHits.forEach((h) => console.log('  ' + h));
-}
-const blocked = dashHits.length > 0 || (GATE && tellHits.length > 0);
-if (blocked) {
-  console.log(`${C.dim}Fix, or run the humanize command, or bypass once with HUMANIZE_SKIP=1.${C.off}`);
-  process.exit(1);
-}
-if (!dashHits.length && !tellHits.length) console.log(`${C.grn}humanize-guard: clean.${C.off}`);
-process.exit(0);

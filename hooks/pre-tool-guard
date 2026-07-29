@@ -6,8 +6,12 @@
 #   3. git reset --hard against origin/... or @{u} (history destruction)
 # Escape hatch: DMJ_ALLOW=1 in the environment skips the guard for that call,
 # loudly, and is meant to be set only with the user's explicit on-record consent.
-# Fail-open by design: no parser or unexpected input means exit 0 (skills still
-# instruct); this hook is defense in depth, not the only line.
+# It is documented HERE and nowhere else: a denial message that advertises its
+# own bypass makes the bypass the path of least resistance.
+# Fail-open by design when NO engine exists (skills still instruct); but an
+# engine that is selected and then found broken (node chosen, guard file gone)
+# DENIES rather than running unguarded: that state means the plugin install is
+# damaged, not that the host is minimal.
 #
 # Perf: this runs on EVERY Bash/PowerShell tool call, so process spawns are the
 # whole cost (~170ms each on Windows). Extraction and all three checks share a
@@ -33,6 +37,12 @@ fi
 INPUT=$(cat 2>/dev/null || true)
 [ -n "$INPUT" ] || exit 0
 
+deny() {
+  # JSON-escape the reason minimally (no quotes/backslashes used in reasons).
+  printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$1"
+  exit 0
+}
+
 # One perl pass: extract tool_input.command, fully JSON-unescape it, and test all
 # three patterns. Prints one verdict token per match; bash reads the first.
 #
@@ -47,7 +57,12 @@ INPUT=$(cat 2>/dev/null || true)
 #      git.exe. Flags stay case-sensitive: git rejects --FORCE, but -f and -F
 #      mean different things, so folding case there would deny valid commands.
 if [ "$ENGINE" = "node" ]; then
-  VERDICT=$(printf '%s' "$INPUT" | node "$(cd "$(dirname "$0")" && pwd)/pre-tool-guard.js" 2>/dev/null || true)
+  JS_ENGINE="$(cd "$(dirname "$0")" && pwd)/pre-tool-guard.js"
+  if [ ! -f "$JS_ENGINE" ]; then
+    echo "dmj pre-tool-guard: node engine selected but pre-tool-guard.js is missing; denying rather than running unguarded" >&2
+    deny "dmj guard: guard engine file missing (pre-tool-guard.js). The dmj plugin install is damaged; reinstall or restore the file."
+  fi
+  VERDICT=$(printf '%s' "$INPUT" | node "$JS_ENGINE" 2>/dev/null || true)
 else
 VERDICT=$(printf '%s' "$INPUT" | perl -0777 -ne '
   my $scope = /"tool_input"\s*:\s*\{(.*)$/s ? $1 : $_;
@@ -68,19 +83,13 @@ fi
 
 [ -n "$VERDICT" ] || exit 0
 
-deny() {
-  # JSON-escape the reason minimally (no quotes/backslashes used in reasons).
-  printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$1"
-  exit 0
-}
-
 case "${VERDICT%%$'\n'*}" in
   noverify)
-    deny "dmj guard: --no-verify skips hooks; fix the failing hook instead. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1." ;;
+    deny "dmj guard: --no-verify skips hooks; fix the failing hook instead." ;;
   forcepush)
-    deny "dmj guard: force push rewrites shared history; use --force-with-lease if truly needed. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1." ;;
+    deny "dmj guard: force push rewrites shared history; use --force-with-lease if truly needed." ;;
   hardreset)
-    deny "dmj guard: reset --hard to a remote ref destroys local work; stash or branch first. With the user's explicit on-record consent only, re-run with DMJ_ALLOW=1." ;;
+    deny "dmj guard: reset --hard to a remote ref destroys local work; stash or branch first." ;;
 esac
 
 exit 0

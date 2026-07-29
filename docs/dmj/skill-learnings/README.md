@@ -1,6 +1,6 @@
 # Skill learnings queue
 
-Confirmed learnings that should improve a skill. dmj:evolving-skills processes them as a gated proposal loop: each becomes a dmj:writing-skills TDD proposal, passes validate.js plus the behavioral-diff gate, and opens a PR for a human to merge. Nothing here is auto-applied, and nothing merges itself.
+Confirmed learnings that should improve a skill. dmj:evolving-skills processes them as a gated proposal loop: each becomes a dmj:writing-skills proposal hardened by an authoring-time fresh-context pressure run (the RED method), passes validate.js plus the release-time behavioral-diff gate, and lands only through human review. Nothing here is auto-applied, and nothing merges itself.
 
 ## Rule: trusted input only
 
@@ -10,7 +10,7 @@ An entry is processed ONLY when `confirmed-by: user`. Raw session text is never 
 
 ## Format
 
-One file per learning, named `YYYY-MM-DD-<slug>.md`:
+One file per learning, named `YYYY-MM-DD-<slug>.md`. The frontmatter is REQUIRED and machine-read (`confirmed-by` is the injection filter, `status` is the queue state); the body shape below is a reference, not a mandate: carry the misfire, the evidence, and the proposed change in whatever structure states them plainly. `2026-07-29-teammate-numbers-unmeasured.md` is the reference instance.
 
 ```
 ---
@@ -19,11 +19,8 @@ status: queued          # queued | proposed | merged | rejected
 confirmed-by: user
 date: YYYY-MM-DD
 ---
-## What failed
-The exact misfire, with evidence: what the skill said, what went wrong.
-
-## Proposed change
-What the skill should say instead, and why.
+What failed, with evidence: what the skill said, what went wrong,
+and what the skill should say instead.
 ```
 
-The proposer flips `status` to `proposed` when it opens a PR, and to `merged` or `rejected` after review.
+The proposer flips `status` to `proposed` when it opens a proposal, and to `merged` or `rejected` after review.

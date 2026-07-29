@@ -5,7 +5,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: se
 
 ## [Unreleased]
 
+### Security
+
+- **Gate contradiction closed**: pre-commit-secrets.sh advised `git commit` with the exact hook-skipping flag that hooks/pre-tool-guard hard-denies, in 5 places. All advice now names only the per-line `gitleaks:allow` pragma (in-diff, reviewable, scoped); the no-engine fail-closed branch offers no bypass at all, because nothing was scanned.
+- **pre-tool-guard stops advertising its own bypass**: `DMJ_ALLOW` is documented in the header comment only; denial messages state the block and the fix. New fail-closed path: when the node engine is selected and pre-tool-guard.js is missing (damaged install), the guard denies instead of running unguarded. No-engine hosts keep the documented fail-open.
+- **humanizing-output pre-push no longer fails open off GNU grep**: the node-less fallback used `grep -qP`, which errors on BSD/busybox grep and waved the push through; replaced with an LC_ALL=C byte-sequence check that works on any POSIX grep.
+
 ### Fixed
+
+- humanize.mjs contained raw NUL/SOH bytes in string literals, making the file register as binary and therefore invisible to every grep-based sweep (including this repo's own gates); replaced with `\0`/`\x01` escapes. The orphaned "B4" comment tag is gone.
+- **One AI-tell lexicon**: humanize-guard.mjs exports `AI_TELLS` (54 terms) and the humanize.mjs rewriter prompt is built from that export; previously the rewriter named only 17 of the 54 blocked terms, so 37 could never be auto-rewritten. Importing the guard runs no scan (main-module check).
+- skill-learnings: the README schema and its only instance disagreed (the instance had no frontmatter to flip); frontmatter is now required and backfilled on the instance, the body shape is a reference rather than a mandate, and "TDD proposal" names the actual RED pressure-run method.
+- Audit spec section 8 marked historical: it instructed re-running battery files deleted in 2.23.0/2.23.1, and now names the live replacements.
+- Teammate teardown in finishing-a-development-branch and landing-sessions swaps the legacy shutdown_request/response handshake for drain-then-TaskStop, keeping the guarantee that matters: no worktree removal while a teammate may be mid-write.
 
 - **install-gate.sh polyglot clobber**: lanes are now stored per stack (`L_UNIT_node`, `L_UNIT_shell`, ...) and the runner executes every matched stack's command per slot, so the last-detected stack no longer overwrites the others' suites. Repro evidence, node+shell fixture manifest now contains both: `L_UNIT_node=npm exec vitest run` and `L_UNIT_shell=bats tests`. Each command keeps its own tool_present verdict (no `&&`-chaining, which would report one stack's missing tool as another stack's FAIL).
 - install-gate.sh writes four files and both prose homes said three; `qgate.sh` now detects a missing `.qgate-lanes.sh` and prints the regenerate hint instead of dying with an unbound-variable trace that read as a red gate.

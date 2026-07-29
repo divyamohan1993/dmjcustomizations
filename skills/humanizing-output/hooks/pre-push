@@ -3,7 +3,9 @@
 # (reads the ref list on stdin), so it never bricks a push over old files.
 # Blocks unicode dashes (always) and AI-tell phrases (gate mode). Bypass once:
 # HUMANIZE_SKIP=1 git push (logged loudly). Chains husky/lefthook and any native
-# pre-push. Degrades to a dash-only grep check when Node is unavailable.
+# pre-push. Degrades to a dash-only BYTE check when Node is unavailable; the
+# byte form works on any POSIX grep (BSD, busybox), because `grep -P` errors
+# outside GNU and an erroring check would wave the push through green.
 if [ "${HUMANIZE_SKIP:-}" = "1" ]; then
   echo "humanize: GATE BYPASSED via HUMANIZE_SKIP=1 (prose not checked)." >&2
   exit 0
@@ -42,9 +44,13 @@ if [ -n "$FILES" ]; then
     # NUL-delimit so filenames with spaces are not split (gate evasion otherwise).
     ( cd "$ROOT" && printf '%s\n' "$FILES" | tr '\n' '\0' | xargs -0 node "$GUARD" --gate ) || exit 1
   else
+    # UTF-8 byte sequences: U+2010..U+2015 = e2 80 90..95, U+2212 = e2 88 92.
+    # LC_ALL=C makes grep match raw bytes; plain BRE, no -P, portable everywhere.
+    DASH_A=$(printf '\342\200[\220-\225]')
+    DASH_B=$(printf '\342\210\222')
     if printf '%s\n' "$FILES" | while IFS= read -r f; do
         [ -f "$ROOT/$f" ] || continue
-        grep -qP '[\x{2010}\x{2011}\x{2012}\x{2013}\x{2014}\x{2015}\x{2212}]' "$ROOT/$f" 2>/dev/null && echo HIT
+        LC_ALL=C grep -q -e "$DASH_A" -e "$DASH_B" "$ROOT/$f" 2>/dev/null && echo HIT
       done | grep -q HIT; then
       echo "humanize: unicode dash in pushed prose (Node missing, dash-only check). Blocked."
       exit 1

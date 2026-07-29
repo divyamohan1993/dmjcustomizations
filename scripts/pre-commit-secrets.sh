@@ -28,10 +28,12 @@
 #   spawn a process per line. Fails CLOSED: if no engine is available the commit
 #   is refused, never allowed through unscanned.
 #
-# ESCAPE HATCHES (use deliberately)
+# ESCAPE HATCH (use deliberately)
 #   - Per line:   append a trailing comment  gitleaks:allow
 #                 (also honors  pragma: allowlist secret )
-#   - Per commit: git commit --no-verify     (discouraged; bypasses ALL hooks)
+#   Per-line is the ONLY advertised path: it is in-diff, reviewable, and scoped
+#   to one false positive. This guard never suggests skipping hooks; the dmj
+#   pre-tool-guard denies --no-verify anyway.
 #
 # OUTPUT
 #   On a hit: prints  file:line  with the secret value MASKED (never in full),
@@ -99,7 +101,7 @@ if command -v gitleaks >/dev/null 2>&1; then
     fi
     printf '\n\033[31m✖ Commit blocked: gitleaks found secret(s) in staged changes (values redacted above).\033[0m\n' >&2
     printf '  Fix: move the secret to an untracked .env, keep a placeholder in .env.example.\n' >&2
-    printf '  False positive: add  gitleaks:allow  on the line, or bypass once with  git commit --no-verify .\n' >&2
+    printf '  False positive: append a trailing  gitleaks:allow  comment to that line.\n' >&2
     exit 1
   fi
 fi
@@ -160,8 +162,7 @@ Never commit credentials. To fix:
   2. Keep a .env.example with a dummy placeholder value instead.
   3. Unstage the offending file:  git restore --staged <file>   (working copy is untouched)
 
-False positive? Append a trailing  gitleaks:allow  comment to that line,
-or bypass once (sparingly) with:  git commit --no-verify
+False positive? Append a trailing  gitleaks:allow  comment to that line.
 MSG
   exit 1;
 }
@@ -241,8 +242,7 @@ Never commit credentials. To fix:
   2. Keep a .env.example with a dummy placeholder value instead.
   3. Unstage the offending file:  git restore --staged <file>   (working copy is untouched)
 
-False positive? Append a trailing  gitleaks:allow  comment to that line,
-or bypass once (sparingly) with:  git commit --no-verify
+False positive? Append a trailing  gitleaks:allow  comment to that line.
 MSG
     exit 1
   fi
@@ -257,5 +257,5 @@ fi
 # =============================================================================
 printf '\n\033[31m✖ secret-guard: no scanner found (need gitleaks, perl, or ripgrep) — refusing to commit unscanned.\033[0m\n' >&2
 printf '  perl ships with Git for Windows; ensure it is on PATH. Or install gitleaks (recommended).\n' >&2
-printf '  Or bypass deliberately for this commit:  git commit --no-verify\n' >&2
+printf '  Nothing was scanned, so no bypass is offered here: install an engine.\n' >&2
 exit 1

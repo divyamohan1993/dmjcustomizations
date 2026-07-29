@@ -1,3 +1,10 @@
+---
+skill: dispatching-parallel-teams
+status: merged
+confirmed-by: user
+date: 2026-07-29
+---
+
 # Teammate numbers adopted without measurement
 
 - **Skill and line that misfired:** dispatching-parallel-teams, Synthesize section. Nothing required measuring a number in a teammate's report before adopting it.

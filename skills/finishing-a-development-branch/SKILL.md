@@ -53,7 +53,7 @@ MAIN=$(git -C "$(git rev-parse --git-common-dir)/.." rev-parse --show-toplevel);
 
 ## Step 5: Tear down (Merge and Discard only)
 
-Shut down the team before removing shared trees: `SendMessage` each teammate a `shutdown_request`, await `shutdown_response`. Shutdown is not instant (a teammate finishes its current request or tool call first), so wait for the response instead of removing a tree on a timer. Then, only for worktrees under `.worktrees/` (ours, never harness-owned):
+Drain the team before removing shared trees: `SendMessage` each teammate "finish your current tool call, flush or commit your work, reply drained", await that reply, then stop it (`TaskStop` by name). The drain matters because a stop is not instant and a tree removed under a teammate mid-write eats its work; never remove on a timer. Then, only for worktrees under `.worktrees/` (ours, never harness-owned):
 
 ```bash
 git worktree remove "<path>"   # --force only for Discard

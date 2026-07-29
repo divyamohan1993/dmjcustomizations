@@ -342,6 +342,14 @@ zero tokens:
 
 ## 8. Verification gate
 
+> **Historical (2.25.0):** this section instructs re-running files deleted in
+> 2.23.0/2.23.1 (`tests/pressure-test-battery.md`, `scripts/behavioral-test.sh`,
+> `scripts/guard-test.sh`). The battery is gone and will not be recreated (user
+> order: no tests in this repo). What replaces it: authoring-time fresh-context
+> pressure probes recorded in the commit message and CHANGELOG
+> (dmj:writing-skills), validate.js structural checks, and the release-time
+> behavioral-diff gate in scripts/release.sh.
+
 `tests/pressure-test-battery.md` (34.7K), `scripts/behavioral-test.sh`, and
 `scripts/guard-test.sh` are what certified 50/50 at 2.17.1. Any trim applied here is
 verified by re-running that battery, not by reading the diff. A description trim that
