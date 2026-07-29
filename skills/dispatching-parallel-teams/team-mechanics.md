@@ -28,7 +28,7 @@ An agent-type definition (project, user, plugin, or CLI scope) can be reused as 
 
 Three states (pending, in progress, completed) plus dependencies: a pending task whose dependencies are unresolved cannot be claimed, and completing a task unblocks its dependents automatically. Claiming is file-locked against races. The lead may assign explicitly, and a teammate self-claims the next unassigned unblocked task when it finishes one.
 
-Sizing that holds up in practice: 3 to 5 teammates, 5 to 6 tasks each, each task a self-contained deliverable (a function, a test file, a review). Too small and coordination costs more than the work; too large and a teammate runs a long time before anyone can catch a wrong turn.
+Sizing per the official docs: 3 to 5 teammates, 5 to 6 tasks each, each task a self-contained deliverable (a function, a test file, a review). Granularity rationale lives with the plan: dmj:writing-plans.
 
 ## Enforce gates with hooks
 

@@ -11,7 +11,7 @@ Idea to approved, reviewed design before implementation.
 
 NO merged implementation before an approved design: no code, scaffold, or implementation skill until the design is written, adversarially reviewed, user-approved. Spikes are the only code allowed first, and only in a disposable worktree.
 
-**Exactly one exemption exists**, the trivial-change threshold defined in CLAUDE.md: one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. Every clause must hold; fail one and this law applies in full. Judge against the clauses, not against how simple it feels.
+**Exactly one exemption exists**, the trivial-change threshold: its conjunctive clause list lives in CLAUDE.md and, for surfaces without CLAUDE.md, in dmj:enforcing-quality-gates. Every clause must hold; fail one and this law applies in full. Judge against the clauses, not against how simple it feels.
 
 ## Ceremony tiers (state the tier to the user)
 
@@ -28,8 +28,6 @@ Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, 
 | Excuse | Reality |
 |---|---|
 | "We already discussed/settled the design earlier" | Not written and approved in THIS conversation = not approved |
-| "I will prepare everything and only hold the final click" | Preparation outside a disposable worktree IS implementation |
-| "Asking approval now is obstruction; the deadline is real" | Approval costs one message and seconds; an unapproved merge-bound artifact is the real obstruction |
 | "The order itself IS the approval" | Approval evaluates the WRITTEN design with values filled in. An order approves the request, not the change; the requester has not seen it |
 
 ## Flow (parallel between gates, serial at gates)
@@ -48,7 +46,7 @@ Tiers scale the SIZE of the design, NEVER whether approval happens. Every tier, 
 
 **Visuals:** react before wiring: a throwaway HTML mock with fake data, AskUserQuestion previews, one Playwright-rendered file, or text comparison. No local server.
 
-**Headless (no interactive user):** at each gate, record the choice in the assumption ledger, pick the lowest-blast-radius safe default, PARK decisions the user must own (irreversible, security, cost, public surface). Never deadlock.
+**Headless (no interactive user):** never deadlock at a gate: take the lowest-blast-radius safe default, record it in the assumption ledger, PARK per the library default (dmj:using-dmj).
 
 ## Red flags (stop)
 

@@ -38,6 +38,4 @@ Before creating any function, helper, type, or file, small helpers included (sma
 - A map claim without a file path.
 - One serial read-through instead of a parallel sweep.
 
-**Headless:** fully autonomous, no user gate; the map and the gate-search evidence land in the final report.
-
 Next: **dmj:brainstorming** to design in the mapped code, or **dmj:writing-plans** if the design already exists.

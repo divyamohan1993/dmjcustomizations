@@ -13,7 +13,7 @@ Every repo carries its own gate. The gate is generated from the repo's actual st
 
 A repo with no gate is not "passing". It is unmeasured. Generate the gate first (`install-gate.sh`), then run it.
 
-**One exemption**, the trivial-change threshold in CLAUDE.md: one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. All clauses must hold, and a change touching crypto or auth can never be trivial, so the security lanes are never the ones skipped. A trivial change needs **T1 green only**.
+**One exemption**, the trivial-change threshold (stated in full here deliberately: this file ships to surfaces where CLAUDE.md does not exist): one file, reversible, no new dependency, no schema or stored-data change, nothing touching auth, crypto, secrets, PII, money, deletion, or a public surface, no production config. All clauses must hold, and a change touching crypto or auth can never be trivial, so the security lanes are never the ones skipped. A trivial change needs **T1 green only**.
 
 ## Tier by feedback loop, not by importance
 

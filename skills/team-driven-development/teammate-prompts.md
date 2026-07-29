@@ -1,62 +1,20 @@
-# Teammate Prompt Skeletons
+# Teammate Prompt Contracts
 
-Prompts for the three team-driven-development roles. A teammate loads CLAUDE.md, MCP servers, and skills like any session, but inherits NONE of the lead's conversation, so every field below is literal: paste the task text, the report, and the diff range. A file path where the text belongs, or an "as we discussed", resolves to nothing on the other side. Spawn shape (unique name, background, single message, `sonnet[1m]` implementers and `opus[1m]` reviewers): dmj:dispatching-parallel-teams. Reviewers run in FRESH context, never the implementer reviewing itself.
+Contracts for the three team-driven-development roles, as field tables rather than paste-blocks: assemble each prompt from its rows. A teammate inherits NONE of the lead's conversation (dmj:dispatching-parallel-teams `team-mechanics.md`), so every field is LITERAL: paste the task text, the report, the diff range. A file path where text belongs, or an "as we discussed", resolves to nothing on the other side. Reviewers run in FRESH context, never the implementer reviewing itself.
 
-## Implementer
+## Every prompt carries
 
-```
-You are implementing Task N: <name>. Work in <worktree path>.
+| Field | Literal content | Why literal |
+|---|---|---|
+| Task | full task text from the plan, Files and Acceptance criteria included | the plan file is not readable context on the other side |
+| Ownership | the exact file set owned; editing outside it collides with a peer | overlap corrupts parallel diffs |
+| Coordination | midway progress update via SendMessage; message peers directly about shared interfaces | plain text is invisible to other agents |
+| Process | the governing skill, named | the teammate loads skills fresh and routes itself |
 
-TASK (full text): <paste from plan, including Files and Acceptance criteria>
-CONTEXT: <where this fits, dependencies, interfaces other teammates own>
-YOU OWN THESE FILES: <exact set>. Editing outside it collides with a peer.
+## Per-role deltas
 
-Before coding: if requirements, approach, or assumptions are unclear, SendMessage
-the lead and wait. Do not guess.
-
-Build: follow dmj:test-driven-development (failing test, minimal code,
-pass, commit). Files to one responsibility. SendMessage a midway progress update;
-message peers directly about any shared interface. Run the task's verification
-command; paste the ACTUAL output. Commit in your worktree.
-
-Self-review before reporting: every requirement met, no extra scope (YAGNI), names
-accurate, tests verify behavior not mocks. Fix what you find.
-
-Report status: DONE | DONE_WITH_CONCERNS | BLOCKED | NEEDS_CONTEXT, plus what you
-built, test output, files changed, any concern. Always OK to say "this is too hard";
-bad work is worse than none. Never silently ship work you doubt.
-```
-
-## Spec reviewer (fresh context)
-
-```
-Verify an implementation matches its task. Do NOT trust the implementer's report;
-read the code.
-
-TASK (full text): <paste>
-IMPLEMENTER CLAIMED: <paste report>
-DIFF: <base SHA>..<head SHA>
-
-Read the actual code and check: every requirement implemented (nothing skipped or
-faked), nothing extra built (no unrequested features), no misread requirement
-(right problem, right way). Confirm the acceptance commands pass.
-
-Report: "Spec compliant" OR "Issues:" with file:line for each gap or extra.
-```
-
-## Quality reviewer (fresh context, only after spec passes)
-
-```
-Review code quality via dmj:requesting-code-review.
-
-DIFF: <base SHA>..<head SHA>
-PLAN/REQUIREMENTS: Task N from <plan path>
-
-Check, beyond the standard review: each file one clear responsibility + a defined
-interface; units independently testable; this change did not bloat a file or create
-an already-large one (judge the change, not pre-existing size); security per
-dmj:defending-in-depth; complexity + budgets per
-dmj:enforcing-performance-budgets.
-
-Report: Strengths, Issues (Critical / Important / Minor with file:line), Assessment.
-```
+| Role | Governing skill | Extra fields | Output contract |
+|---|---|---|---|
+| Implementer | dmj:test-driven-development | worktree path; context (where the task fits, interfaces peers own); "ask the lead and WAIT if anything is unclear, do not guess"; self-review before reporting (requirements met, no extra scope, tests verify behavior not mocks) | status enum `DONE / DONE_WITH_CONCERNS / BLOCKED / NEEDS_CONTEXT`, what was built, the verification command's ACTUAL pasted output, files changed, concerns. Always OK to say "this is too hard": bad work is worse than none, and doubted work is never shipped silently |
+| Spec reviewer | none (read the code, not the report) | the implementer's claimed report, pasted; the diff range `<base SHA>..<head SHA>` | "Spec compliant" OR "Issues:" with file:line per gap or extra; confirms the acceptance commands pass; checks nothing skipped, nothing unrequested, no misread requirement |
+| Quality reviewer (only after spec passes) | dmj:requesting-code-review | the diff range; the task reference | Strengths, Issues (Critical/Important/Minor with file:line), Assessment. Deltas beyond the standard review: one clear responsibility and defined interface per file; units independently testable; judge whether THIS change bloated a file, not pre-existing size |

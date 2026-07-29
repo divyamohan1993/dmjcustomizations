@@ -1,6 +1,6 @@
 # Review Lens Prompt Skeleton
 
-One fresh-context teammate per lens, dispatched concurrently at judgement tier (`opus[1m]`). `{LENS}`, `{LENS_FOCUS}`, and `{ANCHOR}` come from the lens table in `dmj:requesting-code-review`; fill `{DESCRIPTION}`, `{PLAN}`, `{BASE_SHA}`, `{HEAD_SHA}` from the work under review. The teammate sees only the diff, never the author's history.
+One fresh-context teammate per lens, dispatched concurrently at the judgement tier (aliases: dmj:dispatching-parallel-teams). `{LENS}`, `{LENS_FOCUS}`, and `{ANCHOR}` come from the lens table in `dmj:requesting-code-review`; fill `{DESCRIPTION}`, `{PLAN}`, `{BASE_SHA}`, `{HEAD_SHA}` from the work under review. The teammate sees only the diff, never the author's history.
 
 ```
 You are the {LENS} reviewer. Review ONLY the diff below against its plan.

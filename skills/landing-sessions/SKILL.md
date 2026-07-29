@@ -16,6 +16,4 @@ Land everything the session created: knowledge to memory, state to git, resource
 5. **Debris.** Self-created scratch files inside the working folder: deleted. Anything outside it: the user confirms first, every time (hard conduct rule).
 6. **Skill learnings.** A skill that misfired this session, once the user confirms the learning, gets a file in `docs/dmj/skill-learnings/`; if any are queued, run the session-end proposal pass (dmj:evolving-skills) that opens gated PRs. User-confirmed only, never auto-merge.
 
-**Headless:** land automatically; the thread list and evidence go in the final report.
-
 Next: nothing. Landing is terminal; the next session starts clean.

@@ -22,7 +22,7 @@ Evidence comes from FRESH-context teammates, never same-context self-review. A t
 
 Spawn: one `Agent` per scenario, `name` tied to it, all in a single message so they run concurrently. Each reports its choice and verbatim reasoning back. Recurring rationalizations are the ones the skill must kill.
 
-Teams are experimental and OFF unless `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set (settings.json `env` block). Without it a named spawn is a result-only worker: it reports to you and cannot message peers, so the lead carries the coordination. The fallback loses peer messaging and mid-run steering, never the one-message batch or the no-fire-and-forget floor. Skill QA survives it intact, since every scenario is independent, one shot, and graded on the reply. Mechanics: dmj:dispatching-parallel-teams.
+The teams env gate and its result-only fallback are documented in dmj:dispatching-parallel-teams (`team-mechanics.md`). Skill QA survives the fallback intact, since every scenario is independent, one shot, and graded on the reply.
 
 Do NOT test this way: pure reference skills (API docs, syntax), or skills with no rule to violate. DO test: discipline skills, skills with a compliance cost, anything an agent has incentive to bypass.
 

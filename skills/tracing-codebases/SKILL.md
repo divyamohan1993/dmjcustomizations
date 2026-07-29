@@ -24,6 +24,4 @@ Code is the only source of truth: READMEs, comments, design docs are hints to ve
 
 A single-fact lookup (just search), an area you already understand, or mapping before you build (that is dmj:exploring-codebases). A team costs real tokens; do not spend it to find one function.
 
-**Headless:** fully autonomous, no user gate; the synthesis lands in the final report.
-
 Next: **dmj:exploring-codebases** before building in the explored code, or **dmj:brainstorming** once the change you want is understood.
