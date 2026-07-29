@@ -1,6 +1,6 @@
 ---
 name: tracing-codebases
-description: Use when you need to understand how an unfamiliar or large codebase actually works (module interconnection, execution start, data flow, feature wiring) and the deliverable is an explanation in chat: onboarding, "how does X work", "map the architecture", auditing code against docs.
+description: Use when the deliverable is an explanation IN CHAT of how a codebase really works (execution start, data flow, module wiring) with no build to follow and nothing written to the repo: onboarding walkthroughs, "how does X work", auditing code against its docs.
 disallowed-tools: Write, Edit, NotebookEdit
 ---
 
@@ -10,7 +10,7 @@ Build a live, evidence-based model of how a codebase works by reading the real s
 
 ## Contract
 
-Code is the only source of truth: READMEs, comments, design docs are hints to verify, never facts to repeat. Every claim cites file:line or is flagged unverified. Output is IN CHAT ONLY: no map file, no memory entry, nothing into the repo. About to BUILD there instead? Route to dmj:exploring-codebases (persisted map plus anti-redundancy gate).
+Code is the only source of truth: READMEs, comments, design docs are hints to verify, never facts to repeat. Every claim cites file:line or is flagged unverified. Output is IN CHAT ONLY: no map file, no memory entry, nothing into the repo. About to BUILD there instead? Route to dmj:exploring-codebases (persisted map plus anti-redundancy gate). Quick orientation is the harness-native explore skill; this adds parallel slice owners, seam cross-confirmation between them, and a refutation bar on every claim.
 
 ## Flow
 

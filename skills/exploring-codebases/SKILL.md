@@ -1,11 +1,11 @@
 ---
 name: exploring-codebases
-description: Use when entering an unfamiliar or large codebase, when you cannot say where a feature lives or how modules connect, before designing or implementing there, or when about to add a helper, utility, type, or pattern that might already exist somewhere in the repo.
+description: Use when about to design, implement, or add code in a codebase you have not mapped, or when adding a helper, utility, type, or pattern that might already exist somewhere in the repo; the deliverable is a persisted repo map plus an anti-redundancy gate, so nothing gets built twice.
 ---
 
 # Exploring Codebases
 
-Map a codebase in parallel until you can answer: what lives where, how it connects, what already exists, so nothing gets built twice. Explaining how it works with no build to follow and no artifact wanted is dmj:tracing-codebases instead.
+Map a codebase in parallel until you can answer: what lives where, how it connects, what already exists, so nothing gets built twice. Explaining how it works with no build to follow and no artifact wanted is dmj:tracing-codebases instead; quick orientation with no artifact at all is the harness-native explore skill. This one exists for the persisted map and the gate.
 
 ## Iron Law
 
