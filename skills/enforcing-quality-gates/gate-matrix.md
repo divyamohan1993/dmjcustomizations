@@ -96,7 +96,7 @@ Target selection, harness patterns, and which tier each kind of fuzzer belongs i
 | jvm | `Jazzer` |
 | php | `php-fuzzer` |
 | dotnet | `SharpFuzz` |
-| shell | hand-written adversarial corpus, see `scripts/fuzz-guard.sh` in this repo |
+| shell | hand-written adversarial corpus over the four attack axes (fuzzing.md) |
 
 ## Security
 

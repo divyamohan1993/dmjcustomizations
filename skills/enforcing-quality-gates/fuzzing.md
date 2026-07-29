@@ -52,6 +52,6 @@ Both, in different tiers.
 
 Start with property-based on the top target. It costs an afternoon and finds the boundary bugs. Add coverage-guided once the target list is stable.
 
-## Worked example
+## Why fuzz at all
 
-`scripts/fuzz-guard.sh` in this repo is a complete implementation of the above against a real fail-open security control: four axes, three verdict classes, structural fuzz with timeout and JSON-validity assertions, plus a mutation loop over dangerous command cores. On first run against a control that had passed a 13-probe behavior suite for weeks, it found 10 live bypasses. Read it before writing a new one.
+A real fail-open security control that had passed a 13-probe behavior suite for weeks gave up 10 live bypasses on its first fuzz run (four axes, three verdict classes, structural fuzz with timeout and JSON-validity assertions, a mutation loop over dangerous command cores). A green behavior suite is not evidence against adversarial input; only a fuzz lane is.

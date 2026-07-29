@@ -37,7 +37,7 @@ INPUT=$(cat 2>/dev/null || true)
 # three patterns. Prints one verdict token per match; bash reads the first.
 #
 # Three properties this must hold, each of which was a live bypass found by
-# scripts/fuzz-guard.sh before it was written this way:
+# adversarial fuzzing before it was written this way:
 #   1. Scope to tool_input. Grepping the first "command" anywhere lets an
 #      attacker put a harmless decoy in an earlier field and hide the real one.
 #   2. Decode \uXXXX and \/ . The harness decodes before executing, so anything

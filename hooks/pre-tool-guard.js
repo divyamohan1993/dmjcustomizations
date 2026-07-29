@@ -2,9 +2,7 @@
 'use strict';
 // Node engine for hooks/pre-tool-guard: a faithful port of the single perl
 // pass, selected only when perl is absent (Ubuntu cloud VMs ship node, not
-// perl). Certified by the same suites as the perl path: run
-// scripts/guard-test.sh and scripts/fuzz-guard.sh with DMJ_GUARD_ENGINE=node.
-// The three properties the fuzz suite forced, preserved exactly:
+// perl). The three properties adversarial fuzzing forced, preserved exactly:
 //   1. Extraction scoped to tool_input (a decoy "command" key earlier in the
 //      payload must lose).
 //   2. Single left-to-right unescape pass: \uXXXX, then \n \t \r to space,

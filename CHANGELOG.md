@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: semver.
 
+## [2.23.1] - 2026-07-29
+
+### Removed
+
+- **Security-hook test suites removed too** (user clarification: tests, security suites included, belong in target repos; this repo is skill text plus display-level code). Deleted scripts/fuzz-guard.sh and scripts/guard-test.sh; validate.sh no longer runs the guard suite; the runtime guard itself (hooks/pre-tool-guard, pre-tool-guard.js) stays, with its comments crediting adversarial fuzzing rather than the deleted files. fuzzing.md keeps the 10-bypasses-behind-a-green-suite evidence as prose; gate-matrix's shell row points at the technique instead of the dead exemplar.
+
 ## [2.23.0] - 2026-07-29
 
 ### Removed
