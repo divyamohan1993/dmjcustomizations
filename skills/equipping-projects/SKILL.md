@@ -14,7 +14,7 @@ On any repo you work in: the equip pass has run, or was consciously proposed. A 
 ## Ownership rule
 
 - **Your own or a new repo:** wire by default, announce what was wired.
-- **Someone else's repo (client, upstream, team):** propose the pass in ONE message (what, why, minutes to run), wire on consent. Never silently rewire a repo you do not own; never let that consent wait kill the gate either, the proposal itself is the record.
+- **Someone else's repo (client, upstream, team):** not yours to rewire, yours to propose. ONE message (what, why, minutes to run), wire on consent. Never silently rewire a repo you do not own; never let that consent wait kill the gate either, the proposal itself is the record.
 
 ## Detect, then wire (the derivation table)
 
@@ -44,7 +44,6 @@ Installers CHAIN existing hooks (husky, lefthook, native) and fail closed when t
 | "Just fix the task, tooling later" | The first unscanned commit is the one with the key in it. Minutes now, breach never |
 | "Open a ticket for the tooling" | A ticket is deferral with a paper trail. Propose the pass now; it runs in minutes |
 | "One standard kit for every repo" | Web gear on a CLI is dead weight and noise. Derive from the repo's signals |
-| "It is not my repo, skip it" | Not yours to rewire, yours to propose. One message, then consent wires it |
 
 ## Red flags (stop)
 

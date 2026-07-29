@@ -9,7 +9,7 @@ Data outlives code. Every change to it reversible, every copy restorable, every 
 
 ## Gate 0: restorable before touchable
 
-Before any schema change or bulk edit on real data: a backup exists AND its restore has been DRILLED (restore into a scratch environment, verify row counts and checksums, record the evidence per dmj:verification-before-completion). An unrestored backup is a hope, not a backup. Drills repeat on a schedule, not once.
+Before any schema change or bulk edit on real data: a backup exists AND its restore has been DRILLED (restore into a scratch environment, verify row counts and checksums, record the evidence per dmj:verification-before-completion). Existence is not restorability: the drill is the backup, an unrestored one is a hope. Drills repeat on a schedule, not once.
 
 ## Migrations
 
@@ -30,10 +30,8 @@ Before any schema change or bulk edit on real data: a backup exists AND its rest
 
 | Excuse | Reality |
 |---|---|
-| "Backups exist, we are covered" | Existence is not restorability. The drill is the backup |
 | "Staging ran the migration fine" | Staging has no locks, no load, no irreplaceable rows. Expand-migrate-contract anyway |
 | "The column is unused, just drop it" | Unused is a claim; a reader you missed makes the drop an outage. Contract in a later release |
-| "Small table, ALTER inline" | Small tables grow and locks cascade. The discipline costs minutes |
 | "Add retention later" | Later is a compliance letter. Policy at design time |
 
 ## Red flags (stop)

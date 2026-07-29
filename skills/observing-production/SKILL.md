@@ -5,7 +5,7 @@ description: Use when a service is heading to or running in production and healt
 
 # Observing Production
 
-Healthy means the signals say so. Silence is an unmonitored failure mode, not good news. Observability is defined BEFORE launch; launch is when you are otherwise blind.
+Healthy means the signals say so. Silence is an unmonitored failure mode, not good news. Observability is defined BEFORE launch, because launch is when you are blind and the traffic is real.
 
 ## Gate 0: instrumented before deployed
 
@@ -30,14 +30,13 @@ An alert that fires without action twice is deleted or fixed: fatigue buries the
 1. **Detect** from signals, not tickets.
 2. **Stabilize**: one-step rollback FIRST (dmj:shipping-to-production incident rule); diagnose after the bleeding stops.
 3. **Root cause** by dmj:systematic-debugging, never by guess.
-4. **Blameless post-mortem** for every user-visible incident: timeline, root cause, action items that land as commits and tests WITH OWNERS. A summary in chat is not a post-mortem; a recurrence with no landed action item is the real failure.
+4. **Blameless post-mortem** for every user-visible incident: timeline, root cause, action items landing as commits and tests WITH OWNERS. A summary in chat is not a post-mortem; a recurrence with no landed action item is the real failure.
 
 ## Rationalizations (all false)
 
 | Excuse | Reality |
 |---|---|
 | "No errors reported, so it is healthy" | Users leave before they report. Silence means unmonitored |
-| "Add monitoring after launch" | Launch is when you are blind and traffic is real. Gate 0 precedes deploy |
 | "Alert on everything to be safe" | Fifty pages a day trains everyone to ignore the fifty-first. Symptoms only |
 | "We fixed it, move on" | Unlanded lessons repeat. The post-mortem's commits are the fix |
 

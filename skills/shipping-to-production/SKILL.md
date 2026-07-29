@@ -24,11 +24,11 @@ Nothing deploys, ever, without the full suite green on the EXACT artifact being 
 
 ## Cost gate
 
-Any new billable resource is priced BEFORE provisioning, in writing; free tier wins when the numbers hold (cost axis: dmj:enforcing-performance-budgets). An always-on resource nobody asked for is a defect.
+Any new billable resource is priced BEFORE provisioning, in writing: the recommendation, the free alternative, and exactly what free gives up, then the user picks (cost axis: dmj:enforcing-performance-budgets). Free wins when the numbers hold. An always-on resource nobody asked for is a defect.
 
 ## Incident rule
 
-Production bleeding after a release: one-step rollback FIRST, then land the fix through the pipeline with the suite green on the new artifact. Never patch a live server; server drift turns the next deploy into a mystery. "I am sure about the patch" is how drift starts.
+Production bleeding after a release: one-step rollback FIRST, then land the fix through the pipeline with the suite green on the new artifact. Rollback is as fast as a hotfix and leaves no drift; patching a live server turns the next deploy into a mystery, and "I am sure about the patch" is how drift starts.
 
 ## Manual boundaries
 
@@ -39,7 +39,6 @@ A step needing access you do not have (DNS record, dashboard toggle): hand the u
 | Excuse | Reality |
 |---|---|
 | "SSH and restart is faster tonight" | Tonight's hand deploy is next month's unreproducible server. The script ships tonight too, correctly |
-| "Hotfix on the box, backport later" | Rollback is as fast and leaves no drift. Later never comes before the next incident |
 | "Rollback is overkill for this change" | Every deploy believes that; the one that needs it decides your night |
 | "We will price the resource after launch" | After launch it is a bill, not a decision |
 

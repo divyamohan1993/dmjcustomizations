@@ -23,7 +23,7 @@ Write four lists first:
 - **Trust boundaries**: where data crosses less-trusted to more-trusted.
 - **Abuse cases**: how a hostile user attacks each entry point.
 
-Then the one people skip: **post-compromise cases.** Per asset, what does an attacker with root and a DB dump get? "The data" means the design is not finished.
+Then **post-compromise cases.** Per asset, what does an attacker with root and a DB dump get? "The data" means the design is not finished.
 
 Gate against the **current OWASP Top 10** (WebFetch the live edition; categories change) and target **ASVS L2** as the verifiable bar. Each item: mitigated, or not-applicable with a reason.
 
@@ -43,27 +43,25 @@ Gate against the **current OWASP Top 10** (WebFetch the live edition; categories
 
 ## Quantum durability
 
-The threat is **harvest now, decrypt later**: ciphertext recorded today is decrypted once a cryptographically relevant quantum computer exists, so confidentiality that must outlast roughly 2035 is already exposed under classical-only exchange. **Symmetric is fine** (Grover only halves: AES-256 keeps ~128-bit strength; SHA-384 and Argon2id stay); the exposure is asymmetric exchange and signatures. **Hybrid, never pure**: combine classical and post-quantum so the result holds if either survives; SIKE reached the NIST finalist round and fell on a laptop in 2022. **Profile follows data lifetime, not preference**: mandating the strongest primitive where no audited implementation exists produces a hand-rolled one.
+**Harvest now, decrypt later**: ciphertext recorded today is decrypted later, so confidentiality that must outlast roughly 2035 is already exposed under classical-only exchange. **Symmetric is fine** (Grover only halves: AES-256 keeps ~128-bit strength; SHA-384 and Argon2id stay); the exposure is asymmetric exchange and signatures. **Hybrid, never pure**: SIKE reached the NIST finalist round and fell on a laptop in 2022, so only a combination holding if either primitive survives is safe. **Profile follows data lifetime, not preference**: mandating the strongest primitive where no audited implementation exists produces a hand-rolled one.
 
 | | MAX (at rest, long life) | TRANSPORT (TLS) | SESSION (minutes) |
 |---|---|---|---|
 | AEAD | **AEGIS-256**, 256-bit tag, 256-bit random nonce | negotiated | AES-256-GCM |
-| Key exchange | **X25519 + ML-KEM-1024** | strongest the peer will negotiate, today X25519MLKEM768 | X25519 + ML-KEM-768 |
-| Signatures | **ML-DSA-87** | n/a | ML-DSA-65 |
+| Key exchange | **X25519 + ML-KEM-1024** (Category 5) | strongest the peer will negotiate, today X25519MLKEM768 | X25519 + ML-KEM-768 |
+| Signatures | **ML-DSA-87** (Category 5) | n/a | ML-DSA-65 |
 | Roots (10-year) | **SLH-DSA-SHA2-256s** | n/a | n/a |
-| KDF / hash | HKDF-SHA-512 | negotiated | HKDF-SHA-256 |
+| KDF / hash | HKDF-SHA-512; SHA-512, or SHA-384 where output size matters | negotiated | HKDF-SHA-256 |
 
-Passwords are always Argon2id at high memory cost, never bcrypt, scrypt, or custom.
+Passwords are always Argon2id, memory cost tuned high for the deployment hardware, never bcrypt, scrypt, or custom.
 
-**Two rules override the table.** Never hand-roll a primitive to reach a tier: an audited AES-256-GCM beats an unaudited AEGIS-256, so drop to the next audited choice and record why. AEGIS nonces are random 256-bit values, never counters, never reused (not nonce-misuse resistant; reuse recovers internal state). Tag pinned at 256 bits; at 128, committing security is only 64.
+**Two rules override the table.** Never hand-roll a primitive to reach a tier: an audited AES-256-GCM beats an unaudited AEGIS-256, so drop to the next audited choice (AES-256-GCM wherever AEGIS is unavailable) and record the drop and its reason in `qgate.config.sh`. AEGIS nonces are random 256-bit values, never counters, never reused (not nonce-misuse resistant; reuse recovers internal state). Tag pinned at 256 bits; at 128, committing security is only 64.
 
-TLS is the peer's choice, not yours: take the strongest negotiated group and verify it on a live connection. AEGIS is not yet an RFC (CFRG draft-18, shipped in libsodium); Falcon and HQC are unfinalized. Confirm all of it at invocation.
+TLS is the peer's choice, not yours: take the strongest negotiated group and verify it on a live connection. Encryption is urgent now, since harvested ciphertext cannot be un-harvested; signature urgency scales with key lifetime, a decade-lived signing root long before a five-minute session token.
 
-Encryption is urgent now (harvested ciphertext cannot be un-harvested); signature urgency scales with key lifetime, a decade-lived signing root long before a five-minute session token. Parameters, hybrid construction, envelope format, key hierarchy, migration order: `quantum-durable-crypto.md`.
+Construction, envelope format, key hierarchy, migration order, libraries, standards status: `quantum-durable-crypto.md`.
 
 ## Crypto agility is the actual five-year answer
-
-Picking the right algorithm is a bet. Being able to change it is a design.
 
 - **Version every ciphertext and signature**: a leading algorithm identifier; read any supported version, write only the current.
 - **One module owns algorithm selection.** A primitive named outside it is a future migration blocker; grep for hits.
@@ -102,7 +100,7 @@ Under law 1 detection outranks prevention: prevention already failed in the scen
 
 ## Fuzz what decides, not what sounds security-shaped
 
-Anything that makes an allow or deny decision, or parses input it did not create, gets a fuzz harness (dmj:enforcing-quality-gates, `fuzzing.md`): encoding, structure, lexical, boundary. A fail-open control that has never been fuzzed is bypassable until proven otherwise; a behavior suite covers only the cases someone imagined.
+Anything that makes an allow or deny decision, or parses input it did not create, gets a fuzz harness across encoding, structure, lexical, and boundary classes (dmj:enforcing-quality-gates, `fuzzing.md`). A fail-open control that has never been fuzzed is bypassable until proven otherwise.
 
 ## Machine-checkable gates (CI)
 
@@ -110,7 +108,7 @@ SAST, dependency audit failing on high or critical, secret scanning, security he
 
 ## Parallel pattern
 
-Before implementation, spawn an **adversarial attacker-mindset teammate** to attack the design (one `Agent` with a `name`; it `SendMessage`s midway progress). Give it law 1 explicitly: it starts with root and a DB dump. Every review panel runs a dedicated **fresh-context security reviewer**, never same-context self-review.
+Before implementation, an **adversarial attacker-mindset teammate** attacks the design (delegation per dmj:dispatching-parallel-teams), briefed with law 1 explicitly: it starts with root and a DB dump. Every review panel runs a dedicated **fresh-context security reviewer**, never same-context self-review.
 
 ## Rationalization table
 
@@ -123,6 +121,7 @@ Before implementation, spawn an **adversarial attacker-mindset teammate** to att
 | "bcrypt/scrypt is fine" | Mandate is Argon2id. No substitutions. |
 | "Quantum is decades away" | Harvest now, decrypt later. The ciphertext leaving today is the one decrypted then. |
 | "We used ML-KEM, we are post-quantum" | Pure PQC drops classical assurance. Hybrid or it is a downgrade in one dimension. |
+| "We are on TLS 1.3, so the data is covered" | TLS 1.3 with classical-only groups is exactly the traffic being harvested, and transport protects nothing at rest. |
 | "One key is simpler" | One key means one breach equals total loss, and makes crypto-shredding impossible forever. |
 | "We will rotate keys if something happens" | An untested rotation path is not a path. Exercise it before you need it. |
 

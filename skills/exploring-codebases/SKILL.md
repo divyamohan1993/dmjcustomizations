@@ -5,7 +5,7 @@ description: Use when entering an unfamiliar or large codebase, when you cannot 
 
 # Exploring Codebases
 
-Map a codebase in parallel until you can answer: what lives where, how it connects, what already exists, so nothing gets built twice.
+Map a codebase in parallel until you can answer: what lives where, how it connects, what already exists, so nothing gets built twice. Explaining how it works with no build to follow and no artifact wanted is dmj:tracing-codebases instead.
 
 ## Iron Law
 
@@ -13,7 +13,7 @@ NO new code in unmapped territory. Cannot name where similar logic already lives
 
 ## Parallel sweep (one lens per teammate)
 
-One teammate per lens via `Agent` (unique `name`, background, `sonnet[1m]`; the map-refuting verifier on `opus[1m]`), all spawned in a single message; prefer the harness's read-only Explore agent type for pure reads. Each posts findings with file:line evidence via `SendMessage` and may message other lenses to resolve overlaps. Synthesize yourself; only conclusions enter the main thread.
+One teammate per lens, delegated per dmj:dispatching-parallel-teams; prefer the harness's read-only Explore agent type for pure reads, and put the map-refuting verifier on `opus[1m]`. Every finding carries file:line evidence, lenses resolve overlaps with each other, and you synthesize.
 
 | Lens | Question | Reads |
 |---|---|---|
@@ -39,7 +39,6 @@ Before creating any function, helper, type, or file: search the map's asset inde
 |---|---|
 | "Faster to write it than find it" | The search is one grep; a duplicate costs maintenance forever |
 | "The repo is too big to map" | Lenses fan out in parallel; breadth is cheap, only depth costs |
-| "The README explains the architecture" | Docs drift; code is the only source the map may cite |
 | "It's just a small helper" | Small helpers are where duplication breeds |
 
 ## Red flags (stop)
