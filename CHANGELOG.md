@@ -3,6 +3,12 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning tracks the Claude family: major.minor = the model generation this library is tuned for (Fable 5 = 5.0.x; Fable 5.1 -> 5.1.x), patch = this repo's releases within it.
 
+## [5.0.2] - 2026-07-29
+
+### Added
+
+- **Seven engineering principles adopted** (user order, conflict resolved by user choice): no backward compat in CODE (delete obsolete paths, no shims; carve-outs are law: live-data migrations, versioned ciphertexts, public API contracts, rollback artifacts, documented guard degradation); simplest implementation meeting current requirements with no speculative abstraction; layered growth atop a working end-to-end product; long-term architecture with no built-to-replace stopgaps; existing deps read (docs and types) before packages are added or anything reimplemented; established maintained libraries over hand-rolls when they cut net complexity. Homes: CLAUDE.md RULES (telegraphic), brainstorming's Approaches bars, researching-deeply's deps law. The modularity principle was NOT re-added: already law in stack-defaults ARCH, writing-plans' file map, and "modify existing, never duplicate" (one home per rule).
+
 ## [5.0.1] - 2026-07-29
 
 ### Changed

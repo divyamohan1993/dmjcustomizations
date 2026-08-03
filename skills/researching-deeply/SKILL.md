@@ -9,7 +9,7 @@ one source = a rumor. a decision rests on triangulated, dated, primary-source ev
 
 ## Step 0: Use the native engine if present
 
-harness exposes a deep-research tool or skill -> prefer it: already fans out, fetches, verifies. drive it, then apply the verification and synthesis discipline below to its output. hand-roll the team only when no native engine exists. library/API questions: context7 MCP (live docs) or WebFetch on official docs first.
+harness exposes a deep-research tool or skill -> prefer it: already fans out, fetches, verifies. drive it, then apply the verification and synthesis discipline below to its output. hand-roll the team only when no native engine exists. library/API questions: context7 MCP (live docs) or WebFetch on official docs first. deps law: before adding a package or reimplementing, read the EXISTING deps' docs and types; never assume a library lacks a capability unchecked. established maintained lib beats a reimplementation when it cuts net complexity.
 
 ## Fan out by angle, in parallel
 
