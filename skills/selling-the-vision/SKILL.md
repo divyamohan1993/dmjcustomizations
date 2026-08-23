@@ -1,6 +1,6 @@
 ---
 name: selling-the-vision
-description: Use when writing anything whose job is to make a prospect CARE in seconds: a landing hero, pitch deck, launch or LinkedIn post, tagline, README hero, demo script, ad. Not the product's own UI (dmj:crafting-experiences); this is the persuasion that gets someone to try it.
+description: "Use when writing anything whose job is to make a prospect CARE in seconds: a landing hero, pitch deck, launch or LinkedIn post, tagline, README hero, demo script, ad. Not the product's own UI (dmj:crafting-experiences); this is the persuasion that gets someone to try it."
 ---
 
 # Selling the Vision

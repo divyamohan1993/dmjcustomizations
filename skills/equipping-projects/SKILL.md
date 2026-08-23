@@ -1,6 +1,6 @@
 ---
 name: equipping-projects
-description: Use when entering a fresh or under-tooled repo, starting a new project, or before the first commit leaves the machine, to wire the guard rails the project calls for (hooks, secret scan, CI mirroring local gates, MCP config, project memory). Symptoms: no hooks, no CI, "set up the repo", a first task in an unequipped codebase.
+description: "Use when entering a fresh or under-tooled repo, starting a new project, or before the first commit leaves the machine, to wire the guard rails the project calls for (hooks, secret scan, CI mirroring local gates, MCP config, project memory). Symptoms: no hooks, no CI, \"set up the repo\", a first task in an unequipped codebase."
 ---
 
 # Equipping Projects

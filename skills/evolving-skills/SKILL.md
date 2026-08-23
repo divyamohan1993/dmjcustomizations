@@ -1,6 +1,6 @@
 ---
 name: evolving-skills
-description: Use when a skill misfired or proved incomplete in real use, when wrapping a session that produced skill learnings, or when running the skill-improvement pass. Symptoms: "this skill was wrong", "update the skill from what we learned".
+description: "Use when a skill misfired or proved incomplete in real use, when wrapping a session that produced skill learnings, or when running the skill-improvement pass. Symptoms: \"this skill was wrong\", \"update the skill from what we learned\"."
 ---
 
 # Evolving Skills

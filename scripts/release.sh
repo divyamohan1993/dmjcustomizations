@@ -9,22 +9,32 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 V="${1:?usage: release.sh <version> \"<commit message>\"}"
 MSG="${2:?usage: release.sh <version> \"<commit message>\"}"
+[[ "$V" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]] || { echo "ABORT: version must be strict semver: $V"; exit 1; }
 
 grep -q "\[$V\]" CHANGELOG.md || { echo "ABORT: CHANGELOG.md has no [$V] entry. Changelog before commit."; exit 1; }
-node -e "
+RELEASE_VERSION="$V" node <<'NODE'
 const fs=require('fs');
-for (const [f,set] of [['.claude-plugin/plugin.json',(j,v)=>j.version=v],['.claude-plugin/marketplace.json',(j,v)=>j.plugins[0].version=v]]) {
-  const j=JSON.parse(fs.readFileSync(f,'utf8')); set(j,'$V'); fs.writeFileSync(f,JSON.stringify(j,null,2)+'\n');
+const v=process.env.RELEASE_VERSION;
+for (const f of ['.claude-plugin/plugin.json','.claude-plugin/marketplace.json','.codex-plugin/plugin.json']) {
+  const j=JSON.parse(fs.readFileSync(f,'utf8'));
+  if (f.endsWith('marketplace.json')) j.plugins[0].version=v;
+  else j.version=v;
+  fs.writeFileSync(f,JSON.stringify(j,null,2)+'\n');
 }
-console.log('manifests -> $V');"
+console.log('manifests -> '+v);
+NODE
 bash scripts/validate.sh
 git add -A
 # Gate fires ONLY when skill behavior text changes (not version/CHANGELOG/script-
 # only releases). Runs on a fast model: this is a safety net, not the author.
 # Gate reviews ALL skill .md (SKILL.md + reference files; the * matches slashes in git pathspec).
+RENAME_PAIRS=()
+if [ -n "${RENAME_MAP:-}" ]; then
+  read -r -a RENAME_PAIRS <<< "$RENAME_MAP"
+fi
 SKILL_DIFF=$(git diff --cached -- 'skills/*.md')
 if [ -n "$SKILL_DIFF" ]; then
-  if [ -n "${RENAME_MAP:-}" ] && node scripts/rename-check.js $RENAME_MAP <<< "$SKILL_DIFF"; then
+  if [ "${#RENAME_PAIRS[@]}" -gt 0 ] && node scripts/rename-check.js "${RENAME_PAIRS[@]}" <<< "$SKILL_DIFF"; then
     echo "diff review: PASS (MECHANICAL RENAME ONLY, NO SEMANTIC REVIEW) -- pairs: $RENAME_MAP"
   elif command -v claude >/dev/null 2>&1; then
     echo "fresh-context behavioral-diff review (strong model)..."

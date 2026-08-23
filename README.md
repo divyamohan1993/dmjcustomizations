@@ -1,6 +1,6 @@
 # dmjcustomizations
 
-Research-grade, production-deployable agentic software engineering framework for Claude Code. Skills = policy. Hooks = enforcement. Generated gates = verification. Teams = execution. Terse, date-agnostic, adversarially verified, secure from line 1.
+Research-grade, production-deployable agentic software engineering framework for Claude Code and Codex. Skills = policy. Hooks = enforcement. Generated gates = verification. Teams = execution. Terse, date-agnostic, adversarially verified, secure from line 1.
 
 ## Why
 
@@ -11,7 +11,7 @@ Built for the current Claude generation: teammate fan-out, cheap code, models tr
 - **Demonstrate, don't describe.** Competing approaches become disposable worktree spikes with benchmarks, not paragraphs.
 - **Dynamic by design.** No hardcoded models or dates; the rare version number a reference file carries comes with a re-check-at-invocation instruction. Skills probe for the strongest model and newest stable tooling at invocation time.
 - **Security and performance from line 1.** Threat models at design time, quantum-safe crypto defaults, O(1)-first thinking, budgets the skills require projects to enforce in CI.
-- **Terse.** Every skill is context-budgeted: concise by design, each rule living once at its owning home, with a runaway cap only as a backstop (the always-loaded meta-skill kept tightest). Substance is never cut just to hit a number.
+- **Terse.** Every skill has a context budget. Each rule lives once at its owning home. A runaway cap is only a backstop. The always-loaded meta-skill has the tightest cap. Substance is never cut just to hit a number.
 
 ## Skills
 
@@ -47,12 +47,14 @@ Built for the current Claude generation: teammate fan-out, cheap code, models tr
 | art-directing | Research-driven visual identity: psychology-led palette, distinctive type, edge-to-edge responsive, screenshot-verified |
 | landing-sessions | Session teardown: learnings to memory, state to git, resources to zero, threads surfaced |
 | selling-the-vision | Launch persuasion: one-second hook, keynote arc, one message, one CTA, honest claims |
-| enforcing-quality-gates | Every repo carries its own generated gate: unit, Gherkin acceptance, mutation, coverage, complexity caps, fuzz, and security lanes, tiered so the slow ones never get disabled |
+| enforcing-quality-gates | Every repo carries a generated gate: unit, acceptance, mutation, coverage, complexity, fuzz, and security checks. Slow lanes run later, not disabled. |
 | humanizing-output | Pre-push gate every project carries: strips em dashes and AI-tell language, reviewed humanize, prose that never reads AI-generated |
 
 ## Install
 
-The plugin installs as `dmj`, so skills fire as `dmj:brainstorming`, `dmj:test-driven-development`, etc.
+The plugin installs as `dmj`. Claude skills fire as `dmj:brainstorming`, `dmj:test-driven-development`, etc. Codex loads the native `.codex-plugin/plugin.json` and `.codex/hooks.json` surfaces; it does not use the Claude manifest as a substitute.
+
+### Claude Code
 
 From GitHub:
 
@@ -60,6 +62,17 @@ From GitHub:
 /plugin marketplace add divyamohan1993/dmjcustomizations
 /plugin install dmj@dmj
 ```
+
+### Codex
+
+From the Git marketplace:
+
+```sh
+codex plugin marketplace add divyamohan1993/dmjcustomizations
+codex plugin add dmj@dmj
+```
+
+The Codex install commands update Codex-managed local state. Repository validation and hooks do not edit local config or cache.
 
 Or from a local clone:
 
@@ -73,12 +86,13 @@ Or from a local clone:
 | Surface | How it loads |
 |---|---|
 | Claude Code CLI, desktop, VS Code | The install above; one config serves all three |
+| Codex CLI | The Codex install above; native manifest and hook routes are checked in |
 | Claude Code on the web | Automatic: this repo commits `.claude/settings.json` declaring the marketplace and plugin, installed at session start |
 | Cowork | Customize, Plugins, Add marketplace, `divyamohan1993/dmjcustomizations` (Cowork reads your claude.ai account, not `~/.claude`) |
 | Claude.ai chat | No plugins on that surface. Run `node scripts/export-claude-ai.mjs`, upload the zips you need under Settings, Capabilities |
 | Agent SDK | `plugins: [{ type: "local", path: "<clone>" }]` |
 
-The git-safety guard runs on perl when present and falls back to node (cloud VMs ship node, not perl); with neither it fails open and the skill instructions remain the line.
+The git-safety guard uses Perl when present and falls back to Node. If neither tool is available, the guard denies the action and reports the missing dependency.
 
 ## Provenance
 

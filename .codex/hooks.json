@@ -1,0 +1,31 @@
+{
+  "description": "Native dmj lifecycle and tool policy hooks for Codex.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd\" session-start",
+            "commandWindows": "cmd.exe /c \"\"%CLAUDE_PLUGIN_ROOT%\\hooks\\run-hook.cmd\" session-start\"",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd\" pre-tool-guard",
+            "commandWindows": "cmd.exe /c \"\"%CLAUDE_PLUGIN_ROOT%\\hooks\\run-hook.cmd\" pre-tool-guard\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

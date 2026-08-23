@@ -10,39 +10,59 @@ REM prepends "bash" to any command containing .sh -- doesn't interfere.
 REM
 REM Adapted from obra/superpowers (MIT).
 REM
-REM Usage: run-hook.cmd <script-name> [args...]
+REM Usage: run-hook.cmd <script-name>
 
 if "%~1"=="" (
     echo run-hook.cmd: missing script name >&2
     exit /b 1
 )
+if not "%~1"=="session-start" if not "%~1"=="pre-tool-guard" (
+    echo run-hook.cmd: invalid script name >&2
+    exit /b 1
+)
+if not "%~2"=="" (
+    echo run-hook.cmd: extra arguments are not allowed >&2
+    exit /b 1
+)
 
 set "HOOK_DIR=%~dp0"
+set "BASH_EXE="
 
-REM Try Git for Windows bash in standard locations
+REM Only these fixed Git for Windows locations are trusted.
 if exist "C:\Program Files\Git\bin\bash.exe" (
-    "C:\Program Files\Git\bin\bash.exe" "%HOOK_DIR%%~1" %2 %3 %4 %5 %6 %7 %8 %9
-    exit /b %ERRORLEVEL%
+    set "BASH_EXE=C:\Program Files\Git\bin\bash.exe"
 )
-if exist "C:\Program Files (x86)\Git\bin\bash.exe" (
-    "C:\Program Files (x86)\Git\bin\bash.exe" "%HOOK_DIR%%~1" %2 %3 %4 %5 %6 %7 %8 %9
-    exit /b %ERRORLEVEL%
+if not defined BASH_EXE if exist "C:\Program Files (x86)\Git\bin\bash.exe" (
+    set "BASH_EXE=C:\Program Files (x86)\Git\bin\bash.exe"
 )
 
-REM Try bash on PATH (e.g. user-installed Git Bash, MSYS2, Cygwin)
-where bash >nul 2>nul
-if %ERRORLEVEL% equ 0 (
-    bash "%HOOK_DIR%%~1" %2 %3 %4 %5 %6 %7 %8 %9
-    exit /b %ERRORLEVEL%
+if not defined BASH_EXE (
+    echo run-hook.cmd: trusted Git Bash was not found >&2
+    exit /b 1
 )
 
-REM No bash found - exit silently rather than error
-REM (plugin still works, just without SessionStart context injection)
-exit /b 0
+"%BASH_EXE%" "%HOOK_DIR%%~1"
+set "CHILD_EXIT=%ERRORLEVEL%"
+exit /b %CHILD_EXIT%
 CMDBLOCK
 
-# Unix: run the named script directly
+# Unix: validate the same allowlist and run through a fixed Bash path.
+if [ "$#" -ne 1 ]; then
+    printf '%s\n' 'run-hook.cmd: usage is run-hook.cmd <session-start|pre-tool-guard>' >&2
+    exit 1
+fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SCRIPT_NAME="$1"
-shift
-exec bash "${SCRIPT_DIR}/${SCRIPT_NAME}" "$@"
+case "$SCRIPT_NAME" in
+    session-start|pre-tool-guard) ;;
+    *) printf '%s\n' 'run-hook.cmd: invalid script name' >&2; exit 1 ;;
+esac
+if [ -x /usr/bin/bash ]; then
+    BASH_EXE=/usr/bin/bash
+elif [ -x /bin/bash ]; then
+    BASH_EXE=/bin/bash
+else
+    printf '%s\n' 'run-hook.cmd: trusted Bash was not found' >&2
+    exit 1
+fi
+exec "$BASH_EXE" "${SCRIPT_DIR}/${SCRIPT_NAME}"

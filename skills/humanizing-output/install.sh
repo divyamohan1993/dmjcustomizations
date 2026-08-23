@@ -3,7 +3,10 @@
 #   sh install.sh           install into the current repo
 #   sh install.sh --global  set a chained global core.hooksPath for all repos
 set -e
-SRC=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+SRC=$(
+  unset CDPATH
+  cd -- "$(dirname -- "$0")" && pwd
+)
 
 repo() {
   ROOT=$(git rev-parse --show-toplevel)
@@ -57,7 +60,7 @@ PC
   echo "each repo's own .git/hooks/pre-commit, so a secret scanner is NOT disabled;"
   echo "the pre-push chains .husky/pre-push. Verify your setup after enabling."
   printf "Set core.hooksPath to %s/hooks for ALL repos? [y/N] " "$DIR"
-  read a
+  read -r a
   case "$a" in
     y|Y|yes) git config --global core.hooksPath "$DIR/hooks"; echo "global gate set." ;;
     *) echo "skipped. Files staged at $DIR; set it yourself when ready." ;;

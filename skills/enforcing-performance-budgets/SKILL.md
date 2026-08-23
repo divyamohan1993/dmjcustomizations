@@ -1,6 +1,6 @@
 ---
 name: enforcing-performance-budgets
-description: Use when something is slow or might be, or when a choice affects speed or money: a slow endpoint, an N+1 query, nested loops over large input, a heavy bundle, picking a stack or data structure, a hot-path dependency, a perf review, a cost estimate, free-tier fit.
+description: "Use when something is slow or might be, or when a choice affects speed or money: a slow endpoint, an N+1 query, nested loops over large input, a heavy bundle, picking a stack or data structure, a hot-path dependency, a perf review, a cost estimate, free-tier fit."
 ---
 
 # Enforcing Performance Budgets

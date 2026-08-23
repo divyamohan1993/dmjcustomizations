@@ -1,6 +1,6 @@
 ---
 name: tracing-codebases
-description: Use when the deliverable is an explanation IN CHAT of how a codebase really works (execution start, data flow, module wiring) with no build to follow and nothing written to the repo: onboarding walkthroughs, "how does X work", auditing code against its docs.
+description: "Use when the deliverable is an explanation IN CHAT of how a codebase really works (execution start, data flow, module wiring) with no build to follow and nothing written to the repo: onboarding walkthroughs, \"how does X work\", auditing code against its docs."
 disallowed-tools: Write, Edit, NotebookEdit
 ---
 

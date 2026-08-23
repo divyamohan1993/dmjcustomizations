@@ -19,11 +19,29 @@ const UPDATE_BASELINE = process.argv.includes('--update-baseline');
 let fail = 0;
 const flag = (m) => { console.log('FAIL: ' + m); fail = 1; };
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
+const strictSemver = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 
-let PV, MV;
+const nativeFiles = [
+  '.codex-plugin/plugin.json',
+  '.codex/hooks.json',
+  'features/codex-plugin-compatibility.feature',
+  'scripts/test-hook-compatibility.mjs',
+];
+for (const rel of nativeFiles) if (!fs.existsSync(path.join(root, rel))) flag(`native compatibility file missing: ${rel}`);
+
+let PV, MV, CV, CodexManifest;
 try { PV = JSON.parse(read('.claude-plugin/plugin.json')).version; } catch { flag('plugin.json does not parse'); }
 try { MV = JSON.parse(read('.claude-plugin/marketplace.json')).plugins[0].version; } catch { flag('marketplace.json does not parse'); }
-if (PV && MV && PV !== MV) flag(`version mismatch: plugin=${PV} marketplace=${MV}`);
+try {
+  CodexManifest = JSON.parse(read('.codex-plugin/plugin.json'));
+  CV = CodexManifest.version;
+  if (Object.hasOwn(CodexManifest, 'hooks')) flag('Codex plugin.json contains unsupported hooks field');
+} catch { flag('Codex plugin.json does not parse'); }
+for (const [label, version] of [['Claude plugin', PV], ['Claude marketplace', MV], ['Codex plugin', CV]]) {
+  if (!strictSemver.test(version || '')) flag(`${label} version is not strict semver: ${version}`);
+}
+if (PV && MV && CV && new Set([PV, MV, CV]).size !== 1) flag(`version mismatch: claude=${PV} marketplace=${MV} codex=${CV}`);
+else if (PV && MV && CV) console.log(`version parity: ${PV}`);
 let changelog = '';
 try {
   changelog = read('CHANGELOG.md');
@@ -39,6 +57,21 @@ const clTop = (() => {
 const DASH = /[‒–—―−‐‑]/;
 const skillsDir = path.join(root, 'skills');
 const skills = fs.readdirSync(skillsDir).filter(n => fs.statSync(path.join(skillsDir, n)).isDirectory());
+
+const nativeInterface = CodexManifest?.interface;
+if (!nativeInterface || typeof nativeInterface !== 'object' || Array.isArray(nativeInterface)) {
+  flag('Codex plugin.json interface must be an object');
+} else {
+  for (const field of ['displayName', 'shortDescription', 'longDescription', 'developerName', 'category']) {
+    if (typeof nativeInterface[field] !== 'string' || !nativeInterface[field].trim()) flag(`Codex interface.${field} must be a non-empty string`);
+  }
+  if (!Array.isArray(nativeInterface.capabilities) || nativeInterface.capabilities.length === 0 || !nativeInterface.capabilities.every((value) => typeof value === 'string' && value.trim())) {
+    flag('Codex interface.capabilities must be a non-empty array of strings');
+  }
+  if (!Array.isArray(nativeInterface.defaultPrompt) || nativeInterface.defaultPrompt.length === 0 || !nativeInterface.defaultPrompt.every((value) => typeof value === 'string' && value.trim())) {
+    flag('Codex interface.defaultPrompt must be a non-empty array of strings');
+  }
+}
 
 // Protection-line metric: MUST/NEVER (exact case, word-bound) + "Iron Law".
 const protCount = (s) => (s.match(/\b(MUST|NEVER)\b/g) || []).length + (s.match(/Iron Law/g) || []).length;
@@ -57,6 +90,8 @@ for (const n of skills) {
   const name = (front.match(/^name:\s*(.+)$/m) || [])[1];
   if (name !== n) flag(`${n}: frontmatter name '${name}' != dir`);
   const desc = (front.match(/^description:\s*(.+)$/m) || [])[1] || '';
+  const descLine = front.match(/^description:\s+([^\r\n]+)$/m);
+  if (descLine && !/^['"]/.test(descLine[1].trim()) && /:\s/.test(descLine[1])) flag(`${rel}: single-line description containing ': ' must be quoted`);
   if (desc.length >= 500) flag(`${n}: description ${desc.length} chars`);
   if (DASH.test(body)) flag(`${n}: unicode dash`);
   if (/task tool/i.test(body)) flag(`${n}: forbidden 'Task tool'`);
@@ -114,16 +149,13 @@ try {
   }
 } catch { flag('skills/defending-in-depth/SKILL.md unreadable'); }
 
-// Guard-engine parity tripwire: both engines must carry the same verdict and
-// pattern tokens. Token-level, not regex-equivalence: it catches a deleted or
-// renamed rule, which is the drift that matters.
+// The shell wrapper must invoke the one authoritative Node guard engine. The
+// fixture owns the policy behavior; this tripwire catches a missing engine.
 try {
   const guardSh = read('hooks/pre-tool-guard');
   const guardJs = read('hooks/pre-tool-guard.js');
-  for (const tok of ['noverify', 'forcepush', 'hardreset', '--no-verify', '-with-lease', '--hard']) {
-    if (!guardSh.includes(tok)) flag(`hooks/pre-tool-guard: guard token missing: ${tok}`);
-    if (!guardJs.includes(tok)) flag(`hooks/pre-tool-guard.js: guard token missing: ${tok}`);
-  }
+  if (!guardSh.includes('node "$JS_ENGINE"')) flag('hooks/pre-tool-guard: Node engine invocation missing');
+  for (const tok of ['--no-verify', '-with-lease', '--hard']) if (!guardJs.includes(tok)) flag(`hooks/pre-tool-guard.js: guard token missing: ${tok}`);
 } catch { flag('pre-tool-guard engine files unreadable'); }
 
 const rows = (read('README.md').match(/^\| [a-z]/gm) || []).length;

@@ -1,0 +1,40 @@
+{
+  "name": "dmj",
+  "version": "5.1.0",
+  "description": "Divya's parallel-first agentic engineering skills: teammate fan-out workflows, adversarial verification, security and performance gates from line 1",
+  "author": {
+    "name": "Divya Mohan",
+    "email": "divyamohan1993@gmail.com",
+    "url": "https://github.com/divyamohan1993"
+  },
+  "homepage": "https://github.com/divyamohan1993/dmjcustomizations",
+  "repository": "https://github.com/divyamohan1993/dmjcustomizations",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "teammates",
+    "parallel",
+    "tdd",
+    "security",
+    "performance",
+    "workflows"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "dmj",
+    "shortDescription": "Parallel-first engineering skills and quality gates",
+    "longDescription": "Route engineering work through dmj skills, shared hooks, and checked quality gates.",
+    "developerName": "Divya Mohan",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/divyamohan1993/dmjcustomizations",
+    "defaultPrompt": [
+      "Route this task through dmj.",
+      "Plan and build this change with dmj gates.",
+      "Review this repository with dmj."
+    ]
+  }
+}

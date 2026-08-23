@@ -1,6 +1,6 @@
 ---
 name: orchestrating-products
-description: Use when an idea or feature set must become a complete shipped product or ecosystem and you are choosing how to run the whole effort (stages, teams, loops, model tiers, token budget), or when agentic work re-derives process or burns strong-model tokens on mechanical work. Symptoms: "take this idea to launch", "build the whole thing".
+description: "Use when an idea or feature set must become a complete shipped product or ecosystem and you are choosing how to run the whole effort (stages, teams, loops, model tiers, token budget), or when agentic work re-derives process or burns strong-model tokens on mechanical work. Symptoms: \"take this idea to launch\", \"build the whole thing\"."
 ---
 
 # Orchestrating Products

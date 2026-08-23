@@ -1,6 +1,6 @@
 ---
 name: defending-in-depth
-description: Use when designing or implementing anything touching user input, auth, sessions, secrets, PII, network calls, uploads, crypto, or deploy config, when adding an endpoint or dependency, or when reviewing for security. Symptoms: "is this safe", handling tokens, storing passwords, encrypting data.
+description: "Use when designing or implementing anything touching user input, auth, sessions, secrets, PII, network calls, uploads, crypto, or deploy config, when adding an endpoint or dependency, or when reviewing for security. Symptoms: \"is this safe\", handling tokens, storing passwords, encrypting data."
 ---
 
 # Defending In Depth

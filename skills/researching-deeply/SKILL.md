@@ -1,6 +1,6 @@
 ---
 name: researching-deeply
-description: Use when choosing a library, framework, model, or stack, asking "what is the current best" or "is this still true", or verifying any claim before relying on it: a factual question that affects a decision, unfamiliar territory, prior art, an assertion you are about to build on.
+description: "Use when choosing a library, framework, model, or stack, asking \"what is the current best\" or \"is this still true\", or verifying any claim before relying on it: a factual question that affects a decision, unfamiliar territory, prior art, an assertion you are about to build on."
 ---
 
 # Researching Deeply
