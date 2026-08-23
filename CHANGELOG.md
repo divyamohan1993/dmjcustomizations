@@ -3,6 +3,24 @@
 All notable changes to dmjcustomizations are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning tracks the Claude family: major.minor = the model generation this library is tuned for (Fable 5 = 5.0.x; Fable 5.1 -> 5.1.x), patch = this repo's releases within it.
 
+## [5.1.0] - 2026-08-23
+
+### Added
+
+- **Native Codex plugin surfaces**: `.codex-plugin/plugin.json` and `.codex/hooks.json` add native manifest and hook routing while the existing Claude surfaces remain intact.
+- **Cross-host compatibility fixture**: the feature and Node fixture check native manifest shape, exact Windows and POSIX routes, shared hook behavior, runner exit handling, and Claude hook preservation.
+- **Codex YAML-safe skill frontmatter**: native loading keeps skill metadata in parser-safe form without changing Claude metadata.
+- **Gate tests**: Bats runs the compatibility fixture, and a bounded shell fuzz check covers hostile hook input and destructive-command verdicts.
+
+### Security
+
+- **Fail-closed hook hardening**: the shared runner now accepts only allowlisted hook names and one argument, uses trusted Bash paths, and propagates child failures. The PreToolUse guard denies empty, malformed, incomplete, and broken-engine input instead of running unguarded. Existing valid behavior and deny policies remain in place.
+
+### Changed
+
+- **Deadline and untracked-file gate hardening**: release input now requires strict semver, and the generated gate checks working-tree diff state before completion.
+- **Atomic session update state**: SessionStart validates persisted update timestamps and emits the escaped session context as one JSON payload.
+
 ## [5.0.2] - 2026-07-29
 
 ### Added

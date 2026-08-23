@@ -1,95 +1,26 @@
 #!/usr/bin/env bash
-# PreToolUse guard: turns three skill laws into hard gates at the harness level.
-# Blocks, via permissionDecision deny:
-#   1. --no-verify on git commands (finishing-a-development-branch: never skip hooks)
-#   2. git push --force / -f  (allowed: --force-with-lease)
-#   3. git reset --hard against origin/... or @{u} (history destruction)
-# Escape hatch: DMJ_ALLOW=1 in the environment skips the guard for that call,
-# loudly, and is meant to be set only with the user's explicit on-record consent.
-# It is documented HERE and nowhere else: a denial message that advertises its
-# own bypass makes the bypass the path of least resistance.
-# Fail-open by design when NO engine exists (skills still instruct); but an
-# engine that is selected and then found broken (node chosen, guard file gone)
-# DENIES rather than running unguarded: that state means the plugin install is
-# damaged, not that the host is minimal.
-#
-# Perf: this runs on EVERY Bash/PowerShell tool call, so process spawns are the
-# whole cost (~170ms each on Windows). Extraction and all three checks share a
-# single perl invocation for that reason. Adding a second one measurably taxes
-# every command the user runs -- keep it to one.
+# PreToolUse guard: turn three skill laws into hard gates at the harness level.
+# The Node engine owns JSON parsing and all policy checks. Invalid input or a
+# broken engine returns a deny payload so the host receives a decision.
 set -uo pipefail
 
-if [ "${DMJ_ALLOW:-}" = "1" ]; then
-  echo "dmj pre-tool-guard: BYPASSED via DMJ_ALLOW=1" >&2
-  exit 0
-fi
-
-# Engine select: perl is fastest (one spawn, ~130ms), node is the fallback so
-# the guard still binds on hosts without perl (Ubuntu cloud VMs ship node).
-# Neither present: fail open by design. DMJ_GUARD_ENGINE forces one for tests.
-ENGINE="${DMJ_GUARD_ENGINE:-}"
-if [ -z "$ENGINE" ]; then
-  if command -v perl >/dev/null 2>&1; then ENGINE=perl
-  elif command -v node >/dev/null 2>&1; then ENGINE=node
-  else exit 0; fi
-fi
-
-INPUT=$(cat 2>/dev/null || true)
-[ -n "$INPUT" ] || exit 0
-
 deny() {
-  # JSON-escape the reason minimally (no quotes/backslashes used in reasons).
   printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$1"
   exit 0
 }
 
-# One perl pass: extract tool_input.command, fully JSON-unescape it, and test all
-# three patterns. Prints one verdict token per match; bash reads the first.
-#
-# Three properties this must hold, each of which was a live bypass found by
-# adversarial fuzzing before it was written this way:
-#   1. Scope to tool_input. Grepping the first "command" anywhere lets an
-#      attacker put a harmless decoy in an earlier field and hide the real one.
-#   2. Decode \uXXXX and \/ . The harness decodes before executing, so anything
-#      the guard leaves encoded is a command it inspects in a different form
-#      than the one that runs.
-#   3. Match the program name case-insensitively. Windows resolves GIT to
-#      git.exe. Flags stay case-sensitive: git rejects --FORCE, but -f and -F
-#      mean different things, so folding case there would deny valid commands.
-if [ "$ENGINE" = "node" ]; then
-  JS_ENGINE="$(cd "$(dirname "$0")" && pwd)/pre-tool-guard.js"
-  if [ ! -f "$JS_ENGINE" ]; then
-    echo "dmj pre-tool-guard: node engine selected but pre-tool-guard.js is missing; denying rather than running unguarded" >&2
-    deny "dmj guard: guard engine file missing (pre-tool-guard.js). The dmj plugin install is damaged; reinstall or restore the file."
-  fi
-  VERDICT=$(printf '%s' "$INPUT" | node "$JS_ENGINE" 2>/dev/null || true)
-else
-VERDICT=$(printf '%s' "$INPUT" | perl -0777 -ne '
-  my $scope = /"tool_input"\s*:\s*\{(.*)$/s ? $1 : $_;
-  exit 0 unless $scope =~ /"command"\s*:\s*"((?:[^"\\]|\\.)*)"/s;
-  my $c = $1;
-  # Single left-to-right unescape pass: \uXXXX, then \n \t \r to space, then
-  # any \X to X (covers \" \\ \/). One pass so a decoded backslash cannot be
-  # re-read as the start of another escape.
-  $c =~ s/\\(u([0-9a-fA-F]{4})|.)/
-    defined($2) ? chr(hex($2))
-                : ($1 =~ m{^[ntr]$} ? " " : $1)/ge;
-  my $git = qr/\b(?i:git)\b/;
-  print "noverify\n"  if $c =~ /$git[^|;&]*--no-verify\b/;
-  print "forcepush\n" if $c =~ /$git[^|;&]*\bpush\b[^|;&]*(--force(?!-with-lease)\b|\s-f\b)/;
-  print "hardreset\n" if $c =~ /$git[^|;&]*\breset\b[^|;&]*--hard\b[^|;&]*(origin\/|\@\{u\})/;
-' 2>/dev/null || true)
+if ! command -v node >/dev/null 2>&1; then
+  deny "dmj guard: Node.js is required to evaluate PreToolUse input; install Node.js and retry."
 fi
 
-[ -n "$VERDICT" ] || exit 0
+JS_ENGINE="$(cd "$(dirname "$0")" && pwd)/pre-tool-guard.js"
+if [ ! -f "$JS_ENGINE" ]; then
+  deny "dmj guard: guard engine file missing (pre-tool-guard.js). Restore the dmj plugin file."
+fi
 
-case "${VERDICT%%$'\n'*}" in
-  noverify)
-    deny "dmj guard: --no-verify skips hooks; fix the failing hook instead." ;;
-  forcepush)
-    deny "dmj guard: force push rewrites shared history; use --force-with-lease if truly needed." ;;
-  hardreset)
-    deny "dmj guard: reset --hard to a remote ref destroys local work; stash or branch first." ;;
-esac
-
+node "$JS_ENGINE" 2>/dev/null
+ENGINE_EXIT=$?
+if [ "$ENGINE_EXIT" -ne 0 ]; then
+  deny "dmj guard: guard engine failed; restore the dmj plugin and retry."
+fi
 exit 0

@@ -1,6 +1,6 @@
 ---
 name: enforcing-quality-gates
-description: Use when about to call work done, shipped, or merged, or when a repo has no automated proof it works: generates and runs that repo's unit, acceptance, mutation, coverage, fuzz, and security gate.
+description: "Use when about to call work done, shipped, or merged, or when a repo has no automated proof it works: generates and runs that repo's unit, acceptance, mutation, coverage, fuzz, and security gate."
 ---
 
 # Enforcing Quality Gates

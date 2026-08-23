@@ -129,7 +129,7 @@ obvious things Claude should know."*
 | Section | Chars | Why |
 |---|---:|---|
 | Security: Posture, Transport, Injection, Monitoring | ~1,300 | OWASP defaults, TLS 1.3, HSTS, parameterized queries, explicit CORS. Claude does these unprompted. `dmj:defending-in-depth` covers the rest on demand. |
-| Software Engineering: Code, Testing, Resilience, Docs, Git | ~900 | SRP, YAGNI, DRY, KISS, test pyramid, circuit breakers, backoff+jitter, "document why not what", small commits. Baseline behavior. |
+| Software Engineering: Code, Testing, Resilience, Docs, Git | ~900.<br> | SRP, YAGNI, DRY, KISS, test pyramid, circuit breakers, backoff+jitter, "document why not what", small commits. Baseline behavior. |
 | Reality Standard historical examples | ~500 | Newton, Wave, Fire Phone, Kindle. Illustration, not instruction. |
 | Scaling Philosophy tier list | ~300 | Already points at `deployment-blueprints.md`. Keep the pointer, drop the inline list. |
 | Design Philosophy items 1-5 | ~600 | Duplicates `dmj:crafting-experiences` verbatim. |

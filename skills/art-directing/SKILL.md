@@ -1,6 +1,6 @@
 ---
 name: art-directing
-description: Use when designing or restyling any UI surface (page, panel, dashboard, landing) or picking its visual identity (palette, type, layout, motion, morphic language). Symptoms: looks templated or AI-generated, must fill every screen size, "make it unique", "what colors".
+description: "Use when designing or restyling any UI surface (page, panel, dashboard, landing) or picking its visual identity (palette, type, layout, motion, morphic language). Symptoms: looks templated or AI-generated, must fill every screen size, \"make it unique\", \"what colors\"."
 ---
 
 # Art Directing

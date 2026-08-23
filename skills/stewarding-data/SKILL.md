@@ -1,6 +1,6 @@
 ---
 name: stewarding-data
-description: Use when creating or changing a schema, writing or running a migration, handling backups or restores, bulk-editing production data, storing PII, or setting retention and deletion policy. Symptoms: ALTER or DROP on a live table, "just run this SQL on prod", a backup never restored.
+description: "Use when creating or changing a schema, writing or running a migration, handling backups or restores, bulk-editing production data, storing PII, or setting retention and deletion policy. Symptoms: ALTER or DROP on a live table, \"just run this SQL on prod\", a backup never restored."
 ---
 
 # Stewarding Data

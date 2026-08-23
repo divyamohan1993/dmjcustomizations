@@ -1,6 +1,6 @@
 # Claude 5 "Then and Now" pass, disposition ledger
 
-Companion to `2026-07-29-claude5-then-now-pass-design.md`. Covers every file tracked before the pass (74), the 8 global context files, and files the pass created. Disposition: what changed, or why a finding against the file was rejected, or "clean" (no finding). Commit series: 9da9e8f design, 36dab18 design v2, 79ffac3 gates, bcfc669 guards, 1669556 lint, edc5dde skills, d2494f8 dash cleanup, 23f4a5f routing, c963613 security dedup, 839b604 dedup, e63cac2 rescues, plus the release commit carrying this ledger. Globals: `~/.claude` git history eead1f8 (pre) -> 2047ae0 (post).
+Companion to `2026-07-29-claude5-then-now-pass-design.md`. It covers every file tracked before the pass (74), the 8 global context files, and files the pass created. It records what changed, why a finding was rejected, or "clean" (no finding). Commit series: 9da9e8f design, 36dab18 design v2, 79ffac3 gates, bcfc669 guards, and 1669556 lint. Then edc5dde skills, d2494f8 dash cleanup, 23f4a5f routing, c963613 security dedup, 839b604 dedup, and e63cac2 rescues. The release commit carries this ledger. Globals: `~/.claude` git history eead1f8 (pre) -> 2047ae0 (post).
 
 ## Repo: modified (57)
 
@@ -94,11 +94,11 @@ Companion to `2026-07-29-claude5-then-now-pass-design.md`. Covers every file tra
 
 | file | disposition |
 |---|---|
-| CLAUDE.md | 16,751 -> 9,813 chars; every imperative kept (30-probe grep green); rationale and stack detail moved to skill/reference homes; DA ritual compressed to principle (user decision Q2) |
+| CLAUDE.md | 16,751 -> 9,813 chars. Every imperative kept (30-probe grep green). Rationale and stack detail moved to skill/reference homes. DA ritual compressed to principle (user decision Q2) |
 | RTK.md | shrunk to the hook note + meta commands + the /usr/bin/grep caveat; import kept (user decision Q3) |
 | reference/stack-defaults.md | CREATED: naming, logging, env/secrets, frontend, database, CI lanes |
 | reference/super-admin.md | CREATED: implementation numbers; points at the SESSION tier, carries no crypto parameters |
-| reference/ship-checklist.md | rewritten: gate map with pass criteria + 4 orphan gates + presentation gates; drifted-weaker crypto line deleted (skill superset); never-skip-security verbatim; skip profiles and pre-push table kept; rescues homed in skills first (e63cac2) |
+| reference/ship-checklist.md | rewritten as a gate map with pass criteria, 4 orphan gates, and presentation gates. Drifted-weaker crypto line deleted (skill superset). Never-skip-security kept verbatim. Skip profiles and pre-push table kept. Rescues homed in skills first (e63cac2) |
 | reference/pitch-deck.md | CSS/JS blocks -> interface contract; counts -> intent; identity deferred to art-directing; byline and MEMORY.md pointers fixed; dashes stripped |
 | reference/user-identity.md | byline "Claude (Anthropic)", never-pin note, shell line corrected; portfolio tables KEPT (on-demand file, cuts earn nothing) |
 | reference/design-thinking.md | UNTOUCHED (on-demand; trims save zero session tokens; overlap tolerated as prompt content for brainstorming lenses) |
@@ -109,10 +109,10 @@ Companion to `2026-07-29-claude5-then-now-pass-design.md`. Covers every file tra
 
 | change | home |
 |---|---|
-| Orchestrator law: main thread never labors, all substantive work in background agents with own contexts, conclusions only in the main thread, delegation default even for one task | using-dmj (law), dispatching-parallel-teams (mechanics), CLAUDE.md principle 6 (pointer) |
+| Orchestrator law: main thread never labors. All substantive work runs in background agents with own contexts. Conclusions enter only the main thread. Delegation is the default, even for one task | using-dmj (law), dispatching-parallel-teams (mechanics), CLAUDE.md principle 6 (pointer) |
 | Governance to dmjcustomizations; CLAUDE.md identity + laws only (second slim, 9,813 -> 5,917 chars) | CLAUDE.md + new skill homes: API schema -> equipping-projects (Endpoints row); container hardening + super-admin -> shipping-to-production artifact table |
 | Version 5.0.0 instead of 2.25.0 | this release |
-| Terse-doctrine batch: worktree ban (14-file sweep, using-git-worktrees rewritten as the no-worktree isolation policy), all-opus spawns (two-tier menu retired), lexicon +25 terms, AAA + baseline-device + MLP floors, SIEM observability, deploy-is-not-release, API v2, DPDP residency, perf/offline/arch shapes, CLAUDE.md in telegraphic register (6,136 chars) | crafting-experiences, observing-production, shipping-to-production, equipping-projects, defending-in-depth, humanize-guard.mjs, dispatching-parallel-teams, using-git-worktrees + 8 sweep files, stack-defaults.md, CLAUDE.md |
+| Terse-doctrine batch: worktree ban in a 14-file sweep. using-git-worktrees became the no-worktree isolation policy. All-opus spawns retired the two-tier menu. The lexicon gained +25 terms. Floors cover AAA, baseline-device, and MLP. Other changes cover SIEM observability, deploy-is-not-release, API v2, DPDP residency, and perf/offline/arch shapes. CLAUDE.md uses a telegraphic register (6,136 chars) | crafting-experiences, observing-production, shipping-to-production, equipping-projects, defending-in-depth, humanize-guard.mjs, dispatching-parallel-teams, using-git-worktrees + 8 sweep files, stack-defaults.md, CLAUDE.md |
 | TeamCreate/team_name in the user draft: dead mechanisms, translated to the orchestrator law, not adopted verbatim | using-dmj + dispatching-parallel-teams |
 
 ## Standing decisions recorded

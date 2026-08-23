@@ -60,6 +60,7 @@ _now_ms() {
 }
 _START_MS="$(_now_ms)"
 
+# shellcheck disable=SC2329 # EXIT invokes this reporting function indirectly.
 _report_runtime() {
   local end ms
   end="$(_now_ms)"

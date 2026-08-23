@@ -22,26 +22,49 @@ update_notice=""
 DATA_DIR="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/dmj}"
 NOTICE_FILE="$DATA_DIR/update-notice"
 if [ -s "$NOTICE_FILE" ]; then
-    update_notice="\n\n<dmj-update>$(cat "$NOTICE_FILE" 2>/dev/null)</dmj-update>"
+    update_notice=$'\n\n<dmj-update>'"$(cat "$NOTICE_FILE" 2>/dev/null)"'</dmj-update>'
     rm -f "$NOTICE_FILE" 2>/dev/null || true
 fi
 (
+    exec </dev/null
     command -v curl >/dev/null 2>&1 || exit 0
     mkdir -p "$DATA_DIR" 2>/dev/null || exit 0
+    LOCK_DIR="$DATA_DIR/update-check.lock"
+    LOCK_ACQUIRED=0
+    NOTICE_TMP=""
+    STAMP_TMP=""
+    cleanup_update_check() {
+        [ -z "$NOTICE_TMP" ] || rm -f "$NOTICE_TMP" 2>/dev/null || true
+        [ -z "$STAMP_TMP" ] || rm -f "$STAMP_TMP" 2>/dev/null || true
+        [ "$LOCK_ACQUIRED" -eq 1 ] && rmdir "$LOCK_DIR" 2>/dev/null || true
+    }
+    trap cleanup_update_check EXIT
+    trap 'exit 1' HUP INT TERM
+    mkdir "$LOCK_DIR" 2>/dev/null || exit 0
+    LOCK_ACQUIRED=1
     stamp="$DATA_DIR/update-check-stamp"
     now=$(date +%s)
     epoch_last=$(cat "$stamp" 2>/dev/null || echo 0)
+    case "$epoch_last" in
+        ''|*[!0-9]*) epoch_last=0 ;;
+    esac
     [ $((now - epoch_last)) -lt 86400 ] && exit 0
-    echo "$now" > "$stamp" 2>/dev/null || true
+    STAMP_TMP="$DATA_DIR/.update-check-stamp.$$"
+    printf '%s\n' "$now" > "$STAMP_TMP" 2>/dev/null || exit 0
+    mv -f "$STAMP_TMP" "$stamp" 2>/dev/null || exit 0
+    STAMP_TMP=""
     local_v=$(grep -o '"version"[^,]*' "${PLUGIN_ROOT}/.claude-plugin/plugin.json" 2>/dev/null | head -1 | grep -o '[0-9][0-9.]*' || echo "")
     remote_v=$(curl -fsS --max-time 4 "https://raw.githubusercontent.com/divyamohan1993/dmjcustomizations/main/.claude-plugin/plugin.json" 2>/dev/null | grep -o '"version"[^,]*' | head -1 | grep -o '[0-9][0-9.]*' || echo "")
     [ -n "$local_v" ] && [ -n "$remote_v" ] || exit 0
     [ "$local_v" = "$remote_v" ] && exit 0
     newest=$(printf '%s\n%s\n' "$local_v" "$remote_v" | sort -V | tail -1)
     if [ "$newest" = "$remote_v" ]; then
-        printf 'dmj %s is available (installed: %s). Tell the user, and offer to run for them: claude plugin marketplace update dmj && claude plugin update dmj@dmj (restart applies it).' "$remote_v" "$local_v" > "$NOTICE_FILE" 2>/dev/null || true
+        NOTICE_TMP="$DATA_DIR/.update-notice.$$"
+        if printf 'dmj %s is available (installed: %s). Tell the user, and offer to run for them: claude plugin marketplace update dmj && claude plugin update dmj@dmj (restart applies it).' "$remote_v" "$local_v" > "$NOTICE_TMP" 2>/dev/null; then
+            mv -f "$NOTICE_TMP" "$NOTICE_FILE" 2>/dev/null || true
+        fi
     fi
-) >/dev/null 2>&1 &
+) </dev/null >/dev/null 2>&1 &
 disown 2>/dev/null || true
 
 # Escape string for JSON embedding using bash parameter substitution
@@ -56,8 +79,13 @@ escape_for_json() {
     printf '%s' "$s"
 }
 
-escaped=$(escape_for_json "$content")
-session_context="<dmj>\nYou have dmj. The routing skill below is pre-loaded; invoke every other skill via the 'Skill' tool.\n\n${escaped}\n</dmj>${update_notice}"
+session_context="<dmj>
+You have dmj. The routing skill below is pre-loaded; invoke every other skill via the 'Skill' tool.
+
+${content}
+</dmj>${update_notice}"
+escaped=$(escape_for_json "$session_context")
+session_context="$escaped"
 
 # printf instead of heredoc: works around bash 5.3+ heredoc hang
 # (see obra/superpowers#571).
